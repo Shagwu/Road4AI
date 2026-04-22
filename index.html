@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Road4AI | Stop Renting Intelligence</title>
+    <meta
+      name="description"
+      content="Road4AI is a zero-cost AI operator blueprint for builders who want local-first, CLI-native workflows instead of subscription-heavy dashboards."
+    />
+    <!-- FIX 1: Load JetBrains Mono from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #000000;
+        --surface: #0a0a0a;
+        --surface-2: #050505;
+        --text: #ffffff;
+        --muted: #9ca3af;
+        --border: #1f2937;
+        --accent: #10b981;
+        --accent-2: #34d399;
+        --glow: rgba(16, 185, 129, 0.16);
+        --max: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "JetBrains Mono", "Geist Mono", "SFMono-Regular", Consolas,
+          "Liberation Mono", Menlo, monospace;
+        line-height: 1.55;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px
+        );
+        background-size: 100% 6px;
+        opacity: 0.08;
+      }
+
+      a {
+        color: var(--accent-2);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--text);
+      }
+
+      .shell {
+        width: min(calc(100% - 32px), var(--max));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        border-bottom: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.92);
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(10px);
+        z-index: 10;
+      }
+
+      .topbar-inner {
+        width: min(calc(100% - 32px), var(--max));
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        gap: 16px;
+      }
+
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .brand::before {
+        content: "> ";
+        color: var(--accent);
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .hero {
+        padding: 72px 0 40px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 0.9fr;
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        background: linear-gradient(
+          180deg,
+          rgba(10, 10, 10, 0.94),
+          rgba(0, 0, 0, 1)
+        );
+        padding: 28px;
+        box-shadow: 0 0 24px rgba(16, 185, 129, 0.06);
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: var(--accent);
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        padding: 6px 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.72rem;
+        margin-bottom: 18px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.06;
+        margin: 0 0 16px;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 6vw, 5.4rem);
+        letter-spacing: -0.06em;
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+        letter-spacing: -0.04em;
+      }
+
+      h3 {
+        font-size: 1.02rem;
+      }
+
+      p {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 0.98rem;
+      }
+
+      .lede {
+        max-width: 62ch;
+        font-size: 1.06rem;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--accent);
+        min-height: 46px;
+        padding: 0 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 0.85rem;
+        transition: 150ms linear;
+      }
+
+      .button.primary {
+        background: var(--accent);
+        color: var(--bg);
+      }
+
+      .button.secondary {
+        color: var(--accent);
+        background: transparent;
+      }
+
+      .button:hover {
+        box-shadow: 0 0 20px var(--glow);
+      }
+
+      .terminal {
+        min-height: 100%;
+      }
+
+      .terminal-head {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .prompt-line {
+        color: var(--text);
+        margin: 0 0 10px;
+      }
+
+      .prompt-line .prompt {
+        color: var(--accent);
+      }
+
+      .mini-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .mini-item {
+        padding: 12px;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+      }
+
+      .strip,
+      .cards,
+      .steps,
+      .proof {
+        display: grid;
+        gap: 16px;
+      }
+
+      .strip {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        margin: 18px 0 56px;
+      }
+
+      .tag {
+        border: 1px solid var(--border);
+        padding: 14px 12px;
+        background: var(--surface);
+        color: var(--text);
+        text-transform: uppercase;
+        font-size: 0.76rem;
+        letter-spacing: 0.05em;
+      }
+
+      section {
+        padding: 22px 0 34px;
+      }
+
+      .section-head {
+        max-width: 62ch;
+        margin-bottom: 20px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card,
+      .step,
+      .proof-card {
+        border: 1px solid var(--border);
+        background: var(--surface);
+        padding: 22px;
+        transition: 150ms linear;
+      }
+
+      .card:hover,
+      .step:hover,
+      .proof-card:hover {
+        border-color: rgba(16, 185, 129, 0.45);
+        box-shadow: 0 0 22px rgba(16, 185, 129, 0.08);
+      }
+
+      .step-index {
+        color: var(--accent);
+        margin-bottom: 10px;
+        font-size: 0.88rem;
+      }
+
+      .steps,
+      .proof {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      ul.clean {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 12px;
+      }
+
+      ul.clean li {
+        border-left: 2px solid var(--accent);
+        padding-left: 12px;
+        color: var(--muted);
+      }
+
+      .cta {
+        margin: 34px 0 72px;
+      }
+
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 24px 0 40px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      code {
+        color: var(--accent-2);
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .cards,
+        .steps,
+        .proof,
+        .split,
+        .strip {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding-top: 40px;
+        }
+
+        .topbar {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">Road4AI</div>
+        <nav class="nav">
+          <a href="#why">Why</a>
+          <a href="#system">System</a>
+          <a href="#proof">Proof</a>
+          <a href="#fit">Fit</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="panel">
+            <div class="eyebrow">Zero-Cost AI For Operators</div>
+            <h1>Stop Renting Intelligence.</h1>
+            <p class="lede">
+              Road4AI is a zero-cost AI operator blueprint for builders who want
+              local-first, CLI-native workflows instead of subscription-heavy
+              dashboards.
+            </p>
+            <p>
+              Built for indie hackers, technical founders, and engineers who
+              want to own the environment.
+            </p>
+            <div class="actions">
+              <!-- FIX 2: Link to GitHub blob view so markdown renders properly -->
+              <a class="button primary" href="https://github.com/Shagwu/Road4AI/blob/main/SYSTEM.md">Inspect The Blueprint</a>
+              <!-- FIX 3: Link to raw file for the Python script so it's viewable/downloadable -->
+              <a class="button secondary" href="https://github.com/Shagwu/Road4AI/blob/main/verify_repo.py">Run The Verifier</a>
+            </div>
+          </div>
+          <aside class="panel terminal">
+            <div class="terminal-head">
+              <span>road4ai://operator-shell</span>
+              <span>status: live</span>
+            </div>
+            <p class="prompt-line">
+              <span class="prompt">$</span> python3 verify_repo.py /path/to/repo
+            </p>
+            <p class="prompt-line">
+              <span class="prompt">></span> detect true file types
+            </p>
+            <p class="prompt-line">
+              <span class="prompt">></span> flag suspicious mismatches
+            </p>
+            <p class="prompt-line">
+              <span class="prompt">></span> list binaries before execution
+            </p>
+            <div class="mini-list">
+              <div class="mini-item">core brain: Gemini CLI + local fallback</div>
+              <div class="mini-item">protocol: MCP-connected local workflow</div>
+              <div class="mini-item">safety: Magika-based repo verification</div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="strip">
+          <div class="tag">Zero-Cost-First</div>
+          <div class="tag">CLI-Native</div>
+          <div class="tag">Local-First</div>
+          <div class="tag">Open Source</div>
+          <div class="tag">Magika-Powered</div>
+        </div>
+      </section>
+
+      <section id="why">
+        <div class="section-head">
+          <h2>The SaaS tax is eating the AI stack.</h2>
+          <p>
+            Most AI products sell convenience by renting your workflow back to
+            you. You pay monthly for a web UI wrapper, lose control of the
+            environment, and end up with a stack you cannot fully inspect or
+            own.
+          </p>
+          <p>
+            Road4AI takes the opposite position. Use local tools. Use free tiers
+            where they make sense. Keep the workflow close to the terminal.
+            Treat AI like infrastructure, not entertainment.
+          </p>
+        </div>
+      </section>
+
+      <section id="system">
+        <div class="section-head">
+          <h2>Built for operators, not passengers.</h2>
+          <p>
+            Road4AI gives you a practical blueprint for running AI workflows
+            with lower cost, more control, and clearer system boundaries.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Zero-cost by default</h3>
+            <p>
+              Prefer local models and free tiers before paid subscriptions
+              become the default answer.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Own the workflow</h3>
+            <p>
+              Run a stack you can inspect, script, version, and evolve on your
+              own terms.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Verify before you trust</h3>
+            <p>
+              Audit downloaded or forked repositories with a Magika-based
+              verifier that flags mismatches and suspicious binaries.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Learn a repeatable system</h3>
+            <p>
+              Road4AI is not just a repo. It is a model for how technical
+              builders can operate AI workflows without vendor dependence.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <h2>From repo to operator stack in three steps.</h2>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <div class="step-index">01</div>
+            <h3>Inspect the philosophy</h3>
+            <p>
+              Read <a href="https://github.com/Shagwu/Road4AI/blob/main/manifesto.md">manifesto.md</a> and
+              <a href="https://github.com/Shagwu/Road4AI/blob/main/SYSTEM.md">SYSTEM.md</a> to understand the zero-cost-first
+              model.
+            </p>
+          </article>
+          <article class="step">
+            <div class="step-index">02</div>
+            <h3>Verify the codebase</h3>
+            <p>
+              Use <a href="https://github.com/Shagwu/Road4AI/blob/main/verify_repo.py"><code>verify_repo.py</code></a> to
+              scan a repository and catch file mismatches or unexpected binaries
+              before execution.
+            </p>
+          </article>
+          <article class="step">
+            <div class="step-index">03</div>
+            <h3>Build on owned infrastructure</h3>
+            <p>
+              Run local-first tools, free-tier models, and MCP-connected
+              services inside a workflow you control.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="proof">
+        <div class="section-head">
+          <h2>The repo already ships with substance.</h2>
+        </div>
+        <div class="proof">
+          <article class="proof-card">
+            <h3>Safety</h3>
+            <p>
+              <a href="https://github.com/Shagwu/Road4AI/blob/main/verify_repo.py"><code>verify_repo.py</code></a> uses
+              Magika to detect mismatched file types and binaries.
+            </p>
+          </article>
+          <article class="proof-card">
+            <h3>Architecture</h3>
+            <p>
+              <a href="https://github.com/Shagwu/Road4AI/blob/main/SYSTEM.md">SYSTEM.md</a> defines the zero-cost
+              infrastructure stack.
+            </p>
+          </article>
+          <article class="proof-card">
+            <h3>Point of View</h3>
+            <p>
+              <a href="https://github.com/Shagwu/Road4AI/blob/main/manifesto.md">manifesto.md</a> explains the operator
+              thesis and why the CLI matters.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="fit">
+        <div class="section-head">
+          <h2>If this sounds extreme, you are probably not the target user.</h2>
+        </div>
+        <div class="split">
+          <div class="panel">
+            <h3>Road4AI is for</h3>
+            <ul class="clean">
+              <li>Indie hackers tired of subscription creep</li>
+              <li>Technical founders who want leverage without vendor lock-in</li>
+              <li>Engineers who prefer terminals over dashboards</li>
+              <li>Builders who want systems, not slogans</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Road4AI is not for</h3>
+            <ul class="clean">
+              <li>Users looking for a polished consumer AI app</li>
+              <li>Teams that want managed convenience over ownership</li>
+              <li>Non-technical buyers who do not want to touch the command line</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="panel">
+          <div class="eyebrow">Directive</div>
+          <h2>Choose your side.</h2>
+          <p>
+            The GUI is for consumers. The CLI is for creators. Road4AI gives
+            you a practical starting point for building AI workflows you can
+            own.
+          </p>
+          <div class="actions">
+            <!-- FIX 4: "Clone The Repo" now points to the actual repo root, not README.md -->
+            <a class="button primary" href="https://github.com/Shagwu/Road4AI">Clone The Repo</a>
+            <a class="button secondary" href="https://github.com/Shagwu/Road4AI/blob/main/manifesto.md">Read The Manifesto</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell footer">
+      <p>
+        Road4AI is a zero-cost AI operator blueprint for local-first,
+        CLI-native workflows.
+      </p>
+    </footer>
+  </body>
+</html>
