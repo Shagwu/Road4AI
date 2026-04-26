@@ -1,0 +1,16 @@
+{
+  "agents": {
+    "agent-1776660019527-8245ts": {
+      "agentId": "agent-1776660019527-8245ts",
+      "agentType": "cli_help",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {},
+      "createdAt": "2026-04-20T04:40:19.538Z",
+      "model": "haiku",
+      "modelRoutedBy": "router"
+    }
+  },
+  "version": "3.0.0"
+}

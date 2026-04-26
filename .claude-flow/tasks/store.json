@@ -1,0 +1,20 @@
+{
+  "tasks": {
+    "task-1776661521352-54em5f": {
+      "taskId": "task-1776661521352-54em5f",
+      "type": "research",
+      "description": "Explain \"/warp cli\" command/mode.",
+      "priority": "normal",
+      "status": "pending",
+      "progress": 0,
+      "assignedTo": [
+        "agent-1776660019527-8245ts"
+      ],
+      "tags": [],
+      "createdAt": "2026-04-20T05:05:21.352Z",
+      "startedAt": null,
+      "completedAt": null
+    }
+  },
+  "version": "3.0.0"
+}

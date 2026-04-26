@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Eval Viewer</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --sidebar-bg: #1e293b;
+            --text-main: #334155;
+            --text-light: #94a3b8;
+            --card-bg: #ffffff;
+            --pass-green: #10b981;
+            --fail-red: #ef4444;
+            --warn-yellow: #f59e0b;
+            --border-color: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg-color); color: var(--text-main); display: flex; min-height: 100-vh; }
+
+        /* Sidebar */
+        aside {
+            width: 300px;
+            background: var(--sidebar-bg);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .skill-info h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .skill-info p { color: var(--text-light); font-size: 0.875rem; }
+
+        .progress-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .circular-progress {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: conic-gradient(var(--pass-green) 0%, #334155 0%);
+            position: relative;
+        }
+
+        .circular-progress::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: var(--sidebar-bg);
+            border-radius: 50%;
+        }
+
+        .progress-value {
+            position: relative;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 300px;
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .summary-bar {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item { text-align: center; }
+        .stat-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-light); letter-spacing: 0.05em; }
+        .stat-value { font-size: 1.25rem; font-weight: 600; margin-top: 0.25rem; }
+
+        /* Test Cards */
+        .test-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .test-header {
+            padding: 1.25rem;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .test-id { font-weight: bold; color: var(--sidebar-bg); }
+        .test-metrics { font-size: 0.875rem; color: var(--text-light); display: flex; gap: 1rem; }
+
+        .test-body { padding: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+        .section-title { font-size: 0.875rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; margin-bottom: 1rem; }
+
+        .prompt-box, .output-box {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            border: 1px solid #e2e8f0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .criteria-list { list-style: none; }
+        .criterion {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .status-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .status-pass { background: var(--pass-green); }
+        .status-fail { background: var(--fail-red); }
+
+        .notes-area {
+            margin-top: 1.5rem;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-family: inherit;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        @media (max-width: 1024px) {
+            aside { width: 100%; height: auto; position: relative; }
+            main { margin-left: 0; }
+            .test-body { grid-template-columns: 1fr; }
+            .summary-bar { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="skill-info">
+            <h1 id="skillName">Skill Name</h1>
+            <p>Version: <span id="skillVersion">---</span></p>
+            <p>Date: <span id="skillDate">---</span></p>
+        </div>
+
+        <div class="progress-container">
+            <div class="circular-progress" id="circularProgress">
+                <div class="progress-value" id="overallPassRate">0%</div>
+            </div>
+            <p class="stat-label">Overall Pass Rate</p>
+        </div>
+    </aside>
+
+    <main>
+        <div class="summary-bar">
+            <div class="stat-item">
+                <div class="stat-label">Total Tests</div>
+                <div class="stat-value" id="statTotal">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Passed</div>
+                <div class="stat-value" id="statPassed" style="color: var(--pass-green)">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Failed</div>
+                <div class="stat-value" id="statFailed" style="color: var(--fail-red)">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Avg Tokens</div>
+                <div class="stat-value" id="statTokens">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Avg Latency</div>
+                <div class="stat-value" id="statLatency">0ms</div>
+            </div>
+        </div>
+
+        <div id="testCardsContainer">
+            <!-- Cards will be injected here -->
+        </div>
+    </main>
+
+    <script>
+        // --- PASTE YOUR JSON DATA HERE ---
+        const EVAL_DATA = {
+          "skill_name": "Road4AI Eval Demo",
+          "version": "v1.0",
+          "date": "2026-04-22",
+          "tests": [
+            {
+              "id": "test_001",
+              "prompt": "Create a high-signal content plan for Twitter.",
+              "criteria": [
+                { "label": "No article fluff", "passed": true },
+                { "label": "Reasoning in bullets", "passed": true },
+                { "label": "Under 500 words", "passed": true }
+              ],
+              "actual_output": "Road4AI Strategy:\n- Focus on local-first AI\n- Prioritize tool automation\n- Use gitnexus for graph RAG\n\nPlan: \n1. Map repo\n2. Assess impact\n3. Execute surgical edits",
+              "tokens": 145,
+              "latency_ms": 1200,
+              "notes": "Excellent adherence to persona."
+            },
+            {
+              "id": "test_002",
+              "prompt": "Explain the 7-Layer Architecture.",
+              "criteria": [
+                { "label": "Mention Sabrina Ramonov", "passed": true },
+                { "label": "List all 7 layers", "passed": false },
+                { "label": "Brief response", "passed": true }
+              ],
+              "actual_output": "The 7-Layer Architecture by Sabrina Ramonov provides a blueprint for autonomous agents. It covers Role, Objectives, and Tools.",
+              "tokens": 85,
+              "latency_ms": 950,
+              "notes": "Incomplete list of layers. Need to update prompt."
+            }
+          ]
+        };
+
+        function renderViewer(data) {
+            // Update Metadata
+            document.getElementById('skillName').textContent = data.skill_name;
+            document.getElementById('skillVersion').textContent = data.version;
+            document.getElementById('skillDate').textContent = data.date;
+
+            const tests = data.tests;
+            const total = tests.length;
+            const passedTests = tests.filter(t => t.criteria.every(c => c.passed));
+            const passedCount = passedTests.length;
+            const failedCount = total - passedCount;
+            const passRate = Math.round((passedCount / total) * 100);
+
+            // Metrics
+            const avgTokens = Math.round(tests.reduce((acc, t) => acc + t.tokens, 0) / total);
+            const avgLatency = Math.round(tests.reduce((acc, t) => acc + t.latency_ms, 0) / total);
+
+            // Update Header/Sidebar
+            document.getElementById('overallPassRate').textContent = `${passRate}%`;
+            document.getElementById('statTotal').textContent = total;
+            document.getElementById('statPassed').textContent = passedCount;
+            document.getElementById('statFailed').textContent = failedCount;
+            document.getElementById('statTokens').textContent = avgTokens;
+            document.getElementById('statLatency').textContent = `${avgLatency}ms`;
+
+            // Circular Progress Color
+            const progressColor = passRate === 100 ? 'var(--pass-green)' : (passRate >= 80 ? 'var(--warn-yellow)' : 'var(--fail-red)');
+            document.getElementById('circularProgress').style.background = `conic-gradient(${progressColor} ${passRate}%, #334155 0%)`;
+            document.getElementById('overallPassRate').style.color = progressColor;
+
+            // Render Cards
+            const container = document.getElementById('testCardsContainer');
+            container.innerHTML = '';
+
+            tests.forEach(test => {
+                const isPass = test.criteria.every(c => c.passed);
+                const card = document.createElement('div');
+                card.className = 'test-card';
+                
+                card.innerHTML = `
+                    <div class="test-header">
+                        <span class="test-id">${test.id}</span>
+                        <div class="test-metrics">
+                            <span>${test.tokens} tokens</span>
+                            <span>${test.latency_ms}ms</span>
+                            <span style="color: ${isPass ? 'var(--pass-green)' : 'var(--fail-red)'}; font-weight: bold;">
+                                ${isPass ? 'PASSED' : 'FAILED'}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="test-body">
+                        <div>
+                            <div class="section-title">Input Prompt</div>
+                            <div class="prompt-box">${test.prompt}</div>
+                            
+                            <div class="section-title" style="margin-top: 1.5rem">Criteria</div>
+                            <ul class="criteria-list">
+                                ${test.criteria.map(c => `
+                                    <li class="criterion">
+                                        <div class="status-icon ${c.passed ? 'status-pass' : 'status-fail'}">${c.passed ? '✓' : '✗'}</div>
+                                        <span>${c.label}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="section-title">AI Output</div>
+                            <div class="output-box">${test.actual_output}</div>
+                            
+                            <div class="section-title" style="margin-top: 1.5rem">Reviewer Notes</div>
+                            <textarea class="notes-area" placeholder="Add feedback for iteration...">${test.notes || ''}</textarea>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize
+        renderViewer(EVAL_DATA);
+    </script>
+</body>
+</html>
