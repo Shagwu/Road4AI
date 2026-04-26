@@ -1,0 +1,67 @@
+{
+  "workflows": {
+    "workflow-1776673266952-ehdysz": {
+      "workflowId": "workflow-1776673266952-ehdysz",
+      "name": "manifesto-to-post-pipeline",
+      "description": "Autonomous content journey: Extract manifesto -> Summarize -> Draft post.",
+      "steps": [
+        {
+          "stepId": "step-1",
+          "name": "Extraction",
+          "type": "task",
+          "config": {
+            "taskId": "read-manifesto",
+            "description": "Read manifesto.md content"
+          },
+          "status": "completed",
+          "startedAt": "2026-04-20T08:26:39.167Z",
+          "completedAt": "2026-04-20T08:26:39.167Z",
+          "result": {
+            "executed": true,
+            "stepType": "task"
+          }
+        },
+        {
+          "stepId": "step-2",
+          "name": "Transformation",
+          "type": "task",
+          "config": {
+            "description": "Summarize key points for a Twitter thread using humanizer logic.",
+            "taskId": "summarize-manifesto"
+          },
+          "status": "completed",
+          "startedAt": "2026-04-20T08:26:39.167Z",
+          "completedAt": "2026-04-20T08:26:39.167Z",
+          "result": {
+            "executed": true,
+            "stepType": "task"
+          }
+        },
+        {
+          "stepId": "step-3",
+          "name": "Formatting",
+          "type": "task",
+          "config": {
+            "taskId": "draft-thread",
+            "description": "Format summary into 3 Twitter-ready posts."
+          },
+          "status": "completed",
+          "startedAt": "2026-04-20T08:26:39.167Z",
+          "completedAt": "2026-04-20T08:26:39.167Z",
+          "result": {
+            "executed": true,
+            "stepType": "task"
+          }
+        }
+      ],
+      "status": "completed",
+      "currentStep": 3,
+      "variables": {},
+      "createdAt": "2026-04-20T08:21:06.953Z",
+      "startedAt": "2026-04-20T08:26:39.167Z",
+      "completedAt": "2026-04-20T08:26:39.167Z"
+    }
+  },
+  "templates": {},
+  "version": "3.0.0"
+}
