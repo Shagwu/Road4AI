@@ -1,0 +1,41 @@
+{
+  "published": [
+    {
+      "id": "2026-04-27-stop-renting-intelligence-x",
+      "platform": "twitter",
+      "status": "published",
+      "url": "https://x.com/shagwu22/status/2048798980612481412"
+    },
+    {
+      "id": "2026-04-28-custom-mcp-tool-lessons-x",
+      "platform": "twitter",
+      "status": "scheduled",
+      "time": "2026-04-28T09:00:00Z"
+    },
+    {
+      "id": "2026-04-29-why-ai-agent-setups-fail-at-memory-linkedin",
+      "platform": "linkedin",
+      "status": "scheduled",
+      "time": "2026-04-29T09:00:00Z"
+    },
+    {
+      "id": "2026-04-30-coordination-not-prompting-x",
+      "platform": "twitter",
+      "status": "scheduled",
+      "time": "2026-04-30T09:00:00Z"
+    },
+    {
+      "id": "2026-05-01-from-cli-command-to-multi-agent-workflow-linkedin",
+      "platform": "linkedin",
+      "status": "scheduled",
+      "time": "2026-05-01T09:00:00Z"
+    },
+    {
+      "id": "2026-04-28-from-demo-to-workflow-technical-deep-dive-linkedin",
+      "platform": "linkedin",
+      "status": "scheduled",
+      "time": "2026-04-29T10:00:00Z",
+      "submissionId": "a369c3b6-16fe-4c1c-8c73-b8118792e0ef"
+    }
+  ]
+}{"date": "2026-04-28", "title": "The Repo as Brain Pattern", "platform": "LinkedIn", "url": "https://linkedin.com/feed/update/urn:li:share:7455236235486326784"}
