@@ -1,254 +1,129 @@
-# AGENTS.md
-
-Guidelines for AI agents working in this repository.
-
-## Repository Overview
-
-This repository contains **Agent Skills** for AI agents following the [Agent Skills specification](https://agentskills.io/specification.md). Skills install to `.agents/skills/` (the cross-agent standard). This repo also serves as a **Claude Code plugin marketplace** via `.claude-plugin/marketplace.json`.
+# Road4AI Agent Operating Contract
+
+This document governs the collaboration between **Gemini CLI** and **Codex** (and other agents) working on the Road4AI repository.
 
-- **Name**: Marketing Skills
-- **GitHub**: [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills)
-- **Creator**: Corey Haines
-- **License**: MIT
+## The Golden Rule: Read First
+**Every session MUST start by reading these core coordination files:**
+1. `AGENTS.md` (this file)
+2. `state/current-queue.json`
+3. `docs/brand-voice.md`
+4. `docs/content-strategy.md`
 
-## Repository Structure
+## Agent Roles
 
-```
-marketingskills/
-├── .claude-plugin/
-│   └── marketplace.json   # Claude Code plugin marketplace manifest
-├── skills/                # Agent Skills
-│   └── skill-name/
-│       └── SKILL.md       # Required skill file
-├── tools/
-│   ├── clis/              # Zero-dependency Node.js CLI tools (51 tools)
-│   ├── composio/          # Composio integration layer (quick start + toolkit mapping)
-│   ├── integrations/      # API integration guides per tool
-│   └── REGISTRY.md        # Tool index with capabilities
-├── CONTRIBUTING.md
-├── LICENSE
-└── README.md
-```
+### Codex (Planner & Drafter)
+- **Focus**: Strategy, planning, content drafting, and reasoning.
+- **Workflow**:
+  - Analyze the codebase and content strategy.
+  - Propose new content ideas to `state/current-queue.json`.
+  - Create drafts in `drafts/ideas/`.
+  - Move finalized drafts to `drafts/ready/`.
 
-## Build / Lint / Test Commands
-
-**Skills** are content-only (no build step). Verify manually:
-- YAML frontmatter is valid
-- `name` field matches directory name exactly
-- `name` is 1-64 chars, lowercase alphanumeric and hyphens only
-- `description` is 1-1024 characters
-
-**CLI tools** (`tools/clis/*.js`) are zero-dependency Node.js scripts (Node 18+). Verify with:
-```bash
-node --check tools/clis/<name>.js   # Syntax check
-node tools/clis/<name>.js           # Show usage (no args = help)
-node tools/clis/<name>.js <cmd> --dry-run  # Preview request without sending
-```
-
-## Agent Skills Specification
-
-Skills follow the [Agent Skills spec](https://agentskills.io/specification.md).
-
-### Required Frontmatter
-
-```yaml
----
-name: skill-name
-description: What this skill does and when to use it. Include trigger phrases.
----
-```
-
-### Frontmatter Field Constraints
-
-| Field         | Required | Constraints                                                      |
-|---------------|----------|------------------------------------------------------------------|
-| `name`        | Yes      | 1-64 chars, lowercase `a-z`, numbers, hyphens. Must match dir.   |
-| `description` | Yes      | 1-1024 chars. Describe what it does and when to use it.          |
-| `license`     | No       | License name (default: MIT)                                      |
-| `metadata`    | No       | Key-value pairs (author, version, etc.)                          |
-
-### Name Field Rules
-
-- Lowercase letters, numbers, and hyphens only
-- Cannot start or end with hyphen
-- No consecutive hyphens (`--`)
-- Must match parent directory name exactly
-
-**Valid**: `page-cro`, `email-sequence`, `ab-test-setup`
-**Invalid**: `Page-CRO`, `-page`, `page--cro`
-
-### Optional Skill Directories
-
-```
-skills/skill-name/
-├── SKILL.md        # Required - main instructions (<500 lines)
-├── references/     # Optional - detailed docs loaded on demand
-├── scripts/        # Optional - executable code
-└── assets/         # Optional - templates, data files
-```
-
-## Writing Style Guidelines
-
-### Structure
-
-- Keep `SKILL.md` under 500 lines (move details to `references/`)
-- Use H2 (`##`) for main sections, H3 (`###`) for subsections
-- Use bullet points and numbered lists liberally
-- Short paragraphs (2-4 sentences max)
-
-### Tone
-
-- Direct and instructional
-- Second person ("You are a conversion rate optimization expert")
-- Professional but approachable
-
-### Formatting
-
-- Bold (`**text**`) for key terms
-- Code blocks for examples and templates
-- Tables for reference data
-- No excessive emojis
-
-### Clarity Principles
-
-- Clarity over cleverness
-- Specific over vague
-- Active voice over passive
-- One idea per section
-
-### Description Field Best Practices
-
-The `description` is critical for skill discovery. Include:
-1. What the skill does
-2. When to use it (trigger phrases)
-3. Related skills for scope boundaries
-
-```yaml
-description: When the user wants to optimize conversions on any marketing page. Use when the user says "CRO," "conversion rate optimization," "this page isn't converting." For signup flows, see signup-flow-cro.
-```
-
-## Claude Code Plugin
-
-This repo also serves as a plugin marketplace. The manifest at `.claude-plugin/marketplace.json` lists all skills for installation via:
-
-```bash
-/plugin marketplace add coreyhaines31/marketingskills
-/plugin install marketing-skills
-```
-
-See [Claude Code plugins documentation](https://code.claude.com/docs/en/plugins.md) for details.
-
-## Git Workflow
-
-### Branch Naming
-
-- New skills: `feature/skill-name`
-- Improvements: `fix/skill-name-description`
-- Documentation: `docs/description`
-
-### Commit Messages
-
-Follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
-
-- `feat: add skill-name skill`
-- `fix: improve clarity in page-cro`
-- `docs: update README`
-
-### Pull Request Checklist
-
-- [ ] `name` matches directory name exactly
-- [ ] `name` follows naming rules (lowercase, hyphens, no `--`)
-- [ ] `description` is 1-1024 chars with trigger phrases
-- [ ] `SKILL.md` is under 500 lines
-- [ ] No sensitive data or credentials
-
-## Tool Integrations
-
-This repository includes a tools registry for agent-compatible marketing tools.
-
-- **Tool discovery**: Read `tools/REGISTRY.md` to see available tools and their capabilities
-- **Integration details**: See `tools/integrations/{tool}.md` for API endpoints, auth, and common operations
-- **MCP-enabled tools**: ga4, stripe, mailchimp, google-ads, resend, zapier, zoominfo, clay, supermetrics, coupler, outreach, crossbeam, introw, composio
-- **Composio** (integration layer): Adds MCP access to OAuth-heavy tools without native MCP servers (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, etc.). See `tools/integrations/composio.md`
-
-### Registry Structure
-
-```
-tools/
-├── REGISTRY.md              # Index of all tools with capabilities
-└── integrations/            # Detailed integration guides
-    ├── ga4.md
-    ├── stripe.md
-    ├── rewardful.md
-    └── ...
-```
-
-### When to Use Tools
-
-Skills reference relevant tools for implementation. For example:
-- `referral-program` skill → rewardful, tolt, dub-co, mention-me guides
-- `analytics-tracking` skill → ga4, mixpanel, segment guides
-- `email-sequence` skill → customer-io, mailchimp, resend guides
-- `paid-ads` skill → google-ads, meta-ads, linkedin-ads guides
-
-For tools without native MCP servers (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion), Composio provides MCP access via a single server. See `tools/integrations/composio.md` for setup and `tools/composio/marketing-tools.md` for the full toolkit mapping.
-
-## Checking for Updates
-
-When using any skill from this repository:
-
-1. **Once per session**, on first skill use, check for updates:
-   - Fetch `VERSIONS.md` from GitHub: https://raw.githubusercontent.com/coreyhaines31/marketingskills/main/VERSIONS.md
-   - Compare versions against local skill files
-
-2. **Only prompt if meaningful**:
-   - 2 or more skills have updates, OR
-   - Any skill has a major version bump (e.g., 1.x to 2.x)
-
-3. **Non-blocking notification** at end of response:
-   ```
-   ---
-   Skills update available: X marketing skills have updates.
-   Say "update skills" to update automatically, or run `git pull` in your marketingskills folder.
-   ```
-
-4. **If user says "update skills"**:
-   - Run `git pull` in the marketingskills directory
-   - Confirm what was updated
-
-## Skill Categories
-
-See `README.md` for the current list of skills organized by category. When adding new skills, follow the naming patterns of existing skills in that category.
-
-## Claude Code-Specific Enhancements
-
-These patterns are **Claude Code only** and must not be added to `SKILL.md` files directly, as skills are designed to be cross-agent compatible (Codex, Cursor, Windsurf, etc.). Apply them locally in your own project's `.claude/skills/` overrides instead.
-
-### Dynamic content injection with `!`command``
-
-Claude Code supports embedding shell commands in SKILL.md using `` !`command` `` syntax. When the skill is invoked, Claude Code runs the command and injects the output inline — the model sees the result, not the instruction.
-
-**Most useful application: auto-inject the product marketing context file**
-
-Instead of every skill telling the agent "go check if `.agents/product-marketing-context.md` exists and read it," you can inject it automatically:
-
-```markdown
-Product context: !`cat .agents/product-marketing-context.md 2>/dev/null || echo "No product context file found — ask the user about their product before proceeding."`
-```
-
-Place this at the top of a skill's body (after frontmatter) to make context available immediately without any file-reading step.
-
-**Other useful injections:**
-
-```markdown
-# Inject today's date for recency-sensitive skills
-Today's date: !`date +%Y-%m-%d`
-
-# Inject current git branch (useful for workflow skills)
-Current branch: !`git branch --show-current 2>/dev/null`
-
-# Inject recent commits for context
-Recent commits: !`git log --oneline -5 2>/dev/null`
-```
-
-**Why this is Claude Code-only**: Other agents that load skills will see the literal `` !`command` `` string rather than executing it, which would appear as garbled instructions. Keep cross-agent skill files free of this syntax.
+### Gemini CLI (Operator & Publisher)
+- **Focus**: Execution, tool integration (Blotato, Workspace), and publishing.
+- **Workflow**:
+  - Read `drafts/approved/`.
+  - Use Blotato tools to schedule/publish content.
+  - Record publishing success in `state/published-log.json`.
+  - Archive published drafts to `drafts/archived/`.
+
+## Shared State Architecture
+We use the file system as our shared memory:
+- `state/current-queue.json`: Active tasks and ideas.
+- `state/published-log.json`: Record of everything already posted.
+- `drafts/`: Folders represent the lifecycle stage (Idea -> Ready -> Approved -> Archived).
+
+## Coordination Protocol
+1. **Deduplication**: Before drafting, check `state/published-log.json` and `state/current-queue.json`.
+2. **Monday Ritual**: Every Monday, the Chief of Staff (Gemini CLI) parses `inbox.md` to identify the top 5 content moments, maps them to types (Struggle/Win/Tutorial/BTS), and updates `state/current-queue.json`.
+3. **Approval**: Only the user moves files from `ready/` to `approved/`.
+4. **Traceability**: Every published post must have a corresponding entry in `state/published-log.json`.
+
+## Content Queue Schema (state/current-queue.json)
+
+The content backlog lives in `state/current-queue.json`.
+
+This file is an array of objects. Each object represents a single content item that can be drafted, edited, or published.
+
+### Required fields
+
+- `id` (string)
+  - A unique identifier for this item (e.g. `"2026-04-29-struggle-bottleneck-x"`).
+  - If not provided, the Chief of Staff may generate one from the date + type + a short slug.
+
+- `title` (string)
+  - Short, human-readable working title.
+  - Should be clear enough that a human can recognise the idea at a glance.
+
+- `hook` (string)
+  - One-line hook in Sharon's voice (conspiratorial, punchy, personal).
+  - This is the starting line or main promise of the post.
+
+- `type` (string; enum)
+  - One of: `"Struggle"`, `"Win"`, `"Tutorial"`, `"Behind-the-scenes"`.
+
+- `platform` (string)
+  - Primary platform this item is meant for (e.g. `"Instagram"`, `"X"`, `"LinkedIn"`, `"YouTube Short"`).
+
+- `goal` (string; enum-ish)
+  - Main intent of the content.
+  - Use one of: `"Build in public"`, `"Teach"`, `"Nurture"`, `"Sell"`.
+
+- `status` (string; enum)
+  - Current stage in the pipeline.
+  - Allowed values:
+    - `"idea"` – captured but not yet prioritised.
+    - `"ready_for_drafting"` – selected for this week; needs a first draft.
+    - `"draft_in_progress"` – Codex or Sharon is working on it.
+    - `"ready_for_edit"` – draft exists, needs edit/Karen filter.
+    - `"ready_for_publishing"` – approved, ready to schedule/post.
+    - `"published"` – already posted.
+
+- `priority` (integer)
+  - A simple numeric priority where `1` is highest.
+  - For weekly planning, `1–3` are usually “this week”; higher numbers are backlog.
+
+### Helpful optional fields
+
+- `source` (string)
+  - Where this idea came from, e.g. `"inbox"`, `"roadmap"`, `"audience_question"`, `"experiment"`.
+
+- `week` (string)
+  - Target week in `YYYY-WW` format, e.g. `"2026-18"` for week 18 of 2026.
+  - The CoS can fill or update this during the weekly planning ritual.
+
+- `created_at` (string; ISO date)
+  - When this queue item was created.
+
+- `updated_at` (string; ISO date)
+  - When this queue item was last modified.
+
+- `notes` (string)
+  - Any extra context: raw quote, outline, links to reference content.
+
+- `experimental` (boolean)
+  - `true` if this is an experimental idea (new format/angle), else `false`.
+
+### Agent behaviour rules
+
+- When the Chief of Staff (Gemini CLI) or Codex adds new items from `INBOX.MD`:
+  - Always set: `title`, `hook`, `type`, `platform`, `goal`, `source`, `status`, `priority`.
+  - Set `source` to `"inbox"` for items derived from `INBOX.MD`.
+  - Prefer to set `status` to `"ready_for_drafting"` for the top 3 chosen for this week.
+
+- When enforcing the weekly mix:
+  - The CoS should, where possible, ensure that among items with `priority` 1–3:
+    - At least 1 item has `type = "Struggle"`.
+    - At least 1 item has `type = "Win"`.
+    - At least 1 item has `type = "Tutorial"` or `"Behind-the-scenes"`.
+
+- When moving items through the pipeline:
+  - Drafting moves `status`:
+    - from `"ready_for_drafting"` → `"draft_in_progress"` → `"ready_for_edit"`.
+  - After the Karen filter / final edit:
+    - `"ready_for_edit"` → `"ready_for_publishing"`.
+  - Once posted:
+    - `"ready_for_publishing"` → `"published"` and a record should be added to `state/published-log.json`.
+
+- The CoS should avoid silently deleting items.
+  - Old or unused ideas can be deprioritised (higher `priority` number) or marked clearly in `status` or `notes` (e.g. “parked”).

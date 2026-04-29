@@ -5,3 +5,8 @@ __pycache__/
 .pytest_cache/
 *.db
 *.index
+
+# Sensitive & Local Config
+.env
+AGENTS.local.md
+state/*.backup.json
