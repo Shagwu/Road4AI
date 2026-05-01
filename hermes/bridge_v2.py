@@ -43,3 +43,7 @@ class MemoryBridgeV2:
                     "distance": results["distances"][0][i]
                 })
         return output
+
+    # V1 Aliases
+    def get_by_id(self, memory_id):
+        return self.get(memory_id)
