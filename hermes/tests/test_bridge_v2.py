@@ -37,3 +37,17 @@ def test_v2_search():
     assert results[0]["text"] == "banana"
     
     shutil.rmtree(persist_directory)
+
+def test_v2_v1_compatibility():
+    persist_directory = "./test_chroma_v1_compat"
+    if os.path.exists(persist_directory):
+        shutil.rmtree(persist_directory)
+    
+    bridge = MemoryBridgeV2(persist_directory=persist_directory)
+    memory_id = bridge.store("compatibility test", [0.5] * 384)
+    
+    # Test alias
+    retrieved = bridge.get_by_id(memory_id)
+    assert retrieved["text"] == "compatibility test"
+    
+    shutil.rmtree(persist_directory)
