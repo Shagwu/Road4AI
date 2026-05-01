@@ -2,7 +2,19 @@
 import subprocess
 import json
 import os
+import sys
 from google.adk.tools import FunctionTool
+
+# Try to import Hermes v2
+try:
+    # Add project root to sys.path to ensure hermes can be imported
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+    if project_root not in sys.path:
+        sys.path.append(project_root)
+    from hermes.bridge_v2 import MemoryBridgeV2
+    HERMES_V2_AVAILABLE = True
+except ImportError:
+    HERMES_V2_AVAILABLE = False
 
 def karen_audit(content: str, platform: str = "LinkedIn") -> dict:
     """Performs a strict 8-step audit on a content draft using the local Karen pipeline.
@@ -67,13 +79,31 @@ def triage_queue() -> dict:
     except:
         queue = []
         
-    ideas = os.listdir(ideas_dir)
+    try:
+        ideas = os.listdir(ideas_dir)
+    except:
+        ideas = []
     
-    return {
+    response = {
         "queue_count": len(queue),
         "pending_ideas": ideas,
         "status": "Scanning complete."
     }
+
+    # Integration with Hermes v2.0
+    if HERMES_V2_AVAILABLE:
+        try:
+            # Persistent directory relative to the project root
+            persist_dir = os.path.join(project_root, "chroma_db")
+            bridge = MemoryBridgeV2(persist_directory=persist_dir)
+            memory_count = bridge.collection.count()
+            response["vector_memory_status"] = f"Hermes v2.0 Active ({memory_count} memories)"
+        except Exception as e:
+            response["vector_memory_status"] = f"Hermes v2.0 Error: {str(e)}"
+    else:
+        response["vector_memory_status"] = "Hermes v1.0 (Legacy) or Unavailable"
+    
+    return response
 
 # Export tools for the agent
 audit_tool = FunctionTool(func=karen_audit)
