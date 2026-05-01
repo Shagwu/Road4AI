@@ -22,3 +22,18 @@ def test_v2_lifecycle():
     
     # Cleanup
     shutil.rmtree(persist_directory)
+
+def test_v2_search():
+    persist_directory = "./test_chroma_search"
+    if os.path.exists(persist_directory):
+        shutil.rmtree(persist_directory)
+    
+    bridge = MemoryBridgeV2(persist_directory=persist_directory)
+    bridge.store("apple", [1.0] + [0.0]*383)
+    bridge.store("banana", [0.0, 1.0] + [0.0]*382)
+    
+    results = bridge.search([0.1, 0.9] + [0.0]*382, k=1)
+    assert len(results) == 1
+    assert results[0]["text"] == "banana"
+    
+    shutil.rmtree(persist_directory)

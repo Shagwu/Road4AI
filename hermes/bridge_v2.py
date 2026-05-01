@@ -12,7 +12,7 @@ class MemoryBridgeV2:
         self.collection.add(
             embeddings=[vector],
             documents=[text],
-            metadatas=[metadata or {}],
+            metadatas=[metadata] if metadata else None,
             ids=[memory_id]
         )
         return memory_id
@@ -23,6 +23,23 @@ class MemoryBridgeV2:
             return {
                 "text": result["documents"][0],
                 "vector": result["embeddings"][0] if result["embeddings"] else None,
-                "metadata": result["metadatas"][0]
+                "metadata": result["metadatas"][0] if result["metadatas"] else None
             }
         return None
+
+    def search(self, query_vector, k=5):
+        results = self.collection.query(
+            query_embeddings=[query_vector],
+            n_results=k
+        )
+        
+        output = []
+        if results["ids"] and results["ids"][0]:
+            for i in range(len(results["ids"][0])):
+                output.append({
+                    "id": results["ids"][0][i],
+                    "text": results["documents"][0][i],
+                    "metadata": results["metadatas"][0][i] if results["metadatas"] else None,
+                    "distance": results["distances"][0][i]
+                })
+        return output
