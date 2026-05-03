@@ -23,6 +23,7 @@ Road4AI takes the opposite position:
 - A zero-cost infrastructure blueprint in [`SYSTEM.md`](SYSTEM.md)
 - The operator thesis in [`manifesto.md`](manifesto.md)
 - Visual direction in [`DESIGN.md`](DESIGN.md)
+- Known architectural tradeoffs in [`LIMITATIONS.md`](LIMITATIONS.md)
 - A Magika-based repository verifier in [`verify_repo.py`](verify_repo.py)
 
 ## Repository Verification

@@ -90,16 +90,21 @@ def triage_queue() -> dict:
         "status": "Scanning complete."
     }
 
-    # Integration with Hermes v2.0
+    # Integration with Hermes v2.0 (Task 4: Graceful Degradation)
     if HERMES_V2_AVAILABLE:
         try:
             # Persistent directory relative to the project root
             persist_dir = os.path.join(project_root, "chroma_db")
+            # Using a basic check to prevent stalling on unreachable memory
+            if not os.path.exists(persist_dir):
+                 response["vector_memory_status"] = "Hermes v2.0 Degraded: Database directory missing. Using volatile mode."
+            
             bridge = MemoryBridgeV2(persist_directory=persist_dir)
             memory_count = bridge.collection.count()
             response["vector_memory_status"] = f"Hermes v2.0 Active ({memory_count} memories)"
         except Exception as e:
-            response["vector_memory_status"] = f"Hermes v2.0 Error: {str(e)}"
+            # Prevent bare exceptions from stalling the agent
+            response["vector_memory_status"] = f"Hermes v2.0 Degraded (Error: {str(e)}). Systems operational without vector memory."
     else:
         response["vector_memory_status"] = "Hermes v1.0 (Legacy) or Unavailable"
     
