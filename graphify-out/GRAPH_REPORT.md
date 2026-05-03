@@ -1,12 +1,12 @@
 # Graph Report - /Users/shagwu/Downloads/Road4AI-main  (2026-05-03)
 
 ## Corpus Check
-- 90 files · ~492,015 words
+- 92 files · ~498,184 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 436 nodes · 572 edges · 78 communities detected
-- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 80 edges (avg confidence: 0.79)
+- 444 nodes · 592 edges · 78 communities detected
+- Extraction: 84% EXTRACTED · 16% INFERRED · 0% AMBIGUOUS · INFERRED: 93 edges (avg confidence: 0.78)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -90,7 +90,7 @@
 - [[_COMMUNITY_Community 77|Community 77]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `MemoryBridgeV2` - 24 edges
+1. `MemoryBridgeV2` - 30 edges
 2. `MemoryBridge` - 9 edges
 3. `main()` - 7 edges
 4. `parse_args()` - 7 edges
@@ -116,12 +116,12 @@
 ## Communities
 
 ### Community 0 - "Community 0"
-Cohesion: 0.09
-Nodes (25): estimate_cost(), main(), Estimate cost for a single image., main(), edit_image(), main(), Call Gemini API to edit an image., generate_image() (+17 more)
+Cohesion: 0.11
+Nodes (24): MemoryBridgeV2, Configure OpenTelemetry and GenAI telemetry with GCS upload., setup_telemetry(), _iso_utc(), test_v2_archive_expired_is_idempotent(), test_v2_lifecycle(), test_v2_prune_archived_is_idempotent(), test_v2_search() (+16 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.14
-Nodes (16): MemoryBridgeV2, Configure OpenTelemetry and GenAI telemetry with GCS upload., setup_telemetry(), _iso_utc(), test_v2_archive_expired_is_idempotent(), test_v2_lifecycle(), test_v2_prune_archived_is_idempotent(), test_v2_search() (+8 more)
+Cohesion: 0.09
+Nodes (25): estimate_cost(), main(), Estimate cost for a single image., main(), edit_image(), main(), Call Gemini API to edit an image., generate_image() (+17 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.2
@@ -136,12 +136,12 @@ Cohesion: 0.22
 Nodes (13): check_ollama_available(), get_staged_diff(), main(), ollama_chat(), post_to_pr(), Call the local Ollama /api/generate endpoint.     Uses only stdlib (urllib) — no, Warn early if Ollama isn't reachable or the model isn't pulled., Get the staged git diff. Returns None if nothing is staged. (+5 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.23
-Nodes (6): get_today_task(), main(), update_status(), MemoryBridge, test_memory_persistence_lifecycle(), test_memory_semantic_search()
-
-### Community 6 - "Community 6"
 Cohesion: 0.22
 Nodes (13): cmd_estimate(), cmd_log(), cmd_reset(), cmd_summary(), cmd_today(), _load_ledger(), _lookup_cost(), Estimate cost for a batch. (+5 more)
+
+### Community 6 - "Community 6"
+Cohesion: 0.29
+Nodes (4): get_today_task(), main(), update_status(), MemoryBridge
 
 ### Community 7 - "Community 7"
 Cohesion: 0.29
@@ -443,11 +443,11 @@ Nodes (0):
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `cmd_list()` connect `Community 2` to `Community 0`, `Community 1`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **Why does `wait_for_server()` connect `Community 3` to `Community 1`?**
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+- **Why does `wait_for_server()` connect `Community 3` to `Community 0`?**
   _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **Are the 10 inferred relationships involving `MemoryBridgeV2` (e.g. with `Performs a strict 8-step audit on a content draft using the local Karen pipeline` and `Updates the master COS_REPORT.md file with the latest status.          Args:`) actually correct?**
-  _`MemoryBridgeV2` has 10 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 16 inferred relationships involving `MemoryBridgeV2` (e.g. with `Performs a strict 8-step audit on a content draft using the local Karen pipeline` and `Updates the master COS_REPORT.md file with the latest status.          Args:`) actually correct?**
+  _`MemoryBridgeV2` has 16 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 2 inferred relationships involving `MemoryBridge` (e.g. with `test_memory_persistence_lifecycle()` and `test_memory_semantic_search()`) actually correct?**
   _`MemoryBridge` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 6 inferred relationships involving `parse_args()` (e.g. with `main()` and `main()`) actually correct?**
