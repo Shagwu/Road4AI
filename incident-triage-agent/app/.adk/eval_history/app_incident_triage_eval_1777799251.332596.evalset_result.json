@@ -1,0 +1,1825 @@
+{
+  "eval_set_result_id": "app_incident_triage_eval_1777799251.332596",
+  "eval_set_result_name": "app_incident_triage_eval_1777799251.332596",
+  "eval_set_id": "incident_triage_eval",
+  "eval_case_results": [
+    {
+      "eval_set_file": "incident_triage_eval",
+      "eval_set_id": "incident_triage_eval",
+      "eval_id": "commit_analysis",
+      "final_eval_status": 1,
+      "eval_metric_results": null,
+      "overall_eval_metric_results": [
+        {
+          "metric_name": "tool_trajectory_avg_score",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8,
+            "match_type": "IN_ORDER"
+          },
+          "custom_function_path": null,
+          "score": 1.0,
+          "eval_status": 1,
+          "details": {
+            "rubric_scores": null
+          }
+        },
+        {
+          "metric_name": "rubric_based_final_response_quality_v1",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8,
+            "judgeModelOptions": {
+              "judgeModel": "gemini-flash-latest",
+              "numSamples": 1
+            },
+            "rubrics": [
+              {
+                "rubricId": "relevance",
+                "rubricContent": {
+                  "textProperty": "The response directly addresses the user's query."
+                }
+              },
+              {
+                "rubricId": "helpfulness",
+                "rubricContent": {
+                  "textProperty": "The response is helpful and provides useful information."
+                }
+              }
+            ]
+          },
+          "custom_function_path": null,
+          "score": 1.0,
+          "eval_status": 1,
+          "details": {
+            "rubric_scores": [
+              {
+                "rubric_id": "relevance",
+                "rationale": "This is an aggregated score derived from individual entries. Please refer to individual entries in each invocation for actual rationale from the model.",
+                "score": 1.0
+              },
+              {
+                "rubric_id": "helpfulness",
+                "rationale": "This is an aggregated score derived from individual entries. Please refer to individual entries in each invocation for actual rationale from the model.",
+                "score": 1.0
+              }
+            ]
+          }
+        }
+      ],
+      "eval_metric_result_per_invocation": [
+        {
+          "actual_invocation": {
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Can you check the recent commits for 'google/adk' in 'src/auth'?",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I was unable to find the repository `google/adk`. It either does not exist, is private, or has been moved. I received a `404 Not Found` error when attempting to access it.\n\nIf this is a private repository, please ensure that I have the necessary permissions or a valid `GITHUB_TOKEN` is configured for the environment. If there was a typo in the repository name, please provide the corrected name (e.g., `google/google-api-dotnet-client` or similar). \n\nI did verify that my connection to GitHub is working by successfully retrieving commits from other public repositories like `google/googletest`.",
+                  "thought": null,
+                  "thought_signature": "EooFCocFAQw51semZezbIfHnX6OaB7Kjdn0eilRHqhAQDNOn_SUzzVEVoUVqEjohjH6k05lik1hdMKf-ft5LDJv5XZ-y2meaMxU89pBJAGW_N6-J84M8CVZAGuPhGYADxwXCvMN7pDT0N1g1Nax9BRf8lzQdjWuIukT5cfv7lQDvY4bbt_JMMBvxNdLunGrgtRJicZyCtcNureWcB-fKf61u9cqWPGhz5QCgriYRMZGYDOh2RUOH6WOQUmgxVHeQ-tmfrLp_g_HhIOx4m0KVEmrvURFvFWxUDlX1BqVN8MYA1LT2HtI_9VQNPoEWyqFblCVqvgmYVWS3_mAIZkOQeMZIUemLbwdoEPUkLkOTxShh5caa7Y9vycSUq6k8BJzDu-ccoG8_1uISu5P-bOOVh2y8uQs3LajecgrPWG3Ldo4rAa8TySNEeuSmFlaLPRfEmIvd3TUy3agW2wkiVsLpiteG_zUcTKXwQeiWsAx_ZaEEIXcXan7O63rtTfXlyLXomSP-H3njqFX-WgQQU08dDV20Ww5b0091T_-4Bt__-tm2Sm7U9PwkaLrQ9StPxu-KoUdcuqgNw_jLbsTjeMzRR8gcV6itWJOE1xoU9EwS5rJTgxsVRIaniD_YlHDSn9NNDAJsOi5TfNtniSK4RUiyYpmRFAdFBiTaUI-grTo5oiShyx6XYabwpHHS53KVnPz18rmLpJlH-w1Y7MZgmIZ7si5B1CrM7JMSKP1ZnCzucSl5rEuukl8IKUw1_iZbKU5IJ3XIAut98AMdZI1syVg02dBLQQu4Upk6Un9qKZ-5W0Fo6uQBYwbTcI9OF8g8S6obyA_uuO3JWUryd4PNKywCpQQPGhG8ffc0zcQ4nUU=",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "invocation_events": [
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "alqnc0gg",
+                          "args": {
+                            "repo": "google/adk",
+                            "path": "src/auth"
+                          },
+                          "name": "get_recent_commits",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EvcCCvQCAQw51sfKnEYsKHwZk0ASbooaaZbbNTvjchXI17MvJrGKv-09rXAXcICwGmns4WT0AXIgzR5rVApYZrj9ASrte7SVwIPAoIQCe7ULSii_g76uM0kkp-ILiH8ckA1UrkHo7P6llxvZEwtqsh8rpCjD-0C9Junr2cCCH2jDBZF0gfL2sYytfM0SGG-UMNQfWP0NOY8p6evekMwdbgToDXQnAiNbX_4efh93waL1oIHjKJog5yJyukJB9NqO1nldOu2bEltdJkd_sf4kxaq-SgG3GU-geefBZS4l2dDY0qXne2-q6I1GOscn5c-SpIXGzYUEeGd6Sm-KQjXJyiJDoAhPvZu1bdChar612rh9euE003R8Fuu7B5s6yCltLPdPflwc5G0VRuOUmqOEoj52tQiiZAWqJUKTzDsQzeTsebTZtc-YXWQnn46SRsi6BNUfwg5rvTmXEXB59PTrgf7eLw2Hzu2Dn9oekNufLWdTs9ADBxGL4lPa",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "alqnc0gg",
+                          "name": "get_recent_commits",
+                          "response": {
+                            "result": "Error fetching commits: Client error '404 Not Found' for url 'https://api.github.com/repos/google/adk/commits?per_page=5&path=src%2Fauth'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "fa88hzfd",
+                          "args": {
+                            "query": "repo:google/adk"
+                          },
+                          "name": "search_github_code",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EscCCsQCAQw51sexDLnjL7-4B0hWGPYOK1rSG1r_8GV-I6NzGFANvh_FYINfqH8bpWCh39US6NFd2MKoyV8_guJ6w9vQ9B_cBaFIVFdUMDivsiFigS9xoK2LPoOTFWp3ia35JXw3DhRn0-rnsOhUe_kS5P7vQOVjBT16feQNTmLcoeUI8zrRMli8otpvLu2wAG2BEUgWzji-3BHbE__f3hui1vlr3AEiSaoio8vCFqRB-G9TLkzY_E-zdDzIg7a1mffJEPrt5inuGcwoEB6VJWa-PFxid3jMlLnFNRoW2BPMg4cnysm06JIHsWRPXJ9U2NCkwOoZKowD9VU-mNdWAE4kgOzvTCr11s9DGPZLlW6IInG3Sl5xohp3vRPl6VVPl8jAKVqfc-Jr4PdiajKXsEgAfR3Rvf25p1q4LUT6fd8YlYuq6xX-t_jb",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "fa88hzfd",
+                          "name": "search_github_code",
+                          "response": {
+                            "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=repo%3Agoogle%2Fadk'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "uyjyyndj",
+                          "args": {
+                            "repo": "google/googletest"
+                          },
+                          "name": "get_recent_commits",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "Ev8NCvwNAQw51sftapZ6-w_zKZ3c5WSVyu49H9k7FKZqJ4xMbOf1u938Bmhj8x5QiQbdlPEzlEy9xJ8qUbG2OtHXrk9RPkWeOSPATlBgESy8ThTc87NGranIDlZNIXQScUWdnhejXyvexu6sAMjzcV2KoiZ81DY5jXHasuQYHZSN65LZcOrAId-bpT3Xm_r8g8-tw4NQWjL8S_Jkj_iwLwcIqcTvawK5JCwKhVH2hxZ0xWPwRXbFsteTgzklc4d53-YmaDN4DsO60PJg2-puV7zF6J2CvJvthAbsP5YyyY-atwx50s8khTz67oJvSbMIQ3gt6sI-NBWLiIvUSpEepSRKS-va53r4eH8VaZbf_5oFnymqnuWh5VCZvutFMy5TIouUX3aEcg2NOK8gsEyHSt0d4ZECj3MC6wr7sT6O6NSO4NIMxCVudfcsv1zcw20tgUPXyH-OMjoDAjaEd3SwbbpJ7QjwqbKN5t8VCvOXmsgc7jw8n5SfzZFIoOR12L0C51itHja37oaZ1o8k-RpW7FiCH5lr8fXlo4VJGjvi9SW79ViU8_DCOoLkstTeLSK7WIZQnag--datrppHP3slAPpKzlO_S32PIatmgWyfTDSeb4NnBRli8lnkZLzpkR050tw2dpUuBkG_Re06VHpsVGQ3nCzuCVHwo40s1gJgyYQDXUgLC03nTqxJ5LvVMMlRWcMqdQSfE_6kOnSIxwM-079pP6E3HY_IFQOvG4LPF3DB5gWFwRw1ZqmEkCnftjZtuN0lGCVK3LYz7q_X4l3Ox_xD5-Q0uMtq-Zk03-rmBJPo_Fh4A2SDIpVg28qveFm2K0J48-45u-ziMeGloSqUEOdPuJrovZ-eWE7jteGveBI86e-pwPLhdmpZymgE0WtjJBeKwGlgPlieodFVUZB0CfQVPrVAzfJTevKINp0H2rWFlOkw5WR8TnvUtAwve2iOGtVYet9kbnZ4ONtxQwvIDslufu7ec7C3DerHh-CN3lNglSAvsb8Rc9UPYJcn0R2PEEL99GkQwuhTRTJYoTlHfXD1YY3w36gg6LAXXdFwyupDrrF4u1ydnOg00yQ1GKDrUwyegkSWRknxdkeUmryyXXIHoHZPei4zFlr7rb-uHMsXv84f1hp4qEWcDwWQPSPT-1MlyMyPU0L7ToTm9nZSGEWFv9RotUSvnWQbYlPi2aqViu-PekoBqdswjFovDe6mAtwr41lCWIEStK_0Lx-ap6ZfmZxYiSPF-e4YDtyToc3ZbEIj94ph_xAC6KdIX3ZCX_ZnKn1WAZe58RjnHldNuu4EWz019dXiC6NY6i71G6atR8NKGqB90ZsFyQhLILV6kWFxAL2tqIAr6d3H-5Ny5g1xo0QQ6jTc6nTmt9s6BNxIx163g7yAkRqE8lrVuN_jhOmXIwL5CiINF-VRicAw19Iirp4m1N-TwmEksjrzcqX7Hthfr0onmvvnrs9jMnfe1Uzg2mFuY6gvF0IT9Sfms4kzFvMZp-R9XWMIQJkEmkierWCAUSSWMvqR-E986nbaZZxlml7dniJJIpfQqs4uonx2Ibm6g8yvVXyH7C45Kh423SSthRj59FS-XQBXpqZbImRg7tW5PUTrrLtaCZJpBXeAw9OhfWjZ8FARpWJjSNQ3bBBw2rReQAth0ZvtOBYmLnNUsbixLw2_Hk03o_nh5ykOobZq0FF_L0K5wYYiDY1HMXpHnfg0-0XOPfOs5QUUzucr5fx0I2v7F_PAboj69Y2prA4Vpq-RswQ4O9cNoHhbtISburnHKMlokd98FID-jcI6oToxaaIJlghG_bem58hpmbSpCy5LGegF0q-TZQEwgFuNuV06wqcWaJNTsH7VDoAtesy3i6R4_m2r7o9Fs2KRb2t88xh6_jqeUXwBRu2seEQcKVE9qUngsvD-uxhNMPDPiJ3G40VfOVwlTLLmDNj9oy6p7NoKpGwJKbmHPB37tqaqomm7Ae1q4U2BU07h4sZx57YbQyROHoME8DVIn8BlGuHUxkxcYGnMoHRY62G8xeHam2VIPcJx3_9ck9go7Lvfo3cuQl7epio96PCIOOICKgxIXUqno2s00kIhSzNOb_cGnfsTRzZhtHPUcMSZY2_AMo8h_5ZG06HB4RUNoscKFmvk9t0Gxyam2BbeDlac2k88ShjvMwuaZhKQI_IaaaZ3dffOo60NlIVHYpVZsussdYNAYjb0r94Y_altIxbJnAcuzlPPa75Qd2s_cCgyEf4QkemavOOC3HqKIP9b5fBj4kAy1YKDZ2IBMPmAr8KsNJQ3UusE4HDIDLqjM5Sa1aCm2rw8cbQaG-cGb15Xojc20AbIR6mta2gnMF4Aqik8PoonShVtbcUrmIiZAErKKsseLKOWzmxc4A8QF6SnNfgY",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "uyjyyndj",
+                          "name": "get_recent_commits",
+                          "response": {
+                            "result": "Recent commits for google/googletest:\n- d72f9c8: Add `--gtest_shard_index` and `--gtest_total_shards` command line arguments. by Dillon Sharlet\n- 5fddfab: Define DieInCRTDebugElse12() inside #ifdef _DEBUG by Abseil Team\n- 2461743: Automated Code Change by Abseil Team\n- 015950a: Add an implmenetation of Notification for MinGW by Abseil Team\n- f38004c: Fix typo in monomorphic matcher documentation. by Abseil Team"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "p0ez34sv",
+                          "args": {
+                            "query": "google/adk"
+                          },
+                          "name": "search_github_code",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EsYGCsMGAQw51serbXvtTdVrZP6gu3W7v0GxrViPaqtHRsLZk5jFy4UsnXtrXtBIpO0O9zU8f18KFJ3lW8Pg_yDdcZUzTqzpp0ZzmcKzBo__LwvEbo_CHgb0BtDRRnccPxp9OvMqDaf22iROivWmxCD81HdM9nK-W8x_qXR76QE0KRqlvy609NV1zxvJ2hctHrroWksYfyb9o2Dj7s_3r_ZhadqIwpbENsaWuU_jPPuhF8I8uPK9jqh20wYOxtBNR6U9ExdzRsclfGF7aTbTi8Tr4vW5h4jSBggmDkZnRXwJtCQVbzTcfAZ9Khr0TWYotRx7JQl8dYPctJ7HnJcZzmwvBi4gPLBvAk1vdHUcYO59b69AVQO3XPy0M8u0xfd_Y5nwj8hRO_hJ_nx4-n9huQm8n4zHXC2oJrxEGn908lqzRxOljtqchtRArMEyuZbx5-jclFzwWdXE7h5dCnJ5gYv8Xe6izhzH0mRmL24s7Gu4Lfn9fmqQe5K4cM8n98akEL9569jz6uTcOuUY90SYmPXG26OAFpE3O7lZFsUBI2Bh2U7HNPKL5K0rrNBjs3xYXeo5cj1rvjtyueyPmoDhbYmm8zVg2KT2ngr4WYX4KsQtlujPCoBZCUOf4kR7UQVS0l0MFWykPKDNSDNOIYJ-nxeTl_ZHh-N8fQ-aNw2asokQL7tmfKSae7qWtiTewOmJ5XVNN5T-L-u91wvTTpFP0x6ArI_ALhfSSznROVFkkf-eSfd5kIB-mMSFZgCIYTUFMuWE-3QYTQw03TAiqR-p6vI2JJCfwAf9tsF6k7EUHWchlbpSwZwDicBBOnpHb3AV4B1E7kC19fY4RtesshE7JScLCdSG3uptrxAGbra8OHCejGw9fYLCPqekNkbZqF1f7gUBYVkUdjTmgQojPgG-yIyye6CJZ1q4cFYw-FJgNo42Jtvb02h94F1AyEXTc1TUQrlSocGLIT35dRvcoIxns1LG25m0_14ZV7O_SVyE0fBur8smMgGUPOt0xeXrV-qN1j2TTxQtTmkNxDtFz9MCHURQr3OZFcgyHP81FvFmcQXyv4yTVYUoY6eYm5Qt-MKRs0BURqMIofT5yi-oeLdc2JYBiNKgQ-OyLg==",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "p0ez34sv",
+                          "name": "search_github_code",
+                          "response": {
+                            "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=google%2Fadk'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "uh4kqte9",
+                          "args": {
+                            "path": "README.md",
+                            "repo": "google/adk"
+                          },
+                          "name": "read_github_file",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EuMCCuACAQw51sePlM0B8ZYof60yRrQzG8UgUuT7DYYy-VA2CFW9xE4kUQMV0wlTQaDKBfdOsAQqZJg0jPMmx1iENdpHCDhTgilQfCq-E1kFMFloDY3KSwk4z3XQSmWRfAuJJ6GnrXJMEhvrFa4qw2G2G9hhAXscKMH1G9godzjonRZH0qL_ZCVTAmW32vwp8gMb-zvAh8Yvy-eU-8U86h8EQvr4VbxBWWjFGPfrqyRYm8jdU2VXOzUQjqHAt_retgwsYze05KarTf7TtHD-6pAMVYnuMILV6o-b5mEOAgJUwNe72Yc9u1NqHkpGpIFHA9VSYqTiijwUm--WI4FZwqtJaQXQLh0xdMD5VkDXWb0HUTQdvJr4RQ5Avd2_omIfMIQi4G-0QE_rw7RpzFEuzjck2EioLDrHzQCvpnPgsxld1HcHAu7GbZUJTGT7raIip5J2WWcEoPTEJxMktPufXqpc_PcSZQ==",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "uh4kqte9",
+                          "name": "read_github_file",
+                          "response": {
+                            "result": "Error reading file: Client error '404 Not Found' for url 'https://api.github.com/repos/google/adk/contents/README.md'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                }
+              ]
+            },
+            "creation_timestamp": 1777799181.906427,
+            "rubrics": null,
+            "app_details": {
+              "agent_details": {
+                "incident_triage_agent": {
+                  "name": "incident_triage_agent",
+                  "instructions": "You are an expert Incident Triage Agent. Your goal is to help engineers diagnose and resolve production incidents.\n\nWhen given an alert or incident description:\n1. Summarize the likely cause by analyzing recent code changes (commits) in relevant areas of the codebase.\n2. Use GitHub search to find relevant files, issues, or PRs.\n3. Suggest diagnostic steps or potential fixes based on your analysis.\n4. Be concise, technical, and prioritize safety. NEVER suggest destructive actions without a heavy warning.\n\nIf GITHUB_TOKEN is missing, inform the user that some features might be limited.\n\n\nYou are an agent. Your internal name is \"incident_triage_agent\".",
+                  "tool_declarations": [
+                    {
+                      "retrieval": null,
+                      "computer_use": null,
+                      "file_search": null,
+                      "google_search": null,
+                      "google_maps": null,
+                      "code_execution": null,
+                      "enterprise_web_search": null,
+                      "function_declarations": [
+                        {
+                          "description": "Searches for code in GitHub repositories.\n\nArgs:\n    query: The search query (e.g., 'filename:app.py repo:owner/repo').\n    \nReturns:\n    A summary of search results.\n",
+                          "name": "search_github_code",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "query": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "query"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": "Gets recent commits for a repository or a specific file.\n\nArgs:\n    repo: Repository in 'owner/repo' format.\n    path: Optional file path to filter commits.\n    \nReturns:\n    A list of recent commit messages and authors.\n",
+                          "name": "get_recent_commits",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "repo": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "path": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": true,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "repo"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": "Reads the content of a file from GitHub.\n\nArgs:\n    repo: Repository in 'owner/repo' format.\n    path: Path to the file.\n    \nReturns:\n    The file content.\n",
+                          "name": "read_github_file",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "repo": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "path": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "repo",
+                              "path"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        }
+                      ],
+                      "google_search_retrieval": null,
+                      "parallel_ai_search": null,
+                      "url_context": null,
+                      "mcp_servers": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "expected_invocation": {
+            "invocation_id": "",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Can you check the recent commits for 'google/adk' in 'src/auth'?",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": null,
+            "intermediate_data": {
+              "tool_uses": [
+                {
+                  "id": null,
+                  "args": {
+                    "repo": "google/adk",
+                    "path": "src/auth"
+                  },
+                  "name": "get_recent_commits",
+                  "partial_args": null,
+                  "will_continue": null
+                }
+              ],
+              "tool_responses": [
+                {
+                  "will_continue": null,
+                  "scheduling": null,
+                  "parts": null,
+                  "id": null,
+                  "name": "get_recent_commits",
+                  "response": {
+                    "result": "Recent commits for google/adk:\n- a1b2c3d: Add new auth validation logic by Alice\n- e5f6g7h: Update dependency by Bob"
+                  }
+                }
+              ],
+              "intermediate_responses": []
+            },
+            "creation_timestamp": 0.0,
+            "rubrics": null,
+            "app_details": null
+          },
+          "eval_metric_results": [
+            {
+              "metric_name": "tool_trajectory_avg_score",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8,
+                "match_type": "IN_ORDER"
+              },
+              "custom_function_path": null,
+              "score": 1.0,
+              "eval_status": 1,
+              "details": {
+                "rubric_scores": null
+              }
+            },
+            {
+              "metric_name": "rubric_based_final_response_quality_v1",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8,
+                "judgeModelOptions": {
+                  "judgeModel": "gemini-flash-latest",
+                  "numSamples": 1
+                },
+                "rubrics": [
+                  {
+                    "rubricId": "relevance",
+                    "rubricContent": {
+                      "textProperty": "The response directly addresses the user's query."
+                    }
+                  },
+                  {
+                    "rubricId": "helpfulness",
+                    "rubricContent": {
+                      "textProperty": "The response is helpful and provides useful information."
+                    }
+                  }
+                ]
+              },
+              "custom_function_path": null,
+              "score": 1.0,
+              "eval_status": 1,
+              "details": {
+                "rubric_scores": [
+                  {
+                    "rubric_id": "relevance",
+                    "rationale": "The agent attempted to fulfill the user's request using the correct tool and parameters. When the tool failed, the agent addressed this in the final answer by explaining that the repository could not be found and offering potential reasons (non-existence, privacy, or typos).",
+                    "score": 1.0
+                  },
+                  {
+                    "rubric_id": "helpfulness",
+                    "rationale": "Despite the failure to retrieve the specific data requested due to external errors (the repo not being found and authorization issues), the agent provides helpful troubleshooting information. It identifies the specific error (404), explains what it might mean (private repo or typo), mentions the `GITHUB_TOKEN` requirement for private repos (as instructed in the developer instructions), and confirms the tool functionality is working by citing the successful result from a public repository. This helps the user understand why the request failed and how to fix it.",
+                    "score": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "session_id": "___eval___session___6b37e3d5-4d65-420b-8d3d-d211fcc6c394",
+      "session_details": {
+        "id": "___eval___session___6b37e3d5-4d65-420b-8d3d-d211fcc6c394",
+        "app_name": "app",
+        "user_id": "eval_user",
+        "state": {
+          "__llm_request_key__": "b9efcc75-976e-43bd-8b6e-ca6bf5aa3c50"
+        },
+        "events": [
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Can you check the recent commits for 'google/adk' in 'src/auth'?",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "user",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "44143258-6b06-4fb0-b3de-bc6303b6c1cf",
+            "timestamp": 1777799176.706175
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "alqnc0gg",
+                    "args": {
+                      "repo": "google/adk",
+                      "path": "src/auth"
+                    },
+                    "name": "get_recent_commits",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "EvcCCvQCAQw51sfKnEYsKHwZk0ASbooaaZbbNTvjchXI17MvJrGKv-09rXAXcICwGmns4WT0AXIgzR5rVApYZrj9ASrte7SVwIPAoIQCe7ULSii_g76uM0kkp-ILiH8ckA1UrkHo7P6llxvZEwtqsh8rpCjD-0C9Junr2cCCH2jDBZF0gfL2sYytfM0SGG-UMNQfWP0NOY8p6evekMwdbgToDXQnAiNbX_4efh93waL1oIHjKJog5yJyukJB9NqO1nldOu2bEltdJkd_sf4kxaq-SgG3GU-geefBZS4l2dDY0qXne2-q6I1GOscn5c-SpIXGzYUEeGd6Sm-KQjXJyiJDoAhPvZu1bdChar612rh9euE003R8Fuu7B5s6yCltLPdPflwc5G0VRuOUmqOEoj52tQiiZAWqJUKTzDsQzeTsebTZtc-YXWQnn46SRsi6BNUfwg5rvTmXEXB59PTrgf7eLw2Hzu2Dn9oekNufLWdTs9ADBxGL4lPa",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "02da6608-bbe2-4529-b6a1-992182c962b6"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 29,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 454,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 454
+                }
+              ],
+              "thoughts_token_count": 92,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 575,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "02da6608-bbe2-4529-b6a1-992182c962b6"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "417db015-ce0a-4fee-ad02-8568a931e815",
+            "timestamp": 1777799176.7090292
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "alqnc0gg",
+                    "name": "get_recent_commits",
+                    "response": {
+                      "result": "Error fetching commits: Client error '404 Not Found' for url 'https://api.github.com/repos/google/adk/commits?per_page=5&path=src%2Fauth'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "e0484617-3b00-47ea-81c1-5306e8569d51",
+            "timestamp": 1777799184.048803
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "fa88hzfd",
+                    "args": {
+                      "query": "repo:google/adk"
+                    },
+                    "name": "search_github_code",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "EscCCsQCAQw51sexDLnjL7-4B0hWGPYOK1rSG1r_8GV-I6NzGFANvh_FYINfqH8bpWCh39US6NFd2MKoyV8_guJ6w9vQ9B_cBaFIVFdUMDivsiFigS9xoK2LPoOTFWp3ia35JXw3DhRn0-rnsOhUe_kS5P7vQOVjBT16feQNTmLcoeUI8zrRMli8otpvLu2wAG2BEUgWzji-3BHbE__f3hui1vlr3AEiSaoio8vCFqRB-G9TLkzY_E-zdDzIg7a1mffJEPrt5inuGcwoEB6VJWa-PFxid3jMlLnFNRoW2BPMg4cnysm06JIHsWRPXJ9U2NCkwOoZKowD9VU-mNdWAE4kgOzvTCr11s9DGPZLlW6IInG3Sl5xohp3vRPl6VVPl8jAKVqfc-Jr4PdiajKXsEgAfR3Rvf25p1q4LUT6fd8YlYuq6xX-t_jb",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "7e3ad6a5-f9f8-4275-a01d-ea084f732fad"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 23,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 666,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 666
+                }
+              ],
+              "thoughts_token_count": 67,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 756,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "7e3ad6a5-f9f8-4275-a01d-ea084f732fad"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "d8d1cc1d-3e21-4f28-b87f-e995191a704b",
+            "timestamp": 1777799184.050175
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "fa88hzfd",
+                    "name": "search_github_code",
+                    "response": {
+                      "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=repo%3Agoogle%2Fadk'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "94be4dee-d443-4c7c-965c-369b9c99bcc4",
+            "timestamp": 1777799187.0052018
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "uyjyyndj",
+                    "args": {
+                      "repo": "google/googletest"
+                    },
+                    "name": "get_recent_commits",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "Ev8NCvwNAQw51sftapZ6-w_zKZ3c5WSVyu49H9k7FKZqJ4xMbOf1u938Bmhj8x5QiQbdlPEzlEy9xJ8qUbG2OtHXrk9RPkWeOSPATlBgESy8ThTc87NGranIDlZNIXQScUWdnhejXyvexu6sAMjzcV2KoiZ81DY5jXHasuQYHZSN65LZcOrAId-bpT3Xm_r8g8-tw4NQWjL8S_Jkj_iwLwcIqcTvawK5JCwKhVH2hxZ0xWPwRXbFsteTgzklc4d53-YmaDN4DsO60PJg2-puV7zF6J2CvJvthAbsP5YyyY-atwx50s8khTz67oJvSbMIQ3gt6sI-NBWLiIvUSpEepSRKS-va53r4eH8VaZbf_5oFnymqnuWh5VCZvutFMy5TIouUX3aEcg2NOK8gsEyHSt0d4ZECj3MC6wr7sT6O6NSO4NIMxCVudfcsv1zcw20tgUPXyH-OMjoDAjaEd3SwbbpJ7QjwqbKN5t8VCvOXmsgc7jw8n5SfzZFIoOR12L0C51itHja37oaZ1o8k-RpW7FiCH5lr8fXlo4VJGjvi9SW79ViU8_DCOoLkstTeLSK7WIZQnag--datrppHP3slAPpKzlO_S32PIatmgWyfTDSeb4NnBRli8lnkZLzpkR050tw2dpUuBkG_Re06VHpsVGQ3nCzuCVHwo40s1gJgyYQDXUgLC03nTqxJ5LvVMMlRWcMqdQSfE_6kOnSIxwM-079pP6E3HY_IFQOvG4LPF3DB5gWFwRw1ZqmEkCnftjZtuN0lGCVK3LYz7q_X4l3Ox_xD5-Q0uMtq-Zk03-rmBJPo_Fh4A2SDIpVg28qveFm2K0J48-45u-ziMeGloSqUEOdPuJrovZ-eWE7jteGveBI86e-pwPLhdmpZymgE0WtjJBeKwGlgPlieodFVUZB0CfQVPrVAzfJTevKINp0H2rWFlOkw5WR8TnvUtAwve2iOGtVYet9kbnZ4ONtxQwvIDslufu7ec7C3DerHh-CN3lNglSAvsb8Rc9UPYJcn0R2PEEL99GkQwuhTRTJYoTlHfXD1YY3w36gg6LAXXdFwyupDrrF4u1ydnOg00yQ1GKDrUwyegkSWRknxdkeUmryyXXIHoHZPei4zFlr7rb-uHMsXv84f1hp4qEWcDwWQPSPT-1MlyMyPU0L7ToTm9nZSGEWFv9RotUSvnWQbYlPi2aqViu-PekoBqdswjFovDe6mAtwr41lCWIEStK_0Lx-ap6ZfmZxYiSPF-e4YDtyToc3ZbEIj94ph_xAC6KdIX3ZCX_ZnKn1WAZe58RjnHldNuu4EWz019dXiC6NY6i71G6atR8NKGqB90ZsFyQhLILV6kWFxAL2tqIAr6d3H-5Ny5g1xo0QQ6jTc6nTmt9s6BNxIx163g7yAkRqE8lrVuN_jhOmXIwL5CiINF-VRicAw19Iirp4m1N-TwmEksjrzcqX7Hthfr0onmvvnrs9jMnfe1Uzg2mFuY6gvF0IT9Sfms4kzFvMZp-R9XWMIQJkEmkierWCAUSSWMvqR-E986nbaZZxlml7dniJJIpfQqs4uonx2Ibm6g8yvVXyH7C45Kh423SSthRj59FS-XQBXpqZbImRg7tW5PUTrrLtaCZJpBXeAw9OhfWjZ8FARpWJjSNQ3bBBw2rReQAth0ZvtOBYmLnNUsbixLw2_Hk03o_nh5ykOobZq0FF_L0K5wYYiDY1HMXpHnfg0-0XOPfOs5QUUzucr5fx0I2v7F_PAboj69Y2prA4Vpq-RswQ4O9cNoHhbtISburnHKMlokd98FID-jcI6oToxaaIJlghG_bem58hpmbSpCy5LGegF0q-TZQEwgFuNuV06wqcWaJNTsH7VDoAtesy3i6R4_m2r7o9Fs2KRb2t88xh6_jqeUXwBRu2seEQcKVE9qUngsvD-uxhNMPDPiJ3G40VfOVwlTLLmDNj9oy6p7NoKpGwJKbmHPB37tqaqomm7Ae1q4U2BU07h4sZx57YbQyROHoME8DVIn8BlGuHUxkxcYGnMoHRY62G8xeHam2VIPcJx3_9ck9go7Lvfo3cuQl7epio96PCIOOICKgxIXUqno2s00kIhSzNOb_cGnfsTRzZhtHPUcMSZY2_AMo8h_5ZG06HB4RUNoscKFmvk9t0Gxyam2BbeDlac2k88ShjvMwuaZhKQI_IaaaZ3dffOo60NlIVHYpVZsussdYNAYjb0r94Y_altIxbJnAcuzlPPa75Qd2s_cCgyEf4QkemavOOC3HqKIP9b5fBj4kAy1YKDZ2IBMPmAr8KsNJQ3UusE4HDIDLqjM5Sa1aCm2rw8cbQaG-cGb15Xojc20AbIR6mta2gnMF4Aqik8PoonShVtbcUrmIiZAErKKsseLKOWzmxc4A8QF6SnNfgY",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "2f541fbc-bee6-434e-9de4-4c0e7fa9fc35"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 22,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 840,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 840
+                }
+              ],
+              "thoughts_token_count": 447,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 1309,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "2f541fbc-bee6-434e-9de4-4c0e7fa9fc35"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "c7e1274f-45a7-4c4f-b1c4-d8fa6686e09d",
+            "timestamp": 1777799187.0059872
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "uyjyyndj",
+                    "name": "get_recent_commits",
+                    "response": {
+                      "result": "Recent commits for google/googletest:\n- d72f9c8: Add `--gtest_shard_index` and `--gtest_total_shards` command line arguments. by Dillon Sharlet\n- 5fddfab: Define DieInCRTDebugElse12() inside #ifdef _DEBUG by Abseil Team\n- 2461743: Automated Code Change by Abseil Team\n- 015950a: Add an implmenetation of Notification for MinGW by Abseil Team\n- f38004c: Fix typo in monomorphic matcher documentation. by Abseil Team"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "7d4e9354-7f27-45e6-bcdd-1bb02a71e3ff",
+            "timestamp": 1777799193.456071
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "p0ez34sv",
+                    "args": {
+                      "query": "google/adk"
+                    },
+                    "name": "search_github_code",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "EsYGCsMGAQw51serbXvtTdVrZP6gu3W7v0GxrViPaqtHRsLZk5jFy4UsnXtrXtBIpO0O9zU8f18KFJ3lW8Pg_yDdcZUzTqzpp0ZzmcKzBo__LwvEbo_CHgb0BtDRRnccPxp9OvMqDaf22iROivWmxCD81HdM9nK-W8x_qXR76QE0KRqlvy609NV1zxvJ2hctHrroWksYfyb9o2Dj7s_3r_ZhadqIwpbENsaWuU_jPPuhF8I8uPK9jqh20wYOxtBNR6U9ExdzRsclfGF7aTbTi8Tr4vW5h4jSBggmDkZnRXwJtCQVbzTcfAZ9Khr0TWYotRx7JQl8dYPctJ7HnJcZzmwvBi4gPLBvAk1vdHUcYO59b69AVQO3XPy0M8u0xfd_Y5nwj8hRO_hJ_nx4-n9huQm8n4zHXC2oJrxEGn908lqzRxOljtqchtRArMEyuZbx5-jclFzwWdXE7h5dCnJ5gYv8Xe6izhzH0mRmL24s7Gu4Lfn9fmqQe5K4cM8n98akEL9569jz6uTcOuUY90SYmPXG26OAFpE3O7lZFsUBI2Bh2U7HNPKL5K0rrNBjs3xYXeo5cj1rvjtyueyPmoDhbYmm8zVg2KT2ngr4WYX4KsQtlujPCoBZCUOf4kR7UQVS0l0MFWykPKDNSDNOIYJ-nxeTl_ZHh-N8fQ-aNw2asokQL7tmfKSae7qWtiTewOmJ5XVNN5T-L-u91wvTTpFP0x6ArI_ALhfSSznROVFkkf-eSfd5kIB-mMSFZgCIYTUFMuWE-3QYTQw03TAiqR-p6vI2JJCfwAf9tsF6k7EUHWchlbpSwZwDicBBOnpHb3AV4B1E7kC19fY4RtesshE7JScLCdSG3uptrxAGbra8OHCejGw9fYLCPqekNkbZqF1f7gUBYVkUdjTmgQojPgG-yIyye6CJZ1q4cFYw-FJgNo42Jtvb02h94F1AyEXTc1TUQrlSocGLIT35dRvcoIxns1LG25m0_14ZV7O_SVyE0fBur8smMgGUPOt0xeXrV-qN1j2TTxQtTmkNxDtFz9MCHURQr3OZFcgyHP81FvFmcQXyv4yTVYUoY6eYm5Qt-MKRs0BURqMIofT5yi-oeLdc2JYBiNKgQ-OyLg==",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "2289a266-33fb-4701-9a50-348b7c4823ea"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 21,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 1466,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 1466
+                }
+              ],
+              "thoughts_token_count": 211,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 1698,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "2289a266-33fb-4701-9a50-348b7c4823ea"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "9d7b2e2c-73b3-423e-a8fa-12db5f34463b",
+            "timestamp": 1777799193.4568279
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "p0ez34sv",
+                    "name": "search_github_code",
+                    "response": {
+                      "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=google%2Fadk'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "c90f3d65-4858-4e6e-8082-963be4b86d74",
+            "timestamp": 1777799198.489845
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "uh4kqte9",
+                    "args": {
+                      "path": "README.md",
+                      "repo": "google/adk"
+                    },
+                    "name": "read_github_file",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "EuMCCuACAQw51sePlM0B8ZYof60yRrQzG8UgUuT7DYYy-VA2CFW9xE4kUQMV0wlTQaDKBfdOsAQqZJg0jPMmx1iENdpHCDhTgilQfCq-E1kFMFloDY3KSwk4z3XQSmWRfAuJJ6GnrXJMEhvrFa4qw2G2G9hhAXscKMH1G9godzjonRZH0qL_ZCVTAmW32vwp8gMb-zvAh8Yvy-eU-8U86h8EQvr4VbxBWWjFGPfrqyRYm8jdU2VXOzUQjqHAt_retgwsYze05KarTf7TtHD-6pAMVYnuMILV6o-b5mEOAgJUwNe72Yc9u1NqHkpGpIFHA9VSYqTiijwUm--WI4FZwqtJaQXQLh0xdMD5VkDXWb0HUTQdvJr4RQ5Avd2_omIfMIQi4G-0QE_rw7RpzFEuzjck2EioLDrHzQCvpnPgsxld1HcHAu7GbZUJTGT7raIip5J2WWcEoPTEJxMktPufXqpc_PcSZQ==",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "bf935abd-2c80-4e1c-a5ea-a7ca712ef571"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 29,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 1778,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 1778
+                }
+              ],
+              "thoughts_token_count": 64,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 1871,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "bf935abd-2c80-4e1c-a5ea-a7ca712ef571"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "8059d95f-1742-48cb-8f2a-7ae42231bed7",
+            "timestamp": 1777799198.4921641
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "uh4kqte9",
+                    "name": "read_github_file",
+                    "response": {
+                      "result": "Error reading file: Client error '404 Not Found' for url 'https://api.github.com/repos/google/adk/contents/README.md'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "ba4197f8-6876-4833-9cb3-6d6e56de45d3",
+            "timestamp": 1777799201.704062
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I was unable to find the repository `google/adk`. It either does not exist, is private, or has been moved. I received a `404 Not Found` error when attempting to access it.\n\nIf this is a private repository, please ensure that I have the necessary permissions or a valid `GITHUB_TOKEN` is configured for the environment. If there was a typo in the repository name, please provide the corrected name (e.g., `google/google-api-dotnet-client` or similar). \n\nI did verify that my connection to GitHub is working by successfully retrieving commits from other public repositories like `google/googletest`.",
+                  "thought": null,
+                  "thought_signature": "EooFCocFAQw51semZezbIfHnX6OaB7Kjdn0eilRHqhAQDNOn_SUzzVEVoUVqEjohjH6k05lik1hdMKf-ft5LDJv5XZ-y2meaMxU89pBJAGW_N6-J84M8CVZAGuPhGYADxwXCvMN7pDT0N1g1Nax9BRf8lzQdjWuIukT5cfv7lQDvY4bbt_JMMBvxNdLunGrgtRJicZyCtcNureWcB-fKf61u9cqWPGhz5QCgriYRMZGYDOh2RUOH6WOQUmgxVHeQ-tmfrLp_g_HhIOx4m0KVEmrvURFvFWxUDlX1BqVN8MYA1LT2HtI_9VQNPoEWyqFblCVqvgmYVWS3_mAIZkOQeMZIUemLbwdoEPUkLkOTxShh5caa7Y9vycSUq6k8BJzDu-ccoG8_1uISu5P-bOOVh2y8uQs3LajecgrPWG3Ldo4rAa8TySNEeuSmFlaLPRfEmIvd3TUy3agW2wkiVsLpiteG_zUcTKXwQeiWsAx_ZaEEIXcXan7O63rtTfXlyLXomSP-H3njqFX-WgQQU08dDV20Ww5b0091T_-4Bt__-tm2Sm7U9PwkaLrQ9StPxu-KoUdcuqgNw_jLbsTjeMzRR8gcV6itWJOE1xoU9EwS5rJTgxsVRIaniD_YlHDSn9NNDAJsOi5TfNtniSK4RUiyYpmRFAdFBiTaUI-grTo5oiShyx6XYabwpHHS53KVnPz18rmLpJlH-w1Y7MZgmIZ7si5B1CrM7JMSKP1ZnCzucSl5rEuukl8IKUw1_iZbKU5IJ3XIAut98AMdZI1syVg02dBLQQu4Upk6Un9qKZ-5W0Fo6uQBYwbTcI9OF8g8S6obyA_uuO3JWUryd4PNKywCpQQPGhG8ffc0zcQ4nUU=",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "b9efcc75-976e-43bd-8b6e-ca6bf5aa3c50"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 136,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 1952,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 1952
+                }
+              ],
+              "thoughts_token_count": 191,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 2279,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-16de6a60-f27d-47b9-9059-81ccc71f4600",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "b9efcc75-976e-43bd-8b6e-ca6bf5aa3c50"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "a7c2d371-4017-418e-bb8d-cb6cc3508651",
+            "timestamp": 1777799201.70573
+          }
+        ],
+        "last_update_time": 1777799201.70573
+      },
+      "user_id": "eval_user"
+    }
+  ],
+  "creation_timestamp": 1777799251.332596
+}

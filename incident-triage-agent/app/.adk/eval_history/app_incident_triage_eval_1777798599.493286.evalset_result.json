@@ -1,0 +1,2075 @@
+{
+  "eval_set_result_id": "app_incident_triage_eval_1777798599.493286",
+  "eval_set_result_name": "app_incident_triage_eval_1777798599.493286",
+  "eval_set_id": "incident_triage_eval",
+  "eval_case_results": [
+    {
+      "eval_set_file": "incident_triage_eval",
+      "eval_set_id": "incident_triage_eval",
+      "eval_id": "commit_analysis",
+      "final_eval_status": 2,
+      "eval_metric_results": null,
+      "overall_eval_metric_results": [
+        {
+          "metric_name": "tool_trajectory_avg_score",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8,
+            "match_type": "IN_ORDER"
+          },
+          "custom_function_path": null,
+          "score": 1.0,
+          "eval_status": 1,
+          "details": {
+            "rubric_scores": null
+          }
+        },
+        {
+          "metric_name": "hallucinations_v1",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8,
+            "judgeModelOptions": {
+              "judgeModel": "gemini-flash-latest",
+              "numSamples": 1
+            }
+          },
+          "custom_function_path": null,
+          "score": 0.45454545454545453,
+          "eval_status": 2,
+          "details": {
+            "rubric_scores": null
+          }
+        },
+        {
+          "metric_name": "rubric_based_final_response_quality_v1",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8,
+            "judgeModelOptions": {
+              "judgeModel": "gemini-flash-latest",
+              "numSamples": 1
+            },
+            "rubrics": [
+              {
+                "rubricId": "relevance",
+                "rubricContent": {
+                  "textProperty": "The response directly addresses the user's query."
+                }
+              },
+              {
+                "rubricId": "helpfulness",
+                "rubricContent": {
+                  "textProperty": "The response is helpful and provides useful information."
+                }
+              }
+            ]
+          },
+          "custom_function_path": null,
+          "score": 1.0,
+          "eval_status": 1,
+          "details": {
+            "rubric_scores": [
+              {
+                "rubric_id": "relevance",
+                "rationale": "This is an aggregated score derived from individual entries. Please refer to individual entries in each invocation for actual rationale from the model.",
+                "score": 1.0
+              },
+              {
+                "rubric_id": "helpfulness",
+                "rationale": "This is an aggregated score derived from individual entries. Please refer to individual entries in each invocation for actual rationale from the model.",
+                "score": 1.0
+              }
+            ]
+          }
+        }
+      ],
+      "eval_metric_result_per_invocation": [
+        {
+          "actual_invocation": {
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I suspect a recent change in the 'auth' service caused the incident. Can you check the commits for 'google/adk' in 'src/auth'?",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I was unable to find a repository named `google/adk` (the server returned a 404 error). This usually means the repository name is incorrect, or it is a private repository that I don't have access to.\n\nHowever, I verified that I can access other public repositories in the `google` organization (e.g., `google/guava`).\n\nCould you please double-check the repository name? If it's a internal or private repository, I might need additional permissions or the exact correct name. If you meant a different service, such as a specific Google Cloud auth library (e.g., `google-auth-library-java` or `google-auth-library-python`), let me know and I can check those instead.\n\n**Common causes for 404 errors in this context:**\n1.  **Typo in Repository Name:** Please verify if `adk` is the correct slug.\n2.  **Private Repository:** If the service is internal to your organization, I may not have the necessary credentials to view it.\n3.  **Recent Rename:** The repository might have been renamed or moved.\n\nOnce you provide the correct repository name, I can analyze the commits in `src/auth` for any recent changes that might have triggered the incident.",
+                  "thought": null,
+                  "thought_signature": "EoMGCoAGAQw51sdTlNwWSLL_zkBV6XUDXHx5fxeqTHPPkw__WSVs0IiSSHk7SxuALTzVkqhnbf_-9Z26QpAvv0eA0S96vEANp4fZCUnEXij9lDf_zfGx_hxVbdXXpoKtu3HL_UU0sd1lDTGBQ4Bez6FVZ0ylSIkPPeu9l2c_nyISNlLco8jzotVnmMidtfCoWRYtvNJtYPFhEYXNoSgawXU2_6u_yBHkbcQbplBA-vy47nCEjVos2upEYOZhLNbqzcRIIv-1RGhO1eFt27-FWRDmD3bcxiJI9Ollx1WHgQABiM6wxQJK_2wDOxdQqY6jC4FyXHCUUWWk4S-XU_9ZIbMYREt9i7pMYHUtPeMWmg8kKVCjlcg7w7ZKn7afi7WU4eMdsqyVfga5woEQ599ma1ZTtH0Knu-NcQUJvKt3lwzaGPwSKAQVAH_IDNKZAyqfFgE8cwvmYq6y8DGpbXBleU02cSsNl-kjgWqWe1q5xDulhjcu354X71A14gLH2xaevNtryqxlpQuJndf4Dw_zIeF3ZkA3kw1qh6NUf1dy76KgcR5LD204zseVq54hW4KDEFS0_c0gIMK3wCPHf3EiFbtpJ0ciUkK4XlnRjSnuKl7nCNysGLv9bibJyE6jQnejpA9C3DFbpFvB3eeRHklLS6U9WnDKWoKzoFTBUQi_qL26mdO4Gy7qaqDTs80M2psDbkcpidtKCU99cHE1Lew169cS4sI-GMt8dpjZO9a7jExITGd8uFrEPQx7g6hGn9E124LjCmvn2h-hE1Hp7afTv9wRdoGsdLjMdwxKbYCz38hJofAZ0MJio1OyKxOPYxurAcINXHd-nu-B9OssgjPgr7OLZrnZICdk0xOxO753Hzitp-BYRkJRb7cJm0jRNQwvBMGq3XMGhX6-wxenrhkPuS9gt9jHtWepkBGEE_oT9oaLlWhZrKrLhtFhkkZv1TzJKPf0I-r5wQ9M3AkE-30l1nr5cDswixP6PZ7wQSds1Pm849q43mwjEsaEczCWcqOw-L6mNByX",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "invocation_events": [
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "49j9ocbd",
+                          "args": {
+                            "repo": "google/adk",
+                            "path": "src/auth"
+                          },
+                          "name": "get_recent_commits",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "Ep0CCpoCAQw51sd1FfpRl7OjhrtLiHpLtyuzkxdGOgRoylRBRAjuJKuivl3Jt9G6BLHlfcuE_VX72SCFwIkv4OxkV8PuhWOOw8V_FtcXwXjvIRjGoq2z-tyZaYKKxfijDjt8mnn75uiM73_kMm2_MKbcPt-gDp75LhyflQfGOMFm6PEVEHp0OjiQ1OT9yOn7WN_2OAcKS2rnzigL-iDDMTY9HhCqebiJaxkup0D0Inj4_H_e3cS6fjdggMepnhNC6eChgsr_VUcDUuSJxyyBG65iecQ6TOTdP1t1Kp6KWQwZDdLpHqd1yLsIy1javtTjmVGCblhk4g4XeXk33TFgzyZD8AdiGqQ6WBBAoNT19wUFYWpq4lSuffBAy43SH1p1",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "49j9ocbd",
+                          "name": "get_recent_commits",
+                          "response": {
+                            "result": "Error fetching commits: Client error '404 Not Found' for url 'https://api.github.com/repos/google/adk/commits?per_page=5&path=src%2Fauth'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "o7pqhgbn",
+                          "args": {
+                            "query": "repo:google/adk auth"
+                          },
+                          "name": "search_github_code",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EswGCskGAQw51scHfs1KgXFiCy3DeZRDN4wcAoSpeXfOT-B37kO64MT3gCejEJW-FFlRfRiufkuEzM9cKyg-_LWOWS0C_Rc3qm01nW-2BlGswaD08X2MrUKdrwVrAVk_LAdLxWIGAVyLMQ6lTEJqHsbx_LiTEWpcDlOIxnFMBAMAfKoPgn0O30JwzfbVK-GJqWltyxJ7aXupz9zAlknY2aEYLWIswgjxJc0BJZgPL1_2_eJjbPoAmKh4_tX5K9Bp0EBcpMYsaXnPwCoW3JaHSK32BPgTdnN3wxiKc9M5hWL3dpg-3RyD1hexoCmgO3cU-7sYS3VdEt1qAYCzJ9XpL-6d1f6hq6U-dUdhXnr6TUCvSDujE8MMtHvt8iNtaZYw5YuLLMR2RZIlZB5nljrp5yJKb6VcXZr5OfIcIOKFfNfD9k46U4ZEWJmMJowjDO3FYWQkFSZdZVGR8sfzUPzSxieh36dsucRJTERqe6wukvkEugbbMxInv4EUM-Az4GJ0rKLWsDFIUkBw6YSsA1PxB4hnB3BJjnkQAg1KMV5kkqsr7gbwWtPegoU5Fc01IZTsNhl8NKBd08tNUmnn9oCXL3FOyEzj4UMbSX3GNq0Z9bd49CPxZPFwXbZhKJhMcG_ZpnmoQZnawOBJZaKhrj_Fy7EnuMolHNIdUu5X8oIjyvxFd-m5jNX2t9mbjd6plpXFR8gCY57y8kABmrIDiWLodsWPLv4pymzQ7gx3zB4skIUrZJXDw6Tmh_go0NmFr7UcHDUgUGC9OjN_ce9GWgM-SBU4dwuWOxbyUU-TFb5wnyNd7XL6twL925YxDaLur9OZRDwsyfHIE58atqy_bbeeZJcqIPpEVjn2GjJYthOITQTsCoyMB1bhJXeVhDG2S3MV2Ry9TgL2BIzKXL89LpgLtZJBg-kBb9p2rh9tEScMpPcS_Yq4FDhVzn0Cayh5XwbzNqb7F3xRLmPnDWAg_9KElTLRkR-0NwUiV23Dg-B5G1fnae90E5pozULZIE49_EmFjKsrGA7JdRx39t6FiIk_IRSWlcuRgFwnQ3gMbRpMiYlfvZgtxDgWy-u2cuIwZztV7YF246TDI-AeGvonKH_Uo5wm5TsweFjnUf0kSaHjtg==",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "o7pqhgbn",
+                          "name": "search_github_code",
+                          "response": {
+                            "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=repo%3Agoogle%2Fadk+auth'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "4tm32w0t",
+                          "args": {
+                            "query": "org:google adk"
+                          },
+                          "name": "search_github_code",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EuIJCt8JAQw51sd0Mt5vH6nEhmXRTreTUpumdhtK0R8Ah5CPnrejh8U9MkxBKlmy9dDavVBKSZGOk3o8AoFG6rQrr48D1EuzZ7GnCjKO2sR3icetw7DPXWwC9ebmi_U66-kFT5V3mLznYRBtwy7GFbikVP7fXtVZBB-YXYSUqqd4THFghPbguqk2O6xJucaS_m9nq2vO0LqQ9aorUbcZ-G29kt687p19l_YcbyuklnBuiZ4FxTGTBPUR6DwLR3vdQUba0o-i2UaQVKduTd4JDfu2sC-dxDpTa5WtS5BHJzbD4rp63O8vgH4HGN-azayuGTwL0aDKaaZsqU8DySeHj7L7jF3ztm5Hm2ukFr3hb5AlzVnkHuI93O3XfUhDBd77Lioz4HVrJGoqWCr2BP21Crko_w2cf8VajfuJL82rnJ8BnOkXGINFHLZGPcaAUSvWgaovI0mFXbg3uM78xN1wCO9Z1ztckCJZPPZPKk4WxTuP4QqsXnQd501_7NFmkT2rvZVgr7mQQlK87xsdfDgG7FgfHG58nURfNmq7N8y4zVvfrOyPh-S0JkiSY5pmAHbti3bvi4Bf_Ti2K7HpyPxl3gSr7SzC8Gpi6wsQ0VoGWymd5BJmOQ1YjGrfi3A7ElQEgXDU1yJL9xBTiFqFuR6grGbqSJtTK51Q7T9SA7HL6V4ZNU4Zxk06oc3QXQ2mk9E24eAj8yiFcqsnS3KO7tMmZR5xB26f6rT3o0uv8tx3TNTCiUnXtoVC1fETxuJ_1F3FbXX57NE2uxXvSVklZ0F7xNbxLPPFe_t7EjM_AurQQm4xZnSzaX-XQed3dl_gwa3-VqCfeuYFsoRJawBh7Xg9zGpj_8MyjJRhJrofTPh4KpH8YAb-GkNcGovHF5Zozs4z06TYdBhr59hIiemBxCgu7F--kGZgW5TlO23aC7i5djSMTFKky5B_aqLN9QriVhXbeKFqiJyp1ll6wr8Chlu5-625ZpVxweLgbtGxwzI99iwkcap2vKXj2YAZOJAN3Nv7QhJbGQQYySG2aHpnuxM7ZpD_2LNflMHB91mRf4YU-ok0Pi4h3RBJWk-S06NoAwWSVRIHf17uLV5WdSsHQRdZzA4NMewb0OMLaDB_4dhgqKLexUDN7Uax1GsF-FJpYYjIDbTEs5PZjnr2AYQwWGfXMz4M8xS7m-sayNu8agfbe1KKxL7-JbRmI64-idQzSd8F1GwT37O8ZKEecLIcV29trPasRoWXaVtCw03oTVprjpHXyTah_-36qCBppOulSPLBZ1UVdApaBF1KMFt8o6namAmvHPLQ6a_T3JilOjHF4_xZUMzDj3Yv0aCWHYKewjpuMyfzrouXjBK8L4L9Te11bq5dkN0sThfQIwVTmFvqd9nMmwiVEDofuLjgSDFUkRPrwaOaGQatyxAcKAYYdV1CXaehSJ0aTWq5DUsTwAIftDcXKjL4lAJgCI3QYgYM9YLLBVntsvQl4OeuJDwoGZv4OZEDNgJ5uXSCjyUY5VRliLA2KIHY9DRkNtzLYHrG8KMvepy46mNM7_AtvIAMdNd-blU5Of4rlurD3wffkJ-jEiWktmBKRD0F-X-c2zYuYjVxRodGCtOVIWDh835m17awwW9qh8xowwi6hcHmfpXzuTfphGxpz4iXcrYZXwgZj7zHXeNRh6g=",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "4tm32w0t",
+                          "name": "search_github_code",
+                          "response": {
+                            "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=org%3Agoogle+adk'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "axg7w871",
+                          "args": {
+                            "repo": "google/guava"
+                          },
+                          "name": "get_recent_commits",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "Es4ECssEAQw51se_-177ZG2fIupEqbyQqYsgxjnYsIU3eifQGNzGd84lejvs8ibDQsnBaKzci3CCQlGmL2BEFS-24l09LcsBTqBXkfy3iqiodljXpVd8BT_I-Ix8U0s7ZMAwKCVqnh1wsPLqqkeyO_4UyDY3k96_Ms72sVUkAvxvp4RPFlSpp6W64Wk4xZ8hP4AeJLWz7yePop7azhccX3TYv5YTjwwcXeahXx4tYhLG-Nh_Ze18XJTf_33n3B6uZyeOjehk6VLmUkUq_G_cvfCpi5x7ID2sB0tQI0vxyprvfGVJmybvAnHpQYEO12A3Nt20DG9oCDH_v26eFINMs2jgG2I2EQlKU4eQVRXFlm1_lVfFuDPQT8lsPHEp3erO-8LbqPuEUNqILbC2uUbJ98tkZYotWaf00Rs_k_OSW17sBVAfVtRiItuVT9mBlqIFsHNcb1c8Dyze0ogyhvuXOxrh6dcgCEojEMQ4DfL9X-R9j-vBbZZLvM1YDqzyxyJq0GbVrXdPT1PQUpEA1N_BVxPJcAv5yMn3Zf_7RaaNEY7LPS63SiiuzH-EVyvS4Xdxo_tIYT8zUvS8VFmXmgfb4cWdBxJLn3NEOqyygVIxbCwpjIpIaLMRvkfh8eiCN_jFMnHczkrc_k-Ka6zHuVeQLp_-oB9exzSTdlsZ2CtpYWLzJL_aIlzieVl0da0KbGUqIqIRVfrFMs2ABdE8EtRIWG4jB1j4k_1r_xdppl4WZBJshh83kh-FBzAKdMBjadc2WGUokPqR-dHgt6Ffuqr1lIY=",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "axg7w871",
+                          "name": "get_recent_commits",
+                          "response": {
+                            "result": "Recent commits for google/guava:\n- 43ad354: Use some collection constructors (and a few more static imports). by cpovirk\n- 3240f46: Automated Code Change by Kurt Alfred Kluever\n- 36a579a: Static import methods from `Types`. by cpovirk\n- 4342259: Bump the github-actions group with 3 updates by dependabot[bot]\n- 0a32c33: Adddress more warnings and review comments from https://github.com/google/guava/commit/f3113addf132b00523e786f105919a4c041c5909. by cpovirk"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "ugc9zeom",
+                          "args": {
+                            "query": "path:src/auth \"auth service\""
+                          },
+                          "name": "search_github_code",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EogNCoUNAQw51scp1oe1L7QsFk3_BTsZaJw_EaODGVxqK4kCjKdQyj3H5gkX0mm2SqWdlyN-7M9cU7L_E66VtxVsuGfG32NtVKjE0PMkOvokrZEWw2SX4WSzCDCo2AjAcCsQ2WvSugWaZNuwdmR92Tpd_uBzFQHAxVMVKUt8kzNYzRL-7osvGLu1SGH4sM05ETiQZMrP6veobizj8EFJegBZqioG5nqmJih5MNGnLmosLRLjH18O5Lgichj1CtoG8zjqXoKvb6yEmDPdRbD8KKkNIEYRFGJJW3MaFYKqITkwjS8r4HFrHDZ0xaPWc49hgUSs0vjIHPE7IGDBU0e-gFSMGiVPGh1kAvoLQRlD5Y-OBn4aI1V7wSXQWZCuurfTsCZG9JYeHPBQ6fDwvOwb4dR1clYUxipPOjNIsh9GXownQ0WU9IS8f2xSseRg5EzJTXGEflYZNOWtujZIzzgvXI--CXhN9eirxASUrYSQkKXECUlOUN3WfUFEVMjzT5YiaaRwllEGaMxdhzTMnKCZrHEA3QuTQ_rVxZUTEPXt_SJSkm2xDryhDRPaBz8yfKo2NVEiaviTHzTAbDmoGqIHssAvgQVK8HUS62m17ihjlNyFxxqAbn-zafb_hD87LfXTpBySCY6YCVn-0nmIRM9bMXaWKQcspnH5W3iJosjQJ0uPD66N2RY3m5r9k1upv9ZKNwIbWq4575vaq5nSu7iljoZ2dawu1q1WRqe5hVDnim_tUGqkcgQFpL6YJlbMpAd-LaeafSXVZyl3iVj6b4-s83Xo9bf0G6f4QN9rPPgJfhIwS3m4ld6IsN9FXBVsjWZ1AvILnStRZua_ePnGJpliY974EV7GKsAsyBuwoMYUOe9FD6dOnUEjSrObhUx2P9nq91Ir1b91tRX0W886gF4W5JglVuRU97SSr9RibWQ8258WrDarwbpWLMqP2WIKPuxeBFkiWVIOgWZFt0RC2Gs1zQJSZJuPzp-pUYBh4wi7Mtslne1v9vGurl6e2fiUFaIIY2GiHfYi-1eiHFfLa5cBh8yeszP3ZXeSaw-KD-GVQGhNX95vpOlRb9rOHAGv03gOLb7o7QpzRKAga_Suwh1v7Wt_rVH2AK6mXlfctRxpQEQXl4BTYNzPxmFAIo6jzVCv7AOzX-OGmcaG5DqOINGKyAStnx4gvHH-w94LngCRv4qNNQzUEvIw4icW5nt5ik8zI9tpTLaF7f3dY28uS6RAqDMSWJbsw1E_vdvqrBcga-mMDl8xp5fSu-iz9mat2oH26ztlfWtYXAaAQT_QA1LYyztZf01n6a7cJKbXaOaTt2MxY9DxpKe1kYEjB8ZA7Fjhg1BA6ghRMDptdKZMlZ4NdV6RklFkQ6njQqx4RDeh3bnJpIRW-_M1Af5FMmt8Sc0KOSAh6cvhD6LivjkCvZLUJXoS3TSU58rJq6K819dF6lp_0ze4dzRB7U2I1gz5uw3bQ7W5QwOJx1FuysyKBwf-jiCyskcBZryj6ym7edZpsY5OYz7uTHWgCj77-3iqGhTzs8xXo5g_pJaj2QsPgev6goxhYV1ZdTeqaZZZVgXuPX9abDHJVfjwhjRRR3PnkpW_GFyThdRWYVom43TvOqoKlM7Wl4jWsU1Cqcb3K0qMVKtXwbFgj3rmw3zL2hq2O8we-zunKC9VveO7wdsCSW5ZYh_7VGbS6Rv9FVXG5OlGEBJmpmquBhXHt5BTdBkg8e7c8VSTipGZx45ZsWxtOfE0EdAsR3EKWu9vSGtK5la5ToGczFaNiSdEXky4msiu5GufEM4Vo5upbGnExpMd_Ql-AFtfznm9Qjus9KtIpooQstN5rPIIlTEWHGheS9oXDwqLvNt6mulUJYxDdRC1ONjuecYIQfz788B4TaB2WyZAb4GWNpeCv5mRCGGt8iZ-EjY4QmxFwiW2Cvh3i4bQFjVlQbphCwxdDIY2WWNysLmJxl2uBTPEgEJ14O_kQ3aEOzcNdW1m5R0fnaRBi5gVF4c4BRe-kYK0cVSFvqknm1iVTTEQNPVgoned4ZIIIiTSX9_n75ENUdCat8mLEhwE1Oear7NMmafZ4QBfSwT_8cDBbTF4fNFUBAq9RPLx1ko_s3pVZZgIcobeN8NQX1E2KIiL9Vm8cMwZK2a2p_2umJp2TXEtfvHo4YonfvZU0zXxGTEf4aXexHvOqckxfO5zd_eYm9w5dQ6uyLKJhnbbxkfjMZaL0G1R2nQ5LhRB_w==",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "ugc9zeom",
+                          "name": "search_github_code",
+                          "response": {
+                            "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=path%3Asrc%2Fauth+%22auth+service%22'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "f7c2lvyx",
+                          "args": {
+                            "repo": "google/alloydb-auth-proxy"
+                          },
+                          "name": "get_recent_commits",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "Eo8FCowFAQw51sdwLYwHf5U0M-naZGSnCgxGoHTpkHCaV_0PImprNBYP-xjiYg_YRLiyDXOrWxV-IGIhm39bAyux_03VKHbwaA4lqaR2s9c27TxZuqRLbptFk0ou9lQ1zgVh31Fi5vgDNH6hL39bgwY4EdSpb-5WWUmvNw_dXp3dHOJmAT4Wz5GaX2JzdRxg-Pho4swlXa3bJ5NaM23Vpd4x-Mrn6MhmyHeJbJVCwg8d-sCCd5bWVonmpPudjrD-XgXV-aJzH0iJ_oPv7RdbTRB6Lft73KfqN67YFynD-S4ws0BZBqhR096Y3dOXbpJZYkezCjDY922rvnrN8fXrVxmMr9ma7WK1XFS8kA-RslgfPkccnAsboteens3lRthB5ZFKqvVOAjEb_X1AXtQW8d5vkV7sovYmhdNCRGFj8N01aZmbl1ilrUlQ8xOPqZ4pstcCy-nWjOaOMbbAGX1NkRdDeMOpEw9oeILsOIwWEf1JvJkB5Am-ZdaPupH_LquwJFo5jsjeCb88Xwscr24iDqjz2Ffewx_W_xHy36gs6t2I7DX3p32dSzjLrCztV4HLpzqBW-C4DSwI9dofIJ7QwepdWIJ09O02ZSk5f2weLDFo_vOy0JToy9A1i-8aFaPcovMiv1gVtP23DdC_e3YxIHVbgerqPhN7yYGg2I_pGPRwuoahZrInt3Hu3b162z7wkHWCfrfQZ1u-8HMFUNoS_GcYwtnqN1FJWZ5ILx3ad1G6Uj5UH2czjxONqNOy89K43kmYPPrfMUmEglznXRwzXqk30Ep-y2Uzg-7HmCOtqPIiKFZ3_ny_zjdyO9p6MuAOq2AWZ4rfYdqMXQGkQRnsoyOnzUOLKXylrem-E2I-rgA7ZQ==",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "f7c2lvyx",
+                          "name": "get_recent_commits",
+                          "response": {
+                            "result": "Error fetching commits: Client error '404 Not Found' for url 'https://api.github.com/repos/google/alloydb-auth-proxy/commits?per_page=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                }
+              ]
+            },
+            "creation_timestamp": 1777798534.4790132,
+            "rubrics": null,
+            "app_details": {
+              "agent_details": {
+                "incident_triage_agent": {
+                  "name": "incident_triage_agent",
+                  "instructions": "You are an expert Incident Triage Agent. Your goal is to help engineers diagnose and resolve production incidents.\n\nWhen given an alert or incident description:\n1. Summarize the likely cause by analyzing recent code changes (commits) in relevant areas of the codebase.\n2. Use GitHub search to find relevant files, issues, or PRs.\n3. Suggest diagnostic steps or potential fixes based on your analysis.\n4. Be concise, technical, and prioritize safety. NEVER suggest destructive actions without a heavy warning.\n\nIf GITHUB_TOKEN is missing, inform the user that some features might be limited.\n\n\nYou are an agent. Your internal name is \"incident_triage_agent\".",
+                  "tool_declarations": [
+                    {
+                      "retrieval": null,
+                      "computer_use": null,
+                      "file_search": null,
+                      "google_search": null,
+                      "google_maps": null,
+                      "code_execution": null,
+                      "enterprise_web_search": null,
+                      "function_declarations": [
+                        {
+                          "description": "Searches for code in GitHub repositories.\n\nArgs:\n    query: The search query (e.g., 'filename:app.py repo:owner/repo').\n    \nReturns:\n    A summary of search results.\n",
+                          "name": "search_github_code",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "query": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "query"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": "Gets recent commits for a repository or a specific file.\n\nArgs:\n    repo: Repository in 'owner/repo' format.\n    path: Optional file path to filter commits.\n    \nReturns:\n    A list of recent commit messages and authors.\n",
+                          "name": "get_recent_commits",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "repo": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "path": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": true,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "repo"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": "Reads the content of a file from GitHub.\n\nArgs:\n    repo: Repository in 'owner/repo' format.\n    path: Path to the file.\n    \nReturns:\n    The file content.\n",
+                          "name": "read_github_file",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "repo": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "path": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "repo",
+                              "path"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        }
+                      ],
+                      "google_search_retrieval": null,
+                      "parallel_ai_search": null,
+                      "url_context": null,
+                      "mcp_servers": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "expected_invocation": {
+            "invocation_id": "",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I suspect a recent change in the 'auth' service caused the incident. Can you check the commits for 'google/adk' in 'src/auth'?",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": null,
+            "intermediate_data": {
+              "tool_uses": [
+                {
+                  "id": null,
+                  "args": {
+                    "repo": "google/adk",
+                    "path": "src/auth"
+                  },
+                  "name": "get_recent_commits",
+                  "partial_args": null,
+                  "will_continue": null
+                }
+              ],
+              "tool_responses": [],
+              "intermediate_responses": []
+            },
+            "creation_timestamp": 0.0,
+            "rubrics": null,
+            "app_details": null
+          },
+          "eval_metric_results": [
+            {
+              "metric_name": "tool_trajectory_avg_score",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8,
+                "match_type": "IN_ORDER"
+              },
+              "custom_function_path": null,
+              "score": 1.0,
+              "eval_status": 1,
+              "details": {
+                "rubric_scores": null
+              }
+            },
+            {
+              "metric_name": "hallucinations_v1",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8,
+                "judgeModelOptions": {
+                  "judgeModel": "gemini-flash-latest",
+                  "numSamples": 1
+                }
+              },
+              "custom_function_path": null,
+              "score": 0.45454545454545453,
+              "eval_status": 2,
+              "details": {
+                "rubric_scores": []
+              }
+            },
+            {
+              "metric_name": "rubric_based_final_response_quality_v1",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8,
+                "judgeModelOptions": {
+                  "judgeModel": "gemini-flash-latest",
+                  "numSamples": 1
+                },
+                "rubrics": [
+                  {
+                    "rubricId": "relevance",
+                    "rubricContent": {
+                      "textProperty": "The response directly addresses the user's query."
+                    }
+                  },
+                  {
+                    "rubricId": "helpfulness",
+                    "rubricContent": {
+                      "textProperty": "The response is helpful and provides useful information."
+                    }
+                  }
+                ]
+              },
+              "custom_function_path": null,
+              "score": 1.0,
+              "eval_status": 1,
+              "details": {
+                "rubric_scores": [
+                  {
+                    "rubric_id": "relevance",
+                    "rationale": "The agent attempted to fulfill the user's request using the specified parameters. Upon receiving an error indicating the repository could not be found, the final answer directly addressed this by explaining the failure and asking the user for clarification or the correct repository name.",
+                    "score": 1.0
+                  },
+                  {
+                    "rubric_id": "helpfulness",
+                    "rationale": "Despite the failures to access the specific repository requested, the agent provided helpful troubleshooting information. It explained what a 404 error typically means (typo, private repo, or rename), demonstrated that its connection to GitHub was working by successfully querying a different public repository (`google/guava`), and offered specific alternatives (like Google Cloud auth libraries) to help the user find the correct source.",
+                    "score": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "session_id": "___eval___session___5bf6523e-ddb4-4309-85cc-effd73ee1295",
+      "session_details": {
+        "id": "___eval___session___5bf6523e-ddb4-4309-85cc-effd73ee1295",
+        "app_name": "app",
+        "user_id": "eval_user",
+        "state": {
+          "__llm_request_key__": "8466caf8-b22a-4445-8453-d6fe9e8b0db6"
+        },
+        "events": [
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I suspect a recent change in the 'auth' service caused the incident. Can you check the commits for 'google/adk' in 'src/auth'?",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "user",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "650cfa3d-470f-4884-aa54-7f40b08cd040",
+            "timestamp": 1777798530.213676
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "49j9ocbd",
+                    "args": {
+                      "repo": "google/adk",
+                      "path": "src/auth"
+                    },
+                    "name": "get_recent_commits",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "Ep0CCpoCAQw51sd1FfpRl7OjhrtLiHpLtyuzkxdGOgRoylRBRAjuJKuivl3Jt9G6BLHlfcuE_VX72SCFwIkv4OxkV8PuhWOOw8V_FtcXwXjvIRjGoq2z-tyZaYKKxfijDjt8mnn75uiM73_kMm2_MKbcPt-gDp75LhyflQfGOMFm6PEVEHp0OjiQ1OT9yOn7WN_2OAcKS2rnzigL-iDDMTY9HhCqebiJaxkup0D0Inj4_H_e3cS6fjdggMepnhNC6eChgsr_VUcDUuSJxyyBG65iecQ6TOTdP1t1Kp6KWQwZDdLpHqd1yLsIy1javtTjmVGCblhk4g4XeXk33TFgzyZD8AdiGqQ6WBBAoNT19wUFYWpq4lSuffBAy43SH1p1",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "950549de-d520-40cc-ac64-c0c3cf04430a"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 29,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 468,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 468
+                }
+              ],
+              "thoughts_token_count": 53,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 550,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "950549de-d520-40cc-ac64-c0c3cf04430a"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "0da4e195-0ff5-4e37-afc2-de7d0cedeb68",
+            "timestamp": 1777798530.214862
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "49j9ocbd",
+                    "name": "get_recent_commits",
+                    "response": {
+                      "result": "Error fetching commits: Client error '404 Not Found' for url 'https://api.github.com/repos/google/adk/commits?per_page=5&path=src%2Fauth'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "3f5f1942-5b87-4052-bca8-1355b115f801",
+            "timestamp": 1777798535.855145
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "o7pqhgbn",
+                    "args": {
+                      "query": "repo:google/adk auth"
+                    },
+                    "name": "search_github_code",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "EswGCskGAQw51scHfs1KgXFiCy3DeZRDN4wcAoSpeXfOT-B37kO64MT3gCejEJW-FFlRfRiufkuEzM9cKyg-_LWOWS0C_Rc3qm01nW-2BlGswaD08X2MrUKdrwVrAVk_LAdLxWIGAVyLMQ6lTEJqHsbx_LiTEWpcDlOIxnFMBAMAfKoPgn0O30JwzfbVK-GJqWltyxJ7aXupz9zAlknY2aEYLWIswgjxJc0BJZgPL1_2_eJjbPoAmKh4_tX5K9Bp0EBcpMYsaXnPwCoW3JaHSK32BPgTdnN3wxiKc9M5hWL3dpg-3RyD1hexoCmgO3cU-7sYS3VdEt1qAYCzJ9XpL-6d1f6hq6U-dUdhXnr6TUCvSDujE8MMtHvt8iNtaZYw5YuLLMR2RZIlZB5nljrp5yJKb6VcXZr5OfIcIOKFfNfD9k46U4ZEWJmMJowjDO3FYWQkFSZdZVGR8sfzUPzSxieh36dsucRJTERqe6wukvkEugbbMxInv4EUM-Az4GJ0rKLWsDFIUkBw6YSsA1PxB4hnB3BJjnkQAg1KMV5kkqsr7gbwWtPegoU5Fc01IZTsNhl8NKBd08tNUmnn9oCXL3FOyEzj4UMbSX3GNq0Z9bd49CPxZPFwXbZhKJhMcG_ZpnmoQZnawOBJZaKhrj_Fy7EnuMolHNIdUu5X8oIjyvxFd-m5jNX2t9mbjd6plpXFR8gCY57y8kABmrIDiWLodsWPLv4pymzQ7gx3zB4skIUrZJXDw6Tmh_go0NmFr7UcHDUgUGC9OjN_ce9GWgM-SBU4dwuWOxbyUU-TFb5wnyNd7XL6twL925YxDaLur9OZRDwsyfHIE58atqy_bbeeZJcqIPpEVjn2GjJYthOITQTsCoyMB1bhJXeVhDG2S3MV2Ry9TgL2BIzKXL89LpgLtZJBg-kBb9p2rh9tEScMpPcS_Yq4FDhVzn0Cayh5XwbzNqb7F3xRLmPnDWAg_9KElTLRkR-0NwUiV23Dg-B5G1fnae90E5pozULZIE49_EmFjKsrGA7JdRx39t6FiIk_IRSWlcuRgFwnQ3gMbRpMiYlfvZgtxDgWy-u2cuIwZztV7YF246TDI-AeGvonKH_Uo5wm5TsweFjnUf0kSaHjtg==",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "67606451-f8cb-4c28-b679-8c4eac856b31"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 24,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 641,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 641
+                }
+              ],
+              "thoughts_token_count": 209,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 874,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "67606451-f8cb-4c28-b679-8c4eac856b31"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "9b5fd45c-d13d-4445-a7d8-d0e6f4cae554",
+            "timestamp": 1777798535.8606982
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "o7pqhgbn",
+                    "name": "search_github_code",
+                    "response": {
+                      "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=repo%3Agoogle%2Fadk+auth'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "98f82d28-0348-4386-9bac-3b24466673ee",
+            "timestamp": 1777798539.236187
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "4tm32w0t",
+                    "args": {
+                      "query": "org:google adk"
+                    },
+                    "name": "search_github_code",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "EuIJCt8JAQw51sd0Mt5vH6nEhmXRTreTUpumdhtK0R8Ah5CPnrejh8U9MkxBKlmy9dDavVBKSZGOk3o8AoFG6rQrr48D1EuzZ7GnCjKO2sR3icetw7DPXWwC9ebmi_U66-kFT5V3mLznYRBtwy7GFbikVP7fXtVZBB-YXYSUqqd4THFghPbguqk2O6xJucaS_m9nq2vO0LqQ9aorUbcZ-G29kt687p19l_YcbyuklnBuiZ4FxTGTBPUR6DwLR3vdQUba0o-i2UaQVKduTd4JDfu2sC-dxDpTa5WtS5BHJzbD4rp63O8vgH4HGN-azayuGTwL0aDKaaZsqU8DySeHj7L7jF3ztm5Hm2ukFr3hb5AlzVnkHuI93O3XfUhDBd77Lioz4HVrJGoqWCr2BP21Crko_w2cf8VajfuJL82rnJ8BnOkXGINFHLZGPcaAUSvWgaovI0mFXbg3uM78xN1wCO9Z1ztckCJZPPZPKk4WxTuP4QqsXnQd501_7NFmkT2rvZVgr7mQQlK87xsdfDgG7FgfHG58nURfNmq7N8y4zVvfrOyPh-S0JkiSY5pmAHbti3bvi4Bf_Ti2K7HpyPxl3gSr7SzC8Gpi6wsQ0VoGWymd5BJmOQ1YjGrfi3A7ElQEgXDU1yJL9xBTiFqFuR6grGbqSJtTK51Q7T9SA7HL6V4ZNU4Zxk06oc3QXQ2mk9E24eAj8yiFcqsnS3KO7tMmZR5xB26f6rT3o0uv8tx3TNTCiUnXtoVC1fETxuJ_1F3FbXX57NE2uxXvSVklZ0F7xNbxLPPFe_t7EjM_AurQQm4xZnSzaX-XQed3dl_gwa3-VqCfeuYFsoRJawBh7Xg9zGpj_8MyjJRhJrofTPh4KpH8YAb-GkNcGovHF5Zozs4z06TYdBhr59hIiemBxCgu7F--kGZgW5TlO23aC7i5djSMTFKky5B_aqLN9QriVhXbeKFqiJyp1ll6wr8Chlu5-625ZpVxweLgbtGxwzI99iwkcap2vKXj2YAZOJAN3Nv7QhJbGQQYySG2aHpnuxM7ZpD_2LNflMHB91mRf4YU-ok0Pi4h3RBJWk-S06NoAwWSVRIHf17uLV5WdSsHQRdZzA4NMewb0OMLaDB_4dhgqKLexUDN7Uax1GsF-FJpYYjIDbTEs5PZjnr2AYQwWGfXMz4M8xS7m-sayNu8agfbe1KKxL7-JbRmI64-idQzSd8F1GwT37O8ZKEecLIcV29trPasRoWXaVtCw03oTVprjpHXyTah_-36qCBppOulSPLBZ1UVdApaBF1KMFt8o6namAmvHPLQ6a_T3JilOjHF4_xZUMzDj3Yv0aCWHYKewjpuMyfzrouXjBK8L4L9Te11bq5dkN0sThfQIwVTmFvqd9nMmwiVEDofuLjgSDFUkRPrwaOaGQatyxAcKAYYdV1CXaehSJ0aTWq5DUsTwAIftDcXKjL4lAJgCI3QYgYM9YLLBVntsvQl4OeuJDwoGZv4OZEDNgJ5uXSCjyUY5VRliLA2KIHY9DRkNtzLYHrG8KMvepy46mNM7_AtvIAMdNd-blU5Of4rlurD3wffkJ-jEiWktmBKRD0F-X-c2zYuYjVxRodGCtOVIWDh835m17awwW9qh8xowwi6hcHmfpXzuTfphGxpz4iXcrYZXwgZj7zHXeNRh6g=",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "781166cd-3efe-4d82-a117-01f4f3673e68"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 22,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 960,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 960
+                }
+              ],
+              "thoughts_token_count": 319,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 1301,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "781166cd-3efe-4d82-a117-01f4f3673e68"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "af64580b-ec19-498c-96e9-79c0cb22d0c1",
+            "timestamp": 1777798539.238286
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "4tm32w0t",
+                    "name": "search_github_code",
+                    "response": {
+                      "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=org%3Agoogle+adk'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "d0f3162a-9174-4392-afac-fa7535ddc288",
+            "timestamp": 1777798543.464192
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "axg7w871",
+                    "args": {
+                      "repo": "google/guava"
+                    },
+                    "name": "get_recent_commits",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "Es4ECssEAQw51se_-177ZG2fIupEqbyQqYsgxjnYsIU3eifQGNzGd84lejvs8ibDQsnBaKzci3CCQlGmL2BEFS-24l09LcsBTqBXkfy3iqiodljXpVd8BT_I-Ix8U0s7ZMAwKCVqnh1wsPLqqkeyO_4UyDY3k96_Ms72sVUkAvxvp4RPFlSpp6W64Wk4xZ8hP4AeJLWz7yePop7azhccX3TYv5YTjwwcXeahXx4tYhLG-Nh_Ze18XJTf_33n3B6uZyeOjehk6VLmUkUq_G_cvfCpi5x7ID2sB0tQI0vxyprvfGVJmybvAnHpQYEO12A3Nt20DG9oCDH_v26eFINMs2jgG2I2EQlKU4eQVRXFlm1_lVfFuDPQT8lsPHEp3erO-8LbqPuEUNqILbC2uUbJ98tkZYotWaf00Rs_k_OSW17sBVAfVtRiItuVT9mBlqIFsHNcb1c8Dyze0ogyhvuXOxrh6dcgCEojEMQ4DfL9X-R9j-vBbZZLvM1YDqzyxyJq0GbVrXdPT1PQUpEA1N_BVxPJcAv5yMn3Zf_7RaaNEY7LPS63SiiuzH-EVyvS4Xdxo_tIYT8zUvS8VFmXmgfb4cWdBxJLn3NEOqyygVIxbCwpjIpIaLMRvkfh8eiCN_jFMnHczkrc_k-Ka6zHuVeQLp_-oB9exzSTdlsZ2CtpYWLzJL_aIlzieVl0da0KbGUqIqIRVfrFMs2ABdE8EtRIWG4jB1j4k_1r_xdppl4WZBJshh83kh-FBzAKdMBjadc2WGUokPqR-dHgt6Ffuqr1lIY=",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "37599454-b12b-4eb5-92fa-ae9d1f1c6a08"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 21,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 1383,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 1383
+                }
+              ],
+              "thoughts_token_count": 140,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 1544,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "37599454-b12b-4eb5-92fa-ae9d1f1c6a08"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "2324774d-7227-4fd8-b493-0f449d6448a3",
+            "timestamp": 1777798543.466482
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "axg7w871",
+                    "name": "get_recent_commits",
+                    "response": {
+                      "result": "Recent commits for google/guava:\n- 43ad354: Use some collection constructors (and a few more static imports). by cpovirk\n- 3240f46: Automated Code Change by Kurt Alfred Kluever\n- 36a579a: Static import methods from `Types`. by cpovirk\n- 4342259: Bump the github-actions group with 3 updates by dependabot[bot]\n- 0a32c33: Adddress more warnings and review comments from https://github.com/google/guava/commit/f3113addf132b00523e786f105919a4c041c5909. by cpovirk"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "975fa82f-6ff4-46ec-a963-0393e850016b",
+            "timestamp": 1777798546.7641711
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "ugc9zeom",
+                    "args": {
+                      "query": "path:src/auth \"auth service\""
+                    },
+                    "name": "search_github_code",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "EogNCoUNAQw51scp1oe1L7QsFk3_BTsZaJw_EaODGVxqK4kCjKdQyj3H5gkX0mm2SqWdlyN-7M9cU7L_E66VtxVsuGfG32NtVKjE0PMkOvokrZEWw2SX4WSzCDCo2AjAcCsQ2WvSugWaZNuwdmR92Tpd_uBzFQHAxVMVKUt8kzNYzRL-7osvGLu1SGH4sM05ETiQZMrP6veobizj8EFJegBZqioG5nqmJih5MNGnLmosLRLjH18O5Lgichj1CtoG8zjqXoKvb6yEmDPdRbD8KKkNIEYRFGJJW3MaFYKqITkwjS8r4HFrHDZ0xaPWc49hgUSs0vjIHPE7IGDBU0e-gFSMGiVPGh1kAvoLQRlD5Y-OBn4aI1V7wSXQWZCuurfTsCZG9JYeHPBQ6fDwvOwb4dR1clYUxipPOjNIsh9GXownQ0WU9IS8f2xSseRg5EzJTXGEflYZNOWtujZIzzgvXI--CXhN9eirxASUrYSQkKXECUlOUN3WfUFEVMjzT5YiaaRwllEGaMxdhzTMnKCZrHEA3QuTQ_rVxZUTEPXt_SJSkm2xDryhDRPaBz8yfKo2NVEiaviTHzTAbDmoGqIHssAvgQVK8HUS62m17ihjlNyFxxqAbn-zafb_hD87LfXTpBySCY6YCVn-0nmIRM9bMXaWKQcspnH5W3iJosjQJ0uPD66N2RY3m5r9k1upv9ZKNwIbWq4575vaq5nSu7iljoZ2dawu1q1WRqe5hVDnim_tUGqkcgQFpL6YJlbMpAd-LaeafSXVZyl3iVj6b4-s83Xo9bf0G6f4QN9rPPgJfhIwS3m4ld6IsN9FXBVsjWZ1AvILnStRZua_ePnGJpliY974EV7GKsAsyBuwoMYUOe9FD6dOnUEjSrObhUx2P9nq91Ir1b91tRX0W886gF4W5JglVuRU97SSr9RibWQ8258WrDarwbpWLMqP2WIKPuxeBFkiWVIOgWZFt0RC2Gs1zQJSZJuPzp-pUYBh4wi7Mtslne1v9vGurl6e2fiUFaIIY2GiHfYi-1eiHFfLa5cBh8yeszP3ZXeSaw-KD-GVQGhNX95vpOlRb9rOHAGv03gOLb7o7QpzRKAga_Suwh1v7Wt_rVH2AK6mXlfctRxpQEQXl4BTYNzPxmFAIo6jzVCv7AOzX-OGmcaG5DqOINGKyAStnx4gvHH-w94LngCRv4qNNQzUEvIw4icW5nt5ik8zI9tpTLaF7f3dY28uS6RAqDMSWJbsw1E_vdvqrBcga-mMDl8xp5fSu-iz9mat2oH26ztlfWtYXAaAQT_QA1LYyztZf01n6a7cJKbXaOaTt2MxY9DxpKe1kYEjB8ZA7Fjhg1BA6ghRMDptdKZMlZ4NdV6RklFkQ6njQqx4RDeh3bnJpIRW-_M1Af5FMmt8Sc0KOSAh6cvhD6LivjkCvZLUJXoS3TSU58rJq6K819dF6lp_0ze4dzRB7U2I1gz5uw3bQ7W5QwOJx1FuysyKBwf-jiCyskcBZryj6ym7edZpsY5OYz7uTHWgCj77-3iqGhTzs8xXo5g_pJaj2QsPgev6goxhYV1ZdTeqaZZZVgXuPX9abDHJVfjwhjRRR3PnkpW_GFyThdRWYVom43TvOqoKlM7Wl4jWsU1Cqcb3K0qMVKtXwbFgj3rmw3zL2hq2O8we-zunKC9VveO7wdsCSW5ZYh_7VGbS6Rv9FVXG5OlGEBJmpmquBhXHt5BTdBkg8e7c8VSTipGZx45ZsWxtOfE0EdAsR3EKWu9vSGtK5la5ToGczFaNiSdEXky4msiu5GufEM4Vo5upbGnExpMd_Ql-AFtfznm9Qjus9KtIpooQstN5rPIIlTEWHGheS9oXDwqLvNt6mulUJYxDdRC1ONjuecYIQfz788B4TaB2WyZAb4GWNpeCv5mRCGGt8iZ-EjY4QmxFwiW2Cvh3i4bQFjVlQbphCwxdDIY2WWNysLmJxl2uBTPEgEJ14O_kQ3aEOzcNdW1m5R0fnaRBi5gVF4c4BRe-kYK0cVSFvqknm1iVTTEQNPVgoned4ZIIIiTSX9_n75ENUdCat8mLEhwE1Oear7NMmafZ4QBfSwT_8cDBbTF4fNFUBAq9RPLx1ko_s3pVZZgIcobeN8NQX1E2KIiL9Vm8cMwZK2a2p_2umJp2TXEtfvHo4YonfvZU0zXxGTEf4aXexHvOqckxfO5zd_eYm9w5dQ6uyLKJhnbbxkfjMZaL0G1R2nQ5LhRB_w==",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "191dc32f-78f0-4abc-a694-628ce5d01c36"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 26,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 1737,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 1737
+                }
+              ],
+              "thoughts_token_count": 472,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 2235,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "191dc32f-78f0-4abc-a694-628ce5d01c36"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "23c3f978-f2ba-420f-86b7-441ab0b3b41d",
+            "timestamp": 1777798546.7649212
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "ugc9zeom",
+                    "name": "search_github_code",
+                    "response": {
+                      "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=path%3Asrc%2Fauth+%22auth+service%22'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "e5cf45bc-8477-4d09-b4fe-2632d4cda1f7",
+            "timestamp": 1777798551.437283
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "f7c2lvyx",
+                    "args": {
+                      "repo": "google/alloydb-auth-proxy"
+                    },
+                    "name": "get_recent_commits",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "Eo8FCowFAQw51sdwLYwHf5U0M-naZGSnCgxGoHTpkHCaV_0PImprNBYP-xjiYg_YRLiyDXOrWxV-IGIhm39bAyux_03VKHbwaA4lqaR2s9c27TxZuqRLbptFk0ou9lQ1zgVh31Fi5vgDNH6hL39bgwY4EdSpb-5WWUmvNw_dXp3dHOJmAT4Wz5GaX2JzdRxg-Pho4swlXa3bJ5NaM23Vpd4x-Mrn6MhmyHeJbJVCwg8d-sCCd5bWVonmpPudjrD-XgXV-aJzH0iJ_oPv7RdbTRB6Lft73KfqN67YFynD-S4ws0BZBqhR096Y3dOXbpJZYkezCjDY922rvnrN8fXrVxmMr9ma7WK1XFS8kA-RslgfPkccnAsboteens3lRthB5ZFKqvVOAjEb_X1AXtQW8d5vkV7sovYmhdNCRGFj8N01aZmbl1ilrUlQ8xOPqZ4pstcCy-nWjOaOMbbAGX1NkRdDeMOpEw9oeILsOIwWEf1JvJkB5Am-ZdaPupH_LquwJFo5jsjeCb88Xwscr24iDqjz2Ffewx_W_xHy36gs6t2I7DX3p32dSzjLrCztV4HLpzqBW-C4DSwI9dofIJ7QwepdWIJ09O02ZSk5f2weLDFo_vOy0JToy9A1i-8aFaPcovMiv1gVtP23DdC_e3YxIHVbgerqPhN7yYGg2I_pGPRwuoahZrInt3Hu3b162z7wkHWCfrfQZ1u-8HMFUNoS_GcYwtnqN1FJWZ5ILx3ad1G6Uj5UH2czjxONqNOy89K43kmYPPrfMUmEglznXRwzXqk30Ep-y2Uzg-7HmCOtqPIiKFZ3_ny_zjdyO9p6MuAOq2AWZ4rfYdqMXQGkQRnsoyOnzUOLKXylrem-E2I-rgA7ZQ==",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "f78206d1-f402-47d7-9658-2bb6d276d1eb"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 25,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 2327,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 2327
+                }
+              ],
+              "thoughts_token_count": 169,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 2521,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "f78206d1-f402-47d7-9658-2bb6d276d1eb"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "fbb34f03-c994-4f82-91d1-b188b1d9fab1",
+            "timestamp": 1777798551.438133
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "f7c2lvyx",
+                    "name": "get_recent_commits",
+                    "response": {
+                      "result": "Error fetching commits: Client error '404 Not Found' for url 'https://api.github.com/repos/google/alloydb-auth-proxy/commits?per_page=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "1110a64e-ee01-4eb0-a083-16fdb58f0f4d",
+            "timestamp": 1777798555.516586
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I was unable to find a repository named `google/adk` (the server returned a 404 error). This usually means the repository name is incorrect, or it is a private repository that I don't have access to.\n\nHowever, I verified that I can access other public repositories in the `google` organization (e.g., `google/guava`).\n\nCould you please double-check the repository name? If it's a internal or private repository, I might need additional permissions or the exact correct name. If you meant a different service, such as a specific Google Cloud auth library (e.g., `google-auth-library-java` or `google-auth-library-python`), let me know and I can check those instead.\n\n**Common causes for 404 errors in this context:**\n1.  **Typo in Repository Name:** Please verify if `adk` is the correct slug.\n2.  **Private Repository:** If the service is internal to your organization, I may not have the necessary credentials to view it.\n3.  **Recent Rename:** The repository might have been renamed or moved.\n\nOnce you provide the correct repository name, I can analyze the commits in `src/auth` for any recent changes that might have triggered the incident.",
+                  "thought": null,
+                  "thought_signature": "EoMGCoAGAQw51sdTlNwWSLL_zkBV6XUDXHx5fxeqTHPPkw__WSVs0IiSSHk7SxuALTzVkqhnbf_-9Z26QpAvv0eA0S96vEANp4fZCUnEXij9lDf_zfGx_hxVbdXXpoKtu3HL_UU0sd1lDTGBQ4Bez6FVZ0ylSIkPPeu9l2c_nyISNlLco8jzotVnmMidtfCoWRYtvNJtYPFhEYXNoSgawXU2_6u_yBHkbcQbplBA-vy47nCEjVos2upEYOZhLNbqzcRIIv-1RGhO1eFt27-FWRDmD3bcxiJI9Ollx1WHgQABiM6wxQJK_2wDOxdQqY6jC4FyXHCUUWWk4S-XU_9ZIbMYREt9i7pMYHUtPeMWmg8kKVCjlcg7w7ZKn7afi7WU4eMdsqyVfga5woEQ599ma1ZTtH0Knu-NcQUJvKt3lwzaGPwSKAQVAH_IDNKZAyqfFgE8cwvmYq6y8DGpbXBleU02cSsNl-kjgWqWe1q5xDulhjcu354X71A14gLH2xaevNtryqxlpQuJndf4Dw_zIeF3ZkA3kw1qh6NUf1dy76KgcR5LD204zseVq54hW4KDEFS0_c0gIMK3wCPHf3EiFbtpJ0ciUkK4XlnRjSnuKl7nCNysGLv9bibJyE6jQnejpA9C3DFbpFvB3eeRHklLS6U9WnDKWoKzoFTBUQi_qL26mdO4Gy7qaqDTs80M2psDbkcpidtKCU99cHE1Lew169cS4sI-GMt8dpjZO9a7jExITGd8uFrEPQx7g6hGn9E124LjCmvn2h-hE1Hp7afTv9wRdoGsdLjMdwxKbYCz38hJofAZ0MJio1OyKxOPYxurAcINXHd-nu-B9OssgjPgr7OLZrnZICdk0xOxO753Hzitp-BYRkJRb7cJm0jRNQwvBMGq3XMGhX6-wxenrhkPuS9gt9jHtWepkBGEE_oT9oaLlWhZrKrLhtFhkkZv1TzJKPf0I-r5wQ9M3AkE-30l1nr5cDswixP6PZ7wQSds1Pm849q43mwjEsaEczCWcqOw-L6mNByX",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "8466caf8-b22a-4445-8453-d6fe9e8b0db6"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 272,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 2608,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 2608
+                }
+              ],
+              "thoughts_token_count": 205,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 3085,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-c1fb4c77-4398-41bb-86cd-097e3a41119c",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "8466caf8-b22a-4445-8453-d6fe9e8b0db6"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "28572e3f-93db-4982-bb7c-a9b6c0a97180",
+            "timestamp": 1777798555.5188758
+          }
+        ],
+        "last_update_time": 1777798555.5188758
+      },
+      "user_id": "eval_user"
+    }
+  ],
+  "creation_timestamp": 1777798599.493286
+}
