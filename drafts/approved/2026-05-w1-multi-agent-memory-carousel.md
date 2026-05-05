@@ -1,4 +1,4 @@
-# Carousel: The Shared Brain: Multi-Agent Memory with Hermes
+# Carousel: The Shared Substrate: Solving Multi-Agent Amnesia
 
 **Platform:** LinkedIn / Instagram
 **Format:** 6-Slide Carousel
@@ -49,7 +49,7 @@ results = hermes.query(
 if results and len(results) > 0:
     agent.update_context(results[0].content)
 ```
-- **Caption:** One query. Zero lag. Persistent context.
+- **Caption:** One query. <10ms latency. Persistent context.
 
 ---
 
