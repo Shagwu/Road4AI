@@ -1,0 +1,927 @@
+{
+  "eval_set_result_id": "app_incident_triage_eval_1777798608.579315",
+  "eval_set_result_name": "app_incident_triage_eval_1777798608.579315",
+  "eval_set_id": "incident_triage_eval",
+  "eval_case_results": [
+    {
+      "eval_set_file": "incident_triage_eval",
+      "eval_set_id": "incident_triage_eval",
+      "eval_id": "alert_triage_latency",
+      "final_eval_status": 2,
+      "eval_metric_results": null,
+      "overall_eval_metric_results": [
+        {
+          "metric_name": "tool_trajectory_avg_score",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8,
+            "match_type": "IN_ORDER"
+          },
+          "custom_function_path": null,
+          "score": 0.0,
+          "eval_status": 2,
+          "details": {
+            "rubric_scores": null
+          }
+        },
+        {
+          "metric_name": "hallucinations_v1",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8,
+            "judgeModelOptions": {
+              "judgeModel": "gemini-flash-latest",
+              "numSamples": 1
+            }
+          },
+          "custom_function_path": null,
+          "score": 0.4444444444444444,
+          "eval_status": 2,
+          "details": {
+            "rubric_scores": null
+          }
+        },
+        {
+          "metric_name": "rubric_based_final_response_quality_v1",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8,
+            "judgeModelOptions": {
+              "judgeModel": "gemini-flash-latest",
+              "numSamples": 1
+            },
+            "rubrics": [
+              {
+                "rubricId": "relevance",
+                "rubricContent": {
+                  "textProperty": "The response directly addresses the user's query."
+                }
+              },
+              {
+                "rubricId": "helpfulness",
+                "rubricContent": {
+                  "textProperty": "The response is helpful and provides useful information."
+                }
+              }
+            ]
+          },
+          "custom_function_path": null,
+          "score": 1.0,
+          "eval_status": 1,
+          "details": {
+            "rubric_scores": [
+              {
+                "rubric_id": "relevance",
+                "rationale": "This is an aggregated score derived from individual entries. Please refer to individual entries in each invocation for actual rationale from the model.",
+                "score": 1.0
+              },
+              {
+                "rubric_id": "helpfulness",
+                "rationale": "This is an aggregated score derived from individual entries. Please refer to individual entries in each invocation for actual rationale from the model.",
+                "score": 1.0
+              }
+            ]
+          }
+        }
+      ],
+      "eval_metric_result_per_invocation": [
+        {
+          "actual_invocation": {
+            "invocation_id": "e-0b129720-29c4-4f9c-b9cc-c25e7eebe213",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Alert: 500 errors on /api/users. Triage this.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I encountered an authentication error (401 Unauthorized) when trying to access GitHub to search for the `/api/users` implementation. This suggests the `GITHUB_TOKEN` may be missing or invalid.\n\nHowever, I can still provide a triage plan for **500 Internal Server Errors** on a `/api/users` endpoint. \n\n### Initial Triage Steps\n\n1.  **Check Application Logs:**\n    *   Search for \"500\" errors in your logging system (e.g., CloudWatch, Datadog, ELK).\n    *   Look for stack traces. Common culprits for `/api/users` are:\n        *   `ConnectionTimeout` / `OperationalError`: Database is down or overloaded.\n        *   `NullPointerException` / `KeyError`: Unexpected data in the database (e.g., a user record missing a required field).\n        *   `AuthenticationError`: Issues connecting to an Auth provider or LDAP.\n\n2.  **Verify Database Health:**\n    *   Check CPU/Memory usage on your database instance.\n    *   Look for long-running queries or locked tables related to the `users` table.\n\n3.  **Review Recent Changes (If you can access the repo):**\n    *   Check for recent PRs involving `User` models, `UserRepository`, or `UserController`.\n    *   Look for schema migrations that might have added `NOT NULL` constraints without defaults.\n\n### Common Causes for /api/users 500s\n*   **Database Migrations:** A recent migration might have changed the `users` table schema, breaking the ORM mapping.\n*   **External Dependencies:** If the endpoint fetches data from a third-party service (like Auth0 or Stripe), check their status pages.\n*   **Serialization Issues:** A change in the User model might be causing the JSON serializer to fail (e.g., trying to serialize a circular reference or a non-serializable object).\n\n### To help me investigate further:\nPlease provide the following if possible:\n1.  **The Repository Name** (e.g., `owner/repo`).\n2.  **A snippet of the error log/stack trace.**\n3.  **Recent Deployment Timestamp.**\n\nOnce I have the repository name, I can try to examine the code and recent commits directly.",
+                  "thought": null,
+                  "thought_signature": "EsoRCscRAQw51sdq5d7Wq7DTr5nAJPtteidyiQW90xbwwCxpKXDSSmMpkYC2dTCdx0Ctt0CdkdJ2LTc44DzD9atEMkGV8OW464aZtc1SV--Dv6l9M2YxYCxgHI4a5ZR7eA5qiZMHKZqCZVF94ssAzYAzCQFBEZ1bHs8jiV1I_APiFmQNAwokeJA4p8x_iCClif7oPMXEuCbUr4mGoHVEnDZlm3tSWvn9ixEkUBe8okjXAG8YAT-II4ebKAL8Kpx_qi4PUNyIUqoBM6gEiSWqGjuHi8wMrroOdFbSvHCzqWrUqoxu2DYDuNrYxJbHEd7YnTgaWkvKlaD4uANcqDtURu00RVvwA4N0A-6LEBeDm8kfV8ZehRDCKHDUsuad2tutTKBM8KeUrApEhaSUXeOt2RwsZrQLuCA8GQh3aY0sYVBUMdgso5I6nCyP-mdAtCK4YSapX3rrEpqZSdXx_p-ImIK3fovaPCnJVdqb2EYfBOQ0pB2NGxTMifO2Wpg6hB1sGZMVCfzEK8WsUbefTwLIkfETCEpNs8zTpLmCn6IHvobA3DYJ-Sbc4lT3Bbh8-fbKwBXUokbuJuNGZvjqATaJOg_xbeBNnaFoGPyXuhgfO0ZsSoKDaD-uT65OUM4IVssX92HlwRlhLKH3mReVPoJ1kmUAu_OAghAtGoXx5yQ5d6BPXO_ItUobtFxKXAtRCU4KSUb2gUWy1M2ZGk6YANfcQaff-taSPgKIsu6Z7rdJclh7ZwnxA8lxz7UJfJcGK1xRqXbC2WoLacjzRypGWv-BMmqXvfSFV0zgl4EfRCayPTq2JWmgDycw7qSuzc3XMEwTvao6mVOyNoEcLBMXmkWrot5Q7igpv-xv6R-ZgGlBK9b-0l8n1cP1NgRGwO49YANyrYV8saE8993imywGyxjLwjYBpJD9OAin1navA1jSXA9oVWQ_pnM7JA-Tqaxtr6YYN8h8LQIRlN_2tBR7QjK5S0_OjLIfPQP_g2xu4A2TvTAwP-aNgQxhrkFppkebpbTcakI8yzaVI668i3kknUXm2xvPvUUk7-LbE32GlESZBrfIHt7m5pxxKqJjCfPmJkkxia7rLphlmAn6AXbP81JEz67XhYah3zoKe-mfx77v9cLY8nlJwhmnRJODqGd5smd2KLwWUzCQcRO86FaZjsviKQm2CG67L7kpvKSq6TAyswpXoLmR5OW5uYw_7z_w4jw7C_3zD2nZZyhQOAPP3EriFmuCBzOCLaKJvP0I4MkNMQmgFcFbX0TjKe0EF9dgKNE6XqoFJra9XUkBCCkw1ZiVjZsKMF2HhuCieKVllZebQVYMcBNopGniLgtG4gvxlKveUlHKkQG1JmK5oewEvdHgBNLZPoZK7oLVwIkw7yQB91Ae1n0hCleNNhjbUQPBI8PBnN7NsxEyXmPi1_TvShKygfCDP_JO5oxefTzhVORPFqOUjfiRZ-d_hk9YBbVuXpko-Rk12f6KsSG133exc307TDWn6bZNq20Rhx3eYW8q5AKVPqLRV2RzoI0N8Cy78EtfgrJa1944nZVze3GLuQPj2yg-jXxEBKOuo_94AmyleiGeK9y9y63AmNVjGaUmqRatu0GML_poH-7Ztc7pVIizC130Ow0WpljFZZg_patME35vgn85I8ayemhnFxOmKWdj5CFop3HkPm4jx2Owj5hkFLhKnFXcojMAwnrKaIQwBEw80QbJuGYit9kicGe9zwlvxvu6nRcpNuzjkvHAdh7lLUG8iTGu-lAgjqBpepB-LaQdEf9gNMWFJNLcuamR9VFMgGGMLBXtnJyf7lwHKdzguNympHoQ0h0fnu0a7y1pKKWcz_8a6dwGerfDQZ1z8V2b9SOjycxdppDN01XyHC8LPRS-yQiT3amiZB7abJzK4Yo1XsYleZJKxLgSoUnYhOsd42AAj0kh-Hv66EEm0EHchH84nPjSyi560Gb6TTqJive_vVTbkdf--FIvF8QMywyXn2APIwHdsxx91MQohBcYPdFnAwnOK9PhiO5uVrt8L9WLjpKIc5m3DX4Ene4-sS9tk2kYkIJCDVk_F3v894FlDGEMuRjCNcOJXH_5mNnHjsUCrPsyZd77D9dmBfsdRsqOqpotgSicjZkzpnrhU2ME8TlEzqQ1Do0OrRf6DLCiWNzkIHqEBDdxCnEbuuLJCBuwr9tQ-Io8A7fyzg1aGOggdDdQ2sAqgxj4sn4IOTxIaQYaxvttAfVSRBhdaHjUZxYptOPmtsmjAAIK-id2so6AcmEXCJQa9NsnmsdIbPCOP1czHPCRrwzWZBF4b3hEv0Qs8Gok1EYZdNbUlwFvlEvumEYEKYVe-eSJH6E_x98sXnC952D3tkkb06x8EEZQcdF7K_ksicc3LxfMDR7JgVHADKdmCggNRHAGn-qikn03I-0SUNYf7HlfUImrJMhtBYVAm9QzgNZG6SG_pWblYAmnIUwm2AFpDsnHMmfuUuZvy1jYhJmx85FRvOaveMETe714KrPHWdA_tQdwTlO8H1hejHNbKmSwl3CE_Toe9m0CclfNVDhKE2QEHBmuCCMqBRYlZBlL8IiH30aF2gaLeR7C9uDFSycbKppt9gXC9GHzvMT5uydUTi9t0OB_OJNtuf78sgEYWriiRsg4wq1W1vabhqNFX3h7hfV_Tgj1w_HaF0p1NfDV8tMMSJOjfRrSR2d5uUb7JK1QMJiJStuYnctx97uCvKukP-K4boL1EYekoUEFy1Qs4eF0ggtaDlq_lZ1RqpHLa-NnFW6FcL6BTE2aHmoTbDoz9lm66NzPDljAbT-_xfS11aBkWxHEN0Vias1iYxW805iZc_WTqafO29sbB3oaarlvtnyDbHUkEXJbjjjo7Gml7tfD6wpfLtzY1B7JDqA7_u5ahjQTRaAX_7pxVtV7nmJyij8TfsSyLU8NUyVzDVnTbRpQ6O4hgxspsVVTDJQqhNkVESo1M3nG6pYyFISOnlqvI0OQmAXU_qoZLT49DoSOlf0oANekJqrf",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "invocation_events": [
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "0s3c7vsf",
+                          "args": {
+                            "query": "\"/api/users\""
+                          },
+                          "name": "search_github_code",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EuECCt4CAQw51sc9QIujtmU7-HUetEob6THJCVzjSSnPEEwtMQNaQFeyO27O0Wf5mW_ozXNP0IGQ_l1c_GlGC4MKgK5xQIH1k0H-LuTRCWeAZvWcMh-p6cSgw-90bCZfCT30_ffgHXY014ge_EKJLdeR4S1xGRwaQ1HUVCE_twOtHEn7MqXV-xVVPtCdaitTAcMH5Lt9XcPGGAb7WHtNX93RX-DoUL3_YbjkeDoseL-1egt4W40Y9nz3LL3uRVzhpN5UCc4OBVU48felQxq3kMSlVMXXH8j2lVOp0pokDGPXY2ub_PJFpa2u8oVw4c7PU2w-KgloDTX9a-RuF1vXdiNpVCF8OhgfB8x-roqQ7RP4auvto6ig9j8RSgNfEDifa4S16BYnzfwWGIcyFfRFe_kw92mHct3GJSemNOOC5O7dhwNW-hbBkNPs6PzdqyNQ2hMUIpmA6S_YvccBkup_Q_Ngn28=",
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "incident_triage_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "0s3c7vsf",
+                          "name": "search_github_code",
+                          "response": {
+                            "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=%22%2Fapi%2Fusers%22'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null,
+                        "tool_call": null,
+                        "tool_response": null,
+                        "part_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                }
+              ]
+            },
+            "creation_timestamp": 1777798533.093033,
+            "rubrics": null,
+            "app_details": {
+              "agent_details": {
+                "incident_triage_agent": {
+                  "name": "incident_triage_agent",
+                  "instructions": "You are an expert Incident Triage Agent. Your goal is to help engineers diagnose and resolve production incidents.\n\nWhen given an alert or incident description:\n1. Summarize the likely cause by analyzing recent code changes (commits) in relevant areas of the codebase.\n2. Use GitHub search to find relevant files, issues, or PRs.\n3. Suggest diagnostic steps or potential fixes based on your analysis.\n4. Be concise, technical, and prioritize safety. NEVER suggest destructive actions without a heavy warning.\n\nIf GITHUB_TOKEN is missing, inform the user that some features might be limited.\n\n\nYou are an agent. Your internal name is \"incident_triage_agent\".",
+                  "tool_declarations": [
+                    {
+                      "retrieval": null,
+                      "computer_use": null,
+                      "file_search": null,
+                      "google_search": null,
+                      "google_maps": null,
+                      "code_execution": null,
+                      "enterprise_web_search": null,
+                      "function_declarations": [
+                        {
+                          "description": "Searches for code in GitHub repositories.\n\nArgs:\n    query: The search query (e.g., 'filename:app.py repo:owner/repo').\n    \nReturns:\n    A summary of search results.\n",
+                          "name": "search_github_code",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "query": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "query"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": "Gets recent commits for a repository or a specific file.\n\nArgs:\n    repo: Repository in 'owner/repo' format.\n    path: Optional file path to filter commits.\n    \nReturns:\n    A list of recent commit messages and authors.\n",
+                          "name": "get_recent_commits",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "repo": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "path": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": true,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "repo"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": "Reads the content of a file from GitHub.\n\nArgs:\n    repo: Repository in 'owner/repo' format.\n    path: Path to the file.\n    \nReturns:\n    The file content.\n",
+                          "name": "read_github_file",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "repo": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "path": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "repo",
+                              "path"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        }
+                      ],
+                      "google_search_retrieval": null,
+                      "parallel_ai_search": null,
+                      "url_context": null,
+                      "mcp_servers": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "expected_invocation": {
+            "invocation_id": "",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Alert: 500 errors on /api/users. Triage this.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": null,
+            "intermediate_data": {
+              "tool_uses": [
+                {
+                  "id": null,
+                  "args": {
+                    "query": "api/users"
+                  },
+                  "name": "search_github_code",
+                  "partial_args": null,
+                  "will_continue": null
+                }
+              ],
+              "tool_responses": [],
+              "intermediate_responses": []
+            },
+            "creation_timestamp": 0.0,
+            "rubrics": null,
+            "app_details": null
+          },
+          "eval_metric_results": [
+            {
+              "metric_name": "tool_trajectory_avg_score",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8,
+                "match_type": "IN_ORDER"
+              },
+              "custom_function_path": null,
+              "score": 0.0,
+              "eval_status": 2,
+              "details": {
+                "rubric_scores": null
+              }
+            },
+            {
+              "metric_name": "hallucinations_v1",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8,
+                "judgeModelOptions": {
+                  "judgeModel": "gemini-flash-latest",
+                  "numSamples": 1
+                }
+              },
+              "custom_function_path": null,
+              "score": 0.4444444444444444,
+              "eval_status": 2,
+              "details": {
+                "rubric_scores": []
+              }
+            },
+            {
+              "metric_name": "rubric_based_final_response_quality_v1",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8,
+                "judgeModelOptions": {
+                  "judgeModel": "gemini-flash-latest",
+                  "numSamples": 1
+                },
+                "rubrics": [
+                  {
+                    "rubricId": "relevance",
+                    "rubricContent": {
+                      "textProperty": "The response directly addresses the user's query."
+                    }
+                  },
+                  {
+                    "rubricId": "helpfulness",
+                    "rubricContent": {
+                      "textProperty": "The response is helpful and provides useful information."
+                    }
+                  }
+                ]
+              },
+              "custom_function_path": null,
+              "score": 1.0,
+              "eval_status": 1,
+              "details": {
+                "rubric_scores": [
+                  {
+                    "rubric_id": "relevance",
+                    "rationale": "The agent attempts to fulfill the user's request for triage despite a tool failure (401 Unauthorized error in Step 0). It provides specific technical advice relevant to the endpoint mentioned by the user.",
+                    "score": 1.0
+                  },
+                  {
+                    "rubric_id": "helpfulness",
+                    "rationale": "Even though the agent could not access GitHub due to an authentication error, it still provided actionable, technical diagnostic steps and potential causes for the reported incident, which is helpful to an engineer.",
+                    "score": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "session_id": "___eval___session___0186647f-07fa-4c0a-8ac2-a6f2d9ed19ed",
+      "session_details": {
+        "id": "___eval___session___0186647f-07fa-4c0a-8ac2-a6f2d9ed19ed",
+        "app_name": "app",
+        "user_id": "eval_user",
+        "state": {
+          "__llm_request_key__": "310c26e3-a0dc-44af-8e76-33c9e4ad1622"
+        },
+        "events": [
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Alert: 500 errors on /api/users. Triage this.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-0b129720-29c4-4f9c-b9cc-c25e7eebe213",
+            "author": "user",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "1a82a2ce-4731-482e-9eb9-83607db36ff8",
+            "timestamp": 1777798530.2754219
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": {
+                    "id": "0s3c7vsf",
+                    "args": {
+                      "query": "\"/api/users\""
+                    },
+                    "name": "search_github_code",
+                    "partial_args": null,
+                    "will_continue": null
+                  },
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": "EuECCt4CAQw51sc9QIujtmU7-HUetEob6THJCVzjSSnPEEwtMQNaQFeyO27O0Wf5mW_ozXNP0IGQ_l1c_GlGC4MKgK5xQIH1k0H-LuTRCWeAZvWcMh-p6cSgw-90bCZfCT30_ffgHXY014ge_EKJLdeR4S1xGRwaQ1HUVCE_twOtHEn7MqXV-xVVPtCdaitTAcMH5Lt9XcPGGAb7WHtNX93RX-DoUL3_YbjkeDoseL-1egt4W40Y9nz3LL3uRVzhpN5UCc4OBVU48felQxq3kMSlVMXXH8j2lVOp0pokDGPXY2ub_PJFpa2u8oVw4c7PU2w-KgloDTX9a-RuF1vXdiNpVCF8OhgfB8x-roqQ7RP4auvto6ig9j8RSgNfEDifa4S16BYnzfwWGIcyFfRFe_kw92mHct3GJSemNOOC5O7dhwNW-hbBkNPs6PzdqyNQ2hMUIpmA6S_YvccBkup_Q_Ngn28=",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "7e34551a-9599-4f2e-b635-7a621b6eb264"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 22,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 452,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 452
+                }
+              ],
+              "thoughts_token_count": 70,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 544,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-0b129720-29c4-4f9c-b9cc-c25e7eebe213",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "7e34551a-9599-4f2e-b635-7a621b6eb264"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": [],
+            "branch": null,
+            "id": "998ae98e-6dea-42d9-9149-5db61d05abf5",
+            "timestamp": 1777798530.275893
+          },
+          {
+            "model_version": null,
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": {
+                    "will_continue": null,
+                    "scheduling": null,
+                    "parts": null,
+                    "id": "0s3c7vsf",
+                    "name": "search_github_code",
+                    "response": {
+                      "result": "Error searching GitHub: Client error '401 Unauthorized' for url 'https://api.github.com/search/code?q=%22%2Fapi%2Fusers%22'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+                    }
+                  },
+                  "inline_data": null,
+                  "text": null,
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": null,
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": null,
+            "usage_metadata": null,
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-0b129720-29c4-4f9c-b9cc-c25e7eebe213",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {},
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "79cda287-d02d-4bf7-b7c1-27335b0a17be",
+            "timestamp": 1777798534.478775
+          },
+          {
+            "model_version": "gemini-3-flash-preview",
+            "content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I encountered an authentication error (401 Unauthorized) when trying to access GitHub to search for the `/api/users` implementation. This suggests the `GITHUB_TOKEN` may be missing or invalid.\n\nHowever, I can still provide a triage plan for **500 Internal Server Errors** on a `/api/users` endpoint. \n\n### Initial Triage Steps\n\n1.  **Check Application Logs:**\n    *   Search for \"500\" errors in your logging system (e.g., CloudWatch, Datadog, ELK).\n    *   Look for stack traces. Common culprits for `/api/users` are:\n        *   `ConnectionTimeout` / `OperationalError`: Database is down or overloaded.\n        *   `NullPointerException` / `KeyError`: Unexpected data in the database (e.g., a user record missing a required field).\n        *   `AuthenticationError`: Issues connecting to an Auth provider or LDAP.\n\n2.  **Verify Database Health:**\n    *   Check CPU/Memory usage on your database instance.\n    *   Look for long-running queries or locked tables related to the `users` table.\n\n3.  **Review Recent Changes (If you can access the repo):**\n    *   Check for recent PRs involving `User` models, `UserRepository`, or `UserController`.\n    *   Look for schema migrations that might have added `NOT NULL` constraints without defaults.\n\n### Common Causes for /api/users 500s\n*   **Database Migrations:** A recent migration might have changed the `users` table schema, breaking the ORM mapping.\n*   **External Dependencies:** If the endpoint fetches data from a third-party service (like Auth0 or Stripe), check their status pages.\n*   **Serialization Issues:** A change in the User model might be causing the JSON serializer to fail (e.g., trying to serialize a circular reference or a non-serializable object).\n\n### To help me investigate further:\nPlease provide the following if possible:\n1.  **The Repository Name** (e.g., `owner/repo`).\n2.  **A snippet of the error log/stack trace.**\n3.  **Recent Deployment Timestamp.**\n\nOnce I have the repository name, I can try to examine the code and recent commits directly.",
+                  "thought": null,
+                  "thought_signature": "EsoRCscRAQw51sdq5d7Wq7DTr5nAJPtteidyiQW90xbwwCxpKXDSSmMpkYC2dTCdx0Ctt0CdkdJ2LTc44DzD9atEMkGV8OW464aZtc1SV--Dv6l9M2YxYCxgHI4a5ZR7eA5qiZMHKZqCZVF94ssAzYAzCQFBEZ1bHs8jiV1I_APiFmQNAwokeJA4p8x_iCClif7oPMXEuCbUr4mGoHVEnDZlm3tSWvn9ixEkUBe8okjXAG8YAT-II4ebKAL8Kpx_qi4PUNyIUqoBM6gEiSWqGjuHi8wMrroOdFbSvHCzqWrUqoxu2DYDuNrYxJbHEd7YnTgaWkvKlaD4uANcqDtURu00RVvwA4N0A-6LEBeDm8kfV8ZehRDCKHDUsuad2tutTKBM8KeUrApEhaSUXeOt2RwsZrQLuCA8GQh3aY0sYVBUMdgso5I6nCyP-mdAtCK4YSapX3rrEpqZSdXx_p-ImIK3fovaPCnJVdqb2EYfBOQ0pB2NGxTMifO2Wpg6hB1sGZMVCfzEK8WsUbefTwLIkfETCEpNs8zTpLmCn6IHvobA3DYJ-Sbc4lT3Bbh8-fbKwBXUokbuJuNGZvjqATaJOg_xbeBNnaFoGPyXuhgfO0ZsSoKDaD-uT65OUM4IVssX92HlwRlhLKH3mReVPoJ1kmUAu_OAghAtGoXx5yQ5d6BPXO_ItUobtFxKXAtRCU4KSUb2gUWy1M2ZGk6YANfcQaff-taSPgKIsu6Z7rdJclh7ZwnxA8lxz7UJfJcGK1xRqXbC2WoLacjzRypGWv-BMmqXvfSFV0zgl4EfRCayPTq2JWmgDycw7qSuzc3XMEwTvao6mVOyNoEcLBMXmkWrot5Q7igpv-xv6R-ZgGlBK9b-0l8n1cP1NgRGwO49YANyrYV8saE8993imywGyxjLwjYBpJD9OAin1navA1jSXA9oVWQ_pnM7JA-Tqaxtr6YYN8h8LQIRlN_2tBR7QjK5S0_OjLIfPQP_g2xu4A2TvTAwP-aNgQxhrkFppkebpbTcakI8yzaVI668i3kknUXm2xvPvUUk7-LbE32GlESZBrfIHt7m5pxxKqJjCfPmJkkxia7rLphlmAn6AXbP81JEz67XhYah3zoKe-mfx77v9cLY8nlJwhmnRJODqGd5smd2KLwWUzCQcRO86FaZjsviKQm2CG67L7kpvKSq6TAyswpXoLmR5OW5uYw_7z_w4jw7C_3zD2nZZyhQOAPP3EriFmuCBzOCLaKJvP0I4MkNMQmgFcFbX0TjKe0EF9dgKNE6XqoFJra9XUkBCCkw1ZiVjZsKMF2HhuCieKVllZebQVYMcBNopGniLgtG4gvxlKveUlHKkQG1JmK5oewEvdHgBNLZPoZK7oLVwIkw7yQB91Ae1n0hCleNNhjbUQPBI8PBnN7NsxEyXmPi1_TvShKygfCDP_JO5oxefTzhVORPFqOUjfiRZ-d_hk9YBbVuXpko-Rk12f6KsSG133exc307TDWn6bZNq20Rhx3eYW8q5AKVPqLRV2RzoI0N8Cy78EtfgrJa1944nZVze3GLuQPj2yg-jXxEBKOuo_94AmyleiGeK9y9y63AmNVjGaUmqRatu0GML_poH-7Ztc7pVIizC130Ow0WpljFZZg_patME35vgn85I8ayemhnFxOmKWdj5CFop3HkPm4jx2Owj5hkFLhKnFXcojMAwnrKaIQwBEw80QbJuGYit9kicGe9zwlvxvu6nRcpNuzjkvHAdh7lLUG8iTGu-lAgjqBpepB-LaQdEf9gNMWFJNLcuamR9VFMgGGMLBXtnJyf7lwHKdzguNympHoQ0h0fnu0a7y1pKKWcz_8a6dwGerfDQZ1z8V2b9SOjycxdppDN01XyHC8LPRS-yQiT3amiZB7abJzK4Yo1XsYleZJKxLgSoUnYhOsd42AAj0kh-Hv66EEm0EHchH84nPjSyi560Gb6TTqJive_vVTbkdf--FIvF8QMywyXn2APIwHdsxx91MQohBcYPdFnAwnOK9PhiO5uVrt8L9WLjpKIc5m3DX4Ene4-sS9tk2kYkIJCDVk_F3v894FlDGEMuRjCNcOJXH_5mNnHjsUCrPsyZd77D9dmBfsdRsqOqpotgSicjZkzpnrhU2ME8TlEzqQ1Do0OrRf6DLCiWNzkIHqEBDdxCnEbuuLJCBuwr9tQ-Io8A7fyzg1aGOggdDdQ2sAqgxj4sn4IOTxIaQYaxvttAfVSRBhdaHjUZxYptOPmtsmjAAIK-id2so6AcmEXCJQa9NsnmsdIbPCOP1czHPCRrwzWZBF4b3hEv0Qs8Gok1EYZdNbUlwFvlEvumEYEKYVe-eSJH6E_x98sXnC952D3tkkb06x8EEZQcdF7K_ksicc3LxfMDR7JgVHADKdmCggNRHAGn-qikn03I-0SUNYf7HlfUImrJMhtBYVAm9QzgNZG6SG_pWblYAmnIUwm2AFpDsnHMmfuUuZvy1jYhJmx85FRvOaveMETe714KrPHWdA_tQdwTlO8H1hejHNbKmSwl3CE_Toe9m0CclfNVDhKE2QEHBmuCCMqBRYlZBlL8IiH30aF2gaLeR7C9uDFSycbKppt9gXC9GHzvMT5uydUTi9t0OB_OJNtuf78sgEYWriiRsg4wq1W1vabhqNFX3h7hfV_Tgj1w_HaF0p1NfDV8tMMSJOjfRrSR2d5uUb7JK1QMJiJStuYnctx97uCvKukP-K4boL1EYekoUEFy1Qs4eF0ggtaDlq_lZ1RqpHLa-NnFW6FcL6BTE2aHmoTbDoz9lm66NzPDljAbT-_xfS11aBkWxHEN0Vias1iYxW805iZc_WTqafO29sbB3oaarlvtnyDbHUkEXJbjjjo7Gml7tfD6wpfLtzY1B7JDqA7_u5ahjQTRaAX_7pxVtV7nmJyij8TfsSyLU8NUyVzDVnTbRpQ6O4hgxspsVVTDJQqhNkVESo1M3nG6pYyFISOnlqvI0OQmAXU_qoZLT49DoSOlf0oANekJqrf",
+                  "video_metadata": null,
+                  "tool_call": null,
+                  "tool_response": null,
+                  "part_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "grounding_metadata": null,
+            "partial": null,
+            "turn_complete": null,
+            "finish_reason": "STOP",
+            "error_code": null,
+            "error_message": null,
+            "interrupted": null,
+            "custom_metadata": {
+              "__llm_request_key__": "310c26e3-a0dc-44af-8e76-33c9e4ad1622"
+            },
+            "usage_metadata": {
+              "cache_tokens_details": null,
+              "cached_content_token_count": null,
+              "candidates_token_count": 495,
+              "candidates_tokens_details": null,
+              "prompt_token_count": 631,
+              "prompt_tokens_details": [
+                {
+                  "modality": "TEXT",
+                  "token_count": 631
+                }
+              ],
+              "thoughts_token_count": 564,
+              "tool_use_prompt_token_count": null,
+              "tool_use_prompt_tokens_details": null,
+              "total_token_count": 1690,
+              "traffic_type": null
+            },
+            "live_session_resumption_update": null,
+            "live_session_id": null,
+            "go_away": null,
+            "input_transcription": null,
+            "output_transcription": null,
+            "avg_logprobs": null,
+            "logprobs_result": null,
+            "cache_metadata": null,
+            "citation_metadata": null,
+            "interaction_id": null,
+            "invocation_id": "e-0b129720-29c4-4f9c-b9cc-c25e7eebe213",
+            "author": "incident_triage_agent",
+            "actions": {
+              "skip_summarization": null,
+              "state_delta": {
+                "__llm_request_key__": "310c26e3-a0dc-44af-8e76-33c9e4ad1622"
+              },
+              "artifact_delta": {},
+              "transfer_to_agent": null,
+              "escalate": null,
+              "requested_auth_configs": {},
+              "requested_tool_confirmations": {},
+              "compaction": null,
+              "end_of_agent": null,
+              "agent_state": null,
+              "rewind_before_invocation_id": null,
+              "render_ui_widgets": null
+            },
+            "long_running_tool_ids": null,
+            "branch": null,
+            "id": "d6c5a00e-d6a8-4e9d-8fb5-138d07455a9d",
+            "timestamp": 1777798535.856887
+          }
+        ],
+        "last_update_time": 1777798535.856887
+      },
+      "user_id": "eval_user"
+    }
+  ],
+  "creation_timestamp": 1777798608.579315
+}

@@ -1,0 +1,47 @@
+{
+  "eval_set_id": "incident_triage_eval",
+  "name": "Incident Triage Evaluation",
+  "description": "Tests the agent's ability to triage incidents, summarize alerts, and suggest fixes.",
+  "eval_cases": [
+    {
+      "eval_id": "alert_triage_latency",
+      "conversation": [
+        {
+          "user_content": {
+            "parts": [{"text": "Alert: 500 errors on /api/users. Triage this in the google/adk repo."}]
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              { "name": "search_github_code", "args": { "query": "\"/api/users\" repo:google/adk" } }
+            ]
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "app",
+        "user_id": "eval_user",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "commit_analysis",
+      "conversation": [
+        {
+          "user_content": {
+            "parts": [{"text": "Can you check the recent commits for 'google/adk' in 'src/auth'?"}]
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              { "name": "get_recent_commits", "args": { "repo": "google/adk", "path": "src/auth" } }
+            ]
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "app",
+        "user_id": "eval_user",
+        "state": {}
+      }
+    }
+  ]
+}
