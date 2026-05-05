@@ -1,30 +1,66 @@
 {
   "queue": [
     {
+      "priority": 1,
+      "title": "The Scalability Wall: When HNSW Breaks",
+      "type": "struggle",
+      "platform": "linkedin",
+      "goal": "build_in_public",
+      "hook": "Local HNSW hit a wall at 100+ agents.",
+      "status": "drafting"
+    },
+    {
+      "priority": 2,
+      "title": "Idempotent Pruning: The MemoryBridgeV2 Win",
+      "type": "win",
+      "platform": "x",
+      "goal": "nurture",
+      "hook": "Pruning 10k expired memories shouldn\u2019t crash your substrate.",
+      "status": "scheduled",
+      "scheduled_time": "2026-05-06T09:00:00Z"
+    },
+    {
+      "priority": 3,
+      "title": "The Local Karen Audit: Automating No-Fluff",
+      "type": "bts",
+      "platform": "instagram",
+      "goal": "differentiate",
+      "hook": "We automated the \u201cNo Fluff\u201d mandate with a local 8-step adversarial filter.",
+      "status": "scheduled",
+      "scheduled_time": "2026-05-07T09:00:00Z"
+    },
+    {
+      "priority": 1,
+      "title": "The Scalability Wall: When HNSW Breaks",
+      "type": "struggle",
+      "platform": "linkedin",
+      "goal": "build_in_public",
+      "hook": "Local HNSW hit a wall at 100+ agents.",
+      "status": "scheduled",
+      "scheduled_time": "2026-05-08T09:00:00Z"
+    },
+    {
+      "priority": 1,
+      "title": "The Scalability Wall: When HNSW Breaks",
+      "type": "struggle",
+      "platform": "linkedin",
+      "goal": "build_in_public",
+      "hook": "Local HNSW hit a wall at 100+ agents.",
+      "status": "scheduled",
+      "scheduled_time": "2026-05-08T09:00:00Z"
+    },
+    {
       "id": "2026-05-w1-multi-agent-memory",
-      "title": "The Shared Brain: Multi-Agent Memory with Hermes",
-      "hook": "I used to build agents that forgot everything the moment the task ended. Now, they share a brain. Here is the architecture I’m using to keep a live swarm in sync.",
+      "title": "The Shared Substrate: Solving Multi-Agent Amnesia",
+      "hook": "I used to build agents that forgot everything the moment the task ended. Now, they share a brain. Here is the architecture I\u2019m using to keep a live swarm in sync.",
       "type": "Tutorial",
       "platform": "LinkedIn",
       "goal": "Teach",
       "source": "roadmap",
-      "status": "ready_for_publishing",
+      "status": "scheduled",
       "priority": 1,
       "created_at": "2026-05-03T10:00:00Z",
-      "scheduled_time": "2026-05-05T09:00:00Z"
-    },
-    {
-      "id": "2026-05-w1-struggle-scale",
-      "title": "The Struggle of Scale: When HNSW Hits the Wall",
-      "hook": "Local HNSW is a lie once you hit 100+ agents. I thought I had the memory substrate solved until I tried to scale the swarm.",
-      "type": "Struggle",
-      "platform": "X",
-      "goal": "Build in public",
-      "source": "roadmap",
-      "status": "ready_for_publishing",
-      "priority": 2,
-      "created_at": "2026-05-03T10:05:00Z",
-      "scheduled_time": "2026-05-08T09:00:00Z"
+      "scheduled_time": "2026-05-05T21:00:00Z"
     },
     {
       "id": "2026-05-w2-self-optimizing",
@@ -53,19 +89,6 @@
       "scheduled_time": "2026-05-19T09:00:00Z"
     },
     {
-      "id": "2026-05-w3-hermes-v2-teaser",
-      "title": "Hermes v2.0: Distributed Memory Teaser",
-      "hook": "We just broke the scaling wall for agent memory. 100+ concurrent agents, one shared substrate, zero lock contention. Hermes v2.0 is coming.",
-      "type": "Behind-the-scenes",
-      "platform": "LinkedIn",
-      "goal": "Build in public",
-      "source": "roadmap",
-      "status": "ready_for_publishing",
-      "priority": 2,
-      "created_at": "2026-05-03T10:15:00Z",
-      "scheduled_time": "2026-05-22T09:00:00Z"
-    },
-    {
       "id": "2026-05-w4-hermes-v2-reveal",
       "title": "Hermes v2.0: The Distributed Reveal",
       "hook": "Scale is the only thing that matters. We're moving Hermes from local HNSW to distributed vector storage. v2.0 is here.",
@@ -78,5 +101,6 @@
       "created_at": "2026-05-01T12:00:00Z",
       "scheduled_time": "2026-05-26T09:00:00Z"
     }
-  ]
+  ],
+  "updated": "2026-05-05"
 }
