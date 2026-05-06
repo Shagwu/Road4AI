@@ -1,6 +1,23 @@
 {
   "published": [
     {
+      "id": "2026-05-w1-multi-agent-memory-instagram",
+      "platform": "instagram",
+      "status": "published"
+    },
+    {
+      "id": "2026-05-06-idempotent-pruning-x",
+      "platform": "twitter",
+      "status": "published",
+      "url": "https://x.com/shagwu22/status/2052127521680822595"
+    },
+    {
+      "id": "2026-05-w1-multi-agent-memory",
+      "platform": "linkedin",
+      "status": "published",
+      "url": "https://linkedin.com/feed/update/urn:li:share:7457892715872153601"
+    },
+    {
       "id": "2026-05-w1-memory-access",
       "platform": "linkedin",
       "status": "published",
