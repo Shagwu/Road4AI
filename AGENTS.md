@@ -79,6 +79,9 @@ This file is an array of objects. Each object represents a single content item t
     - `"ready_for_publishing"` – approved, ready to schedule/post.
     - `"published"` – already posted.
 
+- `status_updated_at` (string; ISO date)
+  - When the `status` field was last changed. Required for tracking drafting velocity.
+
 - `priority` (integer)
   - A simple numeric priority where `1` is highest.
   - For weekly planning, `1–3` are usually “this week”; higher numbers are backlog.
@@ -124,6 +127,12 @@ This file is an array of objects. Each object represents a single content item t
     - `"ready_for_edit"` → `"ready_for_publishing"`.
   - Once posted:
     - `"ready_for_publishing"` → `"published"` and a record should be added to `state/published-log.json`.
+
+- The CoS should avoid silently deleting items.
+  - Old or unused ideas can be deprioritised (higher `priority` number) or marked clearly in `status` or `notes` (e.g. “parked”).
+ underlying technical issue.
+  - **Authenticity:** Struggle posts do not require resolution or code fixes; the "Struggle" *is* the content.
+  - **Ratio:** Maintain a 25-30% Struggle ratio in the top 10 queue items.
 
 - The CoS should avoid silently deleting items.
   - Old or unused ideas can be deprioritised (higher `priority` number) or marked clearly in `status` or `notes` (e.g. “parked”).

@@ -1,6 +1,14 @@
 {
   "published": [
     {
+      "id": "2026-05-06-struggle-hnsw-wall",
+      "title": "The Scalability Wall: When HNSW Breaks",
+      "platform": "LinkedIn",
+      "type": "Struggle",
+      "status": "published",
+      "outcome": "Published Skeleton status update to unblock drafting stall."
+    },
+    {
       "id": "2026-05-w1-multi-agent-memory-instagram",
       "platform": "instagram",
       "status": "published"
@@ -62,4 +70,4 @@
       "submissionId": "a369c3b6-16fe-4c1c-8c73-b8118792e0ef"
     }
   ]
-}{"date": "2026-04-28", "title": "The Repo as Brain Pattern", "platform": "LinkedIn", "url": "https://linkedin.com/feed/update/urn:li:share:7455236235486326784"}
+}
