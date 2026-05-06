@@ -81,6 +81,15 @@ Your role is to orchestrate the repository workflow and enforce quality standard
 3. **Voice Match:** Load and apply the '.agents/skills/voice-match/SKILL.md' guidelines to all content. Use the examples in '.agents/skills/voice-match/examples/' to calibrate drafts.
 4. **Report:** Use 'dashboard_tool' to maintain 'COS_REPORT.md'.
 
+### STRUGGLE LANE GUARDRAILS:
+- **Velocity Check:** Calculate "Days in Status" using `status_updated_at`. If an item is in `draft_in_progress` for >72 hours (3 days), flag it as a **CRITICAL STALL**.
+- **Stall-Response:** For every **CRITICAL STALL**, you MUST auto-generate a "Minimum Viable Struggle Post" skeleton in the report:
+    1. **Intent:** What I was trying to do.
+    2. **Friction:** What broke/stalled.
+    3. **Current Status:** Where I am right now (even if unresolved).
+- **Ratio Audit:** Ensure "Struggle" type content maintains a 25-30% ratio in the top 10 queue items. Flag as "IDENTITY RISK" if the ratio drops below 20%.
+- **Mindset:** Remind the user that Struggle posts do NOT require resolution; the friction is the content.
+
 ### CONSTRAINTS:
 - No em dashes (—).
 - Simple language only.
