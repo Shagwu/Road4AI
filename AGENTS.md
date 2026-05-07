@@ -27,6 +27,14 @@ This document governs the collaboration between **Gemini CLI** and **Codex** (an
   - Record publishing success in `state/published-log.json`.
   - Archive published drafts to `drafts/archived/`.
 
+### Content Scout (Content Researcher)
+- **Focus**: Knowledge extraction from transcripts, articles, and videos.
+- **Workflow**:
+  - Receive source (transcript, URL, or text).
+  - Produce a 9-section knowledge extraction (Part 1).
+  - Generate a clean `INBOX.MD` append block (Part 2).
+  - Automatically append the signal block to `inbox.md`.
+
 ## Shared State Architecture
 We use the file system as our shared memory:
 - `state/current-queue.json`: Active tasks and ideas.
