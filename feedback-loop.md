@@ -163,3 +163,18 @@ Change:
 # If you have fixes → make them directly in the .md agent files now.
 # Don't wait. Agent files are your source of truth.
 # ----------------------------------------------------------------
+
+---
+## MILESTONE — 2026-05-07 — SYSTEM LIVE
+
+**What shipped:** 5-agent pipeline live
+- chief-of-staff (Orchestration)
+- trend-researcher (Market Signal)
+- voice-match-ideator (Hook Engineering)
+- format-selector (Distribution Strategy)
+- content-scout (Source Extraction)
+
+**First scout drop:** The onboarding screenshot + system metrics (57 skills / 5 MCP).
+**Series locked:** The Origin / The Moment / The Meta.
+**Status:** inbox.md primed, Monday sprint ready. Baseline established.
+---
