@@ -164,3 +164,99 @@ Keep it. These are your content assets, not throwaway notes.
 **Scout confidence:** 🔥 high signal
 **Content urgency:** Post this week — the build is fresh, the moment is real, the story is complete
 ---
+
+---
+## SCOUT DROP — Anthropic 2026 Agent Roadmap Walkthrough — 2026-05-08
+
+**Source type:** video / roadmap walkthrough
+**Core angle:** Builders are 12 months behind because they're still stuck in single-agent prompt loops while the industry has moved to stateless, multi-agent coordination layers.
+
+**Content signals (raw):**
+- Native streaming and MCP triggers are the death of the "request-response" agent pattern.
+- Long-running tasks are now a primitive, not a hack. Agents can finally work without a human babysitter.
+- The shift to stateless HTTP for MCP means local-first agents can finally scale to enterprise clusters.
+- The memory layer is no longer optional; it's a dedicated tier in the 2026 stack, matching our Hermes v2.0 architecture.
+- Real observability isn't just logs; it's monitoring the "collective behavior" of the swarm.
+
+**Standout quote or moment:**
+> Mastering multi-agent coordination is the only way to escape the 12-month lag. If you're not building a shared memory substrate today, you're building a legacy system.
+
+**Frameworks extracted:**
+- Stateless Swarm Protocol — Moving from session-locked agents to HTTP-based distributed coordination.
+
+**Repurposing seeds:**
+- Twitter/X thread angle: You're 12 months behind on agents. Here's what Anthropic's 2026 roadmap says you're missing.
+- LinkedIn post angle: The shift from Prompt Engineering to Coordination Engineering. Why your single-agent setup is already legacy.
+- Short-form video hook: Anthropic just dropped their 2026 roadmap and it's a wake-up call for anyone still babysitting their agents.
+
+**Reflection questions (for Shagwu to sit with):**
+1. Does Hermes v2.0 use stateless HTTP yet, or are we still session-bound?
+2. How can we implement "MCP Triggers" to make our swarm proactive instead of reactive?
+3. If "Tasks" are now a primitive, how does that simplify our current current-queue.json management?
+
+**Scout confidence:** 🔥 high signal
+---
+
+---
+## SCOUT DROP — Reflection on Utility vs. Identity — 2026-05-08
+
+**Source type:** talk
+**Core angle:** The danger of losing creative identity by outsourcing the struggle of thinking to AI.
+
+**Content signals (raw):**
+- The 5-Agent Pipeline vs. the Handwritten Journal contrast.
+- Why tedious things are the only way to stay human in an automated world.
+- The cognitive science of implanting ideas through physical writing.
+- Emotional honesty vs. optimized output: why AI-generated ideas feel hollow.
+- Managing the guilt of using a 5-agent swarm for simple tasks.
+
+**Standout quote or moment:**
+> The importance of making time to sometimes just do tedious things every now and then so that we don't lose ourselves.
+
+**Frameworks extracted:**
+- Friction Preservation Protocol — Intentionally keeping manual thinking steps in automated workflows.
+
+**Repurposing seeds:**
+- Twitter/X thread angle: I built a 5-agent pipeline to automate my life, but I’m terrified of losing my brain to it.
+- LinkedIn post angle: Optimization is a trap: why I still use a notebook while building autonomous swarms.
+- Short-form video hook: My AI agents are smarter than me, so I started writing by hand again.
+
+**Reflection questions (for Shagwu to sit with):**
+1. Which part of your 5-agent pipeline feels too easy right now?
+2. If you lost your internet connection for a week, what creative skills would actually remain?
+3. Are you building agents to help you think, or to stop you from having to think?
+
+**Scout confidence:** 🔥 high signal
+---
+
+---
+## SCOUT DROP — Reflection on Utility vs. Identity — 2026-05-08
+
+**Source type:** talk
+**Core angle:** The danger of losing creative identity by outsourcing the struggle of thinking to AI.
+
+**Content signals (raw):**
+- The 5-Agent Pipeline vs. the Handwritten Journal contrast.
+- Why tedious things are the only way to stay human in an automated world.
+- The cognitive science of implanting ideas through physical writing.
+- Emotional honesty vs. optimized output: why AI-generated ideas feel hollow.
+- Managing the guilt of using a 5-agent swarm for simple tasks.
+
+**Standout quote or moment:**
+> The importance of making time to sometimes just do tedious things every now and then so that we don't lose ourselves.
+
+**Frameworks extracted:**
+- Friction Preservation Protocol — Intentionally keeping manual thinking steps in automated workflows.
+
+**Repurposing seeds:**
+- Twitter/X thread angle: I built a 5-agent pipeline to automate my life, but I’m terrified of losing my brain to it.
+- LinkedIn post angle: Optimization is a trap: why I still use a notebook while building autonomous swarms.
+- Short-form video hook: My AI agents are smarter than me, so I started writing by hand again.
+
+**Reflection questions (for Shagwu to sit with):**
+1. Which part of your 5-agent pipeline feels too easy right now?
+2. If you lost your internet connection for a week, what creative skills would actually remain?
+3. Are you building agents to help you think, or to stop you from having to think?
+
+**Scout confidence:** 🔥 high signal
+---

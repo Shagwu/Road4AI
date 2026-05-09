@@ -27,9 +27,19 @@
       "platform": "instagram",
       "goal": "differentiate",
       "hook": "We automated the \u201cNo Fluff\u201d mandate with a local 8-step adversarial filter.",
-      "status": "scheduled",
-      "scheduled_time": "2026-05-07T09:00:00Z",
-      "status_updated_at": "2026-05-06T10:00:00Z"
+      "status": "published",
+      "status_updated_at": "2026-05-07T10:40:00Z"
+    },
+    {
+      "id": "2026-05-07-swarm-live-x",
+      "title": "5-Agent Pipeline Live",
+      "hook": "The moment the AI team finishes deploying itself and then offers to QA its own work unprompted. 5 agents, one swarm, live on my machine.",
+      "type": "Behind-the-scenes",
+      "platform": "X",
+      "goal": "Build in public",
+      "source": "inbox",
+      "status": "published",
+      "status_updated_at": "2026-05-08T10:45:00Z"
     },
     {
       "id": "2026-05-w1-multi-agent-memory",
@@ -54,10 +64,10 @@
       "goal": "Teach",
       "source": "roadmap",
       "status": "scheduled",
-      "priority": 2,
+      "priority": 1,
       "created_at": "2026-04-29T10:01:00Z",
       "scheduled_time": "2026-05-12T09:00:00Z",
-      "status_updated_at": "2026-05-06T10:00:00Z"
+      "status_updated_at": "2026-05-08T11:55:00Z"
     },
     {
       "id": "2026-05-w3-production-rag",
@@ -88,5 +98,5 @@
       "status_updated_at": "2026-05-06T10:00:00Z"
     }
   ],
-  "updated": "2026-05-05"
+  "updated": "2026-05-08"
 }
