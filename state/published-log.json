@@ -1,6 +1,33 @@
 {
   "published": [
     {
+      "id": "2026-05-w2-self-optimizing",
+      "title": "The Self-Optimizing Agent: End of Prompt Engineering",
+      "platform": "X",
+      "type": "Tutorial / BTS",
+      "status": "scheduled",
+      "time": "2026-05-12T09:00:00Z",
+      "submissionId": "3efba236-ab26-4b35-9792-46df49006dfd",
+      "outcome": "Scheduled 7-tweet thread to X via Blotato."
+    },
+    {
+      "id": "2026-05-08-swarm-live-x",
+      "title": "5-Agent Pipeline Live",
+      "platform": "X",
+      "type": "Behind-the-scenes",
+      "status": "published",
+      "url": "https://x.com/shagwu22/status/2052869840151478434",
+      "outcome": "Published as a 2-post thread with terminal screenshot."
+    },
+    {
+      "id": "2026-05-07-local-karen-audit-instagram",
+      "title": "The Local Karen Audit: Automating No-Fluff",
+      "platform": "Instagram",
+      "type": "Behind-the-scenes",
+      "status": "published",
+      "outcome": "Published 8-slide carousel to Instagram via Blotato."
+    },
+    {
       "id": "2026-05-06-struggle-hnsw-wall",
       "title": "The Scalability Wall: When HNSW Breaks",
       "platform": "LinkedIn",
