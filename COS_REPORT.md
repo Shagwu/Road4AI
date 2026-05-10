@@ -9,7 +9,7 @@
 | 2 | 0 | Idempotent Pruning: The MemoryBridgeV2 Win | Win | X | Nurture | ✅ PUBLISHED |
 | 3 | 0 | The Local Karen Audit: Automating No-Fluff | BTS | Instagram | Differentiate | ✅ PUBLISHED |
 | 1 | 1 | The Shared Substrate: Solving Amnesia | Tutorial | LinkedIn | Teach | ✅ PUBLISHED |
-| 1 | 0 | Content is Code: The SDLC Shift | Tutorial | LinkedIn | Teach | 📋 QUEUED |
+| 1 | 0 | Content is Code: The SDLC Shift | Tutorial | LinkedIn | Teach | ✅ PUBLISHED |
 | 2 | 0 | Intent to Artifact: The Pipeline | BTS | X | Build in Public | 📋 QUEUED |
 | 2 | 0 | The Goosebumps Moment | BTS | Instagram | Differentiate | 📋 QUEUED |
 | 1 | 2 | The Self-Optimizing Agent | BTS | X | Teach | 📅 SCHEDULED |

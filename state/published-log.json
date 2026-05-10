@@ -1,6 +1,16 @@
 {
   "published": [
     {
+      "id": "2026-05-w2-content-is-code-li",
+      "title": "Content is Code: The SDLC Shift",
+      "platform": "LinkedIn",
+      "type": "Tutorial",
+      "status": "published",
+      "url": "https://linkedin.com/feed/update/urn:li:share:7459326115229270017",
+      "submissionId": "a4b290ca-a026-4439-97b3-e03b1382d6a4",
+      "outcome": "Published to LinkedIn via Blotato. Applied Addy Osmani's SDLC pattern."
+    },
+    {
       "id": "2026-05-w2-self-optimizing",
       "title": "The Self-Optimizing Agent: End of Prompt Engineering",
       "platform": "X",
