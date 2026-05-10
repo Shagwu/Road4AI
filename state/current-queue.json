@@ -96,7 +96,43 @@
       "created_at": "2026-05-01T12:00:00Z",
       "scheduled_time": "2026-05-26T09:00:00Z",
       "status_updated_at": "2026-05-06T10:00:00Z"
+    },
+    {
+      "id": "2026-05-w2-content-is-code-li",
+      "title": "Content is Code: The SDLC Shift",
+      "hook": "I stopped 'chatting' with AI and started writing specs for a swarm of content auditors. Here is why the SDLC is the secret to high-signal brand building.",
+      "type": "Tutorial",
+      "platform": "LinkedIn",
+      "goal": "Teach",
+      "source": "inbox",
+      "status": "ready_for_drafting",
+      "priority": 1,
+      "created_at": "2026-05-10T20:00:00Z"
+    },
+    {
+      "id": "2026-05-w2-intent-to-artifact-x",
+      "title": "Intent to Artifact: The Pipeline",
+      "hook": "Why I stopped 'prompt engineering' and started architecting intent. The 5-agent pipeline that turns a raw brain dump into verified content assets.",
+      "type": "Behind-the-scenes",
+      "platform": "X",
+      "goal": "Build in public",
+      "source": "inbox",
+      "status": "ready_for_drafting",
+      "priority": 2,
+      "created_at": "2026-05-10T20:01:00Z"
+    },
+    {
+      "id": "2026-05-w2-goosebumps-moment-ig",
+      "title": "The Goosebumps Moment",
+      "hook": "That moment when the agent surprises the builder. It moved from 'I told it' to 'It understood'. Watching intention become artifact is wild.",
+      "type": "Behind-the-scenes",
+      "platform": "Instagram",
+      "goal": "Differentiate",
+      "source": "inbox",
+      "status": "ready_for_drafting",
+      "priority": 2,
+      "created_at": "2026-05-10T20:02:00Z"
     }
   ],
-  "updated": "2026-05-08"
+  "updated": "2026-05-10"
 }
