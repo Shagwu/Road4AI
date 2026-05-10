@@ -32,13 +32,14 @@ Examples of what belongs here:
 - 
 
 ### Consumed (podcasts, repos, articles, tools that stuck with me)
-- 
+- Addy Osmani's `agent-skills`: 20 structured SKILL.md files that enforce SDLC discipline (spec, TDD, persona-based shipping). Realized I've been building the same pattern for content.
 
 ### Questions (things people asked me, or I asked myself)
-- 
+- How can I bridge Sunday learning to Monday morning task execution using a context-engineering skill?
+- Should I use ADRs for the Hermes v2.0 CrewAI integration decisions to prevent prompt bloat?
 
 ### Joy moments (the moment something clicked or worked perfectly)
-- 
+- The "Goosebumps" feeling: Watching intention become artifact. That moment when the agent surprises me with something I didn't fully predict — moving from "I told it" to "It understood".
 
 ---
 
@@ -230,33 +231,33 @@ Keep it. These are your content assets, not throwaway notes.
 ---
 
 ---
-## SCOUT DROP — Reflection on Utility vs. Identity — 2026-05-08
+## SCOUT DROP — Addy Osmani Agent-Skills x Sunday Signal — 2026-05-11
 
-**Source type:** talk
-**Core angle:** The danger of losing creative identity by outsourcing the struggle of thinking to AI.
+**Source type:** research + personal dump
+**Core angle:** Treat content creation like a software engineering sprint using structured agent skills.
 
 **Content signals (raw):**
-- The 5-Agent Pipeline vs. the Handwritten Journal contrast.
-- Why tedious things are the only way to stay human in an automated world.
-- The cognitive science of implanting ideas through physical writing.
-- Emotional honesty vs. optimized output: why AI-generated ideas feel hollow.
-- Managing the guilt of using a 5-agent swarm for simple tasks.
+- Porting Addy Osmani's 20 structured SKILL.md files from code to content.
+- Using parallel personas (Reviewer, Auditor, Engineer) to kill the "single agent" bottleneck.
+- The psychological shift when intention becomes artifact (the goosebumps moment).
+- Context-engineering skill to bridge Sunday learning with Monday execution.
+- Using ADRs for agent design decisions to prevent prompt-bloat.
 
 **Standout quote or moment:**
-> The importance of making time to sometimes just do tedious things every now and then so that we don't lose ourselves.
+> The moment the agent surprises the builder is the moment the system is truly alive. It is the transition from 'I told it to do this' to 'It understood what I intended'.
 
 **Frameworks extracted:**
-- Friction Preservation Protocol — Intentionally keeping manual thinking steps in automated workflows.
+- The Intent-to-Artifact Pipeline: Process for turning raw brain dumps into verified content assets via parallel agent roles.
 
 **Repurposing seeds:**
-- Twitter/X thread angle: I built a 5-agent pipeline to automate my life, but I’m terrified of losing my brain to it.
-- LinkedIn post angle: Optimization is a trap: why I still use a notebook while building autonomous swarms.
-- Short-form video hook: My AI agents are smarter than me, so I started writing by hand again.
+- Twitter/X thread angle: Why I stopped 'chatting' with AI and started writing specs for a swarm of content auditors.
+- LinkedIn post angle: Content is code. Why the SDLC is the secret to high-signal brand building in the AI age.
+- Short-form video hook: The exact moment I knew my AI agent team was finally smarter than my own manual process.
 
 **Reflection questions (for Shagwu to sit with):**
-1. Which part of your 5-agent pipeline feels too easy right now?
-2. If you lost your internet connection for a week, what creative skills would actually remain?
-3. Are you building agents to help you think, or to stop you from having to think?
+1. What does the Content Auditor persona need to know that the Writer persona shouldn't?
+2. Are you still prompt engineering or are you finally architecting intent?
+3. How can Hermes v2.0 handle the long-term memory of these SPEC.md files?
 
-**Scout confidence:** 🔥 high signal
+**Scout confidence: 🔥 high signal**
 ---
