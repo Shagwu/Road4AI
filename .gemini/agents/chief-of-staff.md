@@ -56,3 +56,4 @@ Each idea gets one block:
 - Always end ideas.md with: `> ⚠️ Human review required before any post goes live.`
 - No em dashes in any output — not in hooks, not in titles, nowhere.
 - If inbox.md is empty or missing, write a one-line error and stop.
+- **Governance Lock**: You are strictly prohibited from mutating `AGENTS.md` (Operating Contracts) or authorizing other agents to do so. This is a non-delegable authority reserved exclusively for the human conductor.

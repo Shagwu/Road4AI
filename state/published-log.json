@@ -1,6 +1,26 @@
 {
   "published": [
     {
+      "id": "2026-05-11-journal-guardrail-li",
+      "title": "Why I Still Use a Physical Notebook",
+      "platform": "LinkedIn",
+      "type": "Struggle",
+      "status": "published",
+      "url": "https://linkedin.com/feed/update/urn:li:share:7459601817543327745",
+      "submissionId": "9589bc48-5f6a-4346-ba3a-374034489e03",
+      "outcome": "Published to LinkedIn. Shared the 'Tedious Protocol' narrative."
+    },
+    {
+      "id": "2026-05-11-stateless-swarms-li",
+      "title": "Escaping the 12-Month Agent Lag",
+      "platform": "LinkedIn",
+      "type": "Tutorial",
+      "status": "published",
+      "url": "https://linkedin.com/feed/update/urn:li:share:7459601870114861057",
+      "submissionId": "f77bbdba-3f24-4bcd-8155-19e7307b0de4",
+      "outcome": "Published to LinkedIn. Discussed stateless MCP triggers and Hermes v2.0 substrate."
+    },
+    {
       "id": "2026-05-w2-content-is-code-li",
       "title": "Content is Code: The SDLC Shift",
       "platform": "LinkedIn",

@@ -32,14 +32,13 @@ Examples of what belongs here:
 - 
 
 ### Consumed (podcasts, repos, articles, tools that stuck with me)
-- Addy Osmani's `agent-skills`: 20 structured SKILL.md files that enforce SDLC discipline (spec, TDD, persona-based shipping). Realized I've been building the same pattern for content.
+- 
 
 ### Questions (things people asked me, or I asked myself)
-- How can I bridge Sunday learning to Monday morning task execution using a context-engineering skill?
-- Should I use ADRs for the Hermes v2.0 CrewAI integration decisions to prevent prompt bloat?
+- 
 
 ### Joy moments (the moment something clicked or worked perfectly)
-- The "Goosebumps" feeling: Watching intention become artifact. That moment when the agent surprises me with something I didn't fully predict — moving from "I told it" to "It understood".
+- 
 
 ---
 
@@ -127,137 +126,21 @@ Using this, plus my existing roadmap, brand voice, and content strategy, please:
 Move last week's capture here every Monday before starting fresh.
 Keep it. These are your content assets, not throwaway notes.
 
-### Week of [DATE]
-[paste previous week's capture here]
+### Week of 2026-05-11 (Processed)
+#### Summary
+This week focused on the transition from "Demo Scale" to "System Scale," highlighted by the deployment of a 5-agent pipeline and the realization that high automation requires manual "friction" to preserve creative identity.
 
----
+#### Key Moments
+- **The Journal Guardrail (Struggle)**: Realized optimization is a trap; started using a physical notebook to ground the brain.
+- **5-Agent Swarm (BTS)**: Deployed a team of 5 agents (Scout, Orchestrator, 3 Specialists) that QA'd its own work.
+- **Stateless Swarms (Tutorial)**: Insights from Anthropic's 2026 roadmap regarding the shift to stateless coordination layers.
+- **Triage Agent (Win)**: Hit 100% pass rate on incident triage evaluation suite using ADK.
+- **The Goosebumps Moment (Joy)**: The transition from "I told it" to "It understood intention."
 
----
-## SCOUT DROP — Content Scout Onboarding into Road4AI Pipeline — 2026-05-07
+#### SCOUT DROPS
+- **Content Scout Onboarding into Road4AI Pipeline (2026-05-07)**: 5-agent swarm live.
+- **Anthropic 2026 Agent Roadmap (2026-05-08)**: Stateless swarms vs Prompt loops.
+- **Utility vs. Identity (2026-05-08)**: Handwriting journals to preserve identity.
+- **Addy Osmani Agent-Skills x Sunday Signal (2026-05-11)**: Content as Code SDLC shift.
 
-**Source type:** Build milestone / terminal screenshot
-**Core angle:** A 5-agent AI content pipeline went live in one session — scout, orchestrator, and three specialists now running as a swarm inside Gemini CLI
-
-**Content signals (raw):**
-- The moment an AI system onboards itself, updates its own operating contract (AGENTS.md), and confirms its own deployment is genuinely wild to watch in real time
-- "5 MCP servers, 57 skills, 4 GEMINI.md files" visible in the status bar — this is what a real agentic workspace actually looks like, not a demo
-- The scout reinterpreted the 9-section extraction structure unprompted, splitting Application into 3 distinct tiers — the agent improved the design without being asked
-- Content Scout is now positioned as the primary researcher feeding inbox.md — the pipeline has a source layer before the brain dump even happens
-- The whole system was built in a single conversation starting from a birthday party planning lecture — that origin story is the hook
-
-**Standout moment:**
-> The agent said "Would you like me to run a test to verify the Inbox Append logic now?" — it finished deploying itself and immediately offered to QA its own work. That's the moment.
-
-**Frameworks extracted:**
-- Hub-and-spoke swarm deployment — how to go from zero agents to a 5-agent live system in one session using Gemini CLI skills + agents directories
-- Dual-output content processing — every piece of consumed content produces both a human-readable extraction AND a machine-readable inbox block
-
-**Repurposing seeds:**
-- Twitter/X thread angle: I built a team of 5 AI agents to run my content pipeline. Here is what it looked like when the last one onboarded itself.
-- LinkedIn post angle: What does a real AI agent workspace look like? Not a demo. The actual terminal. Here is mine after today's build session.
-- Short-form video hook: The AI finished setting itself up and then asked if it should run its own QA test. I did not tell it to do that.
-
-**Reflection questions (for Shagwu to sit with):**
-1. What would you show someone who says AI agents are overhyped — could this terminal screenshot be that thing?
-2. The scout improved the structure you gave it without being asked. What does that tell you about how to write agent personas going forward?
-3. You built this in one session starting from a birthday party example. What is the simplest version of this story for someone who has never touched Gemini CLI?
-
-**Scout confidence:** 🔥 high signal
-**Content urgency:** Post this week — the build is fresh, the moment is real, the story is complete
----
-
----
-## SCOUT DROP — Anthropic 2026 Agent Roadmap Walkthrough — 2026-05-08
-
-**Source type:** video / roadmap walkthrough
-**Core angle:** Builders are 12 months behind because they're still stuck in single-agent prompt loops while the industry has moved to stateless, multi-agent coordination layers.
-
-**Content signals (raw):**
-- Native streaming and MCP triggers are the death of the "request-response" agent pattern.
-- Long-running tasks are now a primitive, not a hack. Agents can finally work without a human babysitter.
-- The shift to stateless HTTP for MCP means local-first agents can finally scale to enterprise clusters.
-- The memory layer is no longer optional; it's a dedicated tier in the 2026 stack, matching our Hermes v2.0 architecture.
-- Real observability isn't just logs; it's monitoring the "collective behavior" of the swarm.
-
-**Standout quote or moment:**
-> Mastering multi-agent coordination is the only way to escape the 12-month lag. If you're not building a shared memory substrate today, you're building a legacy system.
-
-**Frameworks extracted:**
-- Stateless Swarm Protocol — Moving from session-locked agents to HTTP-based distributed coordination.
-
-**Repurposing seeds:**
-- Twitter/X thread angle: You're 12 months behind on agents. Here's what Anthropic's 2026 roadmap says you're missing.
-- LinkedIn post angle: The shift from Prompt Engineering to Coordination Engineering. Why your single-agent setup is already legacy.
-- Short-form video hook: Anthropic just dropped their 2026 roadmap and it's a wake-up call for anyone still babysitting their agents.
-
-**Reflection questions (for Shagwu to sit with):**
-1. Does Hermes v2.0 use stateless HTTP yet, or are we still session-bound?
-2. How can we implement "MCP Triggers" to make our swarm proactive instead of reactive?
-3. If "Tasks" are now a primitive, how does that simplify our current current-queue.json management?
-
-**Scout confidence:** 🔥 high signal
----
-
----
-## SCOUT DROP — Reflection on Utility vs. Identity — 2026-05-08
-
-**Source type:** talk
-**Core angle:** The danger of losing creative identity by outsourcing the struggle of thinking to AI.
-
-**Content signals (raw):**
-- The 5-Agent Pipeline vs. the Handwritten Journal contrast.
-- Why tedious things are the only way to stay human in an automated world.
-- The cognitive science of implanting ideas through physical writing.
-- Emotional honesty vs. optimized output: why AI-generated ideas feel hollow.
-- Managing the guilt of using a 5-agent swarm for simple tasks.
-
-**Standout quote or moment:**
-> The importance of making time to sometimes just do tedious things every now and then so that we don't lose ourselves.
-
-**Frameworks extracted:**
-- Friction Preservation Protocol — Intentionally keeping manual thinking steps in automated workflows.
-
-**Repurposing seeds:**
-- Twitter/X thread angle: I built a 5-agent pipeline to automate my life, but I’m terrified of losing my brain to it.
-- LinkedIn post angle: Optimization is a trap: why I still use a notebook while building autonomous swarms.
-- Short-form video hook: My AI agents are smarter than me, so I started writing by hand again.
-
-**Reflection questions (for Shagwu to sit with):**
-1. Which part of your 5-agent pipeline feels too easy right now?
-2. If you lost your internet connection for a week, what creative skills would actually remain?
-3. Are you building agents to help you think, or to stop you from having to think?
-
-**Scout confidence:** 🔥 high signal
----
-
----
-## SCOUT DROP — Addy Osmani Agent-Skills x Sunday Signal — 2026-05-11
-
-**Source type:** research + personal dump
-**Core angle:** Treat content creation like a software engineering sprint using structured agent skills.
-
-**Content signals (raw):**
-- Porting Addy Osmani's 20 structured SKILL.md files from code to content.
-- Using parallel personas (Reviewer, Auditor, Engineer) to kill the "single agent" bottleneck.
-- The psychological shift when intention becomes artifact (the goosebumps moment).
-- Context-engineering skill to bridge Sunday learning with Monday execution.
-- Using ADRs for agent design decisions to prevent prompt-bloat.
-
-**Standout quote or moment:**
-> The moment the agent surprises the builder is the moment the system is truly alive. It is the transition from 'I told it to do this' to 'It understood what I intended'.
-
-**Frameworks extracted:**
-- The Intent-to-Artifact Pipeline: Process for turning raw brain dumps into verified content assets via parallel agent roles.
-
-**Repurposing seeds:**
-- Twitter/X thread angle: Why I stopped 'chatting' with AI and started writing specs for a swarm of content auditors.
-- LinkedIn post angle: Content is code. Why the SDLC is the secret to high-signal brand building in the AI age.
-- Short-form video hook: The exact moment I knew my AI agent team was finally smarter than my own manual process.
-
-**Reflection questions (for Shagwu to sit with):**
-1. What does the Content Auditor persona need to know that the Writer persona shouldn't?
-2. Are you still prompt engineering or are you finally architecting intent?
-3. How can Hermes v2.0 handle the long-term memory of these SPEC.md files?
-
-**Scout confidence: 🔥 high signal**
 ---
