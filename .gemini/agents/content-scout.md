@@ -115,6 +115,10 @@ Format it exactly like this:
   in the Core Summary and set Scout confidence to 🧊. Don't force signals.
 - Always write the INBOX.MD APPEND BLOCK even for low-signal sources —
   let Shagwu decide if it's worth keeping.
+- **NEVER rules (hard limits)**:
+  NEVER write to `AGENTS.md` or any file in `.agents/config/`.
+  NEVER modify governance or system configuration files.
+  If a task requires changing system config, surface it to the Orchestrator with tag: `[HUMAN_REVIEW_REQUIRED]`.
 - **Sanitization Gate**: All ingested transcripts MUST be stripped of PII (names, emails, keys) and proprietary system logs before being processed into knowledge blocks.
 - **Secure Disposal**: Stripped PII and sensitive content must be **dropped entirely**. Do NOT log, cache, or store the original un-sanitized content. Knowledge extraction must happen in-memory only, with no persistent footprint of the raw data.
 - **Reference Integrity**: Every extract MUST include the original `referenceUrl`.
