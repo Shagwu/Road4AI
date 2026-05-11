@@ -7,6 +7,10 @@ Rules:
 - If graphify-out/wiki/index.md exists, navigate it instead of reading raw files
 - After modifying code files in this session, run `graphify update .` to keep the graph current (AST-only, no API cost)
 
+## Governance Protection
+- `AGENTS.md` is the system's "constitution." NEVER allow an agent to mutate this file without explicit human confirmation. Any proposed contract changes must be flagged as an `Inquiry` first. 
+- **Non-Delegable Authority**: The Orchestrator (Chief of Staff) is prohibited from delegating `AGENTS.md` mutation permissions to any other agent. The "Manual Approval Gate" is a top-level constraint that cannot be bypassed by agent-to-agent negotiation.
+
 ## Engineering Skills (Superpowers Framework)
 
 The following skills enforce professional engineering methodology.

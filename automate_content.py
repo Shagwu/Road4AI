@@ -2,6 +2,7 @@ import os
 import re
 import sys
 from datetime import datetime
+from tools.locker import file_lock
 
 PLAN_FILE = "CONTENT_PLAN_APRIL.md"
 CONTEXT_FILE = ".agents/product-marketing-context.md"
@@ -27,18 +28,19 @@ def get_today_task():
     return None
 
 def update_status(topic, new_status):
-    with open(PLAN_FILE, 'r') as f:
-        lines = f.readlines()
-        
-    with open(PLAN_FILE, 'w') as f:
-        for line in lines:
-            if topic in line:
-                # Replace the last column value
-                parts = line.split('|')
-                if len(parts) >= 5:
-                    parts[4] = f" {new_status} "
-                    line = '|'.join(parts)
-            f.write(line)
+    with file_lock("content-plan"):
+        with open(PLAN_FILE, 'r') as f:
+            lines = f.readlines()
+            
+        with open(PLAN_FILE, 'w') as f:
+            for line in lines:
+                if topic in line:
+                    # Replace the last column value
+                    parts = line.split('|')
+                    if len(parts) >= 5:
+                        parts[4] = f" {new_status} "
+                        line = '|'.join(parts)
+                f.write(line)
 
 def main():
     task = get_today_task()

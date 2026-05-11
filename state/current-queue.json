@@ -1,61 +1,6 @@
 {
   "queue": [
     {
-      "priority": 1,
-      "title": "The Scalability Wall: When HNSW Breaks",
-      "type": "struggle",
-      "platform": "linkedin",
-      "goal": "build_in_public",
-      "hook": "Local HNSW hit a wall at 100+ agents.",
-      "status": "published",
-      "status_updated_at": "2026-05-06T14:30:00Z"
-    },
-    {
-      "priority": 2,
-      "title": "Idempotent Pruning: The MemoryBridgeV2 Win",
-      "type": "win",
-      "platform": "x",
-      "goal": "nurture",
-      "hook": "Pruning 10k expired memories shouldn\u2019t crash your substrate.",
-      "status": "published",
-      "status_updated_at": "2026-05-06T10:00:00Z"
-    },
-    {
-      "priority": 3,
-      "title": "The Local Karen Audit: Automating No-Fluff",
-      "type": "bts",
-      "platform": "instagram",
-      "goal": "differentiate",
-      "hook": "We automated the \u201cNo Fluff\u201d mandate with a local 8-step adversarial filter.",
-      "status": "published",
-      "status_updated_at": "2026-05-07T10:40:00Z"
-    },
-    {
-      "id": "2026-05-07-swarm-live-x",
-      "title": "5-Agent Pipeline Live",
-      "hook": "The moment the AI team finishes deploying itself and then offers to QA its own work unprompted. 5 agents, one swarm, live on my machine.",
-      "type": "Behind-the-scenes",
-      "platform": "X",
-      "goal": "Build in public",
-      "source": "inbox",
-      "status": "published",
-      "status_updated_at": "2026-05-08T10:45:00Z"
-    },
-    {
-      "id": "2026-05-w1-multi-agent-memory",
-      "title": "The Shared Substrate: Solving Multi-Agent Amnesia",
-      "hook": "I used to build agents that forgot everything the moment the task ended. Now, they share a brain. Here is the architecture I\u2019m using to keep a live swarm in sync.",
-      "type": "Tutorial",
-      "platform": "LinkedIn",
-      "goal": "Teach",
-      "source": "roadmap",
-      "status": "published",
-      "priority": 1,
-      "created_at": "2026-05-03T10:00:00Z",
-      "scheduled_time": "2026-05-05T21:00:00Z",
-      "status_updated_at": "2026-05-05T21:00:00Z"
-    },
-    {
       "id": "2026-05-w2-self-optimizing",
       "title": "The Self-Optimizing Agent: End of Prompt Engineering",
       "hook": "I stopped 'prompt engineering' and started building agents that fix themselves. This is how the system actually learns from its own mistakes.",
@@ -68,6 +13,71 @@
       "created_at": "2026-04-29T10:01:00Z",
       "scheduled_time": "2026-05-12T09:00:00Z",
       "status_updated_at": "2026-05-08T11:55:00Z"
+    },
+    {
+      "id": "2026-05-11-journal-guardrail-li",
+      "title": "Why I Still Use a Physical Notebook",
+      "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here\u2019s why optimization is a trap.",
+      "type": "Struggle",
+      "platform": "LinkedIn",
+      "goal": "build_in_public",
+      "source": "inbox",
+      "status": "published",
+      "priority": 1,
+      "created_at": "2026-05-11T09:00:00Z",
+      "status_updated_at": "2026-05-11T10:45:00Z"
+    },
+    {
+      "id": "2026-05-11-stateless-swarms-li",
+      "title": "Escaping the 12-Month Agent Lag",
+      "hook": "If you\u2019re still 'prompt engineering' a single agent, you\u2019re building a legacy system. The 2026 stack is about stateless swarm coordination.",
+      "type": "Tutorial",
+      "platform": "LinkedIn",
+      "goal": "Teach",
+      "source": "inbox",
+      "status": "published",
+      "priority": 2,
+      "created_at": "2026-05-11T09:05:00Z",
+      "status_updated_at": "2026-05-11T10:45:00Z"
+    },
+    {
+      "id": "2026-05-11-swarm-onboarding-x",
+      "title": "The Swarm That Deployed Itself",
+      "hook": "I just watched a team of 5 AI agents deploy themselves, update their own operating contracts, and then offer to QA their own work unprompted.",
+      "type": "Behind-the-scenes",
+      "platform": "X",
+      "goal": "build_in_public",
+      "source": "inbox",
+      "status": "ready_for_publishing",
+      "priority": 2,
+      "created_at": "2026-05-11T09:10:00Z",
+      "status_updated_at": "2026-05-11T12:00:00Z"
+    },
+    {
+      "id": "2026-05-11-triage-win-li",
+      "title": "From 0% to 100%: The Triage Win",
+      "hook": "Last week, my incident triage agent was hallucinating 40% of the root causes. This morning, it hit a 100% pass rate on the evaluation suite.",
+      "type": "Win",
+      "platform": "LinkedIn",
+      "goal": "build_in_public",
+      "source": "inbox",
+      "status": "ready_for_publishing",
+      "priority": 3,
+      "created_at": "2026-05-11T11:30:00Z",
+      "status_updated_at": "2026-05-11T12:00:00Z"
+    },
+    {
+      "id": "2026-05-11-goosebumps-ig",
+      "title": "The Goosebumps Moment",
+      "hook": "There is a specific second when 'I told it to' becomes 'it understood.'",
+      "type": "Behind-the-scenes",
+      "platform": "Instagram",
+      "goal": "Nurture",
+      "source": "inbox",
+      "status": "ready_for_publishing",
+      "priority": 4,
+      "created_at": "2026-05-11T11:45:00Z",
+      "status_updated_at": "2026-05-11T12:00:00Z"
     },
     {
       "id": "2026-05-w3-production-rag",
@@ -96,44 +106,7 @@
       "created_at": "2026-05-01T12:00:00Z",
       "scheduled_time": "2026-05-26T09:00:00Z",
       "status_updated_at": "2026-05-06T10:00:00Z"
-    },
-    {
-      "id": "2026-05-w2-content-is-code-li",
-      "title": "Content is Code: The SDLC Shift",
-      "hook": "I stopped 'chatting' with AI and started writing specs for a swarm of content auditors. Here is why the SDLC is the secret to high-signal brand building.",
-      "type": "Tutorial",
-      "platform": "LinkedIn",
-      "goal": "Teach",
-      "source": "inbox",
-      "status": "published",
-      "status_updated_at": "2026-05-10T20:30:00Z",
-      "priority": 1,
-      "created_at": "2026-05-10T20:00:00Z"
-    },
-    {
-      "id": "2026-05-w2-intent-to-artifact-x",
-      "title": "Intent to Artifact: The Pipeline",
-      "hook": "Why I stopped 'prompt engineering' and started architecting intent. The 5-agent pipeline that turns a raw brain dump into verified content assets.",
-      "type": "Behind-the-scenes",
-      "platform": "X",
-      "goal": "Build in public",
-      "source": "inbox",
-      "status": "ready_for_drafting",
-      "priority": 2,
-      "created_at": "2026-05-10T20:01:00Z"
-    },
-    {
-      "id": "2026-05-w2-goosebumps-moment-ig",
-      "title": "The Goosebumps Moment",
-      "hook": "That moment when the agent surprises the builder. It moved from 'I told it' to 'It understood'. Watching intention become artifact is wild.",
-      "type": "Behind-the-scenes",
-      "platform": "Instagram",
-      "goal": "Differentiate",
-      "source": "inbox",
-      "status": "ready_for_drafting",
-      "priority": 2,
-      "created_at": "2026-05-10T20:02:00Z"
     }
   ],
-  "updated": "2026-05-10"
+  "updated": "2026-05-11"
 }
