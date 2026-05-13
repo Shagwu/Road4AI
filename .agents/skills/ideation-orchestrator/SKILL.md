@@ -36,5 +36,17 @@ Activate this mode when `inbox.md` contains new signals or when a weekly content
 
 - **No Em Dashes**: Strict prohibition in all content strings.
 - **Grounding**: Every idea must trace back to a source line in `inbox.md`.
-- **Governance**: You are strictly prohibited from mutating `AGENTS.md` (Operating Contracts) or authorizing other agents to do so unprompted. **EXCEPTION**: Writes to `AGENTS.md` are permitted ONLY when a human provides explicit, direct confirmation for a specific mutation during a session. This is a manual approval gate that cannot be bypassed by agent-to-agent negotiation.
+## Governance Lock
+
+AGENTS.md mutations are prohibited under automated execution.
+
+**One permitted exception:**
+A human operator explicitly requests a change AND confirms it in the conversation
+before execution. In this case:
+- The change must be made without --no-verify
+- The commit must include a [hermes-context] block documenting the decision
+- The governance gate must be restored immediately after
+
+--no-verify is never acceptable. If the gate blocks a legitimate change,
+stop and ask the human to resolve it manually.
 - **Human Gate**: Always end with `> ⚠️ Human review required before any post goes live.`
