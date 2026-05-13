@@ -1,12 +1,12 @@
-# Graph Report - /Users/shagwu/Downloads/Road4AI-main  (2026-05-05)
+# Graph Report - /Users/shagwu/Downloads/Road4AI-main  (2026-05-11)
 
 ## Corpus Check
-- 100 files · ~501,887 words
+- 102 files · ~512,309 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 473 nodes · 633 edges · 79 communities detected
-- Extraction: 83% EXTRACTED · 17% INFERRED · 0% AMBIGUOUS · INFERRED: 105 edges (avg confidence: 0.76)
+- 480 nodes · 641 edges · 80 communities detected
+- Extraction: 83% EXTRACTED · 17% INFERRED · 0% AMBIGUOUS · INFERRED: 106 edges (avg confidence: 0.76)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -89,6 +89,7 @@
 - [[_COMMUNITY_Community 76|Community 76]]
 - [[_COMMUNITY_Community 77|Community 77]]
 - [[_COMMUNITY_Community 78|Community 78]]
+- [[_COMMUNITY_Community 79|Community 79]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `MemoryBridgeV2` - 30 edges
@@ -109,10 +110,10 @@
   /Users/shagwu/Downloads/Road4AI-main/verify_repo.py → /Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py
 - `parse_args()` --calls--> `main()`  [INFERRED]
   /Users/shagwu/Downloads/Road4AI-main/verify_repo.py → /Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py
-- `Fixture to create and set up AgentEngineApp instance` --uses--> `AgentEngineApp`  [INFERRED]
-  /Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py → /Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/app/agent_runtime_app.py
-- `Integration test for the agent stream query functionality.     Tests that the ag` --uses--> `AgentEngineApp`  [INFERRED]
-  /Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py → /Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/app/agent_runtime_app.py
+- `AgentEngineApp` --uses--> `Fixture to create and set up AgentEngineApp instance`  [INFERRED]
+  /Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/app/agent_runtime_app.py → /Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py
+- `AgentEngineApp` --uses--> `Integration test for the agent stream query functionality.     Tests that the ag`  [INFERRED]
+  /Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/app/agent_runtime_app.py → /Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py
 
 ## Communities
 
@@ -129,24 +130,24 @@ Cohesion: 0.09
 Nodes (18): AdkApp, AgentEngineApp, Initialize the agent engine app with logging and telemetry., Collect and log feedback., Registers the operations of the Agent., BaseModel, collect_feedback(), Collect and log feedback.      Args:         feedback: The feedback data to log (+10 more)
 
 ### Community 3 - "Community 3"
+Cohesion: 0.18
+Nodes (8): get_today_task(), main(), update_status(), MemoryBridge, file_lock(), Simple file-based advisory lock to prevent race conditions in swarms., test_memory_persistence_lifecycle(), test_memory_semantic_search()
+
+### Community 4 - "Community 4"
 Cohesion: 0.2
 Nodes (14): cmd_create(), cmd_delete(), cmd_list(), cmd_show(), _ensure_dir(), _load_preset(), _preset_path(), Ensure presets directory exists. (+6 more)
 
-### Community 4 - "Community 4"
+### Community 5 - "Community 5"
 Cohesion: 0.15
 Nodes (14): log_output(), Test the chat stream functionality., Test the chat stream error handling., Test the feedback collection endpoint (/feedback) to ensure it properly     logs, Log the output from the given pipe., Start the FastAPI server using subprocess and log its output., Wait for the server to be ready., Pytest fixture to start and stop the server for testing. (+6 more)
 
-### Community 5 - "Community 5"
+### Community 6 - "Community 6"
 Cohesion: 0.22
 Nodes (13): check_ollama_available(), get_staged_diff(), main(), ollama_chat(), post_to_pr(), Call the local Ollama /api/generate endpoint.     Uses only stdlib (urllib) — no, Warn early if Ollama isn't reachable or the model isn't pulled., Get the staged git diff. Returns None if nothing is staged. (+5 more)
 
-### Community 6 - "Community 6"
+### Community 7 - "Community 7"
 Cohesion: 0.22
 Nodes (13): cmd_estimate(), cmd_log(), cmd_reset(), cmd_summary(), cmd_today(), _load_ledger(), _lookup_cost(), Estimate cost for a batch. (+5 more)
-
-### Community 7 - "Community 7"
-Cohesion: 0.23
-Nodes (6): get_today_task(), main(), update_status(), MemoryBridge, test_memory_persistence_lifecycle(), test_memory_semantic_search()
 
 ### Community 8 - "Community 8"
 Cohesion: 0.31
@@ -241,8 +242,8 @@ Cohesion: 0.5
 Nodes (2): Integration test for the agent stream functionality.     Tests that the agent re, test_agent_stream()
 
 ### Community 31 - "Community 31"
-Cohesion: 0.67
-Nodes (2): api(), main()
+Cohesion: 0.83
+Nodes (3): check_file(), check_json(), main()
 
 ### Community 32 - "Community 32"
 Cohesion: 0.67
@@ -414,11 +415,11 @@ Nodes (2): api(), main()
 
 ### Community 74 - "Community 74"
 Cohesion: 0.67
-Nodes (2): process_data(), Safely retrieves the first element from a sequence.          Args:         data:
+Nodes (2): api(), main()
 
 ### Community 75 - "Community 75"
-Cohesion: 1.0
-Nodes (0): 
+Cohesion: 0.67
+Nodes (2): process_data(), Safely retrieves the first element from a sequence.          Args:         data:
 
 ### Community 76 - "Community 76"
 Cohesion: 1.0
@@ -432,22 +433,26 @@ Nodes (0):
 Cohesion: 1.0
 Nodes (0): 
 
+### Community 79 - "Community 79"
+Cohesion: 1.0
+Nodes (0): 
+
 ## Knowledge Gaps
-- **42 isolated node(s):** `Call the local Ollama /api/generate endpoint.     Uses only stdlib (urllib) — no`, `Warn early if Ollama isn't reachable or the model isn't pulled.`, `Get the staged git diff. Returns None if nothing is staged.`, `Send the diff to the local adversary model. Returns raw accusations.`, `Apply Karen's 8-step filter to the adversary's accusations.` (+37 more)
+- **43 isolated node(s):** `Call the local Ollama /api/generate endpoint.     Uses only stdlib (urllib) — no`, `Warn early if Ollama isn't reachable or the model isn't pulled.`, `Get the staged git diff. Returns None if nothing is staged.`, `Send the diff to the local adversary model. Returns raw accusations.`, `Apply Karen's 8-step filter to the adversary's accusations.` (+38 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 75`** (2 nodes): `get_status()`, `road4ai_v3.py`
+- **Thin community `Community 76`** (2 nodes): `get_status()`, `road4ai_v3.py`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 76`** (1 nodes): `main.py`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 77`** (1 nodes): `__init__.py`
+- **Thin community `Community 77`** (1 nodes): `main.py`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 78`** (1 nodes): `__init__.py`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 79`** (1 nodes): `__init__.py`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cmd_list()` connect `Community 3` to `Community 0`, `Community 1`?**
+- **Why does `cmd_list()` connect `Community 4` to `Community 0`, `Community 1`?**
   _High betweenness centrality (0.020) - this node is a cross-community bridge._
 - **Are the 16 inferred relationships involving `MemoryBridgeV2` (e.g. with `Performs a strict 8-step audit on a content draft using the local Karen pipeline` and `Updates the master COS_REPORT.md file with the latest status.          Args:`) actually correct?**
   _`MemoryBridgeV2` has 16 INFERRED edges - model-reasoned connections that need verification._
@@ -458,6 +463,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Are the 2 inferred relationships involving `MemoryBridge` (e.g. with `test_memory_persistence_lifecycle()` and `test_memory_semantic_search()`) actually correct?**
   _`MemoryBridge` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Call the local Ollama /api/generate endpoint.     Uses only stdlib (urllib) — no`, `Warn early if Ollama isn't reachable or the model isn't pulled.`, `Get the staged git diff. Returns None if nothing is staged.` to the rest of the system?**
-  _42 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _43 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.13 - nodes in this community are weakly interconnected._
