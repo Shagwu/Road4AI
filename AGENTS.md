@@ -144,9 +144,11 @@ This file is an array of objects. Each object represents a single content item t
 
 - The CoS should avoid silently deleting items.
   - Old or unused ideas can be deprioritised (higher `priority` number) or marked clearly in `status` or `notes` (e.g. “parked”).
- underlying technical issue.
+
+- **Struggle Posts**:
   - **Authenticity:** Struggle posts do not require resolution or code fixes; the "Struggle" *is* the content.
   - **Ratio:** Maintain a 25-30% Struggle ratio in the top 10 queue items.
 
-- The CoS should avoid silently deleting items.
-  - Old or unused ideas can be deprioritised (higher `priority` number) or marked clearly in `status` or `notes` (e.g. “parked”).
+- **X (Twitter) Constraints:**
+  - **Character Limit:** Every post in an X thread must be strictly under 280 characters. Any draft exceeding this limit must be flagged as "REJECTED" by the validation layer (Karen).
+  - **Manual Approval Gate:** Gemini CLI MUST ask for explicit human confirmation before executing any `blotato_create_post` call for the Twitter platform, even if the draft is in the `approved/` folder.

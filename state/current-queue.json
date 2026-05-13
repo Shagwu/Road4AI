@@ -8,11 +8,11 @@
       "platform": "X",
       "goal": "Teach",
       "source": "roadmap",
-      "status": "scheduled",
+      "status": "published",
       "priority": 1,
       "created_at": "2026-04-29T10:01:00Z",
-      "scheduled_time": "2026-05-12T09:00:00Z",
-      "status_updated_at": "2026-05-08T11:55:00Z"
+      "status_updated_at": "2026-05-12T20:55:00Z",
+      "notes": "Manually published by user."
     },
     {
       "id": "2026-05-11-journal-guardrail-li",
@@ -48,10 +48,26 @@
       "platform": "X",
       "goal": "build_in_public",
       "source": "inbox",
-      "status": "ready_for_publishing",
+      "status": "published",
       "priority": 2,
       "created_at": "2026-05-11T09:10:00Z",
-      "status_updated_at": "2026-05-11T12:00:00Z"
+      "scheduled_time": "2026-05-12T10:00:00Z",
+      "status_updated_at": "2026-05-12T20:40:00Z"
+    },
+    {
+      "id": "2026-05-w2-struggle-of-scale",
+      "title": "The Struggle of Scale: When HNSW Breaks",
+      "hook": "Local HNSW is a lie once you hit 100+ agents. I thought I had the memory substrate solved until I tried to scale the swarm.",
+      "type": "Struggle",
+      "platform": "LinkedIn",
+      "goal": "build_in_public",
+      "source": "inbox",
+      "status": "scheduled",
+      "priority": 1,
+      "created_at": "2026-05-12T20:30:00Z",
+      "scheduled_time": "2026-05-13T05:00:00Z",
+      "status_updated_at": "2026-05-12T21:45:00Z",
+      "notes": "Scheduled for 5am WAT tomorrow (LinkedIn & X)."
     },
     {
       "id": "2026-05-11-triage-win-li",
@@ -61,20 +77,20 @@
       "platform": "LinkedIn",
       "goal": "build_in_public",
       "source": "inbox",
-      "status": "ready_for_publishing",
+      "status": "published",
       "priority": 3,
       "created_at": "2026-05-11T11:30:00Z",
       "status_updated_at": "2026-05-11T12:00:00Z"
     },
     {
       "id": "2026-05-11-goosebumps-ig",
-      "title": "The Goosebumps Moment",
+      "title": "The Emergence Moment",
       "hook": "There is a specific second when 'I told it to' becomes 'it understood.'",
       "type": "Behind-the-scenes",
       "platform": "Instagram",
       "goal": "Nurture",
       "source": "inbox",
-      "status": "ready_for_publishing",
+      "status": "published",
       "priority": 4,
       "created_at": "2026-05-11T11:45:00Z",
       "status_updated_at": "2026-05-11T12:00:00Z"
