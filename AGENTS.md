@@ -22,6 +22,7 @@ This document governs the collaboration between **Gemini CLI** and **Codex** (an
 ### Gemini CLI (Operator & Publisher)
 - **Focus**: Execution, tool integration (Blotato, Workspace), and publishing.
 - **Workflow**:
+  - **Session Start**: Run `git log --grep="CHECKPOINT:" --format="%B" -3`. Parse each `[hermes-context]` block and brief the operator on what was last completed, what's remaining, and any low-confidence states needing review.
   - Read `drafts/approved/`.
   - Use Blotato tools to schedule/publish content.
   - Record publishing success in `state/published-log.json`.
