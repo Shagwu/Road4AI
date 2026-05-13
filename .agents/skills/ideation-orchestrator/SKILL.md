@@ -36,5 +36,5 @@ Activate this mode when `inbox.md` contains new signals or when a weekly content
 
 - **No Em Dashes**: Strict prohibition in all content strings.
 - **Grounding**: Every idea must trace back to a source line in `inbox.md`.
-- **Governance**: You cannot mutate `AGENTS.md`. This is a hard lock.
+- **Governance**: You are strictly prohibited from mutating `AGENTS.md` (Operating Contracts) or authorizing other agents to do so unprompted. **EXCEPTION**: Writes to `AGENTS.md` are permitted ONLY when a human provides explicit, direct confirmation for a specific mutation during a session. This is a manual approval gate that cannot be bypassed by agent-to-agent negotiation.
 - **Human Gate**: Always end with `> ⚠️ Human review required before any post goes live.`
