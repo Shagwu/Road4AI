@@ -9,7 +9,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_karen_py",
-      "community": 5,
+      "community": 6,
       "norm_label": "karen.py"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L116",
       "id": "karen_ollama_chat",
-      "community": 5,
+      "community": 6,
       "norm_label": "ollama_chat()"
     },
     {
@@ -27,7 +27,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L156",
       "id": "karen_check_ollama_available",
-      "community": 5,
+      "community": 6,
       "norm_label": "check_ollama_available()"
     },
     {
@@ -36,7 +36,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L177",
       "id": "karen_get_staged_diff",
-      "community": 5,
+      "community": 6,
       "norm_label": "get_staged_diff()"
     },
     {
@@ -45,7 +45,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L195",
       "id": "karen_run_adversary",
-      "community": 5,
+      "community": 6,
       "norm_label": "run_adversary()"
     },
     {
@@ -54,7 +54,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L208",
       "id": "karen_run_karen_filter",
-      "community": 5,
+      "community": 6,
       "norm_label": "run_karen_filter()"
     },
     {
@@ -63,7 +63,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L224",
       "id": "karen_post_to_pr",
-      "community": 5,
+      "community": 6,
       "norm_label": "post_to_pr()"
     },
     {
@@ -72,7 +72,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L249",
       "id": "karen_main",
-      "community": 5,
+      "community": 6,
       "norm_label": "main()"
     },
     {
@@ -80,7 +80,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L117",
-      "community": 5,
+      "community": 6,
       "norm_label": "call the local ollama /api/generate endpoint.     uses only stdlib (urllib) \u2014 no",
       "id": "karen_rationale_117"
     },
@@ -89,7 +89,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L157",
-      "community": 5,
+      "community": 6,
       "norm_label": "warn early if ollama isn't reachable or the model isn't pulled.",
       "id": "karen_rationale_157"
     },
@@ -98,7 +98,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L178",
-      "community": 5,
+      "community": 6,
       "norm_label": "get the staged git diff. returns none if nothing is staged.",
       "id": "karen_rationale_178"
     },
@@ -107,7 +107,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L196",
-      "community": 5,
+      "community": 6,
       "norm_label": "send the diff to the local adversary model. returns raw accusations.",
       "id": "karen_rationale_196"
     },
@@ -116,7 +116,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L209",
-      "community": 5,
+      "community": 6,
       "norm_label": "apply karen's 8-step filter to the adversary's accusations.",
       "id": "karen_rationale_209"
     },
@@ -125,7 +125,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/karen.py",
       "source_location": "L225",
-      "community": 5,
+      "community": 6,
       "norm_label": "post karen's verdict as a comment on the current open pr via github cli.",
       "id": "karen_rationale_225"
     },
@@ -135,7 +135,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/lazy_code.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_lazy_code_py",
-      "community": 74,
+      "community": 75,
       "norm_label": "lazy_code.py"
     },
     {
@@ -144,7 +144,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/lazy_code.py",
       "source_location": "L3",
       "id": "lazy_code_process_data",
-      "community": 74,
+      "community": 75,
       "norm_label": "process_data()"
     },
     {
@@ -152,7 +152,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/lazy_code.py",
       "source_location": "L4",
-      "community": 74,
+      "community": 75,
       "norm_label": "safely retrieves the first element from a sequence.          args:         data:",
       "id": "lazy_code_rationale_4"
     },
@@ -207,34 +207,34 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/automate_content.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_automate_content_py",
-      "community": 7,
+      "community": 3,
       "norm_label": "automate_content.py"
     },
     {
       "label": "get_today_task()",
       "file_type": "code",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/automate_content.py",
-      "source_location": "L10",
+      "source_location": "L11",
       "id": "automate_content_get_today_task",
-      "community": 7,
+      "community": 3,
       "norm_label": "get_today_task()"
     },
     {
       "label": "update_status()",
       "file_type": "code",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/automate_content.py",
-      "source_location": "L29",
+      "source_location": "L30",
       "id": "automate_content_update_status",
-      "community": 7,
+      "community": 3,
       "norm_label": "update_status()"
     },
     {
       "label": "main()",
       "file_type": "code",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/automate_content.py",
-      "source_location": "L43",
+      "source_location": "L45",
       "id": "automate_content_main",
-      "community": 7,
+      "community": 3,
       "norm_label": "main()"
     },
     {
@@ -243,7 +243,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai_v3.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_road4ai_v3_py",
-      "community": 75,
+      "community": 76,
       "norm_label": "road4ai_v3.py"
     },
     {
@@ -252,7 +252,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai_v3.py",
       "source_location": "L17",
       "id": "road4ai_v3_get_status",
-      "community": 75,
+      "community": 76,
       "norm_label": "get_status()"
     },
     {
@@ -306,7 +306,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/main.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_main_py",
-      "community": 76,
+      "community": 77,
       "norm_label": "main.py"
     },
     {
@@ -315,7 +315,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_banana_claude_skills_banana_scripts_cost_tracker_py",
-      "community": 6,
+      "community": 7,
       "norm_label": "cost_tracker.py"
     },
     {
@@ -324,7 +324,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L40",
       "id": "cost_tracker_load_ledger",
-      "community": 6,
+      "community": 7,
       "norm_label": "_load_ledger()"
     },
     {
@@ -333,7 +333,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L48",
       "id": "cost_tracker_save_ledger",
-      "community": 6,
+      "community": 7,
       "norm_label": "_save_ledger()"
     },
     {
@@ -342,7 +342,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L55",
       "id": "cost_tracker_lookup_cost",
-      "community": 6,
+      "community": 7,
       "norm_label": "_lookup_cost()"
     },
     {
@@ -351,7 +351,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L77",
       "id": "cost_tracker_cmd_log",
-      "community": 6,
+      "community": 7,
       "norm_label": "cmd_log()"
     },
     {
@@ -360,7 +360,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L106",
       "id": "cost_tracker_cmd_summary",
-      "community": 6,
+      "community": 7,
       "norm_label": "cmd_summary()"
     },
     {
@@ -369,7 +369,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L125",
       "id": "cost_tracker_cmd_today",
-      "community": 6,
+      "community": 7,
       "norm_label": "cmd_today()"
     },
     {
@@ -378,7 +378,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L133",
       "id": "cost_tracker_cmd_estimate",
-      "community": 6,
+      "community": 7,
       "norm_label": "cmd_estimate()"
     },
     {
@@ -387,7 +387,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L147",
       "id": "cost_tracker_cmd_reset",
-      "community": 6,
+      "community": 7,
       "norm_label": "cmd_reset()"
     },
     {
@@ -404,7 +404,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L41",
-      "community": 6,
+      "community": 7,
       "norm_label": "load the cost ledger from disk.",
       "id": "cost_tracker_rationale_41"
     },
@@ -413,7 +413,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L49",
-      "community": 6,
+      "community": 7,
       "norm_label": "save the cost ledger to disk.",
       "id": "cost_tracker_rationale_49"
     },
@@ -422,7 +422,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L56",
-      "community": 6,
+      "community": 7,
       "norm_label": "look up cost for a model+resolution combination.",
       "id": "cost_tracker_rationale_56"
     },
@@ -431,7 +431,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L78",
-      "community": 6,
+      "community": 7,
       "norm_label": "log a generation to the ledger.",
       "id": "cost_tracker_rationale_78"
     },
@@ -440,7 +440,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/cost_tracker.py",
       "source_location": "L134",
-      "community": 6,
+      "community": 7,
       "norm_label": "estimate cost for a batch.",
       "id": "cost_tracker_rationale_134"
     },
@@ -486,7 +486,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_banana_claude_skills_banana_scripts_presets_py",
-      "community": 3,
+      "community": 4,
       "norm_label": "presets.py"
     },
     {
@@ -495,7 +495,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L22",
       "id": "presets_ensure_dir",
-      "community": 3,
+      "community": 4,
       "norm_label": "_ensure_dir()"
     },
     {
@@ -504,7 +504,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L27",
       "id": "presets_sanitize_name",
-      "community": 3,
+      "community": 4,
       "norm_label": "_sanitize_name()"
     },
     {
@@ -513,7 +513,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L37",
       "id": "presets_preset_path",
-      "community": 3,
+      "community": 4,
       "norm_label": "_preset_path()"
     },
     {
@@ -522,7 +522,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L43",
       "id": "presets_load_preset",
-      "community": 3,
+      "community": 4,
       "norm_label": "_load_preset()"
     },
     {
@@ -531,7 +531,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L53",
       "id": "presets_cmd_list",
-      "community": 3,
+      "community": 4,
       "norm_label": "cmd_list()"
     },
     {
@@ -540,7 +540,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L71",
       "id": "presets_cmd_show",
-      "community": 3,
+      "community": 4,
       "norm_label": "cmd_show()"
     },
     {
@@ -549,7 +549,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L77",
       "id": "presets_cmd_create",
-      "community": 3,
+      "community": 4,
       "norm_label": "cmd_create()"
     },
     {
@@ -558,7 +558,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L106",
       "id": "presets_cmd_delete",
-      "community": 3,
+      "community": 4,
       "norm_label": "cmd_delete()"
     },
     {
@@ -575,7 +575,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L23",
-      "community": 3,
+      "community": 4,
       "norm_label": "ensure presets directory exists.",
       "id": "presets_rationale_23"
     },
@@ -584,7 +584,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L28",
-      "community": 3,
+      "community": 4,
       "norm_label": "sanitize preset name to prevent path traversal.",
       "id": "presets_rationale_28"
     },
@@ -593,7 +593,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L38",
-      "community": 3,
+      "community": 4,
       "norm_label": "get path for a preset file.",
       "id": "presets_rationale_38"
     },
@@ -602,7 +602,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L44",
-      "community": 3,
+      "community": 4,
       "norm_label": "load a preset by name.",
       "id": "presets_rationale_44"
     },
@@ -611,7 +611,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L54",
-      "community": 3,
+      "community": 4,
       "norm_label": "list available presets.",
       "id": "presets_rationale_54"
     },
@@ -620,7 +620,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/banana-claude/skills/banana/scripts/presets.py",
       "source_location": "L72",
-      "community": 3,
+      "community": 4,
       "norm_label": "show full preset details.",
       "id": "presets_rationale_72"
     },
@@ -890,27 +890,27 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/app/agent.py",
       "source_location": "L66",
-      "id": "agent_rationale_66",
       "community": 8,
-      "norm_label": "searches for code in github repositories.          args:         query: the sear"
+      "norm_label": "searches for code in github repositories.          args:         query: the sear",
+      "id": "agent_rationale_66"
     },
     {
       "label": "Gets recent commits for a repository or a specific file.          Args:",
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/app/agent.py",
       "source_location": "L87",
-      "id": "agent_rationale_87",
       "community": 8,
-      "norm_label": "gets recent commits for a repository or a specific file.          args:"
+      "norm_label": "gets recent commits for a repository or a specific file.          args:",
+      "id": "agent_rationale_87"
     },
     {
       "label": "Reads the content of a file from GitHub.          Args:         repo: Repository",
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/app/agent.py",
       "source_location": "L111",
-      "id": "agent_rationale_111",
       "community": 8,
-      "norm_label": "reads the content of a file from github.          args:         repo: repository"
+      "norm_label": "reads the content of a file from github.          args:         repo: repository",
+      "id": "agent_rationale_111"
     },
     {
       "label": "agent_runtime_app.py",
@@ -971,27 +971,27 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/app/agent_runtime_app.py",
       "source_location": "L34",
-      "id": "agent_runtime_app_rationale_34",
       "community": 2,
-      "norm_label": "initialize the agent engine app with logging and telemetry."
+      "norm_label": "initialize the agent engine app with logging and telemetry.",
+      "id": "agent_runtime_app_rationale_34"
     },
     {
       "label": "Collect and log feedback.",
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/app/agent_runtime_app.py",
       "source_location": "L45",
-      "id": "agent_runtime_app_rationale_45",
       "community": 2,
-      "norm_label": "collect and log feedback."
+      "norm_label": "collect and log feedback.",
+      "id": "agent_runtime_app_rationale_45"
     },
     {
       "label": "Registers the operations of the Agent.",
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/app/agent_runtime_app.py",
       "source_location": "L50",
-      "id": "agent_runtime_app_rationale_50",
       "community": 2,
-      "norm_label": "registers the operations of the agent."
+      "norm_label": "registers the operations of the agent.",
+      "id": "agent_runtime_app_rationale_50"
     },
     {
       "label": "telemetry.py",
@@ -1151,27 +1151,90 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py",
       "source_location": "L25",
-      "id": "test_agent_runtime_app_rationale_25",
       "community": 2,
-      "norm_label": "fixture to create and set up agentengineapp instance"
+      "norm_label": "fixture to create and set up agentengineapp instance",
+      "id": "test_agent_runtime_app_rationale_25"
     },
     {
       "label": "Integration test for the agent stream query functionality.     Tests that the ag",
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py",
       "source_location": "L37",
-      "id": "test_agent_runtime_app_rationale_37",
       "community": 2,
-      "norm_label": "integration test for the agent stream query functionality.     tests that the ag"
+      "norm_label": "integration test for the agent stream query functionality.     tests that the ag",
+      "id": "test_agent_runtime_app_rationale_37"
     },
     {
       "label": "Integration test for the agent feedback functionality.     Tests that feedback c",
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py",
       "source_location": "L65",
-      "id": "test_agent_runtime_app_rationale_65",
       "community": 2,
-      "norm_label": "integration test for the agent feedback functionality.     tests that feedback c"
+      "norm_label": "integration test for the agent feedback functionality.     tests that feedback c",
+      "id": "test_agent_runtime_app_rationale_65"
+    },
+    {
+      "label": "locker.py",
+      "file_type": "code",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/locker.py",
+      "source_location": "L1",
+      "id": "users_shagwu_downloads_road4ai_main_tools_locker_py",
+      "community": 3,
+      "norm_label": "locker.py"
+    },
+    {
+      "label": "file_lock()",
+      "file_type": "code",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/locker.py",
+      "source_location": "L10",
+      "id": "locker_file_lock",
+      "community": 3,
+      "norm_label": "file_lock()"
+    },
+    {
+      "label": "Simple file-based advisory lock to prevent race conditions in swarms.",
+      "file_type": "rationale",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/locker.py",
+      "source_location": "L11",
+      "id": "locker_rationale_11",
+      "community": 3,
+      "norm_label": "simple file-based advisory lock to prevent race conditions in swarms."
+    },
+    {
+      "label": "health_check.py",
+      "file_type": "code",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/health_check.py",
+      "source_location": "L1",
+      "id": "users_shagwu_downloads_road4ai_main_tools_health_check_py",
+      "community": 31,
+      "norm_label": "health_check.py"
+    },
+    {
+      "label": "check_file()",
+      "file_type": "code",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/health_check.py",
+      "source_location": "L7",
+      "id": "health_check_check_file",
+      "community": 31,
+      "norm_label": "check_file()"
+    },
+    {
+      "label": "check_json()",
+      "file_type": "code",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/health_check.py",
+      "source_location": "L15",
+      "id": "health_check_check_json",
+      "community": 31,
+      "norm_label": "check_json()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/health_check.py",
+      "source_location": "L28",
+      "id": "health_check_main",
+      "community": 31,
+      "norm_label": "main()"
     },
     {
       "label": "tools.py",
@@ -1359,7 +1422,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_road4ai_cos_tests_integration_test_server_e2e_py",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_server_e2e.py"
     },
     {
@@ -1368,7 +1431,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L40",
       "id": "test_server_e2e_log_output",
-      "community": 4,
+      "community": 5,
       "norm_label": "log_output()"
     },
     {
@@ -1377,7 +1440,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L46",
       "id": "test_server_e2e_start_server",
-      "community": 4,
+      "community": 5,
       "norm_label": "start_server()"
     },
     {
@@ -1386,7 +1449,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L80",
       "id": "test_server_e2e_wait_for_server",
-      "community": 4,
+      "community": 5,
       "norm_label": "wait_for_server()"
     },
     {
@@ -1395,7 +1458,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L97",
       "id": "test_server_e2e_server_fixture",
-      "community": 4,
+      "community": 5,
       "norm_label": "server_fixture()"
     },
     {
@@ -1404,7 +1467,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L115",
       "id": "test_server_e2e_test_chat_stream",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_chat_stream()"
     },
     {
@@ -1413,7 +1476,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L177",
       "id": "test_server_e2e_test_chat_stream_error_handling",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_chat_stream_error_handling()"
     },
     {
@@ -1422,7 +1485,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L193",
       "id": "test_server_e2e_test_collect_feedback",
-      "community": 4,
+      "community": 5,
       "norm_label": "test_collect_feedback()"
     },
     {
@@ -1430,7 +1493,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L41",
-      "community": 4,
+      "community": 5,
       "norm_label": "log the output from the given pipe.",
       "id": "test_server_e2e_rationale_41"
     },
@@ -1439,7 +1502,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L47",
-      "community": 4,
+      "community": 5,
       "norm_label": "start the fastapi server using subprocess and log its output.",
       "id": "test_server_e2e_rationale_47"
     },
@@ -1448,7 +1511,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L81",
-      "community": 4,
+      "community": 5,
       "norm_label": "wait for the server to be ready.",
       "id": "test_server_e2e_rationale_81"
     },
@@ -1457,7 +1520,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L98",
-      "community": 4,
+      "community": 5,
       "norm_label": "pytest fixture to start and stop the server for testing.",
       "id": "test_server_e2e_rationale_98"
     },
@@ -1466,7 +1529,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L116",
-      "community": 4,
+      "community": 5,
       "norm_label": "test the chat stream functionality.",
       "id": "test_server_e2e_rationale_116"
     },
@@ -1475,7 +1538,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L178",
-      "community": 4,
+      "community": 5,
       "norm_label": "test the chat stream error handling.",
       "id": "test_server_e2e_rationale_178"
     },
@@ -1484,7 +1547,7 @@
       "file_type": "rationale",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/tests/integration/test_server_e2e.py",
       "source_location": "L194",
-      "community": 4,
+      "community": 5,
       "norm_label": "test the feedback collection endpoint (/feedback) to ensure it properly     logs",
       "id": "test_server_e2e_rationale_194"
     },
@@ -1683,7 +1746,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/plausible.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_plausible_js",
-      "community": 31,
+      "community": 32,
       "norm_label": "plausible.js"
     },
     {
@@ -1692,7 +1755,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/plausible.js",
       "source_location": "L11",
       "id": "plausible_api",
-      "community": 31,
+      "community": 32,
       "norm_label": "api()"
     },
     {
@@ -1701,7 +1764,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/plausible.js",
       "source_location": "L32",
       "id": "plausible_parseargs",
-      "community": 31,
+      "community": 32,
       "norm_label": "parseargs()"
     },
     {
@@ -1710,7 +1773,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/plausible.js",
       "source_location": "L55",
       "id": "plausible_main",
-      "community": 31,
+      "community": 32,
       "norm_label": "main()"
     },
     {
@@ -1719,7 +1782,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/savvycal.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_savvycal_js",
-      "community": 32,
+      "community": 33,
       "norm_label": "savvycal.js"
     },
     {
@@ -1728,7 +1791,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/savvycal.js",
       "source_location": "L11",
       "id": "savvycal_api",
-      "community": 32,
+      "community": 33,
       "norm_label": "api()"
     },
     {
@@ -1737,7 +1800,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/savvycal.js",
       "source_location": "L32",
       "id": "savvycal_parseargs",
-      "community": 32,
+      "community": 33,
       "norm_label": "parseargs()"
     },
     {
@@ -1746,7 +1809,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/savvycal.js",
       "source_location": "L55",
       "id": "savvycal_main",
-      "community": 32,
+      "community": 33,
       "norm_label": "main()"
     },
     {
@@ -1755,7 +1818,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/hunter.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_hunter_js",
-      "community": 33,
+      "community": 34,
       "norm_label": "hunter.js"
     },
     {
@@ -1764,7 +1827,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/hunter.js",
       "source_location": "L11",
       "id": "hunter_api",
-      "community": 33,
+      "community": 34,
       "norm_label": "api()"
     },
     {
@@ -1773,7 +1836,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/hunter.js",
       "source_location": "L33",
       "id": "hunter_parseargs",
-      "community": 33,
+      "community": 34,
       "norm_label": "parseargs()"
     },
     {
@@ -1782,7 +1845,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/hunter.js",
       "source_location": "L56",
       "id": "hunter_main",
-      "community": 33,
+      "community": 34,
       "norm_label": "main()"
     },
     {
@@ -1836,7 +1899,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/mention-me.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_mention_me_js",
-      "community": 34,
+      "community": 35,
       "norm_label": "mention-me.js"
     },
     {
@@ -1845,7 +1908,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/mention-me.js",
       "source_location": "L11",
       "id": "mention_me_api",
-      "community": 34,
+      "community": 35,
       "norm_label": "api()"
     },
     {
@@ -1854,7 +1917,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/mention-me.js",
       "source_location": "L32",
       "id": "mention_me_parseargs",
-      "community": 34,
+      "community": 35,
       "norm_label": "parseargs()"
     },
     {
@@ -1863,7 +1926,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/mention-me.js",
       "source_location": "L55",
       "id": "mention_me_main",
-      "community": 34,
+      "community": 35,
       "norm_label": "main()"
     },
     {
@@ -1962,7 +2025,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/dub.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_dub_js",
-      "community": 35,
+      "community": 36,
       "norm_label": "dub.js"
     },
     {
@@ -1971,7 +2034,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/dub.js",
       "source_location": "L11",
       "id": "dub_api",
-      "community": 35,
+      "community": 36,
       "norm_label": "api()"
     },
     {
@@ -1980,7 +2043,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/dub.js",
       "source_location": "L31",
       "id": "dub_parseargs",
-      "community": 35,
+      "community": 36,
       "norm_label": "parseargs()"
     },
     {
@@ -1989,7 +2052,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/dub.js",
       "source_location": "L54",
       "id": "dub_main",
-      "community": 35,
+      "community": 36,
       "norm_label": "main()"
     },
     {
@@ -1998,7 +2061,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/supermetrics.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_supermetrics_js",
-      "community": 36,
+      "community": 37,
       "norm_label": "supermetrics.js"
     },
     {
@@ -2007,7 +2070,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/supermetrics.js",
       "source_location": "L11",
       "id": "supermetrics_api",
-      "community": 36,
+      "community": 37,
       "norm_label": "api()"
     },
     {
@@ -2016,7 +2079,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/supermetrics.js",
       "source_location": "L33",
       "id": "supermetrics_parseargs",
-      "community": 36,
+      "community": 37,
       "norm_label": "parseargs()"
     },
     {
@@ -2025,7 +2088,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/supermetrics.js",
       "source_location": "L56",
       "id": "supermetrics_main",
-      "community": 36,
+      "community": 37,
       "norm_label": "main()"
     },
     {
@@ -2034,7 +2097,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/ahrefs.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_ahrefs_js",
-      "community": 37,
+      "community": 38,
       "norm_label": "ahrefs.js"
     },
     {
@@ -2043,7 +2106,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/ahrefs.js",
       "source_location": "L11",
       "id": "ahrefs_api",
-      "community": 37,
+      "community": 38,
       "norm_label": "api()"
     },
     {
@@ -2052,7 +2115,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/ahrefs.js",
       "source_location": "L30",
       "id": "ahrefs_parseargs",
-      "community": 37,
+      "community": 38,
       "norm_label": "parseargs()"
     },
     {
@@ -2061,7 +2124,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/ahrefs.js",
       "source_location": "L53",
       "id": "ahrefs_main",
-      "community": 37,
+      "community": 38,
       "norm_label": "main()"
     },
     {
@@ -2070,7 +2133,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/outreach.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_outreach_js",
-      "community": 38,
+      "community": 39,
       "norm_label": "outreach.js"
     },
     {
@@ -2079,7 +2142,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/outreach.js",
       "source_location": "L11",
       "id": "outreach_api",
-      "community": 38,
+      "community": 39,
       "norm_label": "api()"
     },
     {
@@ -2088,7 +2151,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/outreach.js",
       "source_location": "L33",
       "id": "outreach_parseargs",
-      "community": 38,
+      "community": 39,
       "norm_label": "parseargs()"
     },
     {
@@ -2097,7 +2160,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/outreach.js",
       "source_location": "L56",
       "id": "outreach_main",
-      "community": 38,
+      "community": 39,
       "norm_label": "main()"
     },
     {
@@ -2151,7 +2214,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/demio.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_demio_js",
-      "community": 39,
+      "community": 40,
       "norm_label": "demio.js"
     },
     {
@@ -2160,7 +2223,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/demio.js",
       "source_location": "L17",
       "id": "demio_api",
-      "community": 39,
+      "community": 40,
       "norm_label": "api()"
     },
     {
@@ -2169,7 +2232,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/demio.js",
       "source_location": "L39",
       "id": "demio_parseargs",
-      "community": 39,
+      "community": 40,
       "norm_label": "parseargs()"
     },
     {
@@ -2178,7 +2241,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/demio.js",
       "source_location": "L62",
       "id": "demio_main",
-      "community": 39,
+      "community": 40,
       "norm_label": "main()"
     },
     {
@@ -2187,7 +2250,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/kit.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_kit_js",
-      "community": 40,
+      "community": 41,
       "norm_label": "kit.js"
     },
     {
@@ -2196,7 +2259,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/kit.js",
       "source_location": "L12",
       "id": "kit_api",
-      "community": 40,
+      "community": 41,
       "norm_label": "api()"
     },
     {
@@ -2205,7 +2268,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/kit.js",
       "source_location": "L59",
       "id": "kit_parseargs",
-      "community": 40,
+      "community": 41,
       "norm_label": "parseargs()"
     },
     {
@@ -2214,7 +2277,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/kit.js",
       "source_location": "L82",
       "id": "kit_main",
-      "community": 40,
+      "community": 41,
       "norm_label": "main()"
     },
     {
@@ -2223,7 +2286,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/mailchimp.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_mailchimp_js",
-      "community": 41,
+      "community": 42,
       "norm_label": "mailchimp.js"
     },
     {
@@ -2232,7 +2295,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/mailchimp.js",
       "source_location": "L13",
       "id": "mailchimp_api",
-      "community": 41,
+      "community": 42,
       "norm_label": "api()"
     },
     {
@@ -2241,7 +2304,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/mailchimp.js",
       "source_location": "L35",
       "id": "mailchimp_parseargs",
-      "community": 41,
+      "community": 42,
       "norm_label": "parseargs()"
     },
     {
@@ -2250,7 +2313,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/mailchimp.js",
       "source_location": "L58",
       "id": "mailchimp_main",
-      "community": 41,
+      "community": 42,
       "norm_label": "main()"
     },
     {
@@ -2259,7 +2322,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/instantly.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_instantly_js",
-      "community": 42,
+      "community": 43,
       "norm_label": "instantly.js"
     },
     {
@@ -2268,7 +2331,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/instantly.js",
       "source_location": "L11",
       "id": "instantly_api",
-      "community": 42,
+      "community": 43,
       "norm_label": "api()"
     },
     {
@@ -2277,7 +2340,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/instantly.js",
       "source_location": "L36",
       "id": "instantly_parseargs",
-      "community": 42,
+      "community": 43,
       "norm_label": "parseargs()"
     },
     {
@@ -2286,7 +2349,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/instantly.js",
       "source_location": "L59",
       "id": "instantly_main",
-      "community": 42,
+      "community": 43,
       "norm_label": "main()"
     },
     {
@@ -2295,7 +2358,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/pendo.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_pendo_js",
-      "community": 43,
+      "community": 44,
       "norm_label": "pendo.js"
     },
     {
@@ -2304,7 +2367,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/pendo.js",
       "source_location": "L11",
       "id": "pendo_api",
-      "community": 43,
+      "community": 44,
       "norm_label": "api()"
     },
     {
@@ -2313,7 +2376,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/pendo.js",
       "source_location": "L32",
       "id": "pendo_parseargs",
-      "community": 43,
+      "community": 44,
       "norm_label": "parseargs()"
     },
     {
@@ -2322,7 +2385,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/pendo.js",
       "source_location": "L55",
       "id": "pendo_main",
-      "community": 43,
+      "community": 44,
       "norm_label": "main()"
     },
     {
@@ -2331,7 +2394,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/optimizely.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_optimizely_js",
-      "community": 44,
+      "community": 45,
       "norm_label": "optimizely.js"
     },
     {
@@ -2340,7 +2403,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/optimizely.js",
       "source_location": "L11",
       "id": "optimizely_api",
-      "community": 44,
+      "community": 45,
       "norm_label": "api()"
     },
     {
@@ -2349,7 +2412,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/optimizely.js",
       "source_location": "L32",
       "id": "optimizely_parseargs",
-      "community": 44,
+      "community": 45,
       "norm_label": "parseargs()"
     },
     {
@@ -2358,7 +2421,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/optimizely.js",
       "source_location": "L55",
       "id": "optimizely_main",
-      "community": 44,
+      "community": 45,
       "norm_label": "main()"
     },
     {
@@ -2367,7 +2430,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/calendly.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_calendly_js",
-      "community": 45,
+      "community": 46,
       "norm_label": "calendly.js"
     },
     {
@@ -2376,7 +2439,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/calendly.js",
       "source_location": "L11",
       "id": "calendly_api",
-      "community": 45,
+      "community": 46,
       "norm_label": "api()"
     },
     {
@@ -2385,7 +2448,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/calendly.js",
       "source_location": "L32",
       "id": "calendly_parseargs",
-      "community": 45,
+      "community": 46,
       "norm_label": "parseargs()"
     },
     {
@@ -2394,7 +2457,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/calendly.js",
       "source_location": "L55",
       "id": "calendly_main",
-      "community": 45,
+      "community": 46,
       "norm_label": "main()"
     },
     {
@@ -2403,7 +2466,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/postmark.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_postmark_js",
-      "community": 46,
+      "community": 47,
       "norm_label": "postmark.js"
     },
     {
@@ -2412,7 +2475,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/postmark.js",
       "source_location": "L11",
       "id": "postmark_api",
-      "community": 46,
+      "community": 47,
       "norm_label": "api()"
     },
     {
@@ -2421,7 +2484,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/postmark.js",
       "source_location": "L43",
       "id": "postmark_parseargs",
-      "community": 46,
+      "community": 47,
       "norm_label": "parseargs()"
     },
     {
@@ -2430,7 +2493,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/postmark.js",
       "source_location": "L66",
       "id": "postmark_main",
-      "community": 46,
+      "community": 47,
       "norm_label": "main()"
     },
     {
@@ -2439,7 +2502,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/typeform.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_typeform_js",
-      "community": 47,
+      "community": 48,
       "norm_label": "typeform.js"
     },
     {
@@ -2448,7 +2511,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/typeform.js",
       "source_location": "L11",
       "id": "typeform_api",
-      "community": 47,
+      "community": 48,
       "norm_label": "api()"
     },
     {
@@ -2457,7 +2520,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/typeform.js",
       "source_location": "L32",
       "id": "typeform_parseargs",
-      "community": 47,
+      "community": 48,
       "norm_label": "parseargs()"
     },
     {
@@ -2466,7 +2529,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/typeform.js",
       "source_location": "L55",
       "id": "typeform_main",
-      "community": 47,
+      "community": 48,
       "norm_label": "main()"
     },
     {
@@ -2475,7 +2538,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/apollo.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_apollo_js",
-      "community": 48,
+      "community": 49,
       "norm_label": "apollo.js"
     },
     {
@@ -2484,7 +2547,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/apollo.js",
       "source_location": "L11",
       "id": "apollo_api",
-      "community": 48,
+      "community": 49,
       "norm_label": "api()"
     },
     {
@@ -2493,7 +2556,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/apollo.js",
       "source_location": "L31",
       "id": "apollo_parseargs",
-      "community": 48,
+      "community": 49,
       "norm_label": "parseargs()"
     },
     {
@@ -2502,7 +2565,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/apollo.js",
       "source_location": "L54",
       "id": "apollo_main",
-      "community": 48,
+      "community": 49,
       "norm_label": "main()"
     },
     {
@@ -2511,7 +2574,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/lemlist.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_lemlist_js",
-      "community": 49,
+      "community": 50,
       "norm_label": "lemlist.js"
     },
     {
@@ -2520,7 +2583,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/lemlist.js",
       "source_location": "L13",
       "id": "lemlist_api",
-      "community": 49,
+      "community": 50,
       "norm_label": "api()"
     },
     {
@@ -2529,7 +2592,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/lemlist.js",
       "source_location": "L34",
       "id": "lemlist_parseargs",
-      "community": 49,
+      "community": 50,
       "norm_label": "parseargs()"
     },
     {
@@ -2538,7 +2601,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/lemlist.js",
       "source_location": "L57",
       "id": "lemlist_main",
-      "community": 49,
+      "community": 50,
       "norm_label": "main()"
     },
     {
@@ -2592,7 +2655,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/klaviyo.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_klaviyo_js",
-      "community": 50,
+      "community": 51,
       "norm_label": "klaviyo.js"
     },
     {
@@ -2601,7 +2664,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/klaviyo.js",
       "source_location": "L12",
       "id": "klaviyo_api",
-      "community": 50,
+      "community": 51,
       "norm_label": "api()"
     },
     {
@@ -2610,7 +2673,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/klaviyo.js",
       "source_location": "L35",
       "id": "klaviyo_parseargs",
-      "community": 50,
+      "community": 51,
       "norm_label": "parseargs()"
     },
     {
@@ -2619,7 +2682,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/klaviyo.js",
       "source_location": "L58",
       "id": "klaviyo_main",
-      "community": 50,
+      "community": 51,
       "norm_label": "main()"
     },
     {
@@ -2628,7 +2691,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/close.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_close_js",
-      "community": 51,
+      "community": 52,
       "norm_label": "close.js"
     },
     {
@@ -2637,7 +2700,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/close.js",
       "source_location": "L11",
       "id": "close_api",
-      "community": 51,
+      "community": 52,
       "norm_label": "api()"
     },
     {
@@ -2646,7 +2709,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/close.js",
       "source_location": "L33",
       "id": "close_parseargs",
-      "community": 51,
+      "community": 52,
       "norm_label": "parseargs()"
     },
     {
@@ -2655,7 +2718,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/close.js",
       "source_location": "L56",
       "id": "close_main",
-      "community": 51,
+      "community": 52,
       "norm_label": "main()"
     },
     {
@@ -2664,7 +2727,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/adobe-analytics.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_adobe_analytics_js",
-      "community": 52,
+      "community": 53,
       "norm_label": "adobe-analytics.js"
     },
     {
@@ -2673,7 +2736,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/adobe-analytics.js",
       "source_location": "L14",
       "id": "adobe_analytics_api",
-      "community": 52,
+      "community": 53,
       "norm_label": "api()"
     },
     {
@@ -2682,7 +2745,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/adobe-analytics.js",
       "source_location": "L36",
       "id": "adobe_analytics_parseargs",
-      "community": 52,
+      "community": 53,
       "norm_label": "parseargs()"
     },
     {
@@ -2691,7 +2754,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/adobe-analytics.js",
       "source_location": "L59",
       "id": "adobe_analytics_main",
-      "community": 52,
+      "community": 53,
       "norm_label": "main()"
     },
     {
@@ -2700,7 +2763,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/keywords-everywhere.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_keywords_everywhere_js",
-      "community": 53,
+      "community": 54,
       "norm_label": "keywords-everywhere.js"
     },
     {
@@ -2709,7 +2772,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/keywords-everywhere.js",
       "source_location": "L11",
       "id": "keywords_everywhere_api",
-      "community": 53,
+      "community": 54,
       "norm_label": "api()"
     },
     {
@@ -2718,7 +2781,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/keywords-everywhere.js",
       "source_location": "L33",
       "id": "keywords_everywhere_parseargs",
-      "community": 53,
+      "community": 54,
       "norm_label": "parseargs()"
     },
     {
@@ -2727,7 +2790,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/keywords-everywhere.js",
       "source_location": "L56",
       "id": "keywords_everywhere_main",
-      "community": 53,
+      "community": 54,
       "norm_label": "main()"
     },
     {
@@ -2736,7 +2799,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/livestorm.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_livestorm_js",
-      "community": 54,
+      "community": 55,
       "norm_label": "livestorm.js"
     },
     {
@@ -2745,7 +2808,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/livestorm.js",
       "source_location": "L11",
       "id": "livestorm_api",
-      "community": 54,
+      "community": 55,
       "norm_label": "api()"
     },
     {
@@ -2754,7 +2817,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/livestorm.js",
       "source_location": "L33",
       "id": "livestorm_parseargs",
-      "community": 54,
+      "community": 55,
       "norm_label": "parseargs()"
     },
     {
@@ -2763,7 +2826,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/livestorm.js",
       "source_location": "L56",
       "id": "livestorm_main",
-      "community": 54,
+      "community": 55,
       "norm_label": "main()"
     },
     {
@@ -2862,7 +2925,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/wistia.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_wistia_js",
-      "community": 55,
+      "community": 56,
       "norm_label": "wistia.js"
     },
     {
@@ -2871,7 +2934,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/wistia.js",
       "source_location": "L11",
       "id": "wistia_api",
-      "community": 55,
+      "community": 56,
       "norm_label": "api()"
     },
     {
@@ -2880,7 +2943,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/wistia.js",
       "source_location": "L33",
       "id": "wistia_parseargs",
-      "community": 55,
+      "community": 56,
       "norm_label": "parseargs()"
     },
     {
@@ -2889,7 +2952,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/wistia.js",
       "source_location": "L58",
       "id": "wistia_main",
-      "community": 55,
+      "community": 56,
       "norm_label": "main()"
     },
     {
@@ -2898,7 +2961,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/linkedin-ads.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_linkedin_ads_js",
-      "community": 56,
+      "community": 57,
       "norm_label": "linkedin-ads.js"
     },
     {
@@ -2907,7 +2970,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/linkedin-ads.js",
       "source_location": "L11",
       "id": "linkedin_ads_api",
-      "community": 56,
+      "community": 57,
       "norm_label": "api()"
     },
     {
@@ -2916,7 +2979,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/linkedin-ads.js",
       "source_location": "L33",
       "id": "linkedin_ads_parseargs",
-      "community": 56,
+      "community": 57,
       "norm_label": "parseargs()"
     },
     {
@@ -2925,7 +2988,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/linkedin-ads.js",
       "source_location": "L56",
       "id": "linkedin_ads_main",
-      "community": 56,
+      "community": 57,
       "norm_label": "main()"
     },
     {
@@ -2979,7 +3042,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/tolt.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_tolt_js",
-      "community": 57,
+      "community": 58,
       "norm_label": "tolt.js"
     },
     {
@@ -2988,7 +3051,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/tolt.js",
       "source_location": "L11",
       "id": "tolt_api",
-      "community": 57,
+      "community": 58,
       "norm_label": "api()"
     },
     {
@@ -2997,7 +3060,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/tolt.js",
       "source_location": "L31",
       "id": "tolt_parseargs",
-      "community": 57,
+      "community": 58,
       "norm_label": "parseargs()"
     },
     {
@@ -3006,7 +3069,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/tolt.js",
       "source_location": "L54",
       "id": "tolt_main",
-      "community": 57,
+      "community": 58,
       "norm_label": "main()"
     },
     {
@@ -3015,7 +3078,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/g2.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_g2_js",
-      "community": 58,
+      "community": 59,
       "norm_label": "g2.js"
     },
     {
@@ -3024,7 +3087,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/g2.js",
       "source_location": "L11",
       "id": "g2_api",
-      "community": 58,
+      "community": 59,
       "norm_label": "api()"
     },
     {
@@ -3033,7 +3096,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/g2.js",
       "source_location": "L32",
       "id": "g2_parseargs",
-      "community": 58,
+      "community": 59,
       "norm_label": "parseargs()"
     },
     {
@@ -3042,7 +3105,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/g2.js",
       "source_location": "L55",
       "id": "g2_main",
-      "community": 58,
+      "community": 59,
       "norm_label": "main()"
     },
     {
@@ -3051,7 +3114,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/rewardful.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_rewardful_js",
-      "community": 59,
+      "community": 60,
       "norm_label": "rewardful.js"
     },
     {
@@ -3060,7 +3123,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/rewardful.js",
       "source_location": "L11",
       "id": "rewardful_api",
-      "community": 59,
+      "community": 60,
       "norm_label": "api()"
     },
     {
@@ -3069,7 +3132,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/rewardful.js",
       "source_location": "L32",
       "id": "rewardful_parseargs",
-      "community": 59,
+      "community": 60,
       "norm_label": "parseargs()"
     },
     {
@@ -3078,7 +3141,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/rewardful.js",
       "source_location": "L55",
       "id": "rewardful_main",
-      "community": 59,
+      "community": 60,
       "norm_label": "main()"
     },
     {
@@ -3141,7 +3204,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/brevo.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_brevo_js",
-      "community": 60,
+      "community": 61,
       "norm_label": "brevo.js"
     },
     {
@@ -3150,7 +3213,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/brevo.js",
       "source_location": "L11",
       "id": "brevo_api",
-      "community": 60,
+      "community": 61,
       "norm_label": "api()"
     },
     {
@@ -3159,7 +3222,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/brevo.js",
       "source_location": "L32",
       "id": "brevo_parseargs",
-      "community": 60,
+      "community": 61,
       "norm_label": "parseargs()"
     },
     {
@@ -3168,7 +3231,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/brevo.js",
       "source_location": "L55",
       "id": "brevo_main",
-      "community": 60,
+      "community": 61,
       "norm_label": "main()"
     },
     {
@@ -3222,7 +3285,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/intercom.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_intercom_js",
-      "community": 61,
+      "community": 62,
       "norm_label": "intercom.js"
     },
     {
@@ -3231,7 +3294,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/intercom.js",
       "source_location": "L11",
       "id": "intercom_api",
-      "community": 61,
+      "community": 62,
       "norm_label": "api()"
     },
     {
@@ -3240,7 +3303,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/intercom.js",
       "source_location": "L33",
       "id": "intercom_parseargs",
-      "community": 61,
+      "community": 62,
       "norm_label": "parseargs()"
     },
     {
@@ -3249,7 +3312,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/intercom.js",
       "source_location": "L56",
       "id": "intercom_main",
-      "community": 61,
+      "community": 62,
       "norm_label": "main()"
     },
     {
@@ -3303,7 +3366,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/activecampaign.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_activecampaign_js",
-      "community": 62,
+      "community": 63,
       "norm_label": "activecampaign.js"
     },
     {
@@ -3312,7 +3375,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/activecampaign.js",
       "source_location": "L18",
       "id": "activecampaign_api",
-      "community": 62,
+      "community": 63,
       "norm_label": "api()"
     },
     {
@@ -3321,7 +3384,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/activecampaign.js",
       "source_location": "L39",
       "id": "activecampaign_parseargs",
-      "community": 62,
+      "community": 63,
       "norm_label": "parseargs()"
     },
     {
@@ -3330,7 +3393,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/activecampaign.js",
       "source_location": "L62",
       "id": "activecampaign_main",
-      "community": 62,
+      "community": 63,
       "norm_label": "main()"
     },
     {
@@ -3339,7 +3402,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/similarweb.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_similarweb_js",
-      "community": 63,
+      "community": 64,
       "norm_label": "similarweb.js"
     },
     {
@@ -3348,7 +3411,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/similarweb.js",
       "source_location": "L11",
       "id": "similarweb_api",
-      "community": 63,
+      "community": 64,
       "norm_label": "api()"
     },
     {
@@ -3357,7 +3420,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/similarweb.js",
       "source_location": "L33",
       "id": "similarweb_parseargs",
-      "community": 63,
+      "community": 64,
       "norm_label": "parseargs()"
     },
     {
@@ -3366,7 +3429,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/similarweb.js",
       "source_location": "L56",
       "id": "similarweb_main",
-      "community": 63,
+      "community": 64,
       "norm_label": "main()"
     },
     {
@@ -3375,7 +3438,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/beehiiv.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_beehiiv_js",
-      "community": 64,
+      "community": 65,
       "norm_label": "beehiiv.js"
     },
     {
@@ -3384,7 +3447,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/beehiiv.js",
       "source_location": "L11",
       "id": "beehiiv_api",
-      "community": 64,
+      "community": 65,
       "norm_label": "api()"
     },
     {
@@ -3393,7 +3456,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/beehiiv.js",
       "source_location": "L32",
       "id": "beehiiv_parseargs",
-      "community": 64,
+      "community": 65,
       "norm_label": "parseargs()"
     },
     {
@@ -3402,7 +3465,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/beehiiv.js",
       "source_location": "L55",
       "id": "beehiiv_main",
-      "community": 64,
+      "community": 65,
       "norm_label": "main()"
     },
     {
@@ -3456,7 +3519,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/crossbeam.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_crossbeam_js",
-      "community": 65,
+      "community": 66,
       "norm_label": "crossbeam.js"
     },
     {
@@ -3465,7 +3528,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/crossbeam.js",
       "source_location": "L11",
       "id": "crossbeam_api",
-      "community": 65,
+      "community": 66,
       "norm_label": "api()"
     },
     {
@@ -3474,7 +3537,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/crossbeam.js",
       "source_location": "L33",
       "id": "crossbeam_parseargs",
-      "community": 65,
+      "community": 66,
       "norm_label": "parseargs()"
     },
     {
@@ -3483,7 +3546,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/crossbeam.js",
       "source_location": "L56",
       "id": "crossbeam_main",
-      "community": 65,
+      "community": 66,
       "norm_label": "main()"
     },
     {
@@ -3492,7 +3555,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/onesignal.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_onesignal_js",
-      "community": 66,
+      "community": 67,
       "norm_label": "onesignal.js"
     },
     {
@@ -3501,7 +3564,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/onesignal.js",
       "source_location": "L17",
       "id": "onesignal_api",
-      "community": 66,
+      "community": 67,
       "norm_label": "api()"
     },
     {
@@ -3510,7 +3573,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/onesignal.js",
       "source_location": "L39",
       "id": "onesignal_parseargs",
-      "community": 66,
+      "community": 67,
       "norm_label": "parseargs()"
     },
     {
@@ -3519,7 +3582,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/onesignal.js",
       "source_location": "L62",
       "id": "onesignal_main",
-      "community": 66,
+      "community": 67,
       "norm_label": "main()"
     },
     {
@@ -3528,7 +3591,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/clay.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_clay_js",
-      "community": 67,
+      "community": 68,
       "norm_label": "clay.js"
     },
     {
@@ -3537,7 +3600,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/clay.js",
       "source_location": "L11",
       "id": "clay_api",
-      "community": 67,
+      "community": 68,
       "norm_label": "api()"
     },
     {
@@ -3546,7 +3609,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/clay.js",
       "source_location": "L32",
       "id": "clay_parseargs",
-      "community": 67,
+      "community": 68,
       "norm_label": "parseargs()"
     },
     {
@@ -3555,7 +3618,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/clay.js",
       "source_location": "L55",
       "id": "clay_main",
-      "community": 67,
+      "community": 68,
       "norm_label": "main()"
     },
     {
@@ -3564,7 +3627,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/airops.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_airops_js",
-      "community": 68,
+      "community": 69,
       "norm_label": "airops.js"
     },
     {
@@ -3573,7 +3636,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/airops.js",
       "source_location": "L17",
       "id": "airops_api",
-      "community": 68,
+      "community": 69,
       "norm_label": "api()"
     },
     {
@@ -3582,7 +3645,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/airops.js",
       "source_location": "L39",
       "id": "airops_parseargs",
-      "community": 68,
+      "community": 69,
       "norm_label": "parseargs()"
     },
     {
@@ -3591,7 +3654,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/airops.js",
       "source_location": "L62",
       "id": "airops_main",
-      "community": 68,
+      "community": 69,
       "norm_label": "main()"
     },
     {
@@ -3600,7 +3663,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/sendgrid.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_sendgrid_js",
-      "community": 69,
+      "community": 70,
       "norm_label": "sendgrid.js"
     },
     {
@@ -3609,7 +3672,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/sendgrid.js",
       "source_location": "L11",
       "id": "sendgrid_api",
-      "community": 69,
+      "community": 70,
       "norm_label": "api()"
     },
     {
@@ -3618,7 +3681,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/sendgrid.js",
       "source_location": "L31",
       "id": "sendgrid_parseargs",
-      "community": 69,
+      "community": 70,
       "norm_label": "parseargs()"
     },
     {
@@ -3627,7 +3690,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/sendgrid.js",
       "source_location": "L54",
       "id": "sendgrid_main",
-      "community": 69,
+      "community": 70,
       "norm_label": "main()"
     },
     {
@@ -3681,7 +3744,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/dataforseo.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_dataforseo_js",
-      "community": 70,
+      "community": 71,
       "norm_label": "dataforseo.js"
     },
     {
@@ -3690,7 +3753,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/dataforseo.js",
       "source_location": "L14",
       "id": "dataforseo_api",
-      "community": 70,
+      "community": 71,
       "norm_label": "api()"
     },
     {
@@ -3699,7 +3762,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/dataforseo.js",
       "source_location": "L34",
       "id": "dataforseo_parseargs",
-      "community": 70,
+      "community": 71,
       "norm_label": "parseargs()"
     },
     {
@@ -3708,7 +3771,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/dataforseo.js",
       "source_location": "L57",
       "id": "dataforseo_main",
-      "community": 70,
+      "community": 71,
       "norm_label": "main()"
     },
     {
@@ -3717,7 +3780,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/clearbit.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_clearbit_js",
-      "community": 71,
+      "community": 72,
       "norm_label": "clearbit.js"
     },
     {
@@ -3726,7 +3789,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/clearbit.js",
       "source_location": "L10",
       "id": "clearbit_api",
-      "community": 71,
+      "community": 72,
       "norm_label": "api()"
     },
     {
@@ -3735,7 +3798,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/clearbit.js",
       "source_location": "L32",
       "id": "clearbit_parseargs",
-      "community": 71,
+      "community": 72,
       "norm_label": "parseargs()"
     },
     {
@@ -3744,7 +3807,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/clearbit.js",
       "source_location": "L55",
       "id": "clearbit_main",
-      "community": 71,
+      "community": 72,
       "norm_label": "main()"
     },
     {
@@ -3798,7 +3861,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/resend.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_resend_js",
-      "community": 72,
+      "community": 73,
       "norm_label": "resend.js"
     },
     {
@@ -3807,7 +3870,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/resend.js",
       "source_location": "L11",
       "id": "resend_api",
-      "community": 72,
+      "community": 73,
       "norm_label": "api()"
     },
     {
@@ -3816,7 +3879,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/resend.js",
       "source_location": "L31",
       "id": "resend_parseargs",
-      "community": 72,
+      "community": 73,
       "norm_label": "parseargs()"
     },
     {
@@ -3825,7 +3888,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/resend.js",
       "source_location": "L54",
       "id": "resend_main",
-      "community": 72,
+      "community": 73,
       "norm_label": "main()"
     },
     {
@@ -3834,7 +3897,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/coupler.js",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_marketing_skills_tools_clis_coupler_js",
-      "community": 73,
+      "community": 74,
       "norm_label": "coupler.js"
     },
     {
@@ -3843,7 +3906,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/coupler.js",
       "source_location": "L11",
       "id": "coupler_api",
-      "community": 73,
+      "community": 74,
       "norm_label": "api()"
     },
     {
@@ -3852,7 +3915,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/coupler.js",
       "source_location": "L31",
       "id": "coupler_parseargs",
-      "community": 73,
+      "community": 74,
       "norm_label": "parseargs()"
     },
     {
@@ -3861,7 +3924,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/marketing-skills/tools/clis/coupler.js",
       "source_location": "L54",
       "id": "coupler_main",
-      "community": 73,
+      "community": 74,
       "norm_label": "main()"
     },
     {
@@ -3870,7 +3933,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/bridge.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_hermes_bridge_py",
-      "community": 7,
+      "community": 3,
       "norm_label": "bridge.py"
     },
     {
@@ -3879,7 +3942,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/bridge.py",
       "source_location": "L7",
       "id": "bridge_memorybridge",
-      "community": 7,
+      "community": 3,
       "norm_label": "memorybridge"
     },
     {
@@ -3888,7 +3951,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/bridge.py",
       "source_location": "L8",
       "id": "bridge_memorybridge_init",
-      "community": 7,
+      "community": 3,
       "norm_label": ".__init__()"
     },
     {
@@ -3897,7 +3960,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/bridge.py",
       "source_location": "L17",
       "id": "bridge_memorybridge_init_db",
-      "community": 7,
+      "community": 3,
       "norm_label": "._init_db()"
     },
     {
@@ -3906,7 +3969,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/bridge.py",
       "source_location": "L30",
       "id": "bridge_memorybridge_init_index",
-      "community": 7,
+      "community": 3,
       "norm_label": "._init_index()"
     },
     {
@@ -3915,7 +3978,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/bridge.py",
       "source_location": "L38",
       "id": "bridge_memorybridge_store",
-      "community": 7,
+      "community": 3,
       "norm_label": ".store()"
     },
     {
@@ -3933,7 +3996,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/bridge.py",
       "source_location": "L72",
       "id": "bridge_memorybridge_search",
-      "community": 7,
+      "community": 3,
       "norm_label": ".search()"
     },
     {
@@ -3942,7 +4005,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/__init__.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_hermes_init_py",
-      "community": 77,
+      "community": 78,
       "norm_label": "__init__.py"
     },
     {
@@ -4131,7 +4194,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/tests/__init__.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_hermes_tests_init_py",
-      "community": 78,
+      "community": 79,
       "norm_label": "__init__.py"
     },
     {
@@ -4239,7 +4302,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/tests/test_memory_persistence.py",
       "source_location": "L1",
       "id": "users_shagwu_downloads_road4ai_main_hermes_tests_test_memory_persistence_py",
-      "community": 7,
+      "community": 3,
       "norm_label": "test_memory_persistence.py"
     },
     {
@@ -4248,7 +4311,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/tests/test_memory_persistence.py",
       "source_location": "L15",
       "id": "test_memory_persistence_test_memory_persistence_lifecycle",
-      "community": 7,
+      "community": 3,
       "norm_label": "test_memory_persistence_lifecycle()"
     },
     {
@@ -4257,7 +4320,7 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/hermes/tests/test_memory_persistence.py",
       "source_location": "L46",
       "id": "test_memory_persistence_test_memory_semantic_search",
-      "community": 7,
+      "community": 3,
       "norm_label": "test_memory_semantic_search()"
     }
   ],
@@ -4698,7 +4761,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/automate_content.py",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "_src": "users_shagwu_downloads_road4ai_main_automate_content_py",
       "_tgt": "automate_content_get_today_task",
@@ -4710,7 +4773,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/automate_content.py",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "_src": "users_shagwu_downloads_road4ai_main_automate_content_py",
       "_tgt": "automate_content_update_status",
@@ -4722,7 +4785,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/automate_content.py",
-      "source_location": "L43",
+      "source_location": "L45",
       "weight": 1.0,
       "_src": "users_shagwu_downloads_road4ai_main_automate_content_py",
       "_tgt": "automate_content_main",
@@ -4734,7 +4797,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/automate_content.py",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0,
       "_src": "automate_content_main",
       "_tgt": "automate_content_get_today_task",
@@ -4770,13 +4833,25 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/automate_content.py",
-      "source_location": "L85",
+      "source_location": "L87",
       "weight": 1.0,
       "_src": "automate_content_main",
       "_tgt": "automate_content_update_status",
       "source": "automate_content_update_status",
       "target": "automate_content_main",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/automate_content.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_src": "automate_content_update_status",
+      "_tgt": "locker_file_lock",
+      "source": "automate_content_update_status",
+      "target": "locker_file_lock"
     },
     {
       "relation": "contains",
@@ -6346,9 +6421,9 @@
       "weight": 0.8,
       "_src": "agent_runtime_app_agentengineapp",
       "_tgt": "typing_feedback",
+      "confidence_score": 0.5,
       "source": "agent_runtime_app_agentengineapp",
-      "target": "typing_feedback",
-      "confidence_score": 0.5
+      "target": "typing_feedback"
     },
     {
       "relation": "uses",
@@ -6356,11 +6431,11 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py",
       "source_location": "L20",
       "weight": 0.8,
-      "_src": "test_agent_runtime_app_rationale_25",
-      "_tgt": "agent_runtime_app_agentengineapp",
+      "_src": "agent_runtime_app_agentengineapp",
+      "_tgt": "test_agent_runtime_app_rationale_25",
+      "confidence_score": 0.5,
       "source": "agent_runtime_app_agentengineapp",
-      "target": "test_agent_runtime_app_rationale_25",
-      "confidence_score": 0.5
+      "target": "test_agent_runtime_app_rationale_25"
     },
     {
       "relation": "uses",
@@ -6368,11 +6443,11 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py",
       "source_location": "L20",
       "weight": 0.8,
-      "_src": "test_agent_runtime_app_rationale_37",
-      "_tgt": "agent_runtime_app_agentengineapp",
+      "_src": "agent_runtime_app_agentengineapp",
+      "_tgt": "test_agent_runtime_app_rationale_37",
+      "confidence_score": 0.5,
       "source": "agent_runtime_app_agentengineapp",
-      "target": "test_agent_runtime_app_rationale_37",
-      "confidence_score": 0.5
+      "target": "test_agent_runtime_app_rationale_37"
     },
     {
       "relation": "uses",
@@ -6380,11 +6455,11 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py",
       "source_location": "L20",
       "weight": 0.8,
-      "_src": "test_agent_runtime_app_rationale_65",
-      "_tgt": "agent_runtime_app_agentengineapp",
+      "_src": "agent_runtime_app_agentengineapp",
+      "_tgt": "test_agent_runtime_app_rationale_65",
+      "confidence_score": 0.5,
       "source": "agent_runtime_app_agentengineapp",
-      "target": "test_agent_runtime_app_rationale_65",
-      "confidence_score": 0.5
+      "target": "test_agent_runtime_app_rationale_65"
     },
     {
       "relation": "rationale_for",
@@ -6417,8 +6492,8 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py",
       "source_location": "L31",
       "weight": 1.0,
-      "_src": "test_agent_runtime_app_agent_app",
-      "_tgt": "agent_runtime_app_agentengineapp_set_up",
+      "_src": "agent_runtime_app_agentengineapp_set_up",
+      "_tgt": "test_agent_runtime_app_agent_app",
       "source": "agent_runtime_app_agentengineapp_set_up",
       "target": "test_agent_runtime_app_agent_app"
     },
@@ -6441,8 +6516,8 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/incident-triage-agent/tests/integration/test_agent_runtime_app.py",
       "source_location": "L77",
       "weight": 1.0,
-      "_src": "test_agent_runtime_app_test_agent_feedback",
-      "_tgt": "agent_runtime_app_agentengineapp_register_feedback",
+      "_src": "agent_runtime_app_agentengineapp_register_feedback",
+      "_tgt": "test_agent_runtime_app_test_agent_feedback",
       "source": "agent_runtime_app_agentengineapp_register_feedback",
       "target": "test_agent_runtime_app_test_agent_feedback"
     },
@@ -6478,9 +6553,9 @@
       "weight": 0.8,
       "_src": "agent_runtime_app_rationale_34",
       "_tgt": "typing_feedback",
+      "confidence_score": 0.5,
       "source": "agent_runtime_app_rationale_34",
-      "target": "typing_feedback",
-      "confidence_score": 0.5
+      "target": "typing_feedback"
     },
     {
       "relation": "uses",
@@ -6490,9 +6565,9 @@
       "weight": 0.8,
       "_src": "agent_runtime_app_rationale_45",
       "_tgt": "typing_feedback",
+      "confidence_score": 0.5,
       "source": "agent_runtime_app_rationale_45",
-      "target": "typing_feedback",
-      "confidence_score": 0.5
+      "target": "typing_feedback"
     },
     {
       "relation": "uses",
@@ -6502,9 +6577,9 @@
       "weight": 0.8,
       "_src": "agent_runtime_app_rationale_50",
       "_tgt": "typing_feedback",
+      "confidence_score": 0.5,
       "source": "agent_runtime_app_rationale_50",
-      "target": "typing_feedback",
-      "confidence_score": 0.5
+      "target": "typing_feedback"
     },
     {
       "relation": "contains",
@@ -6608,8 +6683,8 @@
       "source_file": "/Users/shagwu/Downloads/Road4AI-main/road4ai-cos/app/fast_api_app.py",
       "source_location": "L23",
       "weight": 0.8,
-      "_src": "fast_api_app_rationale_56",
-      "_tgt": "typing_feedback",
+      "_src": "typing_feedback",
+      "_tgt": "fast_api_app_rationale_56",
       "confidence_score": 0.5,
       "source": "typing_feedback",
       "target": "fast_api_app_rationale_56"
@@ -6756,6 +6831,90 @@
       "_tgt": "test_agent_runtime_app_test_agent_feedback",
       "source": "test_agent_runtime_app_test_agent_feedback",
       "target": "test_agent_runtime_app_rationale_65",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/locker.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "users_shagwu_downloads_road4ai_main_tools_locker_py",
+      "_tgt": "locker_file_lock",
+      "source": "users_shagwu_downloads_road4ai_main_tools_locker_py",
+      "target": "locker_file_lock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/locker.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "locker_rationale_11",
+      "_tgt": "locker_file_lock",
+      "source": "locker_file_lock",
+      "target": "locker_rationale_11",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/health_check.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "users_shagwu_downloads_road4ai_main_tools_health_check_py",
+      "_tgt": "health_check_check_file",
+      "source": "users_shagwu_downloads_road4ai_main_tools_health_check_py",
+      "target": "health_check_check_file",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/health_check.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_src": "users_shagwu_downloads_road4ai_main_tools_health_check_py",
+      "_tgt": "health_check_check_json",
+      "source": "users_shagwu_downloads_road4ai_main_tools_health_check_py",
+      "target": "health_check_check_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/health_check.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_src": "users_shagwu_downloads_road4ai_main_tools_health_check_py",
+      "_tgt": "health_check_main",
+      "source": "users_shagwu_downloads_road4ai_main_tools_health_check_py",
+      "target": "health_check_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/health_check.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_src": "health_check_main",
+      "_tgt": "health_check_check_file",
+      "source": "health_check_check_file",
+      "target": "health_check_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/shagwu/Downloads/Road4AI-main/tools/health_check.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_src": "health_check_main",
+      "_tgt": "health_check_check_json",
+      "source": "health_check_check_json",
+      "target": "health_check_main",
       "confidence_score": 1.0
     },
     {
