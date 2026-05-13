@@ -81,8 +81,8 @@ Keep only what survives all 8.
 5. PATTERN ALIGNMENT  — Does this match or violate the codebase's existing design patterns?
 6. NAMING PRECISION   — Is the name genuinely ambiguous, or just not to your taste?
 7. RISK TRIAGE        — Prioritize: Race Conditions > Null Derefs > Security > Everything else.
-8. SIGNAL TO NOISE    — Strip pedantic noise. Keep only high-signal, actionable bugs.
-
+8. PLATFORM LIMITS    — For X/Twitter content, is each post strictly < 280 characters?
+9. SIGNAL TO NOISE    — Strip pedantic noise. Keep only high-signal, actionable bugs.
 ---
 
 ADVERSARY ACCUSATIONS:

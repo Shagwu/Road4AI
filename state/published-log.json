@@ -1,6 +1,36 @@
 {
   "published": [
     {
+      "id": "2026-05-11-goosebumps-ig",
+      "title": "The Emergence Moment",
+      "platform": "Instagram",
+      "type": "Behind-the-scenes",
+      "status": "published",
+      "url": "https://www.instagram.com/p/DYPGqh5FAcJ/",
+      "submissionId": "5e4c5b23-c4d6-4c47-a133-6cf4a56eae31",
+      "outcome": "Published to Instagram with Tweet Card visual. Refactored emotional hook to 'Autonomous Coordination' narrative."
+    },
+    {
+      "id": "2026-05-11-swarm-onboarding-x",
+      "title": "The Swarm That Deployed Itself",
+      "platform": "X",
+      "type": "Behind-the-scenes",
+      "status": "published",
+      "url": "https://x.com/shagwu22/status/2054482423618977826",
+      "submissionId": "c43d7cf9-6e73-4e17-9da8-42feca41004a",
+      "outcome": "Published short version (< 280 chars) to X via Blotato after account unlock."
+    },
+    {
+      "id": "2026-05-11-triage-win-li",
+      "title": "From 0% to 100%: The Triage Win",
+      "platform": "LinkedIn",
+      "type": "Win",
+      "status": "published",
+      "url": "https://linkedin.com/feed/update/urn:li:share:7459916245799378944",
+      "submissionId": "d36a657d-e290-45c4-8a9e-2e4210fefb05",
+      "outcome": "Published to LinkedIn with screenshot. Verified 100% pass rate narrative."
+    },
+    {
       "id": "2026-05-11-journal-guardrail-li",
       "title": "Why I Still Use a Physical Notebook",
       "platform": "LinkedIn",
@@ -35,10 +65,8 @@
       "title": "The Self-Optimizing Agent: End of Prompt Engineering",
       "platform": "X",
       "type": "Tutorial / BTS",
-      "status": "scheduled",
-      "time": "2026-05-12T09:00:00Z",
-      "submissionId": "3efba236-ab26-4b35-9792-46df49006dfd",
-      "outcome": "Scheduled 7-tweet thread to X via Blotato."
+      "status": "published",
+      "outcome": "Manually published to X via Blotato by user after API permission failures."
     },
     {
       "id": "2026-05-08-swarm-live-x",
