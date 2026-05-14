@@ -15,14 +15,14 @@ In April, we built the "Bridge" (Hermes + Gemini CLI + CrewAI). In May, we cross
 - **Goal:** Demonstrate agents that "fix" their own execution parameters.
 - **Format:** AI Story Video.
 
-### Week 3: Production RAG & Enterprise Datasets
-- **Technical Milestone:** Connecting `ask-docs` to 10k+ page technical repos.
-- **Goal:** Showcase zero-lag retrieval in massive contexts.
-- **Format:** Infographic / Diagram.
+### Week 3: The Self-Knowledge Loop
+- **Technical Milestone:** Connecting `ask-docs` to the entire Road4AI build history (~200 chunks).
+- **Goal:** Showcase zero-lag retrieval of internal decisions and architectural context.
+- **Format:** Terminal Reveal / Live Demo.
 
 ### Week 4: Hermes v2.0 Reveal
-- **Technical Milestone:** Migration to distributed vector storage.
-- **Goal:** Announce the scalability milestone for the "Road4AI" stack.
+- **Technical Milestone:** Migration to distributed vector storage (ChromaDB substrate).
+- **Goal:** Announce the scalability and persistent memory milestone for the "Road4AI" stack.
 - **Format:** Cinematic Reveal Video.
 
 ## Branding Mandates
