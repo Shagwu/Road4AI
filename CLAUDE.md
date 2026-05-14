@@ -166,6 +166,7 @@ These are never negotiable, ever:
 - **No passive voice in posts.** "It was built" → "I built it."
 - **No AI-sounding openers.** Never start with "In today's world," "In the realm of," "As an AI," or any variant.
 - **No fabricated social proof.** Don't invent results, followers, or outcomes.
+- Never run `/caveman-compress` on any Road4AI file without explicit operator approval and a manual backup first.
 - **Human-in-the-loop before posting.** No content goes to any platform without Shagwu's explicit approval. This is not optional. This is architecture.
 
 ### Formatting rules for posts

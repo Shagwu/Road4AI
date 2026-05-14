@@ -9,8 +9,12 @@ class MemoryBridgeV2:
     ACTIVE_STATUS = "active"
     ARCHIVED_STATUS = "archived"
 
-    def __init__(self, persist_directory="./chroma_db", collection_name="memories"):
-        self.client = chromadb.PersistentClient(path=persist_directory)
+    def __init__(self, persist_directory="./chroma_db", collection_name="memories", host=None, port=None):
+        if host and port:
+            self.client = chromadb.HttpClient(host=host, port=port)
+        else:
+            self.client = chromadb.PersistentClient(path=persist_directory)
+        
         self.collection = self.client.get_or_create_collection(name=collection_name)
         
         # Verify distance metric to safeguard Task 2 scoring (1.0 - sqrt(dist))

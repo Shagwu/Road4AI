@@ -1,6 +1,14 @@
 {
   "published": [
     {
+      "id": "2026-05-w2-struggle-of-scale",
+      "title": "The Struggle of Scale: When HNSW Breaks",
+      "platform": "LinkedIn / X",
+      "type": "Struggle",
+      "status": "published",
+      "outcome": "Published to LinkedIn and X via Blotato. Shared the scaling bottleneck narrative."
+    },
+    {
       "id": "2026-05-11-goosebumps-ig",
       "title": "The Emergence Moment",
       "platform": "Instagram",

@@ -152,4 +152,4 @@ This file is an array of objects. Each object represents a single content item t
 
 - **X (Twitter) Constraints:**
   - **Character Limit:** Every post in an X thread must be strictly under 280 characters. Any draft exceeding this limit must be flagged as "REJECTED" by the validation layer (Karen).
-  - **Manual Approval Gate:** Gemini CLI MUST ask for explicit human confirmation before executing any `blotato_create_post` call for the Twitter platform, even if the draft is in the `approved/` folder.
+  - **Automated Scheduling:** Once content is moved to the `approved/` folder or marked as approved by the user, Gemini CLI should proceed immediately to schedule via Blotato. The manual approval of the draft content is the final gate; no separate confirmation is required for the scheduling action itself.

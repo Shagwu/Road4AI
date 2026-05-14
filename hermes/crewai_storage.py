@@ -16,9 +16,13 @@ class HermesStorage(BaseKnowledgeStorage):
         self.config = config or {}
         self.persist_directory = self.config.get("persist_directory", "./chroma_db")
         self.collection_name = self.config.get("collection_name", "crewai_knowledge")
+        self.host = self.config.get("host")
+        self.port = self.config.get("port")
         self.bridge = MemoryBridgeV2(
             persist_directory=self.persist_directory,
-            collection_name=self.collection_name
+            collection_name=self.collection_name,
+            host=self.host,
+            port=self.port
         )
 
     def save(self, text: str, vector: List[float], metadata: Optional[Dict[str, Any]] = None) -> str:
