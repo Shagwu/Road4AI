@@ -26,10 +26,11 @@ Examples of what belongs here:
 ## THIS WEEK'S CAPTURE
 
 ### Struggles (things that blocked me or frustrated me)
-- 
+- Rejected the 10k external chunk approach for RAG. Realized narrative didn't hold; signal drowned in noise. Pivoted to "Self-Knowledge" — indexing my own build history.
+- **The Plate Realization:** Asked the AI what was on its plate. It said: "I don't have a plate." No gym, no food, no human limits. Realized tirelessness looks like alignment but isn't. It will go fast in the wrong direction with the same energy it uses for the right one. Vigilance is the only guardrail.
 
 ### Wins (things that worked, even small ones)
-- 
+- Nailed the "System Integrity" hook: "Even if the model has no integrity, the system does." It's the core of the Road4AI brand.
 
 ### Consumed (podcasts, repos, articles, tools that stuck with me)
 - 
@@ -38,7 +39,7 @@ Examples of what belongs here:
 - 
 
 ### Joy moments (the moment something clicked or worked perfectly)
-- 
+- The latency honesty call. Hit 181ms on the first query. Instead of fudging it to meet the <100ms benchmark, I'm owning it: "under 200ms cold, under 60ms warm." Real builds have friction.
 
 ---
 
