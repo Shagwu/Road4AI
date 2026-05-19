@@ -6,10 +6,13 @@ from hermes.bridge_v2 import MemoryBridgeV2
 
 class HermesStorage(BaseKnowledgeStorage):
     """
-    CrewAI Knowledge Storage bridge for Hermes v2.0 (ChromaDB).
+    HermesStorage is the integration bridge. It inherits from CrewAI's BaseKnowledgeStorage 
+    and wraps our MemoryBridgeV2 (ChromaDB). It maps the 'save' and 'search' methods 
+    directly to the Road4AI substrate, ensuring that every agent in the swarm 
+    persists context to the same distributed brain.
     
-    This class allows CrewAI agents to use the Road4AI persistent memory substrate
-    for high-signal self-knowledge and architectural context.
+    This class answers the question: How does the HermesStorage class bridge 
+    CrewAI's knowledge system with our internal memory layer?
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):

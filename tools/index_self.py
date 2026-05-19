@@ -106,15 +106,16 @@ class SelfIndexer:
         
         # Surgical chunking for core files
         if category in ["governance", "plan"]:
-            # Initial split by H2 or H3 headers
-            raw_chunks = re.split(r'\n(?=## )', text)
+            # Initial split by any header level (H1-H6)
+            raw_chunks = re.split(r'\n(?=#+ )', text)
             chunks = []
             for rc in raw_chunks:
                 # If a chunk is still too fat (> 2000 chars), split by paragraph
                 if len(rc) > 2000:
                     chunks.extend([p.strip() for p in rc.split("\n\n") if len(p.strip()) > 50])
                 else:
-                    chunks.append(rc.strip())
+                    if len(rc.strip()) > 50:
+                        chunks.append(rc.strip())
         else:
             # Simple chunking by paragraph/section
             chunks = [c.strip() for c in text.split("\n\n") if len(c.strip()) > 50]
