@@ -1,19 +1,21 @@
-# Road4AI
+# Road4AI: Infrastructure for the Autonomous Era
 
-Building the infrastructure for autonomous, high-integrity AI agent systems.
+**"Built, not just prompted."** 🔧
 
-## The Mission
-Road4AI is a movement focused on **ownership, integrity, and scale** in the agentic era. We believe that for AI agents to be truly useful, they must operate within a system that has technical integrity, even if the model itself does not.
+Road4AI is a developer-first movement focused on **ownership, integrity, and scale**. We build the systems that give AI agents technical integrity, even when the models themselves drift.
 
-## Core Components
-- **Hermes**: Our persistent memory substrate. Local-first, zero-cost, distributed vector storage.
-- **Gemini CLI**: The high-performance operator interface for agent coordination.
-- **Karen Filter**: An adversarial validation layer that enforces type safety and signal-to-noise.
+## ⚡ The Stack
+- **Hermes v2.0**: A distributed memory substrate. High-performance, local-first, and zero-cost.
+- **Gemini CLI**: The high-signal interface for orchestrating multi-agent swarms.
+- **Karen Filter**: An adversarial validation layer that kills fluff and enforces technical precision.
 
-## Key Links
-- [Manifesto](manifesto.md)
-- [Architecture Deep Dive](docs/plans/2026-05-01-hermes-v2-distributed-vector-layer.md)
-- [Content Strategy](docs/content-strategy.md)
+## 🚀 The Reveal (May 26)
+We're moving past "chat with a PDF." On May 26th, we reveal **Hermes v2.0** — the distributed brain that allows 100+ agents to share a high-signal architectural memory in under 60ms.
+
+- [Read the Manifesto](manifesto.md)
+- [Explore the Architecture](docs/plans/2026-05-01-hermes-v2-distributed-vector-layer.md)
+- [Join the Community (Skool)](https://www.skool.com/road4ai)
 
 ---
-"Built, not just prompted." 🔧
+© 2026 Road4AI. Local-first. Forever.
+
