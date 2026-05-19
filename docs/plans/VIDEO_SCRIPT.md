@@ -19,12 +19,12 @@ Local storage couldn't handle the traffic. The 'Scale Wall' is real, and most ag
 **Voiceover:**
 "We didn't just patch it. We pivoted the substrate.
 Hermes v2.0 is now a distributed memory layer. 
-We moved from local HNSW to ChromaDB.
+We optimized our SQLite + HNSW stack for swarm-scale coordination.
 Every agent in your swarm now shares the same high-signal brain, with zero-lag retrieval."
 
 ## Act 3: The Proof (1:00 - 1:40)
 **Visuals:** Clean Terminal capture (Emerald on Dark). 
-**Command:** `ask "Why did we move to a distributed ChromaDB substrate?"`
+**Command:** `ask "Why did we choose HNSW for the memory substrate?"`
 **Command:** `ask "What is the Governance Lock?"`
 **Voiceover:**
 "It’s not just faster. It’s smarter.
