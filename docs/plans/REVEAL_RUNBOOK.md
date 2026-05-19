@@ -20,7 +20,18 @@
 | 12:00 | X | "How it works: Distributed HNSW in 5 tweets" (Thread) | Bot (Blotato) |
 | 15:00 | All | Q&A Engagement (Reply to comments) | Manual (Sharon) |
 
-## 2. Emergency Procedures
+## 2. Engagement Protocol (The Golden Hour)
+- **LinkedIn/X**: For the first 60 minutes after the 09:00 Main Reveal, Sharon must be "Active-Online."
+- **Response Rule**: Prioritize technical questions. Every comment gets a reply that reinforces a core pillar (Ownership/Scale/Integrity).
+- **Skool Cross-Pollination**: If a question is too deep for a comment, reply with: "Great question — I just dropped the technical deep-dive on this in the Skool community [Link]."
+
+## 3. Plan B: MV-Reveal (The Fallback)
+If the Cinematic Video is not export-ready by May 24th:
+- **Format**: Text-based narrative + High-Res GIF of the `ask` command in action.
+- **Visual**: A static architectural diagram (Blue/Emerald) comparing v1.0 (Local) to v2.0 (Distributed).
+- **Trigger**: Decision to move to Plan B must be made by 18:00 UTC on May 24th.
+
+## 4. Emergency Procedures
 - **Blotato Failure**: Manual post via web UI.
 - **Latency Spike**: Append disclaimer to Main Reveal: "Performance optimized for warm queries; cold starts may vary based on distributed network conditions."
 - **Governance Breach**: Immediate `chmod -w AGENTS.md` and repo freeze if unauthorized mutation detected.
