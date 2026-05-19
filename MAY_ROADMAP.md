@@ -25,6 +25,11 @@ In April, we built the "Bridge" (Hermes + Gemini CLI + CrewAI). In May, we cross
 - **Goal:** Announce the scalability and persistent memory milestone for the "Road4AI" stack.
 - **Format:** Cinematic Reveal Video.
 
+### Week 5: The Ecosystem Shift (Post-Reveal Momentum)
+- **Technical Milestone:** Open-sourcing the `MemoryBridgeV2` as a standalone plugin.
+- **Goal:** Shift the narrative from "I built this" to "You can build with this."
+- **Format:** Technical Documentation Drop / Contributor Guide.
+
 ## Branding Mandates
 - **Visuals:** High-tech, minimalist, cyan/blue/dark-mode aesthetic.
 - **Voice:** Practitioner-focused, "Built, not just prompted," authoritative but human.
