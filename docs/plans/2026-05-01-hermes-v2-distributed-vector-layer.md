@@ -2,7 +2,7 @@
 
 > **For Claude:** Use `${SUPERPOWERS_SKILLS_ROOT}/skills/collaboration/executing-plans/SKILL.md` to implement this plan task-by-task.
 
-**Goal:** Migrate Hermes from local HNSW to ChromaDB for distributed vector storage while maintaining V1 compatibility.
+**Goal:** Migrate Hermes from local HNSW to ChromaDB for distributed vector storage while maintaining V1 compatibility. We migrated to solve the 'Scale Wall.' While SQLite + local HNSW worked for 5 agents, it hit a WAL-mode lock bottleneck at 100+ concurrent write-heavy agents. ChromaDB provides the distributed substrate needed for swarm-scale coordination without sacrificing retrieval speed.
 
 **Architecture:** Implement `MemoryBridgeV2` using ChromaDB as the backend. It will support both local persistence (file-based) and a distributed server-client model (HTTP). A thin compatibility layer will ensure V1 callers can migrate seamlessly.
 
@@ -10,7 +10,8 @@
 
 ---
 
-### Task 1: Environment Setup & Dependency Verification
+### Key Insight: The Distributed Pivot
+We migrated to solve the 'Scale Wall.' While SQLite + local HNSW worked for 5 agents, it hit a WAL-mode lock bottleneck at 100+ concurrent write-heavy agents. ChromaDB provides the distributed substrate needed for swarm-scale coordination without sacrificing retrieval speed. This answers why we moved from local HNSW to a distributed ChromaDB substrate for Hermes v2.0.
 
 **Files:**
 - Modify: `requirements.txt`

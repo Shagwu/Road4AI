@@ -47,8 +47,8 @@ We use the file system as our shared memory:
 2. **Monday Ritual**: Every Monday, the Chief of Staff (Gemini CLI) parses `inbox.md` to identify the top 5 content moments, maps them to types (Struggle/Win/Tutorial/BTS), and updates `state/current-queue.json`.
 3. **Approval**: Only the user moves files from `ready/` to `approved/`.
 4. **Traceability**: Every published post must have a corresponding entry in `state/published-log.json`.
-5. **Governance Gate**: Any mutation to `AGENTS.md` (operating contracts) MUST be reviewed and approved by the human conductor. Agents are strictly prohibited from committing changes to this file unprompted.
-6. **Write Gate**: `AGENTS.md` must be treated as a protected governance file. Agents may read it, but must not write to it directly as part of normal task execution.
+5. **Governance Lock**: The system's 'Manual Approval Gate.' Any mutation to `AGENTS.md` (operating contracts) MUST be reviewed and approved by the human conductor. Agents are strictly prohibited from negotiating or mutating their own operating contracts without a per-session human confirmation, preventing autonomous drift in system-wide rules.
+6. **Write Gate**: `AGENTS.md` must be treated as a protected constitution. Agents may read it, but must not write to it directly as part of normal task execution. This ensures the integrity of the system-wide hierarchy.
 7. **Pre-Reveal Parallel Workstream**: Before the Hermes v2.0 reveal on 2026-05-26, the team must track and close these technical gaps in parallel:
    - Enforce filesystem-level write protection on `AGENTS.md`.
    - Enforce hard `NEVER` rules in agent specs so config mutations are surfaced with `[HUMAN_REVIEW_REQUIRED]`.

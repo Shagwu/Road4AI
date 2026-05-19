@@ -1,6 +1,42 @@
 {
   "published": [
     {
+      "id": "2026-05-w3-production-rag",
+      "title": "Production RAG vs. Toys",
+      "platform": "LinkedIn",
+      "type": "Tutorial",
+      "status": "published",
+      "url": "https://linkedin.com/feed/update/urn:li:share:7462426827291152384",
+      "outcome": "Published to LinkedIn. Zero lag, zero cost, local-first RAG narrative."
+    },
+    {
+      "id": "2026-05-19-plate-realization-li",
+      "title": "The Plate Realization (LinkedIn)",
+      "platform": "LinkedIn",
+      "type": "Struggle",
+      "status": "published",
+      "url": "https://linkedin.com/feed/update/urn:li:share:7462366430693453824",
+      "outcome": "Published long-form struggle post about agent tirelessness."
+    },
+    {
+      "id": "2026-05-w3-hermes-teaser",
+      "title": "Hermes v2.0: The Self-Indexing Reveal (Honest Teaser)",
+      "platform": "LinkedIn / X",
+      "type": "Win",
+      "status": "published",
+      "url": "https://linkedin.com/feed/update/urn:li:share:7462064439408799744",
+      "outcome": "Published teaser for Hermes v2.0 self-knowledge loop."
+    },
+    {
+      "id": "2026-05-18-self-knowledge-ig",
+      "title": "The Self-Knowledge Loop (Instagram)",
+      "platform": "Instagram",
+      "type": "Tutorial",
+      "status": "published",
+      "url": "https://www.instagram.com/reel/DYekA5VDmk_/",
+      "outcome": "Published video demo of self-knowledge loop."
+    },
+    {
       "id": "2026-05-w2-struggle-of-scale",
       "title": "The Struggle of Scale: When HNSW Breaks",
       "platform": "LinkedIn / X",
@@ -75,92 +111,6 @@
       "type": "Tutorial / BTS",
       "status": "published",
       "outcome": "Manually published to X via Blotato by user after API permission failures."
-    },
-    {
-      "id": "2026-05-08-swarm-live-x",
-      "title": "5-Agent Pipeline Live",
-      "platform": "X",
-      "type": "Behind-the-scenes",
-      "status": "published",
-      "url": "https://x.com/shagwu22/status/2052869840151478434",
-      "outcome": "Published as a 2-post thread with terminal screenshot."
-    },
-    {
-      "id": "2026-05-07-local-karen-audit-instagram",
-      "title": "The Local Karen Audit: Automating No-Fluff",
-      "platform": "Instagram",
-      "type": "Behind-the-scenes",
-      "status": "published",
-      "outcome": "Published 8-slide carousel to Instagram via Blotato."
-    },
-    {
-      "id": "2026-05-06-struggle-hnsw-wall",
-      "title": "The Scalability Wall: When HNSW Breaks",
-      "platform": "LinkedIn",
-      "type": "Struggle",
-      "status": "published",
-      "outcome": "Published Skeleton status update to unblock drafting stall."
-    },
-    {
-      "id": "2026-05-w1-multi-agent-memory-instagram",
-      "platform": "instagram",
-      "status": "published"
-    },
-    {
-      "id": "2026-05-06-idempotent-pruning-x",
-      "platform": "twitter",
-      "status": "published",
-      "url": "https://x.com/shagwu22/status/2052127521680822595"
-    },
-    {
-      "id": "2026-05-w1-multi-agent-memory",
-      "platform": "linkedin",
-      "status": "published",
-      "url": "https://linkedin.com/feed/update/urn:li:share:7457892715872153601"
-    },
-    {
-      "id": "2026-05-w1-memory-access",
-      "platform": "linkedin",
-      "status": "published",
-      "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7455596623813947393",
-      "submissionId": "de73231c-5e99-4c51-821b-0ef49e2bcdeb"
-    },
-    {
-      "id": "2026-04-27-stop-renting-intelligence-x",
-      "platform": "twitter",
-      "status": "published",
-      "url": "https://x.com/shagwu22/status/2048798980612481412"
-    },
-    {
-      "id": "2026-04-28-custom-mcp-tool-lessons-x",
-      "platform": "twitter",
-      "status": "scheduled",
-      "time": "2026-04-28T09:00:00Z"
-    },
-    {
-      "id": "2026-04-29-why-ai-agent-setups-fail-at-memory-linkedin",
-      "platform": "linkedin",
-      "status": "scheduled",
-      "time": "2026-04-29T09:00:00Z"
-    },
-    {
-      "id": "2026-04-30-coordination-not-prompting-x",
-      "platform": "twitter",
-      "status": "scheduled",
-      "time": "2026-04-30T09:00:00Z"
-    },
-    {
-      "id": "2026-05-01-from-cli-command-to-multi-agent-workflow-linkedin",
-      "platform": "linkedin",
-      "status": "scheduled",
-      "time": "2026-05-01T09:00:00Z"
-    },
-    {
-      "id": "2026-04-28-from-demo-to-workflow-technical-deep-dive-linkedin",
-      "platform": "linkedin",
-      "status": "scheduled",
-      "time": "2026-04-29T10:00:00Z",
-      "submissionId": "a369c3b6-16fe-4c1c-8c73-b8118792e0ef"
     }
   ]
 }
