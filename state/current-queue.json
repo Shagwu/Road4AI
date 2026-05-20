@@ -1,6 +1,40 @@
 {
   "queue": [
     {
+      "id": "2026-06-w1-memory-expiration-x",
+      "title": "Memory Needs an Expiration Date",
+      "hook": "You have not built memory. You have built a hoard.",
+      "type": "Tutorial",
+      "platform": "X",
+      "goal": "Teach",
+      "source": "roadmap",
+      "status": "ready_for_publishing",
+      "priority": 3,
+      "week": "2026-23",
+      "created_at": "2026-05-20T13:20:00Z",
+      "updated_at": "2026-05-20T14:05:00Z",
+      "status_updated_at": "2026-05-20T14:05:00Z",
+      "notes": "X thread adaptation of the LinkedIn memory governance post. Anchor line: 'You have built a hoard.' Keep every post under 280 chars.",
+      "experimental": false
+    },
+    {
+      "id": "2026-06-w1-memory-expiration-li",
+      "title": "Memory Needs an Expiration Date",
+      "hook": "If your agent remembers everything, it will eventually understand nothing.",
+      "type": "Tutorial",
+      "platform": "LinkedIn",
+      "goal": "Teach",
+      "source": "roadmap",
+      "status": "ready_for_publishing",
+      "priority": 2,
+      "week": "2026-23",
+      "created_at": "2026-05-20T13:00:00Z",
+      "updated_at": "2026-05-20T14:05:00Z",
+      "status_updated_at": "2026-05-20T14:05:00Z",
+      "notes": "Post-reveal tutorial on memory governance: retention, pruning, decay, contradiction handling, and forgetting on purpose.",
+      "experimental": false
+    },
+    {
       "id": "2026-05-20-integrity-win",
       "title": "System Integrity: The Core Brand",
       "hook": "The model doesn't need integrity if the system enforces it. Here's how we build guardrails that don't depend on LLM 'ethics'.",
