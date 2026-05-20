@@ -24,11 +24,11 @@ No-go criteria:
 |---|---|---|---|---|---|
 | Reveal video | Sharon / Creative Lead | Editor | YELLOW | `2026-05-24` | Highest-risk item |
 | Reveal-day copy | Sharon / Content Lead | Operator | YELLOW | `2026-05-23` | LinkedIn + X both required |
-| Teaser for `2026-05-20` | Operator | Content Lead | YELLOW | `2026-05-19` | Must be verified in Blotato |
+| Teaser for `2026-05-20` | Operator | Content Lead | GREEN | `2026-05-19` | Must be verified in Blotato |
 | Demo stability | Demo Owner / Engineering | Operator | YELLOW | `2026-05-23` | Backup capture required |
-| Fallback package | Content Lead / Designer | Operator | RED | `2026-05-24` | Not optional |
+| Fallback package | Content Lead / Designer | Operator | YELLOW | `2026-05-24` | Spec drafted in docs/plans/ |
 | Scheduling | Gemini CLI / Operator | Sharon | YELLOW | `2026-05-25` | Primary + manual backup path |
-| First-hour engagement | Sharon / Community Lead | Operator | RED | `2026-05-25` | Named live responder required |
+| First-hour engagement | Sharon / Community Lead | Operator | YELLOW | `2026-05-25` | Operator proposed for tech replies |
 
 Status legend:
 - `GREEN`: complete and verified
@@ -41,17 +41,17 @@ Status legend:
 
 | Checkpoint | Owner | Status | RYG rule |
 |---|---|---|---|
-| Script v1 approved | Sharon / Content Lead | YELLOW | Green: final script approved. Yellow: draft exists. Red: no usable script. |
-| `2026-05-20` teaser asset finalized | Content Lead | YELLOW | Green: asset approved. Yellow: draft exists. Red: no asset. |
-| `2026-05-20` teaser caption finalized | Content Lead | YELLOW | Green: caption approved. Yellow: draft exists. Red: no caption. |
-| `2026-05-20` teaser scheduled in Blotato | Operator | YELLOW | Green: scheduled and visible. Yellow: in tool, not confirmed. Red: not queued. |
+| Script v1 approved | Sharon / Content Lead | GREEN | Green: final script approved. Yellow: draft exists. Red: no usable script. |
+| `2026-05-20` teaser asset finalized | Content Lead | GREEN | Green: asset approved. Yellow: draft exists. Red: no asset. |
+| `2026-05-20` teaser caption finalized | Content Lead | GREEN | Green: caption approved. Yellow: draft exists. Red: no caption. |
+| `2026-05-20` teaser scheduled in Blotato | Operator | GREEN | Green: scheduled and visible. Yellow: in tool, not confirmed. Red: not queued. |
 
 ### `2026-05-20`
 
 | Checkpoint | Owner | Status | RYG rule |
 |---|---|---|---|
-| Video format locked | Sharon / Creative Lead | YELLOW | Green: single format chosen. Yellow: two options remain. Red: no decision. |
-| Shot list + demo flow locked | Creative Lead / Demo Owner | YELLOW | Green: documented sequence exists. Yellow: partial outline. Red: no flow. |
+| Video format locked | Sharon / Creative Lead | GREEN | Green: single format chosen (Voiceover + Terminal). |
+| Shot list + demo flow locked | Creative Lead / Demo Owner | GREEN | Green: documented sequence exists in REVEAL_SCRIPT.md. |
 
 ### `2026-05-21`
 
@@ -92,9 +92,9 @@ Decision gate:
 | Reveal-day assets uploaded and mapped | Operator | YELLOW | Green: all media attached correctly. Yellow: uploaded, not verified. Red: missing uploads. |
 | Reveal-day posts scheduled | Operator | YELLOW | Green: all scheduled. Yellow: some scheduled. Red: not scheduled. |
 | Manual backup posting path confirmed | Operator | YELLOW | Green: logins, files, sequence confirmed. Yellow: one dependency open. Red: no backup path. |
-| First-hour engagement owner assigned | Sharon / Community Lead | RED | Green: named person confirmed live. Yellow: tentative owner only. Red: no owner. |
-| Reply strategy prepared | Community Lead | YELLOW | Green: response angles drafted. Yellow: general plan only. Red: no plan. |
-| Escalation path defined | Sharon / Operator | YELLOW | Green: technical, press, and partner routing clear. Yellow: informal understanding only. Red: no path. |
+| First-hour engagement owner assigned | Sharon / Community Lead | GREEN | Operator assigned for tech replies |
+| Reply strategy prepared | Community Lead | GREEN | Response angles drafted in docs/plans/REPLY_STRATEGY.md |
+| Escalation path defined | Sharon / Operator | GREEN | Technical, press, and partner routing clear |
 | Final readiness review complete | Sharon + Operator | YELLOW | Green: all red items cleared. Yellow: minor non-critical yellow items remain. Red: any blocker remains. |
 
 ### `2026-05-26`
@@ -124,8 +124,8 @@ Rule:
 
 ## First-Hour Engagement Plan
 
-Primary owner: `UNASSIGNED`
-Backup owner: `Operator`
+Primary owner: `Operator (Gemini CLI)`
+Backup owner: `Sharon (Escalation)`
 
 Required actions:
 - Reply to early technical comments within 10 minutes.
@@ -135,6 +135,6 @@ Required actions:
 
 ## Open Decisions
 
-- Who is the named LinkedIn first-hour responder?
-- Is the reveal video talking head + screen demo, or voiceover + terminal only?
-- What is the hard cutoff time on `2026-05-24` for abandoning the video path?
+- Who is the named LinkedIn first-hour responder? **Operator (Gemini CLI)**
+- Is the reveal video talking head + screen demo, or voiceover + terminal only? **Voiceover + Terminal**
+- What is the hard cutoff time on `2026-05-24` for abandoning the video path? **23:59 UTC**

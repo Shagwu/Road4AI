@@ -5,7 +5,7 @@ description: >
   and creator economy trends. Surfaces hooks, angles, and timely pegs
   that match Road4AI content pillars. Returns a structured briefing.
 tools:
-  - web_search
+  - google_web_search
   - read_file
 model: inherit
 ---

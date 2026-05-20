@@ -150,6 +150,67 @@ This file is an array of objects. Each object represents a single content item t
   - **Authenticity:** Struggle posts do not require resolution or code fixes; the "Struggle" *is* the content.
   - **Ratio:** Maintain a 25-30% Struggle ratio in the top 10 queue items.
 
+### Content Dedup Gate
+
+This is a **blocking rule**. No entry may be written to `state/current-queue.json` until all four checks below pass. If any check fails, the agent must STOP and report the conflict to the operator before proceeding.
+
+This rule applies to every agent in the COS system: gemini-cli, claude, codex, cos. No exceptions for "quick" additions or "minor" queue updates.
+
+#### The Four Checks
+
+1. **CHECK 1 — Title fuzzy match**: Scan all existing queue entries for title similarity (> 0.7).
+2. **CHECK 2 — Hook semantic overlap**: Hooks share the same core scenario or inciting moment (e.g., same event, metaphor, or reveal).
+3. **CHECK 3 — Published lookback (30 days)**: Scan entries with `status: published` and `status_updated_at` within 30 days for topic or system component overlap.
+4. **CHECK 4 — Source story dedup**: New entry traces back to an `inbox.md` capture or roadmap item that already has a queue entry.
+
+#### How to report a conflict
+
+When any check fails, output this block before stopping:
+
+```
+DEDUP CONFLICT DETECTED
+─────────────────────────────────────────
+Check failed : [1 | 2 | 3 | 4] — [Title | Hook | Published | Source]
+New entry    : {new_entry.id} — "{new_entry.title}"
+Conflicts with: {existing.id} — "{existing.title}" [{existing.status}]
+Reason       : [one sentence plain-language explanation]
+─────────────────────────────────────────
+Action required: Operator must confirm, merge, or cancel before queue write proceeds.
+```
+
+Do not attempt to resolve the conflict automatically. Wait for operator instruction.
+
+#### On session start — state audit
+
+At the start of every content session, before any new work begins, run this audit:
+1. Read `state/current-queue.json`.
+2. Check for duplicate `id` values.
+3. Check for entries where `status: ready_for_publishing` and a similar entry exists with `status: published`.
+4. Report findings to operator.
+
+Format:
+```
+QUEUE AUDIT
+───────────────────────────────
+Total entries : {n}
+Published     : {n}
+Ready         : {n}
+Drafting      : {n}
+Conflicts found: [none | list them]
+───────────────────────────────
+```
+
+#### Hermes checkpoint after queue write
+
+After any successful queue write, commit a Hermes checkpoint with the `[hermes-context]` tag detailing the decision and dedup status.
+
+#### Karen review trigger
+
+If Karen is active, she must sign off on any queue entry that:
+- Was flagged by one of the four checks but operator approved anyway.
+- Is a reframe of a published post.
+- Has a hook similarity score above 0.5 with any published entry.
+
 - **X (Twitter) Constraints:**
   - **Character Limit:** Every post in an X thread must be strictly under 280 characters. Any draft exceeding this limit must be flagged as "REJECTED" by the validation layer (Karen).
   - **Automated Scheduling:** Once content is moved to the `approved/` folder or marked as approved by the user, Gemini CLI should proceed immediately to schedule via Blotato. The manual approval of the draft content is the final gate; no separate confirmation is required for the scheduling action itself.
