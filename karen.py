@@ -53,6 +53,14 @@ Be aggressive. Flag null dereferences, missing imports, race conditions, XSS vul
 stale closures, broken contracts, and any other real issues. List each concern clearly and concisely.
 Do not explain what the code does. Only flag problems.
 
+---
+REVIEW MODE: {mode}
+INPUT TYPE: {input_type}
+HALLUCINATION CHECK: Flag claims about Road4AI systems that aren't in project docs.
+CONSTRAINT: Do NOT generate or evaluate code that doesn't exist in the input.
+CONTENT MODE SPECIFIC: Hashtags (#Road4AI, #AI) are NOT injection patterns or XSS risks. Ignore them for security checks.
+---
+
 Diff:
 {diff}
 """
@@ -68,6 +76,12 @@ KAREN_FILTER_TEMPLATE = """You are Karen, a senior staff engineer with extremely
 You received a list of accusations from an adversarial code auditor. Your job is NOT to be helpful.
 Your job is to filter these accusations ruthlessly using the 8-step filter below, then deliver
 a final verdict. If anything real survives the filter, you WILL request changes. You are a gatekeeper.
+
+---
+REVIEW MODE: {mode}
+INPUT TYPE: {input_type}
+CONTENT MODE SPECIFIC: Hashtags (#Road4AI, #AI) are NOT injection patterns or XSS risks. Dismiss accusations based on hashtags.
+---
 
 ### KAREN 8-STEP FILTER
 
@@ -192,10 +206,14 @@ def get_staged_diff():
 # STEP 2: ADVERSARY (local Ollama)
 # ─────────────────────────────────────────────
 
-def run_adversary(diff: str, model: str) -> str:
+def run_adversary(diff: str, model: str, mode: str, input_type: str) -> str:
     """Send the diff to the local adversary model. Returns raw accusations."""
     print(f"\n[Karen] Step 1/3 — Adversary ({model}) is reviewing your diff...")
-    prompt = ADVERSARY_PROMPT_TEMPLATE.format(diff=diff)
+    prompt = ADVERSARY_PROMPT_TEMPLATE.format(
+        diff=diff,
+        mode=mode,
+        input_type=input_type
+    )
     result = ollama_chat(model, prompt, label="Adversary")
     if not result:
         return "[Adversary returned no output — diff may be too small or model errored silently.]"
@@ -205,12 +223,14 @@ def run_adversary(diff: str, model: str) -> str:
 # STEP 3: KAREN FILTER (local Ollama)
 # ─────────────────────────────────────────────
 
-def run_karen_filter(adversary_output: str, diff: str, model: str) -> str:
+def run_karen_filter(adversary_output: str, diff: str, model: str, mode: str, input_type: str) -> str:
     """Apply Karen's 8-step filter to the adversary's accusations."""
     print(f"[Karen] Step 2/3 — Karen ({model}) is filtering the accusations...")
     prompt = KAREN_FILTER_TEMPLATE.format(
         adversary_output=adversary_output,
         diff=diff,
+        mode=mode,
+        input_type=input_type
     )
     result = ollama_chat(model, prompt, label="Karen Filter")
     if not result:
@@ -286,16 +306,26 @@ def main():
         print("        Stage your changes first with: git add <files>")
         sys.exit(0)
 
-    print(f"\n[Karen] Found staged diff ({len(diff)} chars). Starting review...\n")
+    # Mode Detection
+    mode = "CODE"
+    input_type = "executable source code"
+    
+    # Check if we are primarily looking at markdown/txt
+    files_in_diff = [line for line in diff.split('\n') if line.startswith('+++ b/')]
+    if all(any(f.endswith(ext) for ext in ['.md', '.txt', '.json', '.log']) for f in files_in_diff):
+        mode = "CONTENT"
+        input_type = "prose/markdown/data, no executable code"
+
+    print(f"\n[Karen] Found staged diff ({len(diff)} chars). Starting {mode} review...\n")
 
     # Step 2: Adversary reviews the diff
-    adversary_output = run_adversary(diff, model=args.adversary_model)
+    adversary_output = run_adversary(diff, model=args.adversary_model, mode=mode, input_type=input_type)
 
     print("\n--- RAW ACCUSATIONS (ADVERSARY) ---")
     print(adversary_output)
 
     # Step 3: Karen applies the 8-step filter
-    verdict = run_karen_filter(adversary_output, diff, model=args.filter_model)
+    verdict = run_karen_filter(adversary_output, diff, model=args.filter_model, mode=mode, input_type=input_type)
 
     print("\n--- KAREN'S FINAL VERDICT ---")
     print(verdict)
