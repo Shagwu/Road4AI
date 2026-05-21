@@ -33,6 +33,22 @@
       "experimental": false
     },
     {
+      "id": "2026-05-21-intent-to-artifact-pipeline",
+      "title": "Intent to Artifact: The Pipeline",
+      "hook": "Did you know that most AI content fails because the 'intent' gets lost in the 'artifact'?",
+      "type": "Behind-the-scenes",
+      "platform": "X",
+      "goal": "Build in Public",
+      "source": "inbox",
+      "status": "scheduled",
+      "priority": 2,
+      "scheduled_time": "2026-05-22T09:00:00Z",
+      "created_at": "2026-05-21T12:00:00Z",
+      "status_updated_at": "2026-05-21T12:30:00Z",
+      "notes": "Breakdown of the Monday Ideation pipeline. High-signal BTS.",
+      "experimental": false
+    },
+    {
       "id": "2026-06-w1-memory-expiration-x",
       "title": "Memory Needs an Expiration Date",
       "hook": "You have not built memory. You have built a hoard.",
