@@ -12,7 +12,7 @@
 | 3 | 0 | The Local Karen Audit: Automating No-Fluff | BTS | Instagram | Differentiate | ✅ PUBLISHED |
 | 1 | 1 | The Shared Substrate: Solving Amnesia | Tutorial | LinkedIn | Teach | ✅ PUBLISHED |
 | 1 | 0 | Content is Code: The SDLC Shift | Tutorial | LinkedIn | Teach | ✅ PUBLISHED |
-| 2 | 0 | Intent to Artifact: The Pipeline | BTS | X | Build in Public | 📋 QUEUED |
+| 2 | 1 | Intent to Artifact: The Pipeline | BTS | X | Build in Public | 📅 SCHEDULED |
 | 2 | 0 | The Goosebumps Moment | BTS | Instagram | Differentiate | 📋 QUEUED |
 | 1 | 2 | The Self-Optimizing Agent | BTS | X | Teach | 📅 SCHEDULED |
 | 3 | 9 | Production RAG vs. Toys | Tutorial | LinkedIn | Nurture | 📅 SCHEDULED |
