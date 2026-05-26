@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+import sys
+import time
+import math
+from sentence_transformers import SentenceTransformer
+from hermes.bridge_v2 import MemoryBridgeV2
+
+# Configuration
+MODEL_NAME = "all-MiniLM-L6-v2"
+PERSIST_DIR = "./chroma_db"
+COLLECTION_NAME = "self_knowledge"
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: ask \"your question\"")
+        sys.exit(1)
+
+    question = sys.argv[1]
+    
+    # Initialize
+    model = SentenceTransformer(MODEL_NAME)
+    bridge = MemoryBridgeV2(persist_directory=PERSIST_DIR, collection_name=COLLECTION_NAME)
+
+    # Header exactly as in reveal script
+    print("\nROAD4AI SELF-KNOWLEDGE SYSTEM [ONLINE]")
+    print("-" * 38)
+    
+    start_time = time.time()
+    
+    # Generate vector
+    vector = model.encode(question).tolist()
+    
+    # Search
+    results = bridge.search(query_vector=vector, k=1, threshold=0.3)
+    latency_ms = (time.time() - start_time) * 1000
+    
+    if not results:
+        print(f"> QUERY: {question}")
+        print(f"> LATENCY: {latency_ms:.0f}ms")
+        print("\n[RESULT: NO RELEVANT CONTEXT FOUND]")
+        return
+
+    res = results[0]
+    source = res["metadata"].get("source", "unknown")
+    category = res["metadata"].get("category", "unknown")
+    
+    # Display exactly as in reveal script
+    print(f"> QUERY: {question}")
+    print(f"> LATENCY: {latency_ms:.0f}ms")
+    print(f"> SOURCE: {source} | CATEGORY: {category}")
+    print(f"\n{res['text'].split(chr(10), 2)[-1]}") # Skip the SOURCE/CATEGORY header stored in text
+
+if __name__ == "__main__":
+    main()
