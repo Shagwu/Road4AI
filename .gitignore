@@ -15,3 +15,5 @@ state/*.backup.json
 .swarm/
 .claude-flow/
 graphify-out/cache/
+chroma_db/
+chroma_db.bak/
