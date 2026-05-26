@@ -12,6 +12,7 @@ Road4AI is a developer-first movement focused on **ownership, integrity, and sca
 ## 🚀 The Reveal (May 26)
 We're moving past "chat with a PDF." On May 26th, we reveal **Hermes v2.0** — the distributed brain that allows 100+ agents to share a high-signal architectural memory in under 60ms.
 
+- [📺 Watch the Reveal Video](https://database.blotato.io/storage/v1/object/public/public_media/61bc6ff1-ae67-429c-bd3c-3dae62351639/12fedf0d-1f78-4c3c-a840-64c5a62172bf.mp4)
 - [Read the Manifesto](manifesto.md)
 - [Explore the Architecture](docs/plans/2026-05-01-hermes-v2-distributed-vector-layer.md)
 - [Join the Community (Skool)](https://www.skool.com/road4ai)

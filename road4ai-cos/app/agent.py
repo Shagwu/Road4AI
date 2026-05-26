@@ -63,7 +63,7 @@ def get_current_time(query: str) -> str:
     return f"The current time for query {query} is {now.strftime('%Y-%m-%d %H:%M:%S %Z%z')}"
 
 
-from app.tools import audit_tool, dashboard_tool, queue_tool
+from app.tools import audit_tool, dashboard_tool, queue_tool, sanitizer_tool
 
 root_agent = Agent(
     name="root_agent",
@@ -78,10 +78,12 @@ Your role is to orchestrate the repository workflow and enforce quality standard
 ### OPERATIONAL TASKS:
 1. **Triage:** Use 'queue_tool' to scan 'state/current-queue.json' and 'drafts/'.
 2. **Audit:** When a draft is ready, use 'audit_tool' to run Karen's 8-step filter.
-3. **Voice Match:** Load and apply the '.agents/skills/voice-match/SKILL.md' guidelines to all content. Use the examples in '.agents/skills/voice-match/examples/' to calibrate drafts.
-4. **Report:** Use 'dashboard_tool' to maintain 'COS_REPORT.md'.
+3. **Safety:** Use 'sanitizer_tool' to scan all incoming transcripts or external inputs before processing.
+4. **Voice Match:** Load and apply the '.agents/skills/voice-match/SKILL.md' guidelines to all content. Use the examples in '.agents/skills/voice-match/examples/' to calibrate drafts.
+5. **Report:** Use 'dashboard_tool' to maintain 'COS_REPORT.md'.""",
+    tools=[audit_tool, dashboard_tool, queue_tool, sanitizer_tool, get_weather, get_current_time],
+)
 
-### STRUGGLE LANE GUARDRAILS:
 - **Velocity Check:** Calculate "Days in Status" using `status_updated_at`. If an item is in `draft_in_progress` for >72 hours (3 days), flag it as a **CRITICAL STALL**.
 - **Stall-Response:** For every **CRITICAL STALL**, you MUST auto-generate a "Minimum Viable Struggle Post" skeleton in the report:
     1. **Intent:** What I was trying to do.

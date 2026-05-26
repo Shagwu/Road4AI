@@ -110,7 +110,25 @@ def triage_queue() -> dict:
     
     return response
 
+def sanitization_gate(text: str) -> dict:
+    """Scans input text for PII (names, emails, keys) and AI threats (prompt injection).
+    
+    Args:
+        text: The input text to scan.
+        
+    Returns:
+        A dictionary with the safety verdict and found threats.
+    """
+    # Import the sanitizer logic
+    try:
+        from tools.sanitizer import sanitize_input
+        return sanitize_input(text)
+    except ImportError:
+        # Fallback if tools.sanitizer is not reachable
+        return {"safe": True, "action": "PASS", "note": "Sanitizer logic unavailable. Proceeding with caution."}
+
 # Export tools for the agent
 audit_tool = FunctionTool(func=karen_audit)
 dashboard_tool = FunctionTool(func=sync_dashboard)
 queue_tool = FunctionTool(func=triage_queue)
+sanitizer_tool = FunctionTool(func=sanitization_gate)

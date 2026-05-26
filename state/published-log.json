@@ -1,6 +1,33 @@
 {
   "published": [
     {
+      "id": "2026-05-26-hermes-reveal-li",
+      "title": "Hermes v2.0: The Distributed Substrate (LinkedIn)",
+      "platform": "LinkedIn",
+      "type": "Win",
+      "status": "published",
+      "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7464963551179399168",
+      "outcome": "Main reveal published to LinkedIn. High-signal architectural reveal."
+    },
+    {
+      "id": "2026-05-26-hermes-reveal-x",
+      "title": "I didn’t index the internet. I indexed myself (X)",
+      "platform": "X",
+      "type": "Win",
+      "status": "published",
+      "url": "https://x.com/shagwu22/status/2059197873401496015",
+      "outcome": "Reveal thread published to X. Focused on self-knowledge loop."
+    },
+    {
+      "id": "2026-05-26-self-knowledge-ig",
+      "title": "The Self-Knowledge Loop (Instagram)",
+      "platform": "Instagram",
+      "type": "Tutorial",
+      "status": "published",
+      "url": "https://www.instagram.com/reel/DYy8o9oiULV/",
+      "outcome": "Video demo published to Instagram Reel."
+    },
+    {
       "id": "2026-05-w3-production-rag",
       "title": "Production RAG vs. Toys",
       "platform": "LinkedIn",

@@ -1,57 +1,57 @@
 {
   "reveal_date": "2026-05-26",
-  "last_updated": "2026-05-20",
-  "status_owner": "Sharon",
-  "overall_status": "YELLOW",
+  "last_updated": "2026-05-25",
+  "status_owner": "Gemini CLI / Operator",
+  "overall_status": "GREEN",
   "command_table": {
     "reveal_video": {
       "owner": "Sharon / Creative Lead",
       "backup": "Editor",
-      "status": "YELLOW",
+      "status": "GREEN",
       "deadline": "2026-05-24",
-      "notes": "Voiceover + Terminal format locked"
+      "notes": "Video finalized and uploaded to Blotato"
     },
     "reveal_day_copy": {
       "owner": "Sharon / Content Lead",
       "backup": "Operator",
-      "status": "YELLOW",
+      "status": "GREEN",
       "deadline": "2026-05-23",
-      "notes": "LinkedIn + X both required"
+      "notes": "LinkedIn + X + IG + TT copy scheduled"
     },
     "teaser_2026_05_20": {
       "owner": "Operator",
       "backup": "Content Lead",
       "status": "GREEN",
       "deadline": "2026-05-19",
-      "notes": "Scheduled in Blotato for 14:00 UTC"
+      "notes": "Teaser published successfully"
     },
     "demo_stability": {
       "owner": "Demo Owner / Engineering",
       "backup": "Operator",
-      "status": "YELLOW",
+      "status": "GREEN",
       "deadline": "2026-05-23",
-      "notes": "Backup capture required"
+      "notes": "Technical verification passed on local substrate"
     },
     "fallback_package": {
       "owner": "Content Lead / Designer",
       "backup": "Operator",
-      "status": "YELLOW",
+      "status": "GREEN",
       "deadline": "2026-05-24",
-      "notes": "Spec drafted in docs/plans/HERMES_FALLBACK_SPEC.md"
+      "notes": "Fallback not required; primary video ready"
     },
     "scheduling": {
       "owner": "Gemini CLI / Operator",
       "backup": "Sharon",
-      "status": "YELLOW",
+      "status": "GREEN",
       "deadline": "2026-05-25",
-      "notes": "Primary + manual backup path"
+      "notes": "All reveal-day posts scheduled in Blotato"
     },
     "first_hour_engagement": {
       "owner": "Sharon / Community Lead",
       "backup": "Operator",
       "status": "GREEN",
       "deadline": "2026-05-25",
-      "notes": "Operator assigned; strategy in docs/plans/REPLY_STRATEGY.md"
+      "notes": "Reply strategy finalized; Operator assigned"
     }
   },
   "daily_gates": {
@@ -64,15 +64,16 @@
     "2026-05-20": [
       { "checkpoint": "Video format locked", "status": "GREEN" },
       { "checkpoint": "Shot list + demo flow locked", "status": "GREEN" }
+    ],
+    "2026-05-25": [
+      { "checkpoint": "README polished", "status": "GREEN" },
+      { "checkpoint": "Runbook checklist cleared", "status": "GREEN" },
+      { "checkpoint": "Technical verification verified", "status": "GREEN" }
     ]
   },
   "first_hour_engagement_plan": {
     "primary_owner": "Gemini CLI (Operator)",
     "backup_owner": "Sharon (Escalation)"
   },
-  "open_decisions": [
-    "Who is the named LinkedIn first-hour responder? (Resolved: Operator)",
-    "Is the reveal video talking head + screen demo, or voiceover + terminal only? (Resolved: Voiceover + Terminal)",
-    "What is the hard cutoff time on 2026-05-24 for abandoning the video path? (Resolved: 23:59 UTC)"
-  ]
+  "open_decisions": []
 }
