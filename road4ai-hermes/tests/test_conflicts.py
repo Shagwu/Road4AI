@@ -1,5 +1,5 @@
 import pytest
-from hermes.bridge_v2 import MemoryBridgeV2
+from road4ai_hermes.bridge import MemoryBridgeV2
 
 def test_v2_conflict_resolution_lww(tmp_path):
     """

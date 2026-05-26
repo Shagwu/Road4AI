@@ -205,3 +205,78 @@ class MemoryBridgeV2:
 
     def _utcnow(self):
         return datetime.now(timezone.utc).replace(microsecond=0)
+
+    # Convenience helper: record a conversation-style memory
+    def record_conversation(self, user_input: str, ai_output: str, *, model: str | None = None, metadata: dict | None = None, vector: list[float] | None = None, expires_at=None, ttl_seconds: int | None = None) -> str:
+        """Record a user<->AI conversation as a memory.
+
+        Parameters:
+        - user_input: the user's prompt or message
+        - ai_output: the model's response
+        - model: optional model identifier for provenance
+        - metadata: additional metadata dict
+        - vector: optional embedding vector (must match collection embedding dim). If omitted,
+                  this method will attempt to compute an embedding using sentence-transformers
+                  (model: all-MiniLM-L6-v2) if the package is available. Otherwise raises.
+        - expires_at / ttl_seconds: optional expiration controls (see store())
+
+        Returns the memory id created.
+        """
+        # Build stored text with provenance header
+        header_parts = []
+        if model:
+            header_parts.append(f"model: {model}")
+        header_parts.append(f"source: hermes.record_conversation")
+        header = " | ".join(header_parts)
+        text = f"{header}\n\nUSER:\n{user_input}\n\nAI:\n{ai_output}"
+
+        merged_metadata = dict(metadata or {})
+        merged_metadata.setdefault("type", "conversation")
+        merged_metadata.setdefault("provenance", {})
+        if model:
+            merged_metadata["provenance"]["model"] = model
+
+        # Resolve vector: compute if not provided
+        if vector is None:
+            try:
+                from sentence_transformers import SentenceTransformer
+
+                model_name = "all-MiniLM-L6-v2"
+                embed_model = SentenceTransformer(model_name)
+                vector = embed_model.encode(text).tolist()
+            except Exception as e:
+                raise RuntimeError(
+                    "Embedding vector not provided and sentence-transformers is unavailable. "
+                    "Install sentence-transformers or pass vector explicitly"
+                ) from e
+
+        # Delegate to store for consistent TTL/metadata handling
+        memory_id = self.store(text=text, vector=vector, metadata=merged_metadata, expires_at=expires_at, ttl_seconds=ttl_seconds)
+
+        # Best-effort persist if supported
+        try:
+            self.ensure_persist()
+        except Exception:
+            pass
+
+        return memory_id
+
+    def ensure_persist(self) -> None:
+        """Best-effort persistence/flush for underlying Chroma client if supported."""
+        # PersistentClient may expose a persist/flush method; HttpClient may not.
+        try:
+            persist_fn = getattr(self.client, "persist", None)
+            if callable(persist_fn):
+                persist_fn()
+                return
+        except Exception:
+            pass
+
+        # Fallback: try client._client or other internals (best-effort, no-ops allowed)
+        try:
+            inner = getattr(self.client, "_client", None)
+            if inner is not None and hasattr(inner, "persist"):
+                inner.persist()
+        except Exception:
+            # If persistence is unsupported, silently continue (Chroma PersistentClient already durable on-disk)
+            return

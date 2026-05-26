@@ -11,7 +11,7 @@ try:
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
     if project_root not in sys.path:
         sys.path.append(project_root)
-    from hermes.bridge_v2 import MemoryBridgeV2
+    from road4ai_hermes.bridge import MemoryBridgeV2
     HERMES_V2_AVAILABLE = True
 except ImportError:
     HERMES_V2_AVAILABLE = False

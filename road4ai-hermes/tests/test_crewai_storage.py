@@ -2,7 +2,7 @@ import pytest
 import os
 import shutil
 import numpy as np
-from hermes.crewai_storage import HermesStorage
+from road4ai_hermes.crewai import HermesStorage
 
 def test_hermes_storage_lifecycle():
     persist_directory = "./test_chroma_crewai"
