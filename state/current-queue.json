@@ -8,10 +8,12 @@
       "platform": "LinkedIn",
       "goal": "Build in Public",
       "source": "ideas.md",
-      "status": "ready_for_drafting",
+      "status": "scheduled",
       "priority": 1,
       "created_at": "2026-05-26T10:30:00Z",
-      "status_updated_at": "2026-05-26T10:30:00Z",
+      "status_updated_at": "2026-05-26T11:45:00Z",
+      "scheduled_time": "2026-06-01T09:00:00Z",
+      "blotato_id": "f0f3d30e-8551-4190-b020-fcf0d111504e",
       "notes": "Narrative post about the modular pivot and standalone plugin extraction."
     },
     {
@@ -22,10 +24,12 @@
       "platform": "X",
       "goal": "Nurture",
       "source": "ideas.md",
-      "status": "ready_for_drafting",
+      "status": "scheduled",
       "priority": 2,
       "created_at": "2026-05-26T10:30:00Z",
-      "status_updated_at": "2026-05-26T10:30:00Z",
+      "status_updated_at": "2026-05-26T11:45:00Z",
+      "scheduled_time": "2026-06-02T09:00:00Z",
+      "blotato_id": "cff5e6f0-db4f-4fb9-af13-1113c322043f",
       "notes": "Thread highlighting the new CONTRIBUTING.md and how to get involved."
     },
     {
