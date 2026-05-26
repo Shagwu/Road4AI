@@ -15,12 +15,12 @@ Hermes v2.0 follows a "Distributed Pivot" strategy:
 ### Installation
 Ensure you have the required dependencies:
 ```bash
-pip install chromadb sentence-transformers numpy
+pip install road4ai-hermes
 ```
 
 ### Basic Usage (Python)
 ```python
-from hermes.bridge_v2 import MemoryBridgeV2
+from road4ai_hermes.bridge import MemoryBridgeV2
 
 # Initialize (Default: ./chroma_db)
 bridge = MemoryBridgeV2()

@@ -3,7 +3,7 @@ import os
 import shutil
 import numpy as np
 from datetime import datetime, timedelta, timezone
-from hermes.bridge_v2 import MemoryBridgeV2
+from road4ai_hermes.bridge import MemoryBridgeV2
 
 
 def _iso_utc(value: datetime) -> str:

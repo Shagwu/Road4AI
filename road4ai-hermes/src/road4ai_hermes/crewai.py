@@ -2,7 +2,7 @@ import os
 import uuid
 from typing import Any, Dict, List, Optional
 from crewai.knowledge.storage.base_knowledge_storage import BaseKnowledgeStorage
-from hermes.bridge_v2 import MemoryBridgeV2
+from .bridge import MemoryBridgeV2
 
 class HermesStorage(BaseKnowledgeStorage):
     """

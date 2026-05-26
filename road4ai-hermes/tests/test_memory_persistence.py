@@ -7,7 +7,7 @@ import numpy as np
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 try:
-    from hermes.bridge import MemoryBridge
+    from road4ai_hermes.legacy import MemoryBridge
 except ImportError:
     # This is expected to fail initially in TDD
     MemoryBridge = None

@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 import math
 from datetime import datetime, timezone
-from hermes.bridge_v2 import MemoryBridgeV2
+from road4ai_hermes.bridge import MemoryBridgeV2
 
 def test_v2_relevance_signal_logic(tmp_path):
     persist_directory = tmp_path / "test_chroma_relevance"

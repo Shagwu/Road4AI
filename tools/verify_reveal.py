@@ -2,7 +2,7 @@ import os
 import time
 from typing import List
 from sentence_transformers import SentenceTransformer
-from hermes.bridge_v2 import MemoryBridgeV2
+from road4ai_hermes.bridge import MemoryBridgeV2
 
 # Constants
 MODEL_NAME = "all-MiniLM-L6-v2"
