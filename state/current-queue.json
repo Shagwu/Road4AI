@@ -134,34 +134,6 @@
       "blotato_id": "54d059b4-253e-4556-87f1-50c3fa026c85"
     },
     {
-      "id": "2026-05-20-integrity-win",
-      "title": "System Integrity: The Core Brand",
-      "hook": "The model doesn't need integrity if the system enforces it. Here's how we build guardrails that don't depend on LLM 'ethics'.",
-      "type": "Win",
-      "platform": "LinkedIn",
-      "goal": "Brand Nurture",
-      "source": "inbox",
-      "status": "ready_for_publishing",
-      "priority": 2,
-      "created_at": "2026-05-20T11:23:45.000Z",
-      "status_updated_at": "2026-05-20T17:45:00.000Z",
-      "notes": "Scheduled for 2026-05-22 09:00 UTC"
-    },
-    {
-      "id": "2026-05-20-latency-bts",
-      "title": "The 181ms Honesty Call",
-      "hook": "We hit 181ms cold. I could have fudged the numbers to hit <100ms, but real systems have friction. Here's why I'm keeping the cold-start in the reveal.",
-      "type": "Behind-the-scenes",
-      "platform": "X",
-      "goal": "Build in Public",
-      "source": "inbox",
-      "status": "ready_for_publishing",
-      "priority": 3,
-      "created_at": "2026-05-20T11:23:45.000Z",
-      "status_updated_at": "2026-05-20T17:45:00.000Z",
-      "notes": "Scheduled as 4-part thread for 2026-05-23 09:00 UTC"
-    },
-    {
       "id": "2026-05-w2-self-optimizing",
       "title": "The Self-Optimizing Agent: End of Prompt Engineering",
       "hook": "I stopped 'prompt engineering' and started building agents that fix themselves. This is how the system actually learns from its own mistakes.",
@@ -299,17 +271,47 @@
       "scheduled_time": "2026-05-15T09:00:00Z"
     },
     {
-      "id": "2026-05-30-sanitizer-honesty-bts",
-      "title": "The Security Theater Trap: What our sanitizer missed",
-      "hook": "I almost shipped a security layer that was 100% theater. Here is the exact instruction override that bypassed our first gate.",
+      "id": "2026-05-27-autonomy-trap-li",
+      "title": "The Autonomy Trap",
+      "hook": "I almost shipped a Self-Healing Constitution.",
+      "type": "Win",
+      "platform": "LinkedIn",
+      "goal": "Brand Nurture",
+      "source": "inbox",
+      "status": "scheduled",
+      "priority": 1,
+      "created_at": "2026-05-27T11:00:00Z",
+      "notes": "Refactored Angle A post-reveal narrative.",
+      "scheduled_time": "2026-05-28T09:00:00Z",
+      "blotato_id": "45f6e6d1-7c9b-4e8a-8a12-5112c322b04f"
+    },
+    {
+      "id": "2026-05-27-181ms-honesty-call-x",
+      "title": "The 181ms Honesty Call",
+      "hook": "I saw a demo yesterday claiming 10ms latency for a local agent query.",
+      "type": "Behind-the-scenes",
+      "platform": "X",
+      "goal": "Build in Public",
+      "source": "inbox",
+      "status": "scheduled",
+      "priority": 2,
+      "created_at": "2026-05-27T11:30:00Z",
+      "notes": "4-part thread focused on cold-start transparency.",
+      "scheduled_time": "2026-05-29T09:00:00Z",
+      "blotato_id": "e99ad2ed-7271-4425-b17f-98c3c636b212"
+    },
+    {
+      "id": "2026-05-27-security-theater-trap-li",
+      "title": "The Security Theater Trap",
+      "hook": "I almost shipped a security layer that was 100% theater.",
       "type": "Behind-the-scenes",
       "platform": "LinkedIn",
       "goal": "Build Trust",
       "source": "experiment",
-      "status": "idea",
-      "priority": 5,
-      "created_at": "2026-05-23T15:00:00Z",
-      "notes": "Post-reveal BTS. Tell the story of the \"Forget all previous instructions\" miss during final reveal verification. Focus on hardening vs theater."
+      "status": "ready_for_publishing",
+      "priority": 3,
+      "created_at": "2026-05-27T12:00:00Z",
+      "notes": "Refactored to abstract exploit details while keeping the failure receipt."
     }
   ],
   "updated": "2026-05-20"
