@@ -22,9 +22,9 @@ def verify_directory(path):
         "errors": [],
     }
 
-    for root, _, files in os.walk(path):
-        if ".git" in root or "__pycache__" in root:
-            continue
+    for root, dirs, files in os.walk(path):
+        # Skip noisy directories
+        dirs[:] = [d for d in dirs if d not in [".git", "__pycache__", ".venv", ".worktrees"]]
 
         for file in files:
             file_path = os.path.join(root, file)
@@ -42,8 +42,8 @@ def verify_directory(path):
                     }
                 )
 
-                text_types = ["python", "javascript", "markdown", "json", "yaml", "text"]
-                if ext in ["txt", "md"] and label not in text_types and "text" not in label:
+                text_types = ["python", "javascript", "markdown", "json", "yaml", "text", "txt"]
+                if ext in ["txt", "md"] and label not in text_types and "text" not in label and "markdown" not in label:
                     results["mismatches"].append(
                         {
                             "path": file_path,

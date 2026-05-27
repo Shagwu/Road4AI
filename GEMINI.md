@@ -32,6 +32,25 @@ Load them via: activate_skill <skill-name>
 - **requesting-code-review**: Two-stage review before merging.
   Load when: any feature is ready to commit to main.
 
+## Context Engineering Architecture (KV-Cache Optimization)
+
+### 1. Session-Init Sequence (Mandatory before work)
+Every session must open with the following sequence to seal the prefix cache:
+- **Step 1: Inject Constitution**: Read `AGENTS.md` in full via `ctx_batch_execute`. HALT if missing.
+- **Step 2: Inject Brand Voice**: Read `docs/brand-voice.md` in full.
+- **Step 3: Seal the Cache**: Mark `# -- CACHE_END --`. No further edits above this point.
+- **Step 4: Confirm**: Log token counts to console to verify anchor weight.
+
+### 2. Conflict Resolution Hierarchy
+When dynamic state (`war-room-status.json`) and Hermes memory (`git log`) diverge, the following priority applies:
+1. **Priority 1**: Hermes Checkpoint (Git log) - Most auditable.
+2. **Priority 2**: `state/war-room-status.json` - Operational state.
+3. **Priority 3**: `state/current-queue.json` - Task-level state.
+**Rule**: If `war-room-status` is newer than the last Hermes checkpoint, HALT and write a catch-up checkpoint before proceeding.
+
+### 3. Baseline Validation
+Periodically run the Condition A vs Condition B experiment to verify the >80% cache hit rate. Record results in `state/cache-efficiency-log.jsonl`.
+
 ### Content Skills (Road4AI)
 - **social-content**: LinkedIn/Twitter post generation
 - **content-strategy**: Road4AI content planning
