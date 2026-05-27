@@ -1,6 +1,6 @@
 {
   "reveal_date": "2026-05-26",
-  "last_updated": "2026-05-25",
+  "last_updated": "2026-05-27",
   "status_owner": "Gemini CLI / Operator",
   "overall_status": "GREEN",
   "command_table": {
@@ -56,19 +56,46 @@
   },
   "daily_gates": {
     "2026-05-19": [
-      { "checkpoint": "Script v1 approved", "status": "GREEN" },
-      { "checkpoint": "2026-05-20 teaser asset finalized", "status": "GREEN" },
-      { "checkpoint": "2026-05-20 teaser caption finalized", "status": "GREEN" },
-      { "checkpoint": "2026-05-20 teaser scheduled in Blotato", "status": "GREEN" }
+      {
+        "checkpoint": "Script v1 approved",
+        "status": "GREEN"
+      },
+      {
+        "checkpoint": "2026-05-20 teaser asset finalized",
+        "status": "GREEN"
+      },
+      {
+        "checkpoint": "2026-05-20 teaser caption finalized",
+        "status": "GREEN"
+      },
+      {
+        "checkpoint": "2026-05-20 teaser scheduled in Blotato",
+        "status": "GREEN"
+      }
     ],
     "2026-05-20": [
-      { "checkpoint": "Video format locked", "status": "GREEN" },
-      { "checkpoint": "Shot list + demo flow locked", "status": "GREEN" }
+      {
+        "checkpoint": "Video format locked",
+        "status": "GREEN"
+      },
+      {
+        "checkpoint": "Shot list + demo flow locked",
+        "status": "GREEN"
+      }
     ],
     "2026-05-25": [
-      { "checkpoint": "README polished", "status": "GREEN" },
-      { "checkpoint": "Runbook checklist cleared", "status": "GREEN" },
-      { "checkpoint": "Technical verification verified", "status": "GREEN" }
+      {
+        "checkpoint": "README polished",
+        "status": "GREEN"
+      },
+      {
+        "checkpoint": "Runbook checklist cleared",
+        "status": "GREEN"
+      },
+      {
+        "checkpoint": "Technical verification verified",
+        "status": "GREEN"
+      }
     ]
   },
   "first_hour_engagement_plan": {
