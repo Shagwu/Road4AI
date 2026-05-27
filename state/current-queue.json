@@ -308,10 +308,12 @@
       "platform": "LinkedIn",
       "goal": "Build Trust",
       "source": "experiment",
-      "status": "ready_for_publishing",
+      "status": "scheduled",
       "priority": 3,
       "created_at": "2026-05-27T12:00:00Z",
-      "notes": "Refactored to abstract exploit details while keeping the failure receipt."
+      "notes": "Refactored to abstract exploit details while keeping the failure receipt.",
+      "scheduled_time": "2026-05-30T09:00:00Z",
+      "blotato_id": "56b27ee7-a7f5-46af-8511-fe65dfea4b52"
     }
   ],
   "updated": "2026-05-20"
