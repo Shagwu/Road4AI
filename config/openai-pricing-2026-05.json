@@ -1,0 +1,16 @@
+{
+  "refreshed_at": "2026-05-29T14:32:00Z",
+  "source": "https://openai.com/api/pricing/",
+  "models": {
+    "gpt-4.1-2025-04-14": {
+      "input_per_1m_tokens": 2.0,
+      "output_per_1m_tokens": 8.0,
+      "aliases": ["gpt-4.1"]
+    },
+    "gpt-4o-2024-11-20": {
+      "input_per_1m_tokens": 2.5,
+      "output_per_1m_tokens": 10.0,
+      "aliases": ["gpt-4o"]
+    }
+  }
+}
