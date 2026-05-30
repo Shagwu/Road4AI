@@ -1,0 +1,6 @@
+- File docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md exists: PASS
+- Contains section "Editable Files" with explicit allowlist: PASS
+- Contains section "Protected Files" listing AGENTS.md, state files, brand docs: PASS
+- Contains section "Review Gate" — no auto-apply rule: PASS
+- Contains section "Rejection Rules" — 5 reject conditions defined: PASS
+- rg verify command exits 0 confirming all sections present: PASS
