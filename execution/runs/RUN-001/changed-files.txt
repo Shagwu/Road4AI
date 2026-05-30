@@ -1,1 +1,2 @@
-docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md
+benchmarks/social_voice/social_voice_cases.jsonl
+benchmarks/social_voice/README.md

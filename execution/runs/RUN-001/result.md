@@ -1,10 +1,10 @@
-# Task T-001 Result: Define SkillOpt Governance Boundary
+# Task T-002 Result: Build Social Voice Benchmark
 
 ## Summary
-Successfully defined the governance boundary for the SkillOpt integration. The document `docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md` establishes the safety contract, including editable vs. protected files, the mandatory review gate, and rejection criteria.
+Successfully created the Social Voice Benchmark with 12 labeled cases. These cases serve as the ground truth for evaluating Road4AI brand voice adherence during SkillOpt runs.
 
 ## Accomplishments
-- Created the governance document with all required sections.
-- Mapped protected files from `project.yaml`.
-- Defined 5 specific rejection rules to prevent system drift and brand voice regression.
-- Verified document structure using regex search.
+- Created `benchmarks/social_voice/social_voice_cases.jsonl` with 12 high-signal cases.
+- Cases cover LinkedIn hooks (3), Technical Accuracy (2+), X/Twitter constraints, and Anti-patterns (rejection rules).
+- Created `benchmarks/social_voice/README.md` defining pass/fail criteria.
+- Verified JSONL validity and record count.

@@ -29,7 +29,7 @@ tasks:
     assigned_to: gemini-cli
   T-002:
     title: Build Social Voice Benchmark
-    status: ready
+    status: verify
     depends_on: []
     assigned_to: gemini-cli
   T-003:
