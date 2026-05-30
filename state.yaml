@@ -34,12 +34,12 @@ tasks:
     assigned_to: gemini-cli
   T-003:
     title: Add Benchmark Runner
-    status: verify
+    status: done
     depends_on: [T-001, T-002]
     assigned_to: gemini-cli
   T-004:
     title: Run First Dry-Run Validation
-    status: blocked
+    status: verify
     depends_on: [T-003]
     assigned_to: gemini-cli
   T-005:
