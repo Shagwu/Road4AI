@@ -1,2 +1,3 @@
-tools/run_skillopt_benchmark.py
-benchmarks/social_voice/README.md
+verify/reports/V-001.md
+reports/skillopt/social_voice/20260530-dry-run-validation.md
+state.yaml
