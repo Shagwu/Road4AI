@@ -11,7 +11,7 @@ current_phase: execute           # intake | discuss | research | plan | execute 
 
 active_project: hermes-v2.1-skillopt
 
-active_run: null                 # set when a WorkerRunner session is live e.g. RUN-2026-05-30-001
+active_run: RUN-001                 # set when a WorkerRunner session is live e.g. RUN-2026-05-30-001
 
 phase_history:
   - phase: discuss
@@ -24,7 +24,7 @@ phase_history:
 tasks:
   T-001:
     title: Define SkillOpt Governance Boundary
-    status: ready                # ready | in-progress | verify | done | blocked
+    status: verify                # ready | in-progress | verify | done | blocked
     depends_on: []
     assigned_to: gemini-cli
   T-002:
