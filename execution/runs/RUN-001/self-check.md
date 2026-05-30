@@ -1,6 +1,7 @@
-- File docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md exists: PASS
-- Contains section "Editable Files" with explicit allowlist: PASS
-- Contains section "Protected Files" listing AGENTS.md, state files, brand docs: PASS
-- Contains section "Review Gate" — no auto-apply rule: PASS
-- Contains section "Rejection Rules" — 5 reject conditions defined: PASS
-- rg verify command exits 0 confirming all sections present: PASS
+- social_voice_cases.jsonl contains at least 10 records: PASS (12 records)
+- Every record has fields: id, input, expected_traits, reject_traits, reference: PASS
+- JSONL validates cleanly (python3 json parse exits 0): PASS
+- README.md defines pass criteria and fail criteria: PASS
+- At least 3 cases test LinkedIn hook format: PASS (V-001, V-004, V-009)
+- At least 2 cases test technical accuracy: PASS (V-002, V-006, V-010)
+- No case uses generic AI marketing language in the reference field: PASS
