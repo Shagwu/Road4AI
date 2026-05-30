@@ -507,11 +507,11 @@ Return JSON:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Governed SkillOpt benchmark runner with three-model evaluation.")
-    parser.add_argument("--skill-file", required=True)
-    parser.add_argument("--benchmark", required=True)
-    parser.add_argument("--output", required=True)
-    parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--usage-output")
+    parser.add_argument("--skill-file", "--skill-path", required=True, help="Path to the skill markdown file")
+    parser.add_argument("--benchmark", "--cases-path", required=True, help="Path to the benchmark JSONL file")
+    parser.add_argument("--output", required=True, help="Path to write the markdown report")
+    parser.add_argument("--dry-run", action="store_true", help="Perform validation without making API calls")
+    parser.add_argument("--usage-output", help="Path to write the detailed JSON usage report")
     parser.add_argument("--pricing-config")
     parser.add_argument("--target-model")
     parser.add_argument("--evaluator-model")
@@ -535,7 +535,17 @@ def main() -> int:
             failure_threshold=args.failure_threshold,
             openai_api_key=args.openai_api_key,
         )
-        print(json.dumps(runner.run(), indent=2))
+        result = runner.run()
+        print(json.dumps(result, indent=2))
+        
+        # If live and score below threshold, could exit 1 if desired by project.yaml
+        # But acceptance_criteria says "exits 0 on all-pass, exits 1 on any failure"
+        if not args.dry_run:
+            if result.get("baseline_score", 1.0) < args.failure_threshold:
+                 return 1
+            if result.get("optimized_score", 1.0) < args.failure_threshold:
+                 return 1
+                 
         return 0
     except Exception as exc:
         logging.error("%s", exc)

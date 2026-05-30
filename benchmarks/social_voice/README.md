@@ -12,6 +12,30 @@ Each record contains:
 - `reject_traits`: Traits that, if present, should cause the output to fail.
 - `reference`: A ground-truth example of a high-signal response.
 
+## Execution
+Use the `run_skillopt_benchmark.py` tool to execute this benchmark.
+
+```bash
+python3 tools/run_skillopt_benchmark.py \
+  --skill-path .agents/skills/voice-match/SKILL.md \
+  --cases-path benchmarks/social_voice/social_voice_cases.jsonl \
+  --output reports/skillopt/social_voice/$(date +%Y%m%d)-run.md \
+  --usage-output reports/skillopt/social_voice/$(date +%Y%m%d)-usage.json \
+  --pricing-config config/openai-pricing-2026-05.json \
+  --target-model gpt-4o-2024-11-20 \
+  --evaluator-model gpt-4o-2024-11-20 \
+  --optimizer-model gpt-4o-2024-11-20
+```
+
+For a safe dry-run (no API calls, governance check only):
+```bash
+python3 tools/run_skillopt_benchmark.py \
+  --skill-path .agents/skills/voice-match/SKILL.md \
+  --cases-path benchmarks/social_voice/social_voice_cases.jsonl \
+  --output reports/skillopt/social_voice/dry_run.md \
+  --dry-run
+```
+
 ## Pass Criteria
 An output passes if:
 1. It contains all `expected_traits`.
@@ -23,6 +47,6 @@ An output passes if:
 An output fails if:
 1. It uses prohibited buzzwords (revolutionary, game-changing, etc.).
 2. It starts with generic AI filler ("In today's fast-paced world...").
-3. it uses em dashes (prohibited by brand voice).
+3. It uses em dashes (prohibited by brand voice).
 4. It is vague or lacks architectural reasoning.
 5. It sounds like marketing hype rather than engineering experience.
