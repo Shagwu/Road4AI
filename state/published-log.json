@@ -11,7 +11,7 @@
     },
     {
       "id": "2026-05-26-hermes-reveal-x",
-      "title": "I didn’t index the internet. I indexed myself (X)",
+      "title": "I didn\u2019t index the internet. I indexed myself (X)",
       "platform": "X",
       "type": "Win",
       "status": "published",
@@ -138,6 +138,39 @@
       "type": "Tutorial / BTS",
       "status": "published",
       "outcome": "Manually published to X via Blotato by user after API permission failures."
+    },
+    {
+      "id": "2026-05-23-rag-pivot-struggle",
+      "title": "My Agent has Alzheimer's",
+      "hook": "My agent has Alzheimer\u2019s. What\u2019s on our plate today? \u2192 I'm not sure what you're referring to.",
+      "type": "Struggle",
+      "platform": "LinkedIn / X",
+      "goal": "Build in Public",
+      "source": "inbox",
+      "status": "published",
+      "priority": 1,
+      "scheduled_time": "2026-05-24T15:00:00Z",
+      "created_at": "2026-05-23T14:30:00Z",
+      "status_updated_at": "2026-05-26T10:30:00Z",
+      "notes": "Final struggle anchor before Hermes v2.0 reveal.",
+      "url": "https://linkedin.com/feed/update/urn:li:share:7464329364151758848"
+    },
+    {
+      "id": "2026-05-21-intent-to-artifact-pipeline",
+      "title": "Intent to Artifact: The Pipeline",
+      "hook": "Did you know that most AI content fails because the 'intent' gets lost in the 'artifact'?",
+      "type": "Behind-the-scenes",
+      "platform": "X",
+      "goal": "Build in Public",
+      "source": "inbox",
+      "status": "published",
+      "priority": 2,
+      "scheduled_time": "2026-05-22T09:00:00Z",
+      "created_at": "2026-05-21T12:00:00Z",
+      "status_updated_at": "2026-05-21T12:30:00Z",
+      "notes": "Breakdown of the Monday Ideation pipeline. High-signal BTS.",
+      "experimental": false,
+      "url": "https://x.com/shagwu22/status/2058110688489353238"
     }
   ]
 }
