@@ -4,8 +4,6 @@ import hashlib
 import json
 import logging
 import os
-import subprocess
-import tempfile
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -64,17 +62,29 @@ class BenchmarkRunner:
         self.failure_threshold = failure_threshold
         self.pricing_config_path = Path(pricing_config) if pricing_config else None
 
-        # Gemini CLI doesn't use these, but we keep them for CLI compatibility
-        self.target_model = "gemini-cli"
-        self.evaluator_model = "gemini-cli"
-        self.optimizer_model = "gemini-cli"
-        
         if not self.dry_run:
+            self.api_key = openai_api_key or os.getenv("OPENAI_API_KEY")
+            if not self.api_key:
+                raise ValueError("Live mode requires OPENAI_API_KEY or --openai-api-key")
             if not usage_output:
                 raise ValueError("Live mode requires --usage-output")
+            if not pricing_config:
+                raise ValueError("Live mode requires --pricing-config")
+            if not target_model or not evaluator_model or not optimizer_model:
+                raise ValueError("Live mode requires exact --target-model, --evaluator-model, and --optimizer-model")
             self.usage_output_file = Path(usage_output)
+            self.pricing = self._load_pricing(pricing_config)
+            self.target_model = target_model
+            self.evaluator_model = evaluator_model
+            self.optimizer_model = optimizer_model
+            self._validate_pricing_models([self.target_model, self.evaluator_model, self.optimizer_model])
         else:
+            self.api_key = None
             self.usage_output_file = Path(usage_output) if usage_output else None
+            self.pricing = self._load_pricing(pricing_config) if pricing_config else None
+            self.target_model = target_model or "gpt-4.1-2025-04-14"
+            self.evaluator_model = evaluator_model or "gpt-4.1-2025-04-14"
+            self.optimizer_model = optimizer_model or "gpt-4.1-2025-04-14"
 
         self._check_protected_file()
         self.cases = self._load_benchmark_cases()
@@ -95,11 +105,28 @@ class BenchmarkRunner:
         skill_path = self._repo_relative_path(self.skill_file)
         if skill_path in PROTECTED_FILES:
             raise ValueError(f"Error: {skill_path} is in protected files list")
-        
-        # Use fnmatch instead of fmatch (fixing typo in import)
-        from fnmatch import fnmatch
         if not any(fnmatch(skill_path, pattern) for pattern in ALLOWED_SKILL_PATTERNS):
             raise ValueError(f"Error: {skill_path} does not match allowed patterns: {sorted(ALLOWED_SKILL_PATTERNS)}")
+
+    def _load_pricing(self, config_path: str) -> dict:
+        path = Path(config_path)
+        if not path.exists():
+            raise FileNotFoundError(f"Pricing config not found: {path}")
+        try:
+            pricing = json.loads(path.read_text())
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Pricing config is not valid JSON: {exc}") from exc
+        if not isinstance(pricing.get("models"), dict):
+            raise ValueError("Pricing config must contain a models object")
+        return pricing
+
+    def _validate_pricing_models(self, models: list[str]) -> None:
+        for model in models:
+            model_config = self.pricing["models"].get(model)
+            if not model_config:
+                raise ValueError(f"Pricing config missing model: {model}")
+            if "input_per_1m_tokens" not in model_config or "output_per_1m_tokens" not in model_config:
+                raise ValueError(f"Pricing config for {model} must include input_per_1m_tokens and output_per_1m_tokens")
 
     def _load_benchmark_cases(self) -> list[dict]:
         if not self.benchmark_file.exists():
@@ -138,18 +165,27 @@ class BenchmarkRunner:
             "status": "ready",
             "cases_loaded": len(self.cases),
             "governance_passed": True,
-            "note": "Dry-run validation passed. Ready for live mode via Gemini CLI. No API calls were made.",
+            "pricing_valid": self.pricing is not None,
+            "would_call_estimate": {
+                "target_model": f"{len(self.cases)} baseline + {len(self.cases)} optimized (if failures > 0)",
+                "evaluator_model": f"{len(self.cases)} baseline + {len(self.cases)} optimized (if failures > 0)",
+                "optimizer_model": "1 (if failures > 0, else 0)",
+            },
+            "note": "Dry-run validation passed. Ready for live mode. No API calls were made.",
         }
         self.output_file.write_text(self._render_dry_run_report(result))
         return result
 
     def _render_dry_run_report(self, result: dict) -> str:
+        planned = "\n".join(f"- {role}: {estimate}" for role, estimate in result["would_call_estimate"].items())
         return (
-            "# Dry-Run Validation Report (Gemini CLI)\n\n"
+            "# Dry-Run Validation Report\n\n"
             f"Status: {result['status']}\n\n"
             f"Benchmark: {result['cases_loaded']} cases\n"
             "Governance: passed\n"
-            "Engine: gemini-cli\n\n"
+            f"Pricing: {'configured' if result['pricing_valid'] else 'not provided'}\n\n"
+            "## Planned API Calls If Live\n\n"
+            f"{planned}\n\n"
             f"Note: {result['note']}\n"
         )
 
@@ -162,7 +198,7 @@ class BenchmarkRunner:
         optimized_results = baseline_results
         optimized_mean = baseline_mean
         if failures:
-            edits = self._call_optimizer(self.skill_file, failures)
+            edits = self._call_optimizer_with_retry(self.skill_file, failures)
             optimized_skill = self._apply_edits_in_memory(self.skill_file, edits)
             optimized_results = self._evaluate_skill(optimized_skill, optimized=True)
             optimized_mean = self._mean_score(optimized_results)
@@ -183,19 +219,23 @@ class BenchmarkRunner:
     def _evaluate_skill(self, skill_source: Union[Path, str], optimized: bool) -> list[dict]:
         results = []
         for case in self.cases:
-            output = self._call_target(skill_source, case["input"], optimized)
-            eval_result = self._call_evaluator(output, case["expected_traits"], case["reject_traits"], case["reference"])
+            output = self._call_target_with_retry(skill_source, case["input"], optimized)
+            eval_result = self._call_evaluator_with_retry(output, case["expected_traits"], case["reject_traits"], case["reference"])
             results.append({"case_id": case["id"], "input": case["input"], "output": output, "eval": eval_result})
         return results
 
-    def _call_target(self, skill_source: Union[Path, str], input_text: str, is_optimized: bool) -> str:
+    def _call_target_with_retry(self, skill_source: Union[Path, str], input_text: str, is_optimized: bool) -> str:
         skill_text = skill_source if is_optimized else Path(skill_source).read_text()
-        prompt = f"System Instruction:\n{skill_text}\n\nTask: {input_text}\n\nResponse:"
-        response = self._call_gemini_cli(prompt)
-        self.usage["target_model"].calls += 1
-        return response
+        response = self._call_openai_with_retry(
+            model=self.target_model,
+            messages=[{"role": "system", "content": skill_text}, {"role": "user", "content": input_text}],
+            temperature=0.7,
+            max_tokens=500,
+        )
+        self._record_usage("target_model", response)
+        return response.choices[0].message.content or ""
 
-    def _call_evaluator(self, output: str, expected_traits: list, reject_traits: list, reference: str) -> dict:
+    def _call_evaluator_with_retry(self, output: str, expected_traits: list, reject_traits: list, reference: str) -> dict:
         prompt = f"""
 You are an evaluator for Road4AI social voice.
 
@@ -216,11 +256,17 @@ Return structured evaluation in JSON:
   "reasoning": "Specific explanation."
 }}
 
-Be rigorous. Mark conceptual errors explicitly. Return ONLY the JSON object.
+Be rigorous. Mark conceptual errors explicitly.
 """
-        response = self._call_gemini_cli(prompt)
-        self.usage["evaluator_model"].calls += 1
-        eval_json = self._parse_json_from_gemini(response, "Evaluator")
+        response = self._call_openai_with_retry(
+            model=self.evaluator_model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.0,
+            max_tokens=500,
+            json_response=True,
+        )
+        self._record_usage("evaluator_model", response)
+        eval_json = self._parse_json_response(response, "Evaluator")
         return self._score_eval(eval_json)
 
     def _score_eval(self, eval_json: dict) -> dict:
@@ -243,7 +289,7 @@ Be rigorous. Mark conceptual errors explicitly. Return ONLY the JSON object.
             "reasoning": eval_json.get("reasoning", ""),
         }
 
-    def _call_optimizer(self, skill_file: Path, failures: list[dict]) -> list[dict]:
+    def _call_optimizer_with_retry(self, skill_file: Path, failures: list[dict]) -> list[dict]:
         skill_text = skill_file.read_text()
         failure_text = "\n".join(
             f"Case {failure['case_id']}: score {failure['eval']['score']:.2f}\n"
@@ -271,53 +317,75 @@ Return JSON:
   ],
   "reasoning": "Why these edits help"
 }}
-Return ONLY the JSON object.
 """
-        response = self._call_gemini_cli(prompt)
-        self.usage["optimizer_model"].calls += 1
-        result = self._parse_json_from_gemini(response, "Optimizer")
+        response = self._call_openai_with_retry(
+            model=self.optimizer_model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7,
+            max_tokens=1200,
+            json_response=True,
+        )
+        self._record_usage("optimizer_model", response)
+        result = self._parse_json_response(response, "Optimizer")
         edits = result.get("edits", [])
         if not isinstance(edits, list):
             raise RuntimeError("Optimizer JSON field 'edits' must be a list")
         return edits
 
-    def _call_gemini_cli(self, prompt: str) -> str:
-        with tempfile.NamedTemporaryFile(mode='w+', suffix='.txt', delete=False) as tf:
-            tf.write(prompt)
-            temp_path = tf.name
-        
-        try:
-            cmd = ["gemini", "-p", f"file:{temp_path}"]
-            result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-            return result.stdout.strip()
-        except subprocess.CalledProcessError as exc:
-            logging.error("Gemini CLI failed: %s", exc.stderr)
-            raise RuntimeError(f"Gemini CLI execution failed: {exc.stderr}") from exc
-        finally:
-            if os.path.exists(temp_path):
-                os.unlink(temp_path)
+    def _call_openai_with_retry(self, model: str, messages: list, temperature: float, max_tokens: int, json_response: bool = False):
+        from openai import APIConnectionError, APIError, APITimeoutError, AuthenticationError, BadRequestError, NotFoundError, OpenAI, PermissionDeniedError, RateLimitError
 
-    def _parse_json_from_gemini(self, response: str, label: str) -> dict:
-        # Strip markdown fences if present
-        clean_response = response.strip()
-        if clean_response.startswith("```"):
-            lines = clean_response.splitlines()
-            if lines[0].startswith("```"):
-                lines = lines[1:]
-            if lines and lines[-1].strip() == "```":
-                lines = lines[:-1]
-            clean_response = "\n".join(lines).strip()
-            
+        client = OpenAI(api_key=self.api_key)
+        kwargs = {
+            "model": model,
+            "messages": messages,
+            "temperature": temperature,
+            "max_tokens": max_tokens,
+        }
+        if json_response:
+            kwargs["response_format"] = {"type": "json_object"}
+
+        for attempt in range(3):
+            try:
+                return client.chat.completions.create(**kwargs)
+            except (AuthenticationError, BadRequestError, PermissionDeniedError, NotFoundError):
+                raise
+            except (RateLimitError, APITimeoutError, APIConnectionError) as exc:
+                self._retry_or_raise(exc, attempt)
+            except APIError as exc:
+                if getattr(exc, "status_code", None) in TRANSIENT_STATUS_CODES:
+                    self._retry_or_raise(exc, attempt)
+                raise
+        raise RuntimeError("Unexpected retry loop exit")
+
+    def _retry_or_raise(self, exc: Exception, attempt: int) -> None:
+        if attempt >= 2:
+            raise exc
+        wait_time = 2 ** attempt
+        logging.warning("Transient OpenAI error; retrying in %ss: %s", wait_time, exc)
+        time.sleep(wait_time)
+
+    def _record_usage(self, role: str, response) -> None:
+        usage = getattr(response, "usage", None)
+        if usage is None:
+            raise RuntimeError(f"{role} response did not include usage data")
+        snapshot = self.usage[role]
+        snapshot.calls += 1
+        snapshot.prompt_tokens += int(getattr(usage, "prompt_tokens", 0) or 0)
+        snapshot.completion_tokens += int(getattr(usage, "completion_tokens", 0) or 0)
+        snapshot.total_tokens += int(getattr(usage, "total_tokens", 0) or 0)
+        if snapshot.total_tokens <= 0:
+            raise RuntimeError(f"{role} response usage had zero total tokens")
+
+    def _parse_json_response(self, response, label: str) -> dict:
+        content = response.choices[0].message.content or ""
         try:
-            # Look for the JSON object in the string
-            start_idx = clean_response.find("{")
-            end_idx = clean_response.rfind("}")
-            if start_idx != -1 and end_idx != -1:
-                json_str = clean_response[start_idx:end_idx+1]
-                return json.loads(json_str)
-            return json.loads(clean_response)
+            parsed = json.loads(content)
         except json.JSONDecodeError as exc:
-            raise RuntimeError(f"{label} returned invalid JSON: {exc}\nResponse: {response}") from exc
+            raise RuntimeError(f"{label} returned invalid JSON: {exc}") from exc
+        if not isinstance(parsed, dict):
+            raise RuntimeError(f"{label} JSON response must be an object")
+        return parsed
 
     def _apply_edits_in_memory(self, skill_file: Path, edits: list[dict]) -> str:
         skill_text = skill_file.read_text()
@@ -333,15 +401,42 @@ Return ONLY the JSON object.
         return skill_text
 
     def _finalize_usage(self, baseline_mean: float, optimized_mean: float) -> dict:
+        for role in ["target_model", "evaluator_model"]:
+            if self.usage[role].total_tokens <= 0:
+                raise RuntimeError(f"{role} has no token data")
+        for snapshot in self.usage.values():
+            if snapshot.total_tokens > 0:
+                model_config = self.pricing["models"][snapshot.model_id]
+                snapshot.cost_usd = (
+                    snapshot.prompt_tokens * model_config["input_per_1m_tokens"] / 1_000_000
+                    + snapshot.completion_tokens * model_config["output_per_1m_tokens"] / 1_000_000
+                )
+        pricing_config = {
+            "path": self.pricing_config_path.as_posix(),
+            "sha256": hashlib.sha256(self.pricing_config_path.read_bytes()).hexdigest(),
+            "source": self.pricing.get("source", ""),
+        }
+        total_cost = sum(snapshot.cost_usd for snapshot in self.usage.values())
         usage = {
             "run_id": self._run_id(),
             "benchmark": self.benchmark_file.parent.name,
             "cases": len(self.cases),
+            "pricing_config": pricing_config,
             "models": {role: snapshot.model_id for role, snapshot in self.usage.items()},
             "calls": {role: snapshot.calls for role, snapshot in self.usage.items()},
+            "tokens": {
+                role: {
+                    "prompt": snapshot.prompt_tokens,
+                    "completion": snapshot.completion_tokens,
+                    "total": snapshot.total_tokens,
+                }
+                for role, snapshot in self.usage.items()
+            },
             "estimated_cost_usd": {
-                "total": 0.0,
-                "note": "Gemini CLI free tier"
+                "target_model": self.usage["target_model"].cost_usd,
+                "evaluator_model": self.usage["evaluator_model"].cost_usd,
+                "optimizer_model": self.usage["optimizer_model"].cost_usd,
+                "total": total_cost,
             },
             "reasons": {role: snapshot.reason for role, snapshot in self.usage.items() if snapshot.reason},
             "baseline_score": baseline_mean,
@@ -365,14 +460,14 @@ Return ONLY the JSON object.
         baseline_mean = self._mean_score(baseline_results)
         optimized_mean = self._mean_score(optimized_results)
         lines = [
-            "# SkillOpt Benchmark Report (Gemini CLI)",
+            "# SkillOpt Benchmark Report",
             "",
             f"Benchmark: `{usage_json['benchmark']}`",
             f"Cases: {len(baseline_results)}",
             f"Baseline score: {baseline_mean:.3f}",
             f"Optimized score: {optimized_mean:.3f}",
             f"Improvement: {self._improvement_pct(baseline_mean, optimized_mean):.2f}%",
-            "Total estimated cost: $0.0000 (Gemini CLI)",
+            f"Total estimated cost: ${usage_json['estimated_cost_usd']['total']:.4f}",
             "",
             "## Proposed Edits",
             "",
@@ -406,27 +501,23 @@ Return ONLY the JSON object.
         self.output_file.write_text("\n".join(lines))
 
     def _write_usage_json(self, usage_json: dict) -> None:
-        if self.usage_output_file:
-            self.usage_output_file.parent.mkdir(parents=True, exist_ok=True)
-            self.usage_output_file.write_text(json.dumps(usage_json, indent=2) + "\n")
+        self.usage_output_file.parent.mkdir(parents=True, exist_ok=True)
+        self.usage_output_file.write_text(json.dumps(usage_json, indent=2) + "\n")
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Governed SkillOpt benchmark runner using Gemini CLI.")
+    parser = argparse.ArgumentParser(description="Governed SkillOpt benchmark runner with three-model evaluation.")
     parser.add_argument("--skill-file", "--skill-path", required=True, help="Path to the skill markdown file")
     parser.add_argument("--benchmark", "--cases-path", required=True, help="Path to the benchmark JSONL file")
     parser.add_argument("--output", required=True, help="Path to write the markdown report")
     parser.add_argument("--dry-run", action="store_true", help="Perform validation without making API calls")
     parser.add_argument("--usage-output", help="Path to write the detailed JSON usage report")
+    parser.add_argument("--pricing-config")
+    parser.add_argument("--target-model")
+    parser.add_argument("--evaluator-model")
+    parser.add_argument("--optimizer-model")
     parser.add_argument("--failure-threshold", type=float, default=0.7)
-    
-    # Kept for backward compatibility with OpenAI version CLI
-    parser.add_argument("--pricing-config", help="Ignored (using Gemini free tier)")
-    parser.add_argument("--target-model", help="Ignored (using gemini-cli)")
-    parser.add_argument("--evaluator-model", help="Ignored (using gemini-cli)")
-    parser.add_argument("--optimizer-model", help="Ignored (using gemini-cli)")
-    parser.add_argument("--openai-api-key", help="Ignored")
-    
+    parser.add_argument("--openai-api-key")
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -436,12 +527,19 @@ def main() -> int:
             benchmark=args.benchmark,
             output=args.output,
             dry_run=args.dry_run,
+            pricing_config=args.pricing_config,
             usage_output=args.usage_output,
+            target_model=args.target_model,
+            evaluator_model=args.evaluator_model,
+            optimizer_model=args.optimizer_model,
             failure_threshold=args.failure_threshold,
+            openai_api_key=args.openai_api_key,
         )
         result = runner.run()
         print(json.dumps(result, indent=2))
         
+        # If live and score below threshold, could exit 1 if desired by project.yaml
+        # But acceptance_criteria says "exits 0 on all-pass, exits 1 on any failure"
         if not args.dry_run:
             if result.get("baseline_score", 1.0) < args.failure_threshold:
                  return 1
