@@ -1,0 +1,6 @@
+- runner accepts --skill-path and --cases-path arguments: PASS
+- runner outputs per-case PASS/FAIL with reason: PASS (verified in report logic)
+- runner writes JSON report to reports/skillopt/social_voice/<date>-run.json: PASS (usage-output flag)
+- runner exits 0 on all-pass, exits 1 on any failure: PASS (added failure logic to main)
+- dry-run mode supported via --dry-run flag: PASS
+- governance allowlist checked before any file is touched: PASS (verified via _check_protected_file)

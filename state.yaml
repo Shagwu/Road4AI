@@ -11,7 +11,7 @@ current_phase: execute           # intake | discuss | research | plan | execute 
 
 active_project: hermes-v2.1-skillopt
 
-active_run: null                 # set when a WorkerRunner session is live e.g. RUN-2026-05-30-001
+active_run: RUN-002                 # set when a WorkerRunner session is live e.g. RUN-2026-05-30-001
 
 phase_history:
   - phase: discuss
@@ -34,7 +34,7 @@ tasks:
     assigned_to: gemini-cli
   T-003:
     title: Add Benchmark Runner
-    status: ready
+    status: verify
     depends_on: [T-001, T-002]
     assigned_to: gemini-cli
   T-004:
