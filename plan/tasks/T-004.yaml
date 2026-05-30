@@ -1,0 +1,49 @@
+---
+id: T-004
+title: Run First Dry-Run Validation
+phase: execute
+status: blocked
+wave: 3
+depends_on: [T-003]
+assigned_to: gemini-cli
+
+goal: >
+  Run the benchmark runner in --dry-run mode against at least one existing
+  SKILL.md. Produce a validation report that proves the runner works correctly
+  before any live skill mutation is attempted.
+
+inputs:
+  - tools/run_skillopt_benchmark.py         # must be complete (T-003 done)
+  - benchmarks/social_voice/social_voice_cases.jsonl
+  - marketing-skills/skills/**/SKILL.md     # target skill (pick one)
+  - docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md
+
+touches:
+  - verify/reports/V-001.md                 # CREATE — formal validation report
+  - reports/skillopt/social_voice/<date>-dry-run-validation.md
+
+acceptance_criteria:
+  - Dry-run completes without error
+  - All 10+ benchmark cases evaluated
+  - Per-case PASS/FAIL recorded with reasoning
+  - V-001.md exists with overall status field (PASS or FAIL)
+  - No actual skill files mutated during run
+  - Governance allowlist enforcement verified (runner rejected out-of-scope path)
+
+verification:
+  - inspect: verify/reports/V-001.md
+  - check: V-001.md contains field "status: PASS"
+  - check: no git diff on SKILL.md files after run
+
+budget:
+  max_tokens: 30000
+  max_minutes: 15
+
+output_contract:
+  - result.md
+  - changed-files.txt
+  - self-check.md
+
+commit_message: "test: dry-run validation report V-001 [T-004]"
+
+unblock_condition: T-003 status=done

@@ -1,0 +1,54 @@
+---
+id: T-003
+title: Add Benchmark Runner
+phase: execute
+status: blocked
+wave: 2
+depends_on: [T-001, T-002]
+assigned_to: gemini-cli
+
+goal: >
+  Build or harden tools/run_skillopt_benchmark.py so it reads
+  social_voice_cases.jsonl, runs each case against a target skill,
+  scores pass/fail per acceptance criteria, and writes a structured report.
+  The runner is the automation backbone of the SkillOpt loop.
+
+inputs:
+  - plan/tasks/T-001.yaml               # governance boundary (must exist)
+  - plan/tasks/T-002.yaml               # benchmark cases (must exist)
+  - benchmarks/social_voice/social_voice_cases.jsonl
+  - tools/run_skillopt_benchmark.py     # extend if exists, create if not
+  - tools/skillopt_openai.py            # reference implementation
+
+touches:
+  - tools/run_skillopt_benchmark.py     # primary deliverable
+  - benchmarks/social_voice/README.md  # update with run instructions
+
+acceptance_criteria:
+  - runner accepts --skill-path and --cases-path arguments
+  - runner outputs per-case PASS/FAIL with reason
+  - runner writes JSON report to reports/skillopt/social_voice/<date>-run.json
+  - runner exits 0 on all-pass, exits 1 on any failure
+  - dry-run mode supported via --dry-run flag (no skill mutation)
+  - governance allowlist checked before any file is touched
+
+verification:
+  - run: "python3 tools/run_skillopt_benchmark.py --dry-run --cases-path benchmarks/social_voice/social_voice_cases.jsonl"
+    expect: exit 0, report written
+  - inspect:
+      - tools/run_skillopt_benchmark.py
+      - reports/skillopt/social_voice/
+
+budget:
+  max_tokens: 50000
+  max_minutes: 20
+
+output_contract:
+  - result.md
+  - changed-files.txt
+  - self-check.md
+
+commit_message: "feat: harden SkillOpt benchmark runner [T-003]"
+
+unblock_condition: >
+  T-001 status=done AND T-002 status=done

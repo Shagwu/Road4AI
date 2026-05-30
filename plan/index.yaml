@@ -1,0 +1,42 @@
+---
+# Road4AI Plan Index
+# Active project: Hermes v2.1 SkillOpt Integration
+# Source plan: docs/plans/2026-05-29-hermes-v2-1-skillopt-roadmap.md
+# Do not edit tasks here — edit the T-xxx.yaml files in plan/tasks/
+# This file is the orchestrator's queue. Read it to determine what runs next.
+
+project: hermes-v2.1-skillopt
+phase: execute
+created: "2026-05-30"
+
+execution_order:
+  wave_1:           # parallel — no dependencies
+    - T-001
+    - T-002
+  wave_2:           # requires wave_1 complete
+    - T-003
+  wave_3:           # requires T-003
+    - T-004
+  wave_4:           # requires T-004
+    - T-005
+  wave_5:           # requires T-005 — content/launch task
+    - T-006
+
+next_ready:
+  - T-001
+  - T-002
+
+dependency_graph:
+  T-001: []
+  T-002: []
+  T-003: [T-001, T-002]
+  T-004: [T-003]
+  T-005: [T-004]
+  T-006: [T-005]
+
+launch_readiness_criteria:
+  - SkillOpt benchmark runner passes all social_voice cases
+  - At least one live skill improved without breaking voice benchmark
+  - Governance doc committed and verified
+  - Dry-run validation report exists in verify/reports/
+  - v2.1 proof package drafted in ship/

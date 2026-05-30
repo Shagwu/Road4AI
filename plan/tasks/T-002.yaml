@@ -1,0 +1,57 @@
+---
+id: T-002
+title: Build Social Voice Benchmark
+phase: execute
+status: ready
+wave: 1
+depends_on: []
+assigned_to: gemini-cli
+
+goal: >
+  Create 10-20 labeled JSONL benchmark cases that evaluate whether any
+  Road4AI skill preserves Sharon's technical, direct, high-signal voice.
+  These cases are the ground truth for all future SkillOpt runs.
+
+inputs:
+  - docs/brand-voice.md                 # Sharon's voice rules
+  - docs/content-strategy.md            # platform and audience context
+  - state/published-log.json            # real published posts as reference examples
+
+touches:
+  - benchmarks/social_voice/social_voice_cases.jsonl   # CREATE or EXTEND (min 10 cases)
+  - benchmarks/social_voice/README.md                  # CREATE if not present
+
+acceptance_criteria:
+  - social_voice_cases.jsonl contains at least 10 records
+  - Every record has fields: id, input, expected_traits, reject_traits, reference
+  - JSONL validates cleanly (python3 json parse exits 0)
+  - README.md defines pass criteria and fail criteria
+  - At least 3 cases test LinkedIn hook format
+  - At least 2 cases test technical accuracy (no hype without evidence)
+  - No case uses generic AI marketing language in the reference field
+
+verification:
+  - run: "python3 -c 'import json, pathlib; [json.loads(l) for l in pathlib.Path(\"benchmarks/social_voice/social_voice_cases.jsonl\").read_text().splitlines() if l.strip()]'"
+    expect: exit 0
+  - run: "wc -l benchmarks/social_voice/social_voice_cases.jsonl"
+    expect: ">= 10 lines"
+  - inspect:
+      - benchmarks/social_voice/social_voice_cases.jsonl
+      - benchmarks/social_voice/README.md
+
+budget:
+  max_tokens: 30000
+  max_minutes: 15
+
+output_contract:
+  - result.md
+  - changed-files.txt
+  - self-check.md
+
+commit_message: "test: add social voice SkillOpt benchmark [T-002]"
+
+notes: >
+  Reference voice traits from docs/brand-voice.md hard rules:
+  no em dashes, no jargon, storytelling-first, human-in-the-loop always,
+  technical claims must be backed by evidence. Reject vague, buzzword-heavy,
+  overpromising, or generic AI tone.

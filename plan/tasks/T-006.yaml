@@ -1,0 +1,57 @@
+---
+id: T-006
+title: Prepare v2.1 Launch Proof Package
+phase: execute
+status: blocked
+wave: 5
+depends_on: [T-005]
+assigned_to: claude              # content + narrative = Claude's lane
+
+goal: >
+  Assemble the Hermes v2.1 public launch package. This includes release notes,
+  a LinkedIn/X reveal post, proof artifacts (benchmark report, before/after diff),
+  and a ship checklist. This is the content deliverable that turns the engineering
+  work into public momentum.
+
+inputs:
+  - verify/reports/V-001.md
+  - verify/reports/V-002.md
+  - docs/brand-voice.md
+  - docs/content-strategy.md
+  - MAY_ROADMAP.md               # Week 5 ecosystem shift context
+  - STRATEGY.md                  # post-reveal positioning
+
+touches:
+  - ship/release-notes.md        # CREATE — technical release notes
+  - ship/pr-draft.md             # UPDATE — final merge checklist
+  - drafts/ready/hermes-v2-1-reveal-linkedin.md   # CREATE — LinkedIn post
+  - drafts/ready/hermes-v2-1-reveal-x.md          # CREATE — X thread
+
+acceptance_criteria:
+  - release-notes.md covers: what changed, what SkillOpt does, safety constraints
+  - LinkedIn post is 3-5 paragraphs, no em dashes, storytelling-first, specific claim
+  - X thread is 3-5 tweets, first tweet is a standalone hook
+  - Both posts reference a concrete benchmark result (not vague "improved")
+  - No generic AI marketing language anywhere
+  - pr-draft.md has a signed-off merge checklist with all prior task gates
+
+verification:
+  - inspect: ship/release-notes.md
+  - inspect: drafts/ready/hermes-v2-1-reveal-linkedin.md
+  - inspect: drafts/ready/hermes-v2-1-reveal-x.md
+  - brand_check: run docs/brand-voice.md rules against both posts manually
+
+budget:
+  max_tokens: 40000
+  max_minutes: 20
+
+output_contract:
+  - result.md
+  - changed-files.txt
+  - self-check.md
+
+commit_message: "content: Hermes v2.1 launch proof package [T-006]"
+
+human_gate: REQUIRED             # Sharon approves all content before scheduling
+
+unblock_condition: T-005 status=done AND ship/pr-draft.md human_approved=true

@@ -1,0 +1,65 @@
+---
+# Road4AI Project Identity
+# Source of truth for repo-wide settings. All agents read this at session start.
+# Do NOT duplicate into GEMINI.md — reference this file instead.
+
+project:
+  name: Road4AI
+  handle: road4ai
+  github_pages: shagwu.github.io/Road4AI
+  owner: Sharon (Shagwu)
+  description: >
+    Local-first, zero-cost, CLI-native multi-agent AI infrastructure.
+    Built in public. Python-first.
+
+runtime:
+  primary_agent: gemini-cli
+  planner_agent: claude        # Claude = Codex/Planner role
+  publisher: blotato
+  memory_layer: hermes-v2.0
+  vector_db: chromadb
+
+providers:
+  default: gemini-cli
+  fallback: claude
+  routing_policy: task-type    # route by: task-type | cost | privacy
+
+tools_allowed:
+  - gemini-cli
+  - claude
+  - chromadb
+  - blotato
+  - magika
+  - ruvector
+  - run_skillopt_benchmark.py
+  - locker.py
+
+coding_standards:
+  language: python
+  style: pep8
+  test_runner: pytest
+  commit_format: "CHECKPOINT: <description> [hermes-context]...[/hermes-context]"
+
+branch_policy:
+  main: protected
+  work_branch: feature/<task-id>-<slug>
+  merge_gate: verify_pass_required
+
+protected_files:
+  - AGENTS.md
+  - state/current-queue.json
+  - state/published-log.json
+  - docs/brand-voice.md
+  - docs/content-strategy.md
+  - project.yaml
+
+brand:
+  voice_file: docs/brand-voice.md
+  content_strategy: docs/content-strategy.md
+  platforms:
+    - linkedin
+    - x
+    - instagram
+    - tiktok
+    - facebook
+    - threads
