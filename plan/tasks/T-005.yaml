@@ -1,0 +1,55 @@
+---
+id: T-005
+title: Run One Live Controlled Optimization
+phase: execute
+status: blocked
+wave: 4
+depends_on: [T-004]
+assigned_to: gemini-cli
+
+goal: >
+  Run SkillOpt live (not dry-run) against exactly one allowlisted SKILL.md.
+  Produce a patch proposal, pass it through the voice benchmark, and require
+  human approval before committing the change. This is the first real SkillOpt
+  loop with all safety gates active.
+
+inputs:
+  - tools/run_skillopt_benchmark.py
+  - docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md
+  - verify/reports/V-001.md               # must be PASS
+  - benchmarks/social_voice/social_voice_cases.jsonl
+  - target SKILL.md (one file from allowlist)
+
+touches:
+  - execution/runs/RUN-<date>-005/        # run bundle and results
+  - verify/reports/V-002.md               # post-optimization verification
+  - ship/pr-draft.md                      # patch proposal for human review
+
+acceptance_criteria:
+  - Patch proposal written before any file is mutated
+  - Benchmark score on optimized skill >= score on original skill
+  - No rejection rules triggered (no weakened safety language etc.)
+  - Human approval checkpoint inserted — DO NOT auto-commit
+  - V-002.md records before/after benchmark scores
+  - pr-draft.md contains diff summary and approval instructions
+
+verification:
+  - inspect: verify/reports/V-002.md
+  - check: V-002.md contains before_score and after_score fields
+  - check: ship/pr-draft.md exists and contains human approval gate instruction
+  - confirm: SKILL.md not committed until Sharon approves pr-draft.md
+
+budget:
+  max_tokens: 60000
+  max_minutes: 25
+
+output_contract:
+  - result.md
+  - changed-files.txt
+  - self-check.md
+
+commit_message: "feat: first live SkillOpt run with approval gate [T-005]"
+
+human_gate: REQUIRED             # agent must HALT and wait for Sharon before committing skill change
+
+unblock_condition: T-004 status=done AND verify/reports/V-001.md status=PASS

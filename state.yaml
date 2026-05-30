@@ -1,0 +1,74 @@
+---
+# Road4AI Workflow State
+# Updated by orchestrator after every phase transition or task completion.
+# Agents read this first. Never edit manually mid-task — only at phase boundaries.
+# Source of truth: this file + state/current-queue.json (content pipeline state)
+
+updated: "2026-05-30"
+updated_by: claude
+
+current_phase: execute           # intake | discuss | research | plan | execute | verify | ship
+
+active_project: hermes-v2.1-skillopt
+
+active_run: null                 # set when a WorkerRunner session is live e.g. RUN-2026-05-30-001
+
+phase_history:
+  - phase: discuss
+    completed: "2026-05-29"
+    artifact: docs/plans/2026-05-29-hermes-v2-1-skillopt-roadmap.md
+  - phase: plan
+    completed: "2026-05-30"
+    artifact: plan/index.yaml
+
+tasks:
+  T-001:
+    title: Define SkillOpt Governance Boundary
+    status: ready                # ready | in-progress | verify | done | blocked
+    depends_on: []
+    assigned_to: gemini-cli
+  T-002:
+    title: Build Social Voice Benchmark
+    status: ready
+    depends_on: []
+    assigned_to: gemini-cli
+  T-003:
+    title: Add Benchmark Runner
+    status: blocked
+    depends_on: [T-001, T-002]
+    assigned_to: gemini-cli
+  T-004:
+    title: Run First Dry-Run Validation
+    status: blocked
+    depends_on: [T-003]
+    assigned_to: gemini-cli
+  T-005:
+    title: Run One Live Controlled Optimization
+    status: blocked
+    depends_on: [T-004]
+    assigned_to: gemini-cli
+  T-006:
+    title: Prepare v2.1 Launch Proof Package
+    status: blocked
+    depends_on: [T-005]
+    assigned_to: claude
+
+last_checkpoint:
+  commit: null                   # fill in after first git checkpoint
+  confidence: medium
+  agent: claude
+  note: >
+    GSD scaffold created. T-001 and T-002 are ready to execute.
+    T-003 through T-006 blocked on upstream tasks completing.
+
+phase_gates:
+  execute_requires:
+    - plan/index.yaml exists
+    - at least one task in status=ready
+  verify_requires:
+    - task result.md written
+    - changed-files.txt written
+    - self-check against acceptance_criteria completed
+  ship_requires:
+    - verify/reports/V-xxx.md exists with status=PASS
+    - human approval on pr-draft.md

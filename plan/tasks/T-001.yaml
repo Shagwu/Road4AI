@@ -1,0 +1,46 @@
+---
+id: T-001
+title: Define SkillOpt Governance Boundary
+phase: execute
+status: ready
+wave: 1
+depends_on: []
+assigned_to: gemini-cli
+
+goal: >
+  Create the governance document that defines which files SkillOpt may edit,
+  which files are protected, the review gate requirement, and rejection rules.
+  This is the safety contract for the entire SkillOpt loop.
+
+inputs:
+  - project.yaml                          # protected_files list
+  - AGENTS.md                             # operating contract reference
+  - docs/brand-voice.md                   # what must be preserved
+
+touches:
+  - docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md   # CREATE
+
+acceptance_criteria:
+  - File docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md exists
+  - Contains section "Editable Files" with explicit allowlist
+  - Contains section "Protected Files" listing AGENTS.md, state files, brand docs
+  - Contains section "Review Gate" — no auto-apply rule
+  - Contains section "Rejection Rules" — 5 reject conditions defined
+  - rg verify command exits 0 confirming all sections present
+
+verification:
+  - run: "rg -n 'Editable Files|Protected Files|Review Gate|Rejection Rules' docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md"
+    expect: 4 matches, exit 0
+  - inspect:
+      - docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md
+
+budget:
+  max_tokens: 20000
+  max_minutes: 10
+
+output_contract:
+  - result.md           # write to execution/runs/RUN-xxx/result.md
+  - changed-files.txt   # list: docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md
+  - self-check.md       # one line per acceptance criterion: PASS or FAIL + reason
+
+commit_message: "docs: define SkillOpt governance boundary [T-001]"
