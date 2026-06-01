@@ -1,6 +1,36 @@
 {
   "published": [
     {
+      "id": "2026-06-w1-memory-expiration-x",
+      "title": "Memory Needs an Expiration Date",
+      "platform": "X",
+      "type": "Tutorial",
+      "status": "published",
+      "submissionId": "b65c10cd-eed7-41e4-9e7b-02f5607545b2",
+      "published_at": "2026-06-01T10:00:00+01:00",
+      "outcome": "Published to X via Blotato. Confirmed by operator; thread adaptation of the memory governance post."
+    },
+    {
+      "id": "2026-06-w1-memory-expiration-li",
+      "title": "Memory Needs an Expiration Date",
+      "platform": "LinkedIn",
+      "type": "Tutorial",
+      "status": "published",
+      "submissionId": "54d059b4-253e-4556-87f1-50c3fa026c85",
+      "published_at": "2026-06-01T10:00:00+01:00",
+      "outcome": "Published to LinkedIn via Blotato. Confirmed by operator; tutorial on memory governance, decay, pruning, and forgetting on purpose."
+    },
+    {
+      "id": "2026-06-w1-standalone-substrate-li",
+      "title": "The Standalone Substrate: Why I Extracted Hermes",
+      "platform": "LinkedIn",
+      "type": "Win",
+      "status": "published",
+      "submissionId": "f0f3d30e-8551-4190-b020-fcf0d111504e",
+      "published_at": "2026-06-01T10:00:00+01:00",
+      "outcome": "Published to LinkedIn via Blotato. Confirmed by operator; narrative post about extracting Hermes into a standalone substrate."
+    },
+    {
       "id": "2026-05-26-hermes-reveal-li",
       "title": "Hermes v2.0: The Distributed Substrate (LinkedIn)",
       "platform": "LinkedIn",

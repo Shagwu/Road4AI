@@ -8,13 +8,14 @@
       "platform": "LinkedIn",
       "goal": "Build in Public",
       "source": "ideas.md",
-      "status": "scheduled",
+      "status": "published",
       "priority": 1,
       "created_at": "2026-05-26T10:30:00Z",
-      "status_updated_at": "2026-05-26T11:45:00Z",
+      "status_updated_at": "2026-06-01T10:00:00+01:00",
       "scheduled_time": "2026-06-01T09:00:00Z",
       "blotato_id": "f0f3d30e-8551-4190-b020-fcf0d111504e",
-      "notes": "Narrative post about the modular pivot and standalone plugin extraction."
+      "notes": "Published to LinkedIn via Blotato on June 1, 2026. Narrative post about modular Hermes extraction.",
+      "published_at": "2026-06-01T10:00:00+01:00"
     },
     {
       "id": "2026-06-w1-revolt-guide-x",
@@ -56,16 +57,17 @@
       "platform": "X",
       "goal": "Teach",
       "source": "roadmap",
-      "status": "scheduled",
+      "status": "published",
       "priority": 3,
       "week": "2026-23",
       "created_at": "2026-05-20T13:20:00Z",
       "updated_at": "2026-05-27T10:45:00Z",
-      "status_updated_at": "2026-05-27T10:45:00Z",
-      "notes": "X thread adaptation of the LinkedIn memory governance post. Anchor line: 'You have built a hoard.' Keep every post under 280 chars.",
+      "status_updated_at": "2026-06-01T10:00:00+01:00",
+      "notes": "Published to X via Blotato on June 1, 2026. Thread adaptation on memory governance; all posts approved under X constraints.",
       "experimental": false,
       "scheduled_time": "2026-06-01T09:00:00Z",
-      "blotato_id": "b65c10cd-eed7-41e4-9e7b-02f5607545b2"
+      "blotato_id": "b65c10cd-eed7-41e4-9e7b-02f5607545b2",
+      "published_at": "2026-06-01T10:00:00+01:00"
     },
     {
       "id": "2026-06-w1-memory-expiration-li",
@@ -75,16 +77,17 @@
       "platform": "LinkedIn",
       "goal": "Teach",
       "source": "roadmap",
-      "status": "scheduled",
+      "status": "published",
       "priority": 2,
       "week": "2026-23",
       "created_at": "2026-05-20T13:00:00Z",
       "updated_at": "2026-05-27T10:45:00Z",
-      "status_updated_at": "2026-05-27T10:45:00Z",
-      "notes": "Post-reveal tutorial on memory governance: retention, pruning, decay, contradiction handling, and forgetting on purpose.",
+      "status_updated_at": "2026-06-01T10:00:00+01:00",
+      "notes": "Published to LinkedIn via Blotato on June 1, 2026. Tutorial on memory governance and forgetting on purpose.",
       "experimental": false,
       "scheduled_time": "2026-06-01T09:00:00Z",
-      "blotato_id": "54d059b4-253e-4556-87f1-50c3fa026c85"
+      "blotato_id": "54d059b4-253e-4556-87f1-50c3fa026c85",
+      "published_at": "2026-06-01T10:00:00+01:00"
     },
     {
       "id": "2026-05-w2-self-optimizing",
