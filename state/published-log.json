@@ -1,6 +1,36 @@
 {
   "published": [
     {
+      "id": "2026-05-27-autonomy-trap-li",
+      "title": "The Autonomy Trap",
+      "platform": "LinkedIn",
+      "type": "Win",
+      "status": "published",
+      "submissionId": "45f6e6d1-7c9b-4e8a-8a12-5112c322b04f",
+      "published_at": "2026-06-01T10:45:00+01:00",
+      "outcome": "Published to LinkedIn via Blotato. Operator corrected earlier status and confirmed the post was published."
+    },
+    {
+      "id": "2026-05-27-181ms-honesty-call-x",
+      "title": "The 181ms Honesty Call",
+      "platform": "X",
+      "type": "Behind-the-scenes",
+      "status": "published",
+      "submissionId": "e99ad2ed-7271-4425-b17f-98c3c636b212",
+      "published_at": "2026-06-01T10:45:00+01:00",
+      "outcome": "Published to X via Blotato. Operator corrected earlier status and confirmed the post was published."
+    },
+    {
+      "id": "2026-05-27-security-theater-trap-li",
+      "title": "The Security Theater Trap",
+      "platform": "LinkedIn",
+      "type": "Behind-the-scenes",
+      "status": "published",
+      "submissionId": "56b27ee7-a7f5-46af-8511-fe65dfea4b52",
+      "published_at": "2026-06-01T10:45:00+01:00",
+      "outcome": "Published to LinkedIn via Blotato. Operator corrected earlier status and confirmed the post was published."
+    },
+    {
       "id": "2026-06-w1-memory-expiration-x",
       "title": "Memory Needs an Expiration Date",
       "platform": "X",
