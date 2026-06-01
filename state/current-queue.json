@@ -25,13 +25,14 @@
       "platform": "X",
       "goal": "Nurture",
       "source": "ideas.md",
-      "status": "scheduled",
+      "status": "published",
       "priority": 2,
       "created_at": "2026-05-26T10:30:00Z",
-      "status_updated_at": "2026-05-26T11:45:00Z",
+      "status_updated_at": "2026-06-01T11:00:00+01:00",
       "scheduled_time": "2026-06-02T09:00:00Z",
       "blotato_id": "cff5e6f0-db4f-4fb9-af13-1113c322043f",
-      "notes": "Thread highlighting the new CONTRIBUTING.md and how to get involved."
+      "notes": "Published to X via Blotato. Operator confirmed the scheduled June 2 post was already posted.",
+      "published_at": "2026-06-01T11:00:00+01:00"
     },
     {
       "id": "2026-06-w1-memory-expiration-x",
