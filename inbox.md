@@ -33,7 +33,7 @@ Examples of what belongs here:
 - Nailed the "System Integrity" hook: "Even if the model has no integrity, the system does." It's the core of the Road4AI brand.
 
 ### Consumed (podcasts, repos, articles, tools that stuck with me)
-- 
+- $1M Solo AI Agent Business Playbook (Greg Isenberg/Nick from Orgo) — "Digital Employees" vs AI tools.
 
 ### Questions (things people asked me, or I asked myself)
 - 
@@ -144,4 +144,34 @@ This week focused on the transition from "Demo Scale" to "System Scale," highlig
 - **Utility vs. Identity (2026-05-08)**: Handwriting journals to preserve identity.
 - **Addy Osmani Agent-Skills x Sunday Signal (2026-05-11)**: Content as Code SDLC shift.
 
+---
+## SCOUT DROP — $1M Solo AI Agent Business Playbook — 2026-06-02
+
+**Source type:** video
+**Core angle:** Selling high ticket digital employees to legacy industries via a rapid deployment stack.
+
+**Content signals (raw):**
+- Transitioning from selling prompts to selling digital employees at $5k/mo.
+- The 48 hour deployment hook for legacy industry clients.
+- Using VMs to give clients a visual window into agent activity for trust.
+- The "Agents Building Agents" meta-workflow for solo scaling.
+- Fleet management via Orgo MCP for remote updates and monitoring.
+
+**Standout quote or moment:**
+> Sell the outcome of a digital employee, not the technical tool used to build it.
+
+**Frameworks extracted:**
+- The 48-Hour Outcome Loop — Rapid identification and deployment of high friction task agents.
+
+**Repurposing seeds:**
+- Twitter/X thread angle: How to build a $1M solo agency by selling to the least tech-savvy industries.
+- LinkedIn post angle: Why visual transparency is the missing link in enterprise AI adoption.
+- Short-form video hook: I am building a $1M business with zero human employees.
+
+**Reflection questions (for Shagwu to sit with):**
+1. Does the current Road4AI stack support a 48 hour deployment cycle for a new vertical?
+2. How can we use the "visual VM" concept to make the Orchestrator's work more transparent?
+3. What is the one legacy industry task where a Hermes-powered agent provides a 10x outcome today?
+
+**Scout confidence:** 🔥 high signal
 ---
