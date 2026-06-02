@@ -187,7 +187,7 @@ class SkillOptClient:
         failure_text = "\n".join([
             f"- Task: {f.get('task', '')}\n"
             f"  Output: {f.get('output', '')}\n"
-            f"  Expected: {f.get('target', '')}\n"
+            f"  Expected: {f.get('expected', f.get('target', ''))}\n"
             f"  Score: {f.get('score', 0)}"
             for f in failures[:5]  # Show first 5 failures
         ])
