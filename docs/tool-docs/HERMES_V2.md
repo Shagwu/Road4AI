@@ -2,6 +2,14 @@
 
 Hermes v2.0 is the high-performance, distributed memory substrate for the Road4AI agent stack. It replaces the local-only HNSW setup from V1 with a scalable ChromaDB-backed architecture capable of supporting 100+ concurrent agents.
 
+## Narrative Positioning
+
+- **v2.0 — Hermes remembers:** distributed memory, lifecycle controls, and a standalone substrate.
+- **v2.1 — Hermes learns:** SkillOpt integration moves from local validation into governed optimization runs for selected Road4AI skills.
+- **v2.2 — Hermes scales:** community contribution paths expand once the memory and learning loops have safe operating boundaries.
+
+SkillOpt validation is intentionally treated as a v2.1 proof point, not the v2.0 headline. The v2.0 reveal should stay focused on memory; the validation report is preserved separately for the v2.1 launch narrative.
+
 ## 🏗️ Architecture
 
 Hermes v2.0 follows a "Distributed Pivot" strategy:
