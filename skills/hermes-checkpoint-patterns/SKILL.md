@@ -90,6 +90,5 @@ For recovery, return:
 ## Related Skills
 
 - `hermes-checkpoint`
-- `content-ideation-orchestrator`
+- `content-pipeline`
 - `adversarial-review-karen`
-

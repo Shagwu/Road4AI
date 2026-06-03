@@ -130,15 +130,14 @@ Before deleting or merging any skill:
 
 ## Immediate Consolidation Targets
 
-1. Merge `skills/content-ideation-orchestrator` into `skills/content-pipeline`.
+1. Keep `skills/content-pipeline` as the single canonical content lifecycle skill.
 2. Keep `.agents/skills/hermes-checkpoint` as operational runtime.
 3. Keep `skills/hermes-checkpoint-patterns` as teaching/audit unless later merged.
 4. Classify `.agents/skills/*` by tier in `skills/manifest.json`.
-5. Move `.agents/marketing/` reference docs to `docs/marketing/`.
+5. Keep `.agents/marketing/` reference docs in `docs/marketing/`.
 
 ## Inventory Review Cadence
 
 - Per sprint: record which skills are actually invoked.
 - Per quarter: consolidate overlaps and archive dead weight.
 - Every six months: audit runtime loading and source/runtime drift.
-
