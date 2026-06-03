@@ -3,8 +3,9 @@
     "decision": "option_b_source_to_runtime_install",
     "canonical_source": "skills",
     "runtime_targets": [".agents/skills", ".gemini/skills"],
-    "manual_sync": true,
-    "sync_tool_status": "planned"
+    "manual_sync": false,
+    "sync_tool": "tools/sync_skills.py",
+    "sync_tool_status": "available"
   },
   "canonical_skills": {
     "adversarial-review-karen": {
