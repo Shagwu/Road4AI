@@ -116,7 +116,14 @@ Road4AI uses Option B: `skills/` is canonical source; runtime locations are inst
 - Vendor and tool skills may live directly in `.agents/skills/`.
 - Road4AI-authored skills should be authored in `skills/` first, then mirrored into runtime locations only when needed.
 
-Manual sync is acceptable during consolidation. A future `tools/sync_skills.py` can automate installs and drift checks after the inventory stabilizes.
+`tools/sync_skills.py` installs canonical skills into runtime targets and reports source/runtime drift.
+
+Use:
+
+```bash
+python3 tools/sync_skills.py --check
+python3 tools/sync_skills.py --sync
+```
 
 ## Consolidation Rules
 
