@@ -12,6 +12,7 @@ Primary focus:
 - Preserve `AGENTS.md` as the operating contract.
 - Formalize the five-agent content pipeline as a reusable skill.
 - Add public sanitization rules before security/autonomy content is published.
+- Extract working Road4AI operating patterns into reusable skills.
 
 ## Recent Checkpoints
 
@@ -40,11 +41,10 @@ Primary focus:
 
 ## Active Governance Backlog
 
-1. Add deterministic sanitizer script for public drafts.
-2. Add tests for sanitizer and queue dedup behavior.
-3. Wire sanitization into a pre-publish checklist or hook.
-4. Audit Road4AI skills against the standardized `SKILL.md` structure.
-5. Consider filesystem-level protection for `AGENTS.md`.
+1. Audit Road4AI skills against the standardized `SKILL.md` structure.
+2. Consider filesystem-level protection for `AGENTS.md`.
+3. Add broader hook coverage for publishing workflows if the deterministic sanitizer needs stronger enforcement.
+4. Decide whether to consolidate overlapping content pipeline skills after Phase 3 extraction.
 
 ## Content Pipeline Pattern
 
@@ -109,3 +109,17 @@ Parallelize independent research and ideation work. Keep drafting, approval, and
 - `WORKING-CONTEXT.md` added as live execution memory.
 - `content-pipeline` and `public-sanitization-review` skills added.
 - `hermes-checkpoint` skill standardized to the Road4AI skill template.
+
+### Phase 2 Security and Sanitization
+
+- Deterministic public sanitizer added under `tools/public_sanitizer.py`.
+- Sanitizer wired into `tools/verify_content.py`.
+- Security Theater Trap exploit phrase abstracted to `<INSTRUCTION_INJECTION_EXAMPLE>`.
+- Sanitized draft moved to `drafts/ready/security-theater-abstraction.md`.
+- Sanitizer tests added.
+
+### Phase 3 Pattern Extraction
+
+- `adversarial-review-karen` captures the local two-model Karen review gate.
+- `content-ideation-orchestrator` captures the weekly five-agent ideation flywheel.
+- `hermes-checkpoint-patterns` captures cross-session state and handoff behavior.
