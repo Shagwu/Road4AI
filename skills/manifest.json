@@ -161,9 +161,10 @@
   "archive_reference": {
     "agents_marketing_docs": {
       "tier": 5,
-      "location": ".agents/marketing",
-      "status": "move_pending",
-      "target": "docs/marketing"
+      "location": "docs/marketing",
+      "status": "moved",
+      "previous_location": ".agents/marketing",
+      "notes": "Reference material, not runtime skills."
     }
   }
 }
