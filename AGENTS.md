@@ -9,6 +9,44 @@ This document governs the collaboration between **Gemini CLI** and **Codex** (an
 3. `docs/brand-voice.md`
 4. `docs/content-strategy.md`
 
+For governance or content sessions, also read:
+5. `WORKING-CONTEXT.md`
+6. Relevant files under `rules/`
+
+## Rules System
+
+`rules/` is the canonical enforcement layer for repeatable Road4AI policy.
+
+- `rules/common/`: governance, approval gates, dedup, git, and security.
+- `rules/content/`: voice, public sanitization, and content mix.
+- `rules/python/`: Hermes and CLI-native engineering patterns.
+
+Agents must use these files as standing instructions. If a rule conflicts with this file, `AGENTS.md` wins and the conflict must be reported.
+
+## Autonomy Levels
+
+### DO
+
+- Read the required coordination files before work begins.
+- Run the queue audit at the start of content sessions.
+- Draft, edit, validate, and organize content within the lifecycle folders.
+- Use deterministic checks for deduplication, sanitization, and platform constraints.
+- Preserve the existing shape of shared state files unless the user approves a migration.
+
+### ASK
+
+- Before editing `AGENTS.md`, changing approval gates, publishing content, deploying code, or modifying credentials.
+- Before resolving or bypassing a dedup conflict.
+- Before moving content into a new lifecycle stage when ownership is unclear.
+
+### NEVER
+
+- Modify `AGENTS.md` without explicit per-session human approval.
+- Move content into `drafts/approved/` on behalf of the user.
+- Publish, schedule, or mark content as approved before the approval gate is satisfied.
+- Delete queue entries silently.
+- Include secrets, private data, or copy-pasteable exploit payloads in public content.
+
 ## Agent Roles
 
 ### Codex (Planner & Drafter)
@@ -36,11 +74,46 @@ This document governs the collaboration between **Gemini CLI** and **Codex** (an
   - Generate a clean `INBOX.MD` append block (Part 2).
   - Automatically append the signal block to `inbox.md`.
 
+## Parallel vs. Sequential Work
+
+### Parallel
+
+Use parallel workstreams when operations are independent:
+
+- Content ideation: Trend Researcher, Format Selector, and Voice-Match Ideator can run simultaneously.
+- Security/content safety: sanitizer review, trope audit, and platform constraint validation can run simultaneously.
+- Repository exploration: file reads, searches, and independent inspections should be parallelized where possible.
+
+### Sequential
+
+Keep dependent gates sequential:
+
+1. Ideation and source extraction.
+2. Dedup gate.
+3. Human review when required.
+4. Drafting.
+5. Public sanitization and platform validation.
+6. User approval.
+7. Scheduling or publishing.
+8. Queue and published-log updates.
+
+## Workflow Surface Policy
+
+Road4AI is skills-first.
+
+- Canonical reusable workflows live in `skills/<skill-name>/SKILL.md`.
+- Durable operating policy lives in `rules/`.
+- Slash commands or harness-specific command folders are legacy compatibility surfaces and should not be expanded unless explicitly requested.
+- New agents or skills should only be added when they solve a repeatable Road4AI problem.
+
 ## Shared State Architecture
 We use the file system as our shared memory:
 - `state/current-queue.json`: Active tasks and ideas.
 - `state/published-log.json`: Record of everything already posted.
 - `drafts/`: Folders represent the lifecycle stage (Idea -> Ready -> Approved -> Archived).
+- `WORKING-CONTEXT.md`: Current sprint, constraints, backlog, and completed context.
+- `rules/`: Governance and enforcement rules.
+- `skills/`: Reusable Road4AI workflows.
 
 ## Coordination Protocol
 1. **Deduplication**: Before drafting, check `state/published-log.json` and `state/current-queue.json`.
@@ -53,6 +126,9 @@ We use the file system as our shared memory:
    - Enforce filesystem-level write protection on `AGENTS.md`.
    - Enforce hard `NEVER` rules in agent specs so config mutations are surfaced with `[HUMAN_REVIEW_REQUIRED]`.
    - Finish the input sanitization defense layer before making public safety claims about transcript handling.
+8. **Public Sanitization**: Any draft discussing security, prompt injection, autonomy failures, private workflows, or customer examples must pass public sanitization review before approval or scheduling.
+9. **Security Before Commit**: Before committing, check for hardcoded secrets, bearer tokens, OAuth files, private local paths, private account IDs, copy-pasteable exploit payloads, and accidental protected-file edits.
+10. **Queue Shape Preservation**: `state/current-queue.json` currently uses a top-level `queue` array. Preserve this shape unless the user explicitly approves a schema migration.
 
 ## Content Queue Schema (state/current-queue.json)
 
