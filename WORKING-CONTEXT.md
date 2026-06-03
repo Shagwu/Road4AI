@@ -121,5 +121,11 @@ Parallelize independent research and ideation work. Keep drafting, approval, and
 ### Phase 3 Pattern Extraction
 
 - `adversarial-review-karen` captures the local two-model Karen review gate.
-- `content-ideation-orchestrator` captures the weekly five-agent ideation flywheel.
+- `content-pipeline` captures the weekly five-agent ideation flywheel and full content lifecycle.
 - `hermes-checkpoint-patterns` captures cross-session state and handoff behavior.
+
+### Phase 3 Consolidation
+
+- Skill inventory policy added with Option B architecture: `skills/` is canonical source, runtime skill surfaces are install targets.
+- `content-ideation-orchestrator` merged into `content-pipeline`.
+- `.agents/marketing/` reference docs moved to `docs/marketing/`.
