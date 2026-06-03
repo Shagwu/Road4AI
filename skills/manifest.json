@@ -19,14 +19,7 @@
       "source": "skills/content-pipeline",
       "runtime_targets": [".agents/skills", ".gemini/skills"],
       "status": "canonical",
-      "notes": "Will absorb content-ideation-orchestrator during consolidation."
-    },
-    "content-ideation-orchestrator": {
-      "tier": 1,
-      "source": "skills/content-ideation-orchestrator",
-      "runtime_targets": [],
-      "status": "merge_pending",
-      "notes": "Merge into content-pipeline and remove."
+      "notes": "Lifecycle-aware content skill covering ideation, dedup, drafting, Karen, sanitizer, approval, and scheduling."
     },
     "hermes-checkpoint-patterns": {
       "tier": 1,
@@ -174,4 +167,3 @@
     }
   }
 }
-
