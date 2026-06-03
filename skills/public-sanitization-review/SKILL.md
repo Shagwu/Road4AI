@@ -26,16 +26,40 @@ The review preserves the engineering lesson while removing material that should 
 ## Workflow
 
 1. Read the target draft.
-2. Scan for sensitive data:
+2. Run the deterministic scanner when working in the repo:
+
+```bash
+python3 tools/public_sanitizer.py <draft-path>
+```
+
+3. Scan for sensitive data:
    - secrets, tokens, OAuth files, bearer strings;
    - local absolute paths;
    - real client, user, or account identifiers;
    - copy-pasteable exploit strings;
    - raw private prompts;
    - exact financial figures not essential to the lesson.
-3. Replace unsafe details with approved placeholders.
-4. Preserve the technical failure mode and decision tradeoff.
-5. If a detail cannot be safely abstracted without changing the claim, flag `[HUMAN_REVIEW_REQUIRED]`.
+4. Replace unsafe details with approved placeholders.
+5. Preserve the technical failure mode and decision tradeoff.
+6. If a detail cannot be safely abstracted without changing the claim, flag `[HUMAN_REVIEW_REQUIRED]`.
+
+## Detection Rules
+
+The public sanitizer blocks or flags:
+
+- absolute paths such as local home or private temp paths;
+- credential-like strings such as API keys, tokens, bearer values, OAuth references, and passwords;
+- private account, workspace, tenant, client, or customer identifiers;
+- copy-pasteable instruction override or data-exfiltration prompts.
+
+Use these abstractions:
+
+- `<PRIVATE_PATH>` for local paths;
+- `<SECRET_REFERENCE>` for credentials;
+- `<ROLE>` for private account or workspace names;
+- `<INSTRUCTION_INJECTION_EXAMPLE>` for exploit payloads.
+
+Publication is blocked until `python3 tools/public_sanitizer.py <draft-path>` returns `PASS`.
 
 ## Output Format
 

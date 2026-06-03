@@ -2,6 +2,9 @@ import json
 import os
 import sys
 import re
+from pathlib import Path
+
+from public_sanitizer import scan_file
 
 def check_json_integrity(directory):
     print("Checking JSON integrity...")
@@ -52,6 +55,28 @@ def check_queue_consistency(queue_path):
         success = False
     return success
 
+def check_public_sanitization(paths):
+    print("Checking public sanitization...")
+    success = True
+    for root in paths:
+        if not os.path.exists(root):
+            continue
+        for dirpath, _, filenames in os.walk(root):
+            for filename in filenames:
+                if not filename.endswith(".md"):
+                    continue
+                path = os.path.join(dirpath, filename)
+                report = scan_file(Path(path))
+                if report["findings"]:
+                    print(f"  [FAIL] {path}")
+                    for finding in report["findings"]:
+                        print(
+                            f"    line {finding['line']}: {finding['severity']} "
+                            f"{finding['kind']} -> {finding['replacement']}"
+                        )
+                    success = False
+    return success
+
 def main():
     state_dir = "state"
     queue_file = os.path.join(state_dir, "current-queue.json")
@@ -60,6 +85,7 @@ def main():
     if not check_json_integrity(state_dir): ok = False
     if not check_x_draft_length(queue_file): ok = False
     if not check_queue_consistency(queue_file): ok = False
+    if not check_public_sanitization(["drafts/ideas", "drafts/ready", "drafts/approved"]): ok = False
     
     if not ok:
         sys.exit(1)
