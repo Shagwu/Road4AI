@@ -17,3 +17,5 @@ state/*.backup.json
 graphify-out/cache/
 chroma_db/
 chroma_db.bak/
+.gitnexus
+.antigravitycli/
