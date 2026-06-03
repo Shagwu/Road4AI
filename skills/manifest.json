@@ -1,0 +1,177 @@
+{
+  "architecture": {
+    "decision": "option_b_source_to_runtime_install",
+    "canonical_source": "skills",
+    "runtime_targets": [".agents/skills", ".gemini/skills"],
+    "manual_sync": true,
+    "sync_tool_status": "planned"
+  },
+  "canonical_skills": {
+    "adversarial-review-karen": {
+      "tier": 1,
+      "source": "skills/adversarial-review-karen",
+      "runtime_targets": [".agents/skills"],
+      "status": "canonical",
+      "notes": "Road4AI Karen adversarial review pattern."
+    },
+    "content-pipeline": {
+      "tier": 1,
+      "source": "skills/content-pipeline",
+      "runtime_targets": [".agents/skills", ".gemini/skills"],
+      "status": "canonical",
+      "notes": "Will absorb content-ideation-orchestrator during consolidation."
+    },
+    "content-ideation-orchestrator": {
+      "tier": 1,
+      "source": "skills/content-ideation-orchestrator",
+      "runtime_targets": [],
+      "status": "merge_pending",
+      "notes": "Merge into content-pipeline and remove."
+    },
+    "hermes-checkpoint-patterns": {
+      "tier": 1,
+      "source": "skills/hermes-checkpoint-patterns",
+      "runtime_targets": [],
+      "status": "canonical_teaching_audit",
+      "notes": ".agents/skills/hermes-checkpoint remains operational runtime."
+    },
+    "public-sanitization-review": {
+      "tier": 1,
+      "source": "skills/public-sanitization-review",
+      "runtime_targets": [".agents/skills"],
+      "status": "canonical",
+      "notes": "Public safety and exploit abstraction gate."
+    }
+  },
+  "runtime_road4ai": {
+    "hermes-checkpoint": {
+      "tier": 2,
+      "location": ".agents/skills/hermes-checkpoint",
+      "harnesses": ["codex"],
+      "status": "keep_runtime_operational",
+      "notes": "Operational checkpoint skill currently visible to runtime."
+    },
+    "gemini-ideation-orchestrator": {
+      "tier": 2,
+      "location": ".gemini/skills/ideation-orchestrator",
+      "harnesses": ["gemini"],
+      "status": "keep_runtime_operational",
+      "notes": "Gemini-specific ideation runtime skill."
+    }
+  },
+  "vendor_tool_skills": {
+    "google-agents-cli-adk-code": {
+      "tier": 3,
+      "location": ".agents/skills/google-agents-cli-adk-code",
+      "origin": "vendor-google-agents-adk",
+      "status": "keep"
+    },
+    "google-agents-cli-deploy": {
+      "tier": 3,
+      "location": ".agents/skills/google-agents-cli-deploy",
+      "origin": "vendor-google-agents-adk",
+      "status": "keep"
+    },
+    "google-agents-cli-eval": {
+      "tier": 3,
+      "location": ".agents/skills/google-agents-cli-eval",
+      "origin": "vendor-google-agents-adk",
+      "status": "keep"
+    },
+    "google-agents-cli-observability": {
+      "tier": 3,
+      "location": ".agents/skills/google-agents-cli-observability",
+      "origin": "vendor-google-agents-adk",
+      "status": "keep"
+    },
+    "google-agents-cli-publish": {
+      "tier": 3,
+      "location": ".agents/skills/google-agents-cli-publish",
+      "origin": "vendor-google-agents-adk",
+      "status": "keep"
+    },
+    "google-agents-cli-scaffold": {
+      "tier": 3,
+      "location": ".agents/skills/google-agents-cli-scaffold",
+      "origin": "vendor-google-agents-adk",
+      "status": "keep"
+    },
+    "google-agents-cli-workflow": {
+      "tier": 3,
+      "location": ".agents/skills/google-agents-cli-workflow",
+      "origin": "vendor-google-agents-adk",
+      "status": "keep"
+    },
+    "ask-docs": {
+      "tier": 3,
+      "location": ".agents/skills/ask-docs",
+      "origin": "vendor-crewai-docs",
+      "status": "keep"
+    },
+    "design-agent": {
+      "tier": 3,
+      "location": ".agents/skills/design-agent",
+      "origin": "vendor-crewai",
+      "status": "keep"
+    },
+    "skill-creator": {
+      "tier": 3,
+      "location": ".agents/skills/skill-creator",
+      "origin": "vendor-skill-tooling",
+      "status": "keep"
+    }
+  },
+  "marketing_generic_pack": {
+    "ai-seo": {
+      "tier": 4,
+      "location": ".agents/skills/ai-seo",
+      "status": "review_pending"
+    },
+    "content-strategy": {
+      "tier": 4,
+      "location": ".agents/skills/content-strategy",
+      "status": "review_pending"
+    },
+    "copywriting": {
+      "tier": 4,
+      "location": ".agents/skills/copywriting",
+      "status": "review_pending"
+    },
+    "launch-strategy": {
+      "tier": 4,
+      "location": ".agents/skills/launch-strategy",
+      "status": "review_pending"
+    },
+    "product-marketing-context": {
+      "tier": 4,
+      "location": ".agents/skills/product-marketing-context",
+      "status": "review_pending"
+    },
+    "social-content": {
+      "tier": 4,
+      "location": ".agents/skills/social-content",
+      "status": "review_pending"
+    },
+    "voice-match": {
+      "tier": 4,
+      "location": ".agents/skills/voice-match",
+      "status": "review_pending",
+      "notes": "Road4AI-adapted voice material; review before archiving."
+    },
+    "ideation-orchestrator": {
+      "tier": 4,
+      "location": ".agents/skills/ideation-orchestrator",
+      "status": "review_pending",
+      "notes": "Road4AI-adapted but overlaps with canonical content-pipeline."
+    }
+  },
+  "archive_reference": {
+    "agents_marketing_docs": {
+      "tier": 5,
+      "location": ".agents/marketing",
+      "status": "move_pending",
+      "target": "docs/marketing"
+    }
+  }
+}
+
