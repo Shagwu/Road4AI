@@ -1,6 +1,45 @@
 {
   "queue": [
     {
+      "id": "2026-06-w2-self-knowledge-pivot-li",
+      "title": "The Self-Knowledge Pivot",
+      "hook": "I just deleted 10,000 chunks of high-quality RAG data. Here is why generic data was killing my agent.",
+      "type": "Struggle",
+      "platform": "LinkedIn",
+      "goal": "Build in public",
+      "source": "inbox",
+      "status": "ready_for_drafting",
+      "priority": 1,
+      "week": "2026-24",
+      "created_at": "2026-06-08T09:00:00Z"
+    },
+    {
+      "id": "2026-06-w2-system-integrity-x",
+      "title": "System Integrity vs Model Integrity",
+      "hook": "The model has zero integrity. It will drift, hallucinate, and lie to your face. But the system? That is where the integrity lives.",
+      "type": "Win",
+      "platform": "X / Threads",
+      "goal": "Nurture",
+      "source": "inbox",
+      "status": "ready_for_drafting",
+      "priority": 2,
+      "week": "2026-24",
+      "created_at": "2026-06-08T09:05:00Z"
+    },
+    {
+      "id": "2026-06-w2-tireless-worker-reel",
+      "title": "The Tireless Worker Trap",
+      "hook": "I asked my AI what was on its plate. It said: 'I don't have a plate.'",
+      "type": "Behind-the-scenes",
+      "platform": "Instagram Reel / TikTok",
+      "goal": "Nurture",
+      "source": "inbox",
+      "status": "ready_for_drafting",
+      "priority": 3,
+      "week": "2026-24",
+      "created_at": "2026-06-08T09:10:00Z"
+    },
+    {
       "id": "2026-06-w1-standalone-substrate-li",
       "title": "The Standalone Substrate: Why I Extracted Hermes",
       "hook": "I built the Hermes memory substrate for myself, then I realized I was gatekeeping the very thing I wanted to democratize.",
@@ -374,5 +413,5 @@
       "experimental": true
     }
   ],
-  "updated": "2026-05-20"
+  "updated": "2026-06-08"
 }
