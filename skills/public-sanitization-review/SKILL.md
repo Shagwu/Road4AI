@@ -61,7 +61,7 @@ Use these abstractions:
 
 Publication is blocked until `python3 tools/public_sanitizer.py <draft-path>` returns `PASS`.
 
-## Output Format
+## Output Contract
 
 ```text
 PUBLIC SANITIZATION REVIEW

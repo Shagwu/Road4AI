@@ -27,7 +27,7 @@ The Orchestrator processes raw signals into structured briefs and manages parall
 ## Workflow
 
 1. **Scan `inbox.md`**: Treat as raw data. Do not invent details.
-2. **Build Brief**: Extract 5–10 candidate angles. Format: `[THEME] — [raw angle] — [strategic rationale]`.
+2. **Build Brief**: Extract 5-10 candidate angles. Format: `[THEME] - [raw angle] - [strategic rationale]`.
 3. **Dispatch Specialists**: Invoke specialist sub-agents in parallel:
    - `content-scout`: Extract value from source transcripts/links.
    - `format-selector`: Map angles to optimal platforms/formats.
@@ -35,10 +35,12 @@ The Orchestrator processes raw signals into structured briefs and manages parall
 4. **Aggregate to `ideas.md`**: Merge outputs into ranked blocks.
 5. **Human Gate**: End with `> ⚠️ Human review required before any post goes live.`
 
-## Output Schema (`ideas.md`)
+## Output Contract
+
+Return or write an `ideas.md` block using this schema:
 
 ```markdown
-## [Idea title — punchy, no em dashes]
+## [Idea title - punchy, no em dashes]
 
 **Hook draft:** [opening line in Road4AI voice]
 **Platform:** [LinkedIn / X / Instagram / Threads]

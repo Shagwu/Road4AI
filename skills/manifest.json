@@ -29,12 +29,26 @@
       "status": "canonical_teaching_audit",
       "notes": ".agents/skills/hermes-checkpoint remains operational runtime."
     },
+    "ideation-orchestrator": {
+      "tier": 1,
+      "source": "skills/ideation-orchestrator",
+      "runtime_targets": [],
+      "status": "canonical_runtime_source",
+      "notes": "Canonical Road4AI inbox-to-ideas orchestration pattern. Runtime copies remain protected harness surfaces until sync policy is expanded for active Tier 2 installs."
+    },
     "public-sanitization-review": {
       "tier": 1,
       "source": "skills/public-sanitization-review",
       "runtime_targets": [".agents/skills"],
       "status": "canonical",
       "notes": "Public safety and exploit abstraction gate."
+    },
+    "voice-match": {
+      "tier": 1,
+      "source": "skills/voice-match",
+      "runtime_targets": [],
+      "status": "canonical_runtime_source",
+      "notes": "Canonical Road4AI human voice and content quality filter. Runtime copy remains protected as an active Codex surface until sync policy is expanded for active Tier 2 installs."
     }
   },
   "runtime_road4ai": {
