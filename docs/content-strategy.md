@@ -11,7 +11,9 @@ Establish Road4AI as the go-to resource for developers building real-world AI ag
 
 ## Target Platforms
 - **LinkedIn**: Long-form technical analysis, architectural diagrams, and engineering leadership.
-- Twitter/X: Quick tips, "ship logs," and interactive code snippets. **Hard limit: 280 characters per post (including threads).**
+- **Twitter/X**: Quick tips, "ship logs," and interactive code snippets. **Hard limit: 280 characters per post (including threads).**
+- **Threads**: Short, conversational threads. **Hard limit: 500 characters per post.** Adapt long-form content into sequential posts.
+- **Instagram / TikTok**: Visual-first storytelling. **Mandatory: Every post MUST have at least one image or video asset attached.**
 
 ## Cadence
 - **Deep Dive**: 1x Weekly (LinkedIn).
