@@ -16,6 +16,8 @@ Primary focus:
 
 ## Recent Checkpoints
 
+- June 8 content scheduled: 'Self-Knowledge Pivot' series for LinkedIn and X.
+- Blotato account IDs updated in `config/blotato-accounts.json`.
 - June 4 content scheduled/published: M Solo Agent series.
 - M Solo Agent Scout drop processed into three drafts, then moved to published queue status.
 - June 3 content scheduled/published: Catch-Up Checkpoint series.
