@@ -5,12 +5,12 @@ type: Struggle
 platform: Facebook / Instagram / TikTok
 goal: Build in public
 source: drafts/approved/2026-06-08-self-knowledge-pivot-li.md
-status: ready_for_edit
+status: scheduled
 created_at: 2026-06-05T00:00:00+01:00
-status_updated_at: 2026-06-05T00:00:00+01:00
+status_updated_at: 2026-06-06T19:35:00+01:00
 visual_asset: assets/social/2026-06-08-self-knowledge-pivot-collage.svg
 upload_asset: assets/social/2026-06-08-self-knowledge-pivot-collage.svg.png
-notes: Companion pack for the approved LinkedIn and X Act 1 posts. Needs human approval before scheduling.
+notes: Companion pack scheduled through Blotato for Threads, Facebook, Instagram, and TikTok on 2026-06-08.
 ---
 
 # Cross-Platform Pack: The Self-Knowledge Pivot
