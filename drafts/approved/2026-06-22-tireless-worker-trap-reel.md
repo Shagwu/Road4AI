@@ -7,8 +7,30 @@
 **Goal:** Nurture
 **Target schedule:** 2026-06-22
 **Status:** Ready for human review
+**Primary visual:** `assets/social/2026-06-22-tireless-worker-trap-collage.svg`
+**Scheduler upload asset:** `assets/social/2026-06-22-tireless-worker-trap-collage.svg.png`
+**Reel/TikTok cover source:** `assets/social/2026-06-22-tireless-worker-trap-cover.svg`
 
 ---
+
+## Visual Asset
+
+Use the attached collage as the required image asset for Instagram, TikTok, and Facebook:
+
+- Primary collage: `assets/social/2026-06-22-tireless-worker-trap-collage.svg`
+- Scheduler upload image: `assets/social/2026-06-22-tireless-worker-trap-collage.svg.png`
+- Vertical Reel/TikTok cover source: `assets/social/2026-06-22-tireless-worker-trap-cover.svg`
+
+Gemini/Blotato media option:
+
+- Preferred: use Blotato MCP to generate a short Reel/TikTok visual or cover image from the prompt below.
+- Fallback: if Blotato media generation is unavailable or slow, upload `assets/social/2026-06-22-tireless-worker-trap-collage.svg.png` with the approved caption so the visual requirement is still satisfied.
+
+Blotato prompt:
+
+Create a clean technical social visual for Road4AI Act 3. Theme: "Tireless is not aligned." Show the moment of asking an AI what is on its plate and the answer "I don't have a plate." Visual metaphor: an AI agent or terminal that keeps moving without fatigue, while a human operator pauses at the keyboard to catch goal drift. Mood: sober, engineering-focused, not futuristic hype. Include concise on-screen text only: "Tireless is not aligned" and "Build the system. Stay the pilot." Avoid cartoon robots, sci-fi glow, stock-photo business people, and exaggerated fear imagery.
+
+If a video is produced, use the vertical cover as the opening or cover frame.
 
 ## Series Bridge
 
