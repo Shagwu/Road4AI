@@ -2,7 +2,7 @@
 
 Status: ready
 
-Benchmark: 12 cases
+Benchmark: 15 cases
 Governance: passed
 Engine: gemini-cli
 
