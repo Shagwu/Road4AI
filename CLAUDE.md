@@ -90,6 +90,13 @@ These are locked. Don't re-litigate them:
 4. After score: rerun the benchmark against the improved skill, recording mean score and delta.
 5. Artifacts: write `docs/benchmarks/voice-match-skillopt-july-2026.md`, raw outputs under `reports/skillopt/social_voice/`, and the accepted skill-improvement commit hash only after approval.
 
+**Stability proof execution:**
+- Executor: Codex or Gemini may run the June 24-25 stability task.
+- Runner engine: the current benchmark runner uses Gemini CLI for target generation and evaluator scoring.
+- Required artifacts: `reports/skillopt/social_voice/stability-test-june-2026.md` and `reports/skillopt/social_voice/stability-runs.json`.
+- Pass condition: repeated live scoring runs must keep mean score within +/-5%, produce the same failed case IDs, and show stable standard deviation.
+- If the stability proof needs a non-Gemini scoring backend, add that backend explicitly before the July benchmark cycle instead of treating Codex execution as a different model engine.
+
 **Timeline:**
 - Budget: 1 week nominal, plus 2-3 day buffer for runner or benchmark cleanup.
 - Start: July 1, 2026, after June runway posts land.
