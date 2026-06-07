@@ -1,9 +1,11 @@
 # Social Voice Benchmark
 
-This benchmark evaluates whether an agent or skill preserves the Road4AI social voice as defined in `docs/brand-voice.md`.
+This benchmark evaluates whether an agent or skill preserves the Road4AI social voice as defined in `docs/brand-voice.md` and `.agents/skills/voice-match/SKILL.md`.
 
 ## Structure
 The benchmark consists of JSONL records in `social_voice_cases.jsonl`.
+
+Current suite size: 15 cases.
 
 Each record contains:
 - `id`: Unique identifier for the case.
@@ -50,3 +52,16 @@ An output fails if:
 3. It uses em dashes (prohibited by brand voice).
 4. It is vague or lacks architectural reasoning.
 5. It sounds like marketing hype rather than engineering experience.
+
+## Case Quality Review: 2026-06-07
+
+Review outcome:
+- V-001 through V-012: tightened. These remain the base suite, but the expected and reject traits now target Road4AI-specific voice markers instead of generic good-writing traits.
+- V-013 through V-015: added from the June runway posts to test the v2.1 reveal arc directly.
+
+New runway coverage:
+- V-013: Self-Knowledge Pivot, memory without build context becomes noise.
+- V-014: System Integrity, governance belongs in the system, not the model.
+- V-015: Tireless Worker Trap, speed without human oversight is not alignment.
+
+Do not expand past 17 cases before the July 2026 v2.1 proof cycle unless a real June failure exposes a missing voice risk. The benchmark should stay small enough to rerun under the Gemini CLI free-tier budget.

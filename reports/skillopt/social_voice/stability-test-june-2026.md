@@ -16,7 +16,7 @@ Runner engine: `tools/run_skillopt_benchmark.py` currently uses Gemini CLI for b
 
 - Skill: `.agents/skills/voice-match/SKILL.md`
 - Benchmark: `benchmarks/social_voice/social_voice_cases.jsonl`
-- Cases: 12
+- Cases: 15
 - Raw run log: `reports/skillopt/social_voice/stability-runs.json`
 
 ## Test Plan

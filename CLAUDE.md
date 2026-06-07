@@ -80,7 +80,7 @@ These are locked. Don't re-litigate them:
 **Skill under test:**
 - Skill: `.agents/skills/voice-match/SKILL.md`
 - Test suite: `benchmarks/social_voice/social_voice_cases.jsonl`
-- Size: 12 base cases, with 3-5 real failures from June posts optional if they improve signal quality
+- Size: 15 cases: 12 tightened base cases plus 3 real June runway cases
 - Rationale: `voice-match` is high-signal for the audience, already has a test suite, and is safe to improve without touching governance, queue, or publishing contracts. Benchmark the runtime skill under `.agents/skills/`, not the repo teaching copy under `skills/`.
 
 **Execution flow:**
@@ -100,7 +100,7 @@ These are locked. Don't re-litigate them:
 **Evaluation engine:**
 - Platform: Gemini CLI, free tier.
 - Rate limit: 100 calls/day, daily reset.
-- Risk level: low for baseline-only stability runs, medium for full optimization runs until measured. A baseline-only run over 12 cases uses roughly 24 Gemini CLI calls. A full live runner pass can use roughly 49 Gemini CLI calls when failures trigger optimization and after-score evaluation.
+- Risk level: low for baseline-only stability runs, medium for full optimization runs until measured. A baseline-only run over 15 cases uses roughly 30 Gemini CLI calls. A full live runner pass can use roughly 61 Gemini CLI calls when failures trigger optimization and after-score evaluation.
 - Reveal transparency: state that `voice-match` was scored with Gemini CLI judgment, not Claude or OpenAI models.
 
 **June 24-25 stability playbook:**

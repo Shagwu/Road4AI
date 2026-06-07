@@ -3,7 +3,7 @@
   "purpose": "Repeated live scoring stability proof for voice-match before the v2.1 SkillOpt benchmark cycle.",
   "skill_path": ".agents/skills/voice-match/SKILL.md",
   "benchmark_path": "benchmarks/social_voice/social_voice_cases.jsonl",
-  "case_count": 12,
+  "case_count": 15,
   "runner": "tools/run_skillopt_benchmark.py",
   "runner_engine": "gemini-cli",
   "executor_allowed": ["codex", "gemini"],
