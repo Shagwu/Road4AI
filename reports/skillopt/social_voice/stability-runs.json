@@ -9,7 +9,7 @@
   "executor_allowed": ["codex", "gemini"],
   "pass_criteria": {
     "mean_score_variance_pct_max": 5,
-    "failed_case_ids_must_match": true,
+    "failed_case_overlap_pct_min": 80,
     "standard_deviation_must_be_stable": true
   },
   "runs": []

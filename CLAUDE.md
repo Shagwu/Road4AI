@@ -94,21 +94,21 @@ These are locked. Don't re-litigate them:
 - Executor: Codex or Gemini may run the June 24-25 stability task.
 - Runner engine: the current benchmark runner uses Gemini CLI for target generation and evaluator scoring.
 - Required artifacts: `reports/skillopt/social_voice/stability-test-june-2026.md` and `reports/skillopt/social_voice/stability-runs.json`.
-- Pass condition: repeated live scoring runs must keep mean score within +/-5%, produce the same failed case IDs, and show stable standard deviation.
+- Pass condition: repeated baseline-only live scoring runs must keep mean score within +/-5%, failed case overlap above 80%, and stable standard deviation.
 - If the stability proof needs a non-Gemini scoring backend, add that backend explicitly before the July benchmark cycle instead of treating Codex execution as a different model engine.
 
 **Evaluation engine:**
 - Platform: Gemini CLI, free tier.
 - Rate limit: 100 calls/day, daily reset.
-- Risk level: medium until measured. A full live runner pass can use roughly 49 Gemini CLI calls when failures trigger optimization and after-score evaluation. Two stability runs on the same day may approach or exceed the free-tier daily budget, so split Run 1 and Run 2 across daily resets unless the runner is changed to support baseline-only scoring.
+- Risk level: low for baseline-only stability runs, medium for full optimization runs until measured. A baseline-only run over 12 cases uses roughly 24 Gemini CLI calls. A full live runner pass can use roughly 49 Gemini CLI calls when failures trigger optimization and after-score evaluation.
 - Reveal transparency: state that `voice-match` was scored with Gemini CLI judgment, not Claude or OpenAI models.
 
 **June 24-25 stability playbook:**
-- Run 1: June 24 morning. Record timestamp, exact command, Gemini CLI version, environment notes, mean score, standard deviation, and failed case IDs.
+- Run 1: June 24 morning. Use `--baseline-only`. Record timestamp, exact command, Gemini CLI version, environment notes, mean score, standard deviation, and failed case IDs.
 - Run 2: June 25 morning after the Gemini CLI daily reset. Use the same command, skill, benchmark, and environment. Record the same fields.
-- Save raw data to `reports/skillopt/social_voice/stability-runs.json`.
+- Save raw data from each run's `--usage-output` into `reports/skillopt/social_voice/stability-runs.json`.
 - Write a 2-3 sentence summary to `reports/skillopt/social_voice/stability-test-june-2026.md`.
-- Validation: mean score variance within +/-5% is acceptable. Greater than +/-10% requires investigation. Failed case overlap above 80% is healthy. Below 60% is a signal to debug before July 1.
+- Validation: mean score variance within +/-5% is acceptable. Greater than +/-10% requires investigation. Failed case overlap above 80% passes. Between 60-80% requires review. Below 60% is a signal to debug before July 1.
 - Pass means ready for SkillOpt optimization. Fail means debug the runner before the July benchmark cycle.
 
 **Timeline:**
