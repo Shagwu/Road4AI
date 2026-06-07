@@ -19,3 +19,8 @@ chroma_db/
 chroma_db.bak/
 .gitnexus
 .antigravitycli/
+
+# Obsidian vault: keep shared config, ignore local workspace state.
+.obsidian/*
+!.obsidian/app.json
+!.obsidian/core-plugins.json
