@@ -71,6 +71,7 @@ These are locked. Don't re-litigate them:
 - Multi-agent coordination via Hermes memory layer, not hardcoded handoffs
 - Human-in-the-loop before any public output, this is infrastructure, not a preference
 - Obsidian is a thinking/navigation layer only. Recovery flows rebuild it from Markdown and git history; Obsidian workspace state, graph position, and UI metadata are not Hermes checkpoint inputs.
+- v2.1 scope does not include the Visual Memory Loop. v2.1 is the governed SkillOpt learning layer: benchmarks, allowlisted skill optimization, review gates, and proof package. Visual Memory Loop is a Phase 5+ candidate because it adds a new product surface, storage/retrieval semantics, media governance, and UX decisions that would blur the v2.1 learning-loop boundary.
 
 ---
 
