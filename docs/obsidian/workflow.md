@@ -61,6 +61,21 @@ Recommended loop:
 3. After the sprint closes: open Obsidian, review the new clusters, and add only the backlinks that clarify thinking.
 4. Drafting, review, approval, scheduling, and publishing continue through the normal Road4AI gates.
 
+## Validation Checkpoint
+
+After the next full Sunday/Monday content cycle, run a 15-minute reflection and document the result in this file or the relevant planning note.
+
+Ask:
+
+- Did Obsidian help the thinking process?
+- Did the links feel natural or forced?
+- Were `Status:` markers useful, or did they become noise?
+- Did any `Status:` marker try to become automation?
+- Did the graph reveal an unexpected theme cluster?
+- Was Obsidian faster than grep for the question being asked?
+
+Use the reflection to decide whether this layer should stay light, expand carefully, or be rolled back.
+
 ## Hermes Checkpoint Alignment
 
 Hermes checkpoints save Markdown content and explicit state files. Obsidian UI metadata, graph position, and workspace state are ignored. If the Obsidian vault is deleted, git history plus checkpoint content should fully recover the thinking layer.
