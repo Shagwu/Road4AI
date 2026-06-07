@@ -97,6 +97,20 @@ These are locked. Don't re-litigate them:
 - Pass condition: repeated live scoring runs must keep mean score within +/-5%, produce the same failed case IDs, and show stable standard deviation.
 - If the stability proof needs a non-Gemini scoring backend, add that backend explicitly before the July benchmark cycle instead of treating Codex execution as a different model engine.
 
+**Evaluation engine:**
+- Platform: Gemini CLI, free tier.
+- Rate limit: 100 calls/day, daily reset.
+- Risk level: low. The proof cycle is expected to use roughly 51 calls over 2 weeks.
+- Reveal transparency: state that `voice-match` was scored with Gemini CLI judgment, not Claude or OpenAI models.
+
+**June 24-25 stability playbook:**
+- Run 1: June 24 morning. Record timestamp, exact command, Gemini CLI version, environment notes, mean score, standard deviation, and failed case IDs.
+- Run 2: June 24 afternoon or June 25 morning. Use the same command, skill, benchmark, and environment. Record the same fields.
+- Save raw data to `reports/skillopt/social_voice/stability-runs.json`.
+- Write a 2-3 sentence summary to `reports/skillopt/social_voice/stability-test-june-2026.md`.
+- Validation: mean score variance within +/-5% is acceptable. Greater than +/-10% requires investigation. Failed case overlap above 80% is healthy. Below 60% is a signal to debug before July 1.
+- Pass means ready for SkillOpt optimization. Fail means debug the runner before the July benchmark cycle.
+
 **Timeline:**
 - Budget: 1 week nominal, plus 2-3 day buffer for runner or benchmark cleanup.
 - Start: July 1, 2026, after June runway posts land.
