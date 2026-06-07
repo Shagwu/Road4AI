@@ -58,9 +58,11 @@ Do not overthink them. First thought, best thought.
 
 2. What actually worked this week that surprised me?
 
+I added Obsidian to Road4AI without letting it become the source of truth. That felt important. Obsidian is only the thinking layer: links, themes, navigation, and reflection. The repo stays operational: queue state, approved drafts, published log, and Hermes checkpoints. The guardrails matter because solo builders can drown in tool sprawl when every tool starts pretending to be the system.
 
 3. What did I consume (watch, read, listen to) that I am still thinking about?
 
+Future post seed: [[Why I Added Obsidian to Road4AI]] and why I do not let it control me. Most people fight over whether their note app is the source of truth. I solved that by making Obsidian the thinking layer and keeping the repo the operational layer. The interesting part is not the tool. It is the three guardrails that stop it from becoming a distraction.
 
 ---
 
