@@ -100,39 +100,49 @@ def test_non_skill_markdown_is_rejected(tmp_path, monkeypatch):
         )
 
 
-def test_live_mode_requires_usage_pricing_models_and_key(tmp_path, monkeypatch):
+def test_live_mode_requires_usage_output(tmp_path, monkeypatch):
     make_repo(tmp_path, monkeypatch)
 
-    with pytest.raises(ValueError, match="OPENAI_API_KEY"):
+    with pytest.raises(ValueError, match="Live mode requires --usage-output"):
         BenchmarkRunner(
             skill_file="marketing-skills/skills/social-voice/SKILL.md",
             benchmark="benchmarks/social_voice/social_voice_cases.jsonl",
             output="reports/out.md",
             dry_run=False,
-            usage_output="reports/usage.json",
-            pricing_config="config/openai-pricing-2026-05.json",
-            target_model="gpt-4.1-2025-04-14",
-            evaluator_model="gpt-4.1-2025-04-14",
-            optimizer_model="gpt-4.1-2025-04-14",
         )
 
 
-def test_pricing_model_validation(tmp_path, monkeypatch):
+def test_baseline_only_skips_optimizer_and_writes_case_scores(tmp_path, monkeypatch):
     make_repo(tmp_path, monkeypatch)
+    runner = BenchmarkRunner(
+        skill_file="marketing-skills/skills/social-voice/SKILL.md",
+        benchmark="benchmarks/social_voice/social_voice_cases.jsonl",
+        output="reports/out.md",
+        dry_run=False,
+        usage_output="reports/usage.json",
+        baseline_only=True,
+    )
+    runner._call_target = lambda skill_source, input_text, is_optimized: "A direct technical hook."
+    runner._call_evaluator = lambda output, expected_traits, reject_traits, reference: {
+        "score": 0.65,
+        "expected_traits_met": ["technical"],
+        "expected_traits_missed": ["direct"],
+        "reject_traits_present": [],
+        "reject_traits_avoided": ["vague"],
+        "reference_alignment": 0.5,
+        "reasoning": "Mixed.",
+    }
+    runner._call_optimizer = lambda skill_file, failures: pytest.fail("optimizer should not run")
 
-    with pytest.raises(ValueError, match="Pricing config missing model"):
-        BenchmarkRunner(
-            skill_file="marketing-skills/skills/social-voice/SKILL.md",
-            benchmark="benchmarks/social_voice/social_voice_cases.jsonl",
-            output="reports/out.md",
-            dry_run=False,
-            usage_output="reports/usage.json",
-            pricing_config="config/openai-pricing-2026-05.json",
-            target_model="missing-model",
-            evaluator_model="gpt-4.1-2025-04-14",
-            optimizer_model="gpt-4.1-2025-04-14",
-            openai_api_key="test-key",
-        )
+    result = runner.run()
+    usage = json.loads((tmp_path / "reports" / "usage.json").read_text())
+
+    assert result["baseline_only"] is True
+    assert usage["mode"] == "baseline-only"
+    assert usage["baseline_score"] == pytest.approx(0.65)
+    assert usage["optimized_score"] == pytest.approx(0.65)
+    assert usage["baseline_failed_case_ids"] == ["sv-001"]
+    assert usage["baseline_case_results"][0]["case_id"] == "sv-001"
 
 
 def test_score_eval_weights_traits_and_reference(tmp_path, monkeypatch):
@@ -154,4 +164,3 @@ def test_score_eval_weights_traits_and_reference(tmp_path, monkeypatch):
     })
 
     assert scored["score"] == pytest.approx(0.65)
-

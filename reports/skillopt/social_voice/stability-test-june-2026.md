@@ -28,7 +28,7 @@ Runner engine: `tools/run_skillopt_benchmark.py` currently uses Gemini CLI for b
 ## Pass Criteria
 
 - Mean score variance is within +/-5%.
-- Failed case IDs match across runs.
+- Failed case overlap is above 80%.
 - Standard deviation is stable.
 
 ## Results

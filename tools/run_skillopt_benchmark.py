@@ -7,6 +7,7 @@ import os
 import subprocess
 import tempfile
 import time
+from statistics import pstdev
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from fnmatch import fnmatch
@@ -55,12 +56,14 @@ class BenchmarkRunner:
         optimizer_model: Optional[str] = None,
         failure_threshold: float = 0.7,
         openai_api_key: Optional[str] = None,
+        baseline_only: bool = False,
     ):
         self.root = Path.cwd().resolve()
         self.skill_file = Path(skill_file)
         self.benchmark_file = Path(benchmark)
         self.output_file = Path(output)
         self.dry_run = dry_run
+        self.baseline_only = baseline_only
         self.failure_threshold = failure_threshold
         self.pricing_config_path = Path(pricing_config) if pricing_config else None
 
@@ -161,7 +164,9 @@ class BenchmarkRunner:
         edits = []
         optimized_results = baseline_results
         optimized_mean = baseline_mean
-        if failures:
+        if self.baseline_only:
+            self.usage["optimizer_model"].reason = "Baseline-only mode"
+        elif failures:
             edits = self._call_optimizer(self.skill_file, failures)
             optimized_skill = self._apply_edits_in_memory(self.skill_file, edits)
             optimized_results = self._evaluate_skill(optimized_skill, optimized=True)
@@ -169,13 +174,14 @@ class BenchmarkRunner:
         else:
             self.usage["optimizer_model"].reason = "No failures found in baseline"
 
-        usage_json = self._finalize_usage(baseline_mean, optimized_mean)
+        usage_json = self._finalize_usage(baseline_mean, optimized_mean, baseline_results, optimized_results)
         self._write_report(baseline_results, optimized_results, usage_json, edits)
         self._write_usage_json(usage_json)
         return {
             "baseline_score": baseline_mean,
             "optimized_score": optimized_mean,
             "improvement_pct": self._improvement_pct(baseline_mean, optimized_mean),
+            "baseline_only": self.baseline_only,
             "report": str(self.output_file),
             "usage": str(self.usage_output_file),
         }
@@ -332,9 +338,40 @@ Return ONLY the JSON object.
             skill_text += f"\n\n## {section}\n{content}\n"
         return skill_text
 
-    def _finalize_usage(self, baseline_mean: float, optimized_mean: float) -> dict:
+    def _score_stddev(self, results: list[dict]) -> float:
+        scores = [result["eval"]["score"] for result in results]
+        return pstdev(scores) if len(scores) > 1 else 0.0
+
+    def _failed_case_ids(self, results: list[dict]) -> list[str]:
+        return [
+            result["case_id"]
+            for result in results
+            if result["eval"]["score"] < self.failure_threshold
+        ]
+
+    def _case_results(self, results: list[dict]) -> list[dict]:
+        return [
+            {
+                "case_id": result["case_id"],
+                "score": result["eval"]["score"],
+                "expected_traits_missed": result["eval"]["expected_traits_missed"],
+                "reject_traits_present": result["eval"]["reject_traits_present"],
+                "reference_alignment": result["eval"]["reference_alignment"],
+                "reasoning": result["eval"]["reasoning"],
+            }
+            for result in results
+        ]
+
+    def _finalize_usage(
+        self,
+        baseline_mean: float,
+        optimized_mean: float,
+        baseline_results: list[dict],
+        optimized_results: list[dict],
+    ) -> dict:
         usage = {
             "run_id": self._run_id(),
+            "mode": "baseline-only" if self.baseline_only else "full",
             "benchmark": self.benchmark_file.parent.name,
             "cases": len(self.cases),
             "models": {role: snapshot.model_id for role, snapshot in self.usage.items()},
@@ -346,7 +383,13 @@ Return ONLY the JSON object.
             "reasons": {role: snapshot.reason for role, snapshot in self.usage.items() if snapshot.reason},
             "baseline_score": baseline_mean,
             "optimized_score": optimized_mean,
+            "baseline_score_stddev": self._score_stddev(baseline_results),
+            "optimized_score_stddev": self._score_stddev(optimized_results),
+            "baseline_failed_case_ids": self._failed_case_ids(baseline_results),
+            "optimized_failed_case_ids": self._failed_case_ids(optimized_results),
             "improvement_pct": self._improvement_pct(baseline_mean, optimized_mean),
+            "baseline_case_results": self._case_results(baseline_results),
+            "optimized_case_results": self._case_results(optimized_results),
         }
         return usage
 
@@ -370,7 +413,9 @@ Return ONLY the JSON object.
             f"Benchmark: `{usage_json['benchmark']}`",
             f"Cases: {len(baseline_results)}",
             f"Baseline score: {baseline_mean:.3f}",
+            f"Baseline std dev: {self._score_stddev(baseline_results):.3f}",
             f"Optimized score: {optimized_mean:.3f}",
+            f"Optimized std dev: {self._score_stddev(optimized_results):.3f}",
             f"Improvement: {self._improvement_pct(baseline_mean, optimized_mean):.2f}%",
             "Total estimated cost: $0.0000 (Gemini CLI)",
             "",
@@ -417,6 +462,7 @@ def main() -> int:
     parser.add_argument("--benchmark", "--cases-path", required=True, help="Path to the benchmark JSONL file")
     parser.add_argument("--output", required=True, help="Path to write the markdown report")
     parser.add_argument("--dry-run", action="store_true", help="Perform validation without making API calls")
+    parser.add_argument("--baseline-only", action="store_true", help="Run live baseline scoring only; skip optimization and after-score")
     parser.add_argument("--usage-output", help="Path to write the detailed JSON usage report")
     parser.add_argument("--failure-threshold", type=float, default=0.7)
     
@@ -438,11 +484,12 @@ def main() -> int:
             dry_run=args.dry_run,
             usage_output=args.usage_output,
             failure_threshold=args.failure_threshold,
+            baseline_only=args.baseline_only,
         )
         result = runner.run()
         print(json.dumps(result, indent=2))
         
-        if not args.dry_run:
+        if not args.dry_run and not args.baseline_only:
             if result.get("baseline_score", 1.0) < args.failure_threshold:
                  return 1
             if result.get("optimized_score", 1.0) < args.failure_threshold:
