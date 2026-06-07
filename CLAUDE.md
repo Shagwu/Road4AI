@@ -107,6 +107,29 @@ These are locked. Don't re-litigate them:
 - Run 1: June 24 morning. Use `--baseline-only`. Record timestamp, exact command, Gemini CLI version, environment notes, mean score, standard deviation, and failed case IDs.
 - Run 2: June 25 morning after the Gemini CLI daily reset. Use the same command, skill, benchmark, and environment. Record the same fields.
 - Save raw data from each run's `--usage-output` into `reports/skillopt/social_voice/stability-runs.json`.
+- Baseline-only command template:
+
+```bash
+python3 tools/run_skillopt_benchmark.py \
+  --skill-path .agents/skills/voice-match/SKILL.md \
+  --cases-path benchmarks/social_voice/social_voice_cases.jsonl \
+  --output reports/skillopt/social_voice/stability-run-1.md \
+  --usage-output reports/skillopt/social_voice/stability-run-1-usage.json \
+  --baseline-only
+```
+
+- Record each run:
+
+```bash
+python3 tools/record_stability_run.py \
+  --usage-report reports/skillopt/social_voice/stability-run-1-usage.json \
+  --stability-runs reports/skillopt/social_voice/stability-runs.json \
+  --run-label run_1 \
+  --executor codex \
+  --command "python3 tools/run_skillopt_benchmark.py --skill-path .agents/skills/voice-match/SKILL.md --cases-path benchmarks/social_voice/social_voice_cases.jsonl --output reports/skillopt/social_voice/stability-run-1.md --usage-output reports/skillopt/social_voice/stability-run-1-usage.json --baseline-only" \
+  --environment-notes "June 24 morning stability run"
+```
+
 - Write a 2-3 sentence summary to `reports/skillopt/social_voice/stability-test-june-2026.md`.
 - Validation: mean score variance within +/-5% is acceptable. Greater than +/-10% requires investigation. Failed case overlap above 80% passes. Between 60-80% requires review. Below 60% is a signal to debug before July 1.
 - Pass means ready for SkillOpt optimization. Fail means debug the runner before the July benchmark cycle.
