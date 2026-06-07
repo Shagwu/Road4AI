@@ -100,12 +100,12 @@ These are locked. Don't re-litigate them:
 **Evaluation engine:**
 - Platform: Gemini CLI, free tier.
 - Rate limit: 100 calls/day, daily reset.
-- Risk level: low. The proof cycle is expected to use roughly 51 calls over 2 weeks.
+- Risk level: medium until measured. A full live runner pass can use roughly 49 Gemini CLI calls when failures trigger optimization and after-score evaluation. Two stability runs on the same day may approach or exceed the free-tier daily budget, so split Run 1 and Run 2 across daily resets unless the runner is changed to support baseline-only scoring.
 - Reveal transparency: state that `voice-match` was scored with Gemini CLI judgment, not Claude or OpenAI models.
 
 **June 24-25 stability playbook:**
 - Run 1: June 24 morning. Record timestamp, exact command, Gemini CLI version, environment notes, mean score, standard deviation, and failed case IDs.
-- Run 2: June 24 afternoon or June 25 morning. Use the same command, skill, benchmark, and environment. Record the same fields.
+- Run 2: June 25 morning after the Gemini CLI daily reset. Use the same command, skill, benchmark, and environment. Record the same fields.
 - Save raw data to `reports/skillopt/social_voice/stability-runs.json`.
 - Write a 2-3 sentence summary to `reports/skillopt/social_voice/stability-test-june-2026.md`.
 - Validation: mean score variance within +/-5% is acceptable. Greater than +/-10% requires investigation. Failed case overlap above 80% is healthy. Below 60% is a signal to debug before July 1.
