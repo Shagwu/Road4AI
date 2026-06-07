@@ -73,6 +73,42 @@ These are locked. Don't re-litigate them:
 - Obsidian is a thinking/navigation layer only. Recovery flows rebuild it from Markdown and git history; Obsidian workspace state, graph position, and UI metadata are not Hermes checkpoint inputs.
 - v2.1 scope does not include the Visual Memory Loop. v2.1 is the governed SkillOpt learning layer: benchmarks, allowlisted skill optimization, review gates, and proof package. Visual Memory Loop is a Phase 5+ candidate because it adds a new product surface, storage/retrieval semantics, media governance, and UX decisions that would blur the v2.1 learning-loop boundary.
 
+### V2.1 Benchmark Proof Plan (July 2026)
+
+**Reveal date target:** Wednesday, July 15, 2026.
+
+**Skill under test:**
+- Skill: `.agents/skills/voice-match/SKILL.md`
+- Test suite: `benchmarks/social_voice/social_voice_cases.jsonl`
+- Size: 12 base cases, with 3-5 real failures from June posts optional if they improve signal quality
+- Rationale: `voice-match` is high-signal for the audience, already has a test suite, and is safe to improve without touching governance, queue, or publishing contracts. Benchmark the runtime skill under `.agents/skills/`, not the repo teaching copy under `skills/`.
+
+**Execution flow:**
+1. Baseline: run the current skill against the suite, recording mean score, failures, and failure types.
+2. Optimization: run SkillOpt against failed cases only.
+3. Review gate: inspect the proposed patch against governance and voice constraints. Do not auto-apply.
+4. After score: rerun the benchmark against the improved skill, recording mean score and delta.
+5. Artifacts: write `docs/benchmarks/voice-match-skillopt-july-2026.md`, raw outputs under `reports/skillopt/social_voice/`, and the accepted skill-improvement commit hash only after approval.
+
+**Timeline:**
+- Budget: 1 week nominal, plus 2-3 day buffer for runner or benchmark cleanup.
+- Start: July 1, 2026, after June runway posts land.
+- Complete: July 8, 2026, leaving one week for reveal draft and Karen gate before July 15.
+
+**Risk mitigation:**
+- Runner stability: before July 1, validate that the runner produces consistent scores on `voice-match`.
+- Benchmark quality: review the current 12 cases for breadth and flag cases that are too vague.
+- Overclaiming guard: reveal language must say "`voice-match` improved X%" rather than "Hermes got smarter."
+- Governance review: self-review against `docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md` before Karen.
+
+**Pre-reveal checklist:**
+- [ ] Dry-run runner on `voice-match` by June 24-25.
+- [ ] Review benchmark cases for quality by June 25-26.
+- [ ] Execute benchmark cycle July 1-8.
+- [ ] Draft reveal with actual numbers July 8-12.
+- [ ] Karen gate review July 12-14.
+- [ ] Final polish and publish July 15.
+
 ---
 
 ## 3. Hermes protocol
