@@ -70,6 +70,7 @@ These are locked. Don't re-litigate them:
 - Local-first, CLI-native, no cloud-only dependencies in the main path
 - Multi-agent coordination via Hermes memory layer, not hardcoded handoffs
 - Human-in-the-loop before any public output, this is infrastructure, not a preference
+- Obsidian is a thinking/navigation layer only. Recovery flows rebuild it from Markdown and git history; Obsidian workspace state, graph position, and UI metadata are not Hermes checkpoint inputs.
 
 ---
 
