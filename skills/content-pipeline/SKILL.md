@@ -46,6 +46,7 @@ Independent research and ideation can run in parallel. Dedup, drafting, review, 
 6. Sanitizer: `public-sanitization-review` checks exploit strings, paths, secrets, private account names, and unsafe examples.
 7. Approval: only the user moves content into `drafts/approved/`.
 8. Scheduling: Gemini CLI schedules approved content through Blotato and updates shared state.
+9. Filing: after Blotato confirms scheduling, move scheduled drafts from `drafts/approved/` to `drafts/archived/` and update queue paths. The approved folder is a scheduling inbox, not storage; leaving scheduled files there creates duplicate-approval and repost risk.
 
 ## Parallel Ideation Workstreams
 
@@ -69,7 +70,8 @@ The Chief of Staff aggregates the outputs, applies Road4AI strategy, and routes 
 7. Draft selected content into `drafts/ideas/` or `drafts/ready/` based on user instruction.
 8. Run Karen and public sanitizer gates before approval or scheduling.
 9. Preserve manual approval: only the user moves content into `drafts/approved/`.
-10. After a successful queue write, create a Hermes checkpoint commit.
+10. After scheduling in Blotato, archive the scheduled draft and update queue references away from `drafts/approved/`.
+11. After a successful queue write, create a Hermes checkpoint commit.
 
 ## Output Contract
 
