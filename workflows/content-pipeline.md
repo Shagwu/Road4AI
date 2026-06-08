@@ -18,5 +18,6 @@ This workflow ensures consistent collaboration between Codex and Gemini CLI.
    - Use `blotato_create_post` to schedule or publish.
    - For threads, use `additionalPosts`.
 3. **Log**:
-   - Update `state/published-log.json` with the `postSubmissionId` and platform.
-   - Move the draft from `drafts/approved/` to `drafts/archived/`.
+   - Update `state/current-queue.json` with the `postSubmissionId`, platform, and scheduled time.
+   - Move scheduled drafts from `drafts/approved/` to `drafts/archived/` after Blotato confirms they are scheduled, so Gemini cannot repost them from the approved folder.
+   - After the post publishes, update `state/published-log.json` with the final published status and URL when available.

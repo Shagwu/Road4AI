@@ -4,7 +4,7 @@ title: The Self-Knowledge Pivot - Cross-Platform Pack
 type: Struggle
 platform: Facebook / Instagram / TikTok
 goal: Build in public
-source: drafts/approved/2026-06-08-self-knowledge-pivot-li.md
+source: drafts/archived/2026-06-08-self-knowledge-pivot-li.md
 status: scheduled
 created_at: 2026-06-05T00:00:00+01:00
 status_updated_at: 2026-06-06T19:35:00+01:00
@@ -212,7 +212,7 @@ On camera close:
 ## Gemini Scheduling Notes
 
 - Do not mark this as published until Blotato confirms.
-- The approved LinkedIn and X posts are already in `drafts/approved/`.
-- This companion pack is in `drafts/ready/` and still needs human approval before moving to `drafts/approved/`.
+- The approved LinkedIn and X posts are already in `drafts/archived/`.
+- This companion pack is in `drafts/ready/` and still needs human approval before moving to `drafts/archived/`.
 - Use the PNG collage asset as the Facebook image and Instagram visual.
 - Use the collage final frame as the TikTok/Reel cover if a video is produced.
