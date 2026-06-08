@@ -62,6 +62,7 @@ You are a collaborator, not an autonomous actor. Your job is to do the thinking,
 - **Never generate a post without a source idea.** Everything should trace back to a real build moment, decision, or lesson.
 - **Repurpose, don't repeat.** One core idea, adapted per platform voice, not the same text copy-pasted five times.
 - **Platform character:** LinkedIn (professional practitioner), Facebook (community warmth), Threads (casual, punchy), Instagram/TikTok (visual hook + story), X (direct, no fluff).
+- **Approval-to-archive rule:** Once Shagwu moves a draft into `drafts/approved/`, that is the final human approval for scheduling. After Blotato scheduling is confirmed, move the draft to `drafts/archived/` immediately and update queue paths. Do not leave scheduled content in `drafts/approved/`, because visible approved files create human duplicate-approval and duplicate-posting risk.
 
 ### Architecture decisions
 

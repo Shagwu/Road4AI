@@ -63,8 +63,9 @@ Agents must use these files as standing instructions. If a rule conflicts with t
   - **Session Start**: Run `git log --grep="CHECKPOINT:" --format="%B" -3`. Parse each `[hermes-context]` block and brief the operator on what was last completed, what's remaining, and any low-confidence states needing review.
   - Read `drafts/approved/`.
   - Use Blotato tools to schedule/publish content.
-  - Record publishing success in `state/published-log.json`.
-  - Archive published drafts to `drafts/archived/`.
+  - Record scheduling details in `state/current-queue.json`.
+  - Archive scheduled drafts to `drafts/archived/` immediately after Blotato confirms scheduling, then update queue paths so the approved folder stays empty.
+  - Record final publishing success in `state/published-log.json` when live URLs or final statuses are available.
 
 ### Content Scout (Content Researcher)
 - **Focus**: Knowledge extraction from transcripts, articles, and videos.
@@ -119,16 +120,17 @@ We use the file system as our shared memory:
 1. **Deduplication**: Before drafting, check `state/published-log.json` and `state/current-queue.json`.
 2. **Monday Ritual**: Every Monday, the Chief of Staff (Gemini CLI) parses `inbox.md` to identify the top 5 content moments, maps them to types (Struggle/Win/Tutorial/BTS), and updates `state/current-queue.json`.
 3. **Approval**: Only the user moves files from `ready/` to `approved/`.
-4. **Traceability**: Every published post must have a corresponding entry in `state/published-log.json`.
-5. **Governance Lock**: The system's 'Manual Approval Gate.' Any mutation to `AGENTS.md` (operating contracts) MUST be reviewed and approved by the human conductor. Agents are strictly prohibited from negotiating or mutating their own operating contracts without a per-session human confirmation, preventing autonomous drift in system-wide rules.
-6. **Write Gate**: `AGENTS.md` must be treated as a protected constitution. Agents may read it, but must not write to it directly as part of normal task execution. This ensures the integrity of the system-wide hierarchy.
-7. **Pre-Reveal Parallel Workstream**: Before the Hermes v2.0 reveal on 2026-05-26, the team must track and close these technical gaps in parallel:
+4. **Approved Folder Hygiene**: `drafts/approved/` is a scheduling inbox, not storage. Once approved content is scheduled in Blotato, move it to `drafts/archived/` immediately to prevent human duplicate approval or reposting.
+5. **Traceability**: Every scheduled post must have a corresponding entry in `state/current-queue.json`; every published post must have a corresponding entry in `state/published-log.json` when final publication details are available.
+6. **Governance Lock**: The system's 'Manual Approval Gate.' Any mutation to `AGENTS.md` (operating contracts) MUST be reviewed and approved by the human conductor. Agents are strictly prohibited from negotiating or mutating their own operating contracts without a per-session human confirmation, preventing autonomous drift in system-wide rules.
+7. **Write Gate**: `AGENTS.md` must be treated as a protected constitution. Agents may read it, but must not write to it directly as part of normal task execution. This ensures the integrity of the system-wide hierarchy.
+8. **Pre-Reveal Parallel Workstream**: Before the Hermes v2.0 reveal on 2026-05-26, the team must track and close these technical gaps in parallel:
    - Enforce filesystem-level write protection on `AGENTS.md`.
    - Enforce hard `NEVER` rules in agent specs so config mutations are surfaced with `[HUMAN_REVIEW_REQUIRED]`.
    - Finish the input sanitization defense layer before making public safety claims about transcript handling.
-8. **Public Sanitization**: Any draft discussing security, prompt injection, autonomy failures, private workflows, or customer examples must pass public sanitization review before approval or scheduling.
-9. **Security Before Commit**: Before committing, check for hardcoded secrets, bearer tokens, OAuth files, private local paths, private account IDs, copy-pasteable exploit payloads, and accidental protected-file edits.
-10. **Queue Shape Preservation**: `state/current-queue.json` currently uses a top-level `queue` array. Preserve this shape unless the user explicitly approves a schema migration.
+9. **Public Sanitization**: Any draft discussing security, prompt injection, autonomy failures, private workflows, or customer examples must pass public sanitization review before approval or scheduling.
+10. **Security Before Commit**: Before committing, check for hardcoded secrets, bearer tokens, OAuth files, private local paths, private account IDs, copy-pasteable exploit payloads, and accidental protected-file edits.
+11. **Queue Shape Preservation**: `state/current-queue.json` currently uses a top-level `queue` array. Preserve this shape unless the user explicitly approves a schema migration.
 
 ## Content Queue Schema (state/current-queue.json)
 
@@ -289,4 +291,4 @@ If Karen is active, she must sign off on any queue entry that:
 
 - **X (Twitter) Constraints:**
   - **Character Limit:** Every post in an X thread must be strictly under 280 characters. Any draft exceeding this limit must be flagged as "REJECTED" by the validation layer (Karen).
-  - **Automated Scheduling:** Once content is moved to the `approved/` folder or marked as approved by the user, Gemini CLI should proceed immediately to schedule via Blotato. The manual approval of the draft content is the final gate; no separate confirmation is required for the scheduling action itself.
+  - **Automated Scheduling:** Once content is moved to the `approved/` folder or marked as approved by the user, Gemini CLI should proceed immediately to schedule via Blotato. The manual approval of the draft content is the final gate; no separate confirmation is required for the scheduling action itself. After Blotato scheduling is confirmed, move the scheduled draft to `drafts/archived/` and update queue paths so `drafts/approved/` does not invite duplicate human approval or duplicate calendar entries.
