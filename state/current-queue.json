@@ -16,7 +16,7 @@
       "updated_at": "2026-06-05T15:00:00Z",
       "scheduled_time": "2026-06-08T09:00:00Z",
       "blotato_id": "74353589-d9b0-4d51-ad10-ee1eb174ce5e",
-      "draft_path": "drafts/approved/2026-06-08-self-knowledge-pivot-li.md"
+      "draft_path": "drafts/archived/2026-06-08-self-knowledge-pivot-li.md"
     },
     {
       "id": "2026-06-w2-self-knowledge-pivot-x",
@@ -34,7 +34,7 @@
       "updated_at": "2026-06-05T15:05:00Z",
       "scheduled_time": "2026-06-08T12:00:00Z",
       "blotato_id": "d0f5443d-c15d-440a-87be-9e177f18fe25",
-      "draft_path": "drafts/approved/2026-06-08-self-knowledge-pivot-x.md"
+      "draft_path": "drafts/archived/2026-06-08-self-knowledge-pivot-x.md"
     },
     {
       "id": "2026-06-w2-self-knowledge-pivot-threads",
@@ -43,7 +43,7 @@
       "type": "Struggle",
       "platform": "Threads",
       "goal": "Build in public",
-      "source": "drafts/approved/2026-06-08-self-knowledge-pivot-cross-platform.md",
+      "source": "drafts/archived/2026-06-08-self-knowledge-pivot-cross-platform.md",
       "status": "scheduled",
       "status_updated_at": "2026-06-06T19:35:00Z",
       "priority": 3,
@@ -52,7 +52,7 @@
       "updated_at": "2026-06-06T19:35:00Z",
       "scheduled_time": "2026-06-08T13:00:00Z",
       "blotato_id": "1550731",
-      "draft_path": "drafts/approved/2026-06-08-self-knowledge-pivot-cross-platform.md",
+      "draft_path": "drafts/archived/2026-06-08-self-knowledge-pivot-cross-platform.md",
       "notes": "Companion pack already scheduled in Blotato; queue entry added to prevent duplicate scheduling."
     },
     {
@@ -62,7 +62,7 @@
       "type": "Struggle",
       "platform": "Facebook",
       "goal": "Build in public",
-      "source": "drafts/approved/2026-06-08-self-knowledge-pivot-cross-platform.md",
+      "source": "drafts/archived/2026-06-08-self-knowledge-pivot-cross-platform.md",
       "status": "scheduled",
       "status_updated_at": "2026-06-06T19:35:00Z",
       "priority": 3,
@@ -71,7 +71,7 @@
       "updated_at": "2026-06-06T19:35:00Z",
       "scheduled_time": "2026-06-08T15:00:00Z",
       "blotato_id": "1550930",
-      "draft_path": "drafts/approved/2026-06-08-self-knowledge-pivot-cross-platform.md",
+      "draft_path": "drafts/archived/2026-06-08-self-knowledge-pivot-cross-platform.md",
       "notes": "Companion pack already scheduled in Blotato; queue entry added to prevent duplicate scheduling."
     },
     {
@@ -81,7 +81,7 @@
       "type": "Struggle",
       "platform": "Instagram",
       "goal": "Build in public",
-      "source": "drafts/approved/2026-06-08-self-knowledge-pivot-cross-platform.md",
+      "source": "drafts/archived/2026-06-08-self-knowledge-pivot-cross-platform.md",
       "status": "scheduled",
       "status_updated_at": "2026-06-06T19:35:00Z",
       "priority": 3,
@@ -90,7 +90,7 @@
       "updated_at": "2026-06-06T19:35:00Z",
       "scheduled_time": "2026-06-08T17:00:00Z",
       "blotato_id": "1550674",
-      "draft_path": "drafts/approved/2026-06-08-self-knowledge-pivot-cross-platform.md",
+      "draft_path": "drafts/archived/2026-06-08-self-knowledge-pivot-cross-platform.md",
       "notes": "Companion pack already scheduled in Blotato; queue entry added to prevent duplicate scheduling."
     },
     {
@@ -100,7 +100,7 @@
       "type": "Struggle",
       "platform": "TikTok",
       "goal": "Build in public",
-      "source": "drafts/approved/2026-06-08-self-knowledge-pivot-cross-platform.md",
+      "source": "drafts/archived/2026-06-08-self-knowledge-pivot-cross-platform.md",
       "status": "scheduled",
       "status_updated_at": "2026-06-06T19:35:00Z",
       "priority": 3,
@@ -109,7 +109,7 @@
       "updated_at": "2026-06-06T19:35:00Z",
       "scheduled_time": "2026-06-08T18:00:00Z",
       "blotato_id": "1550806",
-      "draft_path": "drafts/approved/2026-06-08-self-knowledge-pivot-cross-platform.md",
+      "draft_path": "drafts/archived/2026-06-08-self-knowledge-pivot-cross-platform.md",
       "notes": "Companion pack already scheduled in Blotato; queue entry added to prevent duplicate scheduling."
     },
     {
@@ -128,7 +128,7 @@
       "updated_at": "2026-06-06T19:30:00Z",
       "scheduled_time": "2026-06-09T09:00:00Z",
       "blotato_id": "b0a37706-6cf7-404c-ac42-5a6e36f99592",
-      "draft_path": "drafts/approved/2026-06-09-token-anxiety-li.md",
+      "draft_path": "drafts/archived/2026-06-09-token-anxiety-li.md",
       "notes": "Approved content scheduled to prevent Gemini repost/double-up."
     },
     {
@@ -147,7 +147,7 @@
       "updated_at": "2026-06-06T00:00:00Z",
       "scheduled_time": "2026-06-10T09:00:00Z",
       "blotato_id": "fb636aaa-3f39-4ed3-a163-7c814e6009e5",
-      "draft_path": "drafts/approved/2026-06-10-skillopt-60-cent-skill-evolution-li.md",
+      "draft_path": "drafts/archived/2026-06-10-skillopt-60-cent-skill-evolution-li.md",
       "notes": "Approved short version. Karen review run before scheduling; local model returned non-actionable markdown/code false positives."
     },
     {
@@ -166,7 +166,7 @@
       "updated_at": "2026-06-06T19:30:00Z",
       "scheduled_time": "2026-06-11T12:00:00Z",
       "blotato_id": "455de52a-f0e4-4da7-868b-1e23d06b3198",
-      "draft_path": "drafts/approved/2026-06-11-rationed-thinking-x.md",
+      "draft_path": "drafts/archived/2026-06-11-rationed-thinking-x.md",
       "notes": "Approved content scheduled to prevent Gemini repost/double-up; X thread verified under 280 characters per post."
     },
     {
@@ -185,7 +185,7 @@
       "updated_at": "2026-06-06T00:00:00Z",
       "scheduled_time": "2026-06-12T12:00:00Z",
       "blotato_id": "14b58eed-2a84-4bd1-8375-d10089f5a9ab",
-      "draft_path": "drafts/approved/2026-06-12-indexing-the-builder-x.md",
+      "draft_path": "drafts/archived/2026-06-12-indexing-the-builder-x.md",
       "notes": "Compressed from 14 to 11 posts to satisfy Blotato's thread limit; all posts under 280 characters."
     },
     {
@@ -204,7 +204,7 @@
       "updated_at": "2026-06-06T19:15:00Z",
       "scheduled_time": "2026-06-13T17:00:00Z",
       "blotato_id": "537ffaa4-53fd-4791-9fff-8324e71cea7b",
-      "draft_path": "drafts/approved/2026-06-13-canonical-click-threads.md",
+      "draft_path": "drafts/archived/2026-06-13-canonical-click-threads.md",
       "visual_id": "2ce0fd42-b204-4ffa-924a-3670326ebbb3",
       "notes": "Quote Card Carousel with Monocolor Paper Background."
     },
@@ -224,7 +224,7 @@
       "updated_at": "2026-06-06T19:15:00Z",
       "scheduled_time": "2026-06-13T17:05:00Z",
       "blotato_id": "f83b935c-d41c-4026-bddc-bd501fe6a6e9",
-      "draft_path": "drafts/approved/2026-06-13-canonical-click-threads.md",
+      "draft_path": "drafts/archived/2026-06-13-canonical-click-threads.md",
       "visual_id": "2ce0fd42-b204-4ffa-924a-3670326ebbb3",
       "notes": "Repost of canonical quote-card carousel."
     },
@@ -244,7 +244,7 @@
       "updated_at": "2026-06-06T19:15:00Z",
       "scheduled_time": "2026-06-13T17:10:00Z",
       "blotato_id": "04d3abe9-8198-435a-852a-e5d01e9aaf81",
-      "draft_path": "drafts/approved/2026-06-13-canonical-click-threads.md",
+      "draft_path": "drafts/archived/2026-06-13-canonical-click-threads.md",
       "visual_id": "2ce0fd42-b204-4ffa-924a-3670326ebbb3",
       "notes": "LinkedIn repost of canonical quote-card carousel."
     },
@@ -264,7 +264,7 @@
       "updated_at": "2026-06-06T19:15:00Z",
       "scheduled_time": "2026-06-14T17:00:00Z",
       "blotato_id": "91b7b05f-8cbd-43d8-8524-652a44110ec2",
-      "draft_path": "drafts/approved/2026-06-14-sunday-signal-token-anxiety-li.md",
+      "draft_path": "drafts/archived/2026-06-14-sunday-signal-token-anxiety-li.md",
       "visual_id": "9838e649-b076-4946-82ac-1131fdab1b40",
       "notes": "Tweet Card Carousel with Minimal Style."
     },
@@ -284,7 +284,7 @@
       "updated_at": "2026-06-06T19:15:00Z",
       "scheduled_time": "2026-06-14T17:05:00Z",
       "blotato_id": "dfb9442d-fb47-48ec-8563-516d79e89b66",
-      "draft_path": "drafts/approved/2026-06-14-sunday-signal-token-anxiety-li.md",
+      "draft_path": "drafts/archived/2026-06-14-sunday-signal-token-anxiety-li.md",
       "visual_id": "9838e649-b076-4946-82ac-1131fdab1b40",
       "notes": "TikTok repost of Sunday Signal tweet-card carousel."
     },
@@ -302,7 +302,7 @@
       "created_at": "2026-06-08T09:05:00Z",
       "scheduled_time": "2026-06-15T12:00:00Z",
       "blotato_id": "6a57cfdd-d094-4aaf-8e51-64f0a36d9d2e",
-      "draft_path": "drafts/approved/2026-06-15-system-integrity-x.md"
+      "draft_path": "drafts/archived/2026-06-15-system-integrity-x.md"
     },
     {
       "id": "2026-06-w2-tireless-worker-reel",
@@ -318,7 +318,7 @@
       "created_at": "2026-06-08T09:10:00Z",
       "scheduled_time": "2026-06-22T17:00:00Z",
       "blotato_id": "39cbd5bd-4374-472c-8f5f-e48236f79b7d",
-      "draft_path": "drafts/approved/2026-06-22-tireless-worker-trap-reel.md"
+      "draft_path": "drafts/archived/2026-06-22-tireless-worker-trap-reel.md"
     },
     {
       "id": "2026-06-w1-standalone-substrate-li",
@@ -709,7 +709,7 @@
       "updated_at": "2026-06-05T16:00:00Z",
       "scheduled_time": "2026-06-15T12:05:00Z",
       "blotato_id": "347e6157-7fad-4e93-ae57-3b8d959abaff",
-      "draft_path": "drafts/approved/2026-06-15-system-integrity-threads.md"
+      "draft_path": "drafts/archived/2026-06-15-system-integrity-threads.md"
     },
     {
       "id": "2026-06-w4-tireless-worker-instagram",
@@ -727,7 +727,7 @@
       "updated_at": "2026-06-05T16:30:00Z",
       "scheduled_time": "2026-06-22T17:00:00Z",
       "blotato_id": "1551086",
-      "draft_path": "drafts/approved/2026-06-22-tireless-worker-trap-reel.md"
+      "draft_path": "drafts/archived/2026-06-22-tireless-worker-trap-reel.md"
     },
     {
       "id": "2026-06-w4-tireless-worker-tiktok",
@@ -745,7 +745,7 @@
       "updated_at": "2026-06-05T16:30:00Z",
       "scheduled_time": "2026-06-22T17:05:00Z",
       "blotato_id": "0b982ad1-c43c-4662-a959-5c66b7c84e30",
-      "draft_path": "drafts/approved/2026-06-22-tireless-worker-trap-reel.md"
+      "draft_path": "drafts/archived/2026-06-22-tireless-worker-trap-reel.md"
     },
     {
       "id": "2026-06-w4-tireless-worker-facebook",
@@ -763,7 +763,7 @@
       "updated_at": "2026-06-05T16:30:00Z",
       "scheduled_time": "2026-06-22T17:10:00Z",
       "blotato_id": "544af56f-efd0-4eb5-a07d-7917b5fddebd",
-      "draft_path": "drafts/approved/2026-06-22-tireless-worker-trap-reel.md"
+      "draft_path": "drafts/archived/2026-06-22-tireless-worker-trap-reel.md"
     }
   ],
   "updated": "2026-06-08"

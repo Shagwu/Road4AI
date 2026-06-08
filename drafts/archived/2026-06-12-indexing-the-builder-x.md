@@ -5,7 +5,7 @@ type: Technical
 platform: X
 goal: Build in public
 target_schedule: 2026-06-12
-source: tools/index_self.py; drafts/approved/2026-06-08-self-knowledge-pivot-li.md; docs/tool-docs/HERMES_V2.md
+source: tools/index_self.py; drafts/archived/2026-06-08-self-knowledge-pivot-li.md; docs/tool-docs/HERMES_V2.md
 status: approved
 created_at: 2026-06-06T00:00:00+01:00
 status_updated_at: 2026-06-06T00:00:00+01:00
