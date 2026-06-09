@@ -75,6 +75,26 @@ Agents must use these files as standing instructions. If a rule conflicts with t
   - Generate a clean `INBOX.MD` append block (Part 2).
   - Automatically append the signal block to `inbox.md`.
 
+### Signal Harvester [L8 Autonomy]
+- **Role**: Autonomous web reading across platforms (Twitter, Reddit, GitHub, YouTube, RSS). Feeds normalized signals into Hermes, caches deduplicated results.
+
+**DO:**
+- Query Agent-Reach CLI for signals on demand or scheduled
+- Normalize results → structured JSON, ingest into Hermes
+- Maintain 24h dedup cache (no re-scraping same source)
+- Return confidence scores + source metadata to dependent agents
+
+**ASK:**
+- Before adding confidence signal to Hermes checkpoint (human review gate?)
+- Platform expansion beyond Twitter/GitHub POC (rate limits?)
+- Cache eviction policy changes
+
+**NEVER:**
+- Store platform credentials or auth tokens
+- Post/write/modify any content (read-only always)
+- Scrape without 2s delay between requests
+- Bypass platform ToS (headless browsing only where legal/documented)
+
 ## Parallel vs. Sequential Work
 
 ### Parallel
