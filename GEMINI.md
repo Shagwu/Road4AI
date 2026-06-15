@@ -1,3 +1,8 @@
+## Scope Restriction Mandate
+- **Primary Root**: `/Users/shagwu/Downloads/Road4AI-main`
+- **Constraint**: All file reads (`read_file`), searches (`grep_search`, `glob`), and directory listings (`list_directory`) MUST be strictly scoped to the Primary Root or its subdirectories.
+- **Exclusion**: Ignore all files in the parent directory (`/Users/shagwu/`) or sibling directories unless they are explicitly passed as a tool input for a specific cross-project task.
+
 ## graphify
 
 This project has a graphify knowledge graph at graphify-out/.

@@ -55,14 +55,19 @@ Do not overthink them. First thought, best thought.
 
 1. What frustrated me most this week and how did I get past it?
 
+The core frustration was the high cost of agent/LLM APIs; realized Gemini CLI can chew 20% of my free quota on a single status check. This, combined with the volatility of "shiny tools" (like Fable being shut down), pushed me to a design principle: **resilience through local-first, low-cost workflows.** I design systems that won’t vanish; if a premium layer like Fable disappears, the "free system" keeps running. Even without the smartest/fastest models, I win by building a resilient system and mastering how to drive it.
 
 2. What actually worked this week that surprised me?
 
-I added Obsidian to Road4AI without letting it become the source of truth. That felt important. Obsidian is only the thinking layer: links, themes, navigation, and reflection. The repo stays operational: queue state, approved drafts, published log, and Hermes checkpoints. The guardrails matter because solo builders can drown in tool sprawl when every tool starts pretending to be the system.
+**API-frugal AI** as a working thesis. I adopted Andrew Ng’s **OpenCode Work** + **Ollama** for a local, zero-cost coding assistant. It replies in structured JSON, and while it initially confused me, I’m building a "relationship" with its voice—it handles the structure while I talk to it like a friend. This forces clarity and transparency in my step-by-step requests. I also integrated Obsidian as a thinking layer without letting it become the source of truth, keeping the repo operational (queue, drafts, published log).
+
+**Meta-insight:** Constraint (API-token cost) → Adaptation (tiered tool stack). Expensive models are specialists; local models + manual coding handle the manual labor. "API-frugal AI" is now the Road4AI brand: patience + persistence + skill > brute force money.
 
 3. What did I consume (watch, read, listen to) that I am still thinking about?
 
-Future post seed: [[Why I Added Obsidian to Road4AI]] and why I do not let it control me. Most people fight over whether their note app is the source of truth. I solved that by making Obsidian the thinking layer and keeping the repo the operational layer. The interesting part is not the tool. It is the three guardrails that stop it from becoming a distraction.
+**Joshua Stevenson’s** breakdown of the Stanford AI course. Five ideas clicked: no perfect model (Pareto frontier), focus on AI *systems* over models, use Chain-of-Thought for complexity, show concrete examples, and remember hallucinations are just token prediction. 
+
+**The Game Changer:** His **NotebookLM hack**. Importing a full course, asking questions, then turning notes into an `.md` file to upload to an LLM as a reusable **"skill"**. This is exactly how I want to learn and build agents. (Links: [[Joshua Stevenson Stanford Breakdown]], [[NotebookLM Skill Hack]])
 
 ---
 
