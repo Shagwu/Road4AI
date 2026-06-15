@@ -1,6 +1,6 @@
 # Road4AI
 
-A layered multi-agent system for solo operators. CLI-native, local-first, built on tools that don't cost money to run. [page:2]
+A layered multi-agent system for solo operators. CLI-native, local-first, built on tools that don't cost money to run. 
 
 ## 1. What Road4AI is
 
@@ -16,7 +16,7 @@ A layered multi-agent system for solo operators. CLI-native, local-first, built 
 - Structured builds: Codex  
 - Reasoning + strategy: Claude  
 - Memory: Hermes v2.0 (distributed context)  
-- Distribution: Blotato (social automation) [page:2]
+- Distribution: Blotato (social automation) 
 
 You can also include a short description of how agents talk to each other:
 - Shared memory contract via Hermes v2.0.
@@ -31,9 +31,9 @@ You can also include a short description of how agents talk to each other:
 | Reasoning + strategy | Claude      | Long-context reasoning and planning             |
 | Memory               | Hermes v2.0 | Distributed context across all agents           |
 | Distribution         | Blotato     | Scheduled content and social posting            |
-| Git workflow         | GitNexus    | Version control and repo hygiene                | [page:2]
+| Git workflow         | GitNexus    | Version control and repo hygiene                | 
 
-(That table mirrors the one already in your profile README, but here it’s clearly “system stack” for the project.) [page:2]
+(That table mirrors the one already in your profile README, but here it’s clearly “system stack” for the project.) 
 
 ## 4. Getting started
 
@@ -86,7 +86,7 @@ Describe 2–3 concrete workflows in bullet form, the way a solo builder would a
 
 Tie it back to what you already wrote in the profile:
 
-- Hardening Hermes v2.0 (memory backbone across agents and tools). [page:2]  
+- Hardening Hermes v2.0 (memory backbone across agents and tools).  
 - Making the system fully reproducible for other solo builders.  
 - Adding templates for common agent workflows (content, research, coding).
 
@@ -94,14 +94,14 @@ Tie it back to what you already wrote in the profile:
 
 Finish with explicit links:
 
-- Live site: `https://road4-ai.vercel.app` or `https://shagwu.github.io/Road4AI/` (whichever is canonical for you). [page:2]  
+- Live site: `https://shagwu.github.io/Road4AI/`
 - Profile + narrative: `https://github.com/Shagwu`  
-- Social: `@road4ai` on Instagram, TikTok, etc. [page:2]
+- Social: Instagram, `@road4ai' 
 
 ### How this plays with your profile README
 
-- Profile (`Shagwu/Shagwu`): stays opinionated and story-driven, with Road4AI as your flagship project and the “why.” [page:2]  
-- Repo (`Shagwu/Road4AI`): becomes the technical **how** — architecture, stack, install, workflows, roadmap. [page:2]
+- Profile (`Shagwu/Shagwu`): stays opinionated and story-driven, with Road4AI as your flagship project and the “why.” 
+- Repo (`Shagwu/Road4AI`): becomes the technical **how** — architecture, stack, install, workflows, roadmap.
 
 If you’d like, I can draft a fully filled-in README in one shot that you can paste directly into `Road4AI/README.md`; if so, what is your current “truth” for how to run Road4AI locally (command + main entry file)?  
 
