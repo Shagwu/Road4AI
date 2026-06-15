@@ -98,14 +98,3 @@ Finish with explicit links:
 - Profile + narrative: `https://github.com/Shagwu`  
 - Social: Instagram, `@road4ai' 
 
-### How this plays with your profile README
-
-- Profile (`Shagwu/Shagwu`): stays opinionated and story-driven, with Road4AI as your flagship project and the “why.” 
-- Repo (`Shagwu/Road4AI`): becomes the technical **how** — architecture, stack, install, workflows, roadmap.
-
-If you’d like, I can draft a fully filled-in README in one shot that you can paste directly into `Road4AI/README.md`; if so, what is your current “truth” for how to run Road4AI locally (command + main entry file)?  
-
-<user_response_autocomplete>
-Entry is a Python script run with python main.py
-Entry is via Gemini CLI commands and a shell script
-I haven’t decided the exact entrypoint yet
