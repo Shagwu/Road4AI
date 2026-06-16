@@ -17,15 +17,19 @@ from typing import Optional, Union
 
 PROTECTED_FILES = {
     "AGENTS.md",
-    "state/current-queue.json",
-    "state/published-log.json",
+    "project.yaml",
     "docs/brand-voice.md",
     "docs/content-strategy.md",
+    "state/*.json",
+    "state/*.yaml",
+    "rules/common/*.md",
+    "rules/python/*.md",
 }
 
 ALLOWED_SKILL_PATTERNS = {
     "marketing-skills/skills/**/SKILL.md",
-    ".agents/skills/**/SKILL.md",
+    "skills/**/SKILL.md",
+    "rules/content/*.md",
 }
 
 TRANSIENT_STATUS_CODES = {408, 409, 429, 500, 502, 503, 504}
@@ -96,13 +100,15 @@ class BenchmarkRunner:
 
     def _check_protected_file(self) -> None:
         skill_path = self._repo_relative_path(self.skill_file)
-        if skill_path in PROTECTED_FILES:
-            raise ValueError(f"Error: {skill_path} is in protected files list")
         
-        # Use fnmatch instead of fmatch (fixing typo in import)
-        from fnmatch import fnmatch
+        # Check against protected patterns
+        for pattern in PROTECTED_FILES:
+            if fnmatch(skill_path, pattern):
+                raise ValueError(f"Error: {skill_path} matches protected pattern: {pattern}")
+        
+        # Check against allowed patterns
         if not any(fnmatch(skill_path, pattern) for pattern in ALLOWED_SKILL_PATTERNS):
-            raise ValueError(f"Error: {skill_path} does not match allowed patterns: {sorted(ALLOWED_SKILL_PATTERNS)}")
+            raise ValueError(f"Error: {skill_path} does not match any allowed skill patterns: {sorted(ALLOWED_SKILL_PATTERNS)}")
 
     def _load_benchmark_cases(self) -> list[dict]:
         if not self.benchmark_file.exists():

@@ -1,33 +1,40 @@
-# Hermes v2.1 SkillOpt Governance Boundary
+# SkillOpt Governance Boundary (Hermes v2.1)
 
-This document defines the safety contract for the SkillOpt optimization loop. It specifies the boundaries within which the system may operate autonomously and the mandatory gates for human intervention.
+This document defines the safety contract for the SkillOpt optimization loop. It governs which files may be modified, which must be protected, and the mandatory review gates for any agentic mutation.
 
-## Editable Files
-SkillOpt is permitted to suggest edits to the following files. These files constitute the "optimization surface":
-- `.agents/skills/**/*.md`: Skill instructions and logic.
-- `.agents/skills/**/*.json`: Evaluation sets and reference data.
-- `docs/tool-docs/*.md`: Documentation for internal tools.
-- `plan/tasks/*.yaml`: Task specifications (limited to status updates and metadata).
+## 1. Editable Files
+SkillOpt is permitted to propose modifications ONLY to the following files:
+- `marketing-skills/skills/**/SKILL.md`
+- `skills/**/SKILL.md`
+- `rules/content/*.md` (Only with explicit task-level assignment)
 
-## Protected Files
-The following files are strictly prohibited from being modified by the SkillOpt loop. Any attempt to modify these files must be blocked by the system:
-- `AGENTS.md`: The system constitution and operating contract.
-- `state/current-queue.json`: Active task and content queue.
-- `state/published-log.json`: Record of published content.
-- `docs/brand-voice.md`: The foundational brand voice definition.
-- `docs/content-strategy.md`: High-level content strategy.
-- `project.yaml`: Project identity and safety configuration.
+## 2. Protected Files
+The following files are strictly READ-ONLY for SkillOpt. Any attempt to modify these files must be rejected by the benchmark runner and flagged as a security violation:
+- `AGENTS.md` (System Constitution)
+- `project.yaml` (Project Identity)
+- `docs/brand-voice.md` (Voice Ground Truth)
+- `docs/content-strategy.md` (Strategy Ground Truth)
+- `state/*.json` (Operational State)
+- `state/*.yaml` (Operational State)
+- `rules/common/*.md` (Core Governance)
+- `rules/python/*.md` (Engineering Standards)
 
-## Review Gate
-SkillOpt operates on a "Suggest-Verify-Review" model. 
-- **No Auto-Apply**: Skills or code optimized by SkillOpt must NEVER be automatically merged or applied to the production branch.
-- **Operator Approval**: All suggested changes must be presented to a human operator via a Pull Request or a dedicated Review Interface.
-- **Verification Requirement**: Proposed changes must pass all automated benchmarks (e.g., `voice-match` evals) before being presented for human review.
+## 3. Review Gate
+- **No Auto-Apply**: All SkillOpt optimizations must be output as a patch or draft for human review.
+- **Approval Protocol**: Mutations are only committed to the repository after a human operator (Sharon) explicitly signs off on the PR/Draft.
+- **Verification Requirement**: Every optimization must pass the Social Voice Benchmark (T-002) with a score equal to or greater than the original version.
 
-## Rejection Rules
-A SkillOpt suggestion MUST be rejected if it meets any of the following conditions:
-1. **Voice Corruption**: The changes cause a regression in the `social_voice` benchmark or deviate from `docs/brand-voice.md`.
-2. **Security Violation**: The suggestion introduces insecure code patterns, exposes secrets, or bypasses authentication layers.
-3. **Dependency Fragility**: The changes introduce invalid imports, circular dependencies, or break existing tool integrations.
-4. **Governance Breach**: The optimization attempt targets files listed in the "Protected Files" section or attempts to modify its own governance rules.
-5. **Logic Regression**: The suggestion fails any functional test or introduces algorithmic errors that reduce the accuracy of the skill.
+## 4. Rejection Rules
+Any proposed modification must be REJECTED if it triggers any of the following conditions:
+1. **Safety Dilution**: Weakens or removes safety instructions, "NEVER" rules, or governance constraints.
+2. **Voice Drift (Buzzwords)**: Includes marketing hype like "game-changing," "revolutionary," or "unprecedented."
+3. **Voice Drift (Punctuation)**: Includes em dashes (—) or excessive emojis, violating the brand voice mandate.
+4. **Generic Intro**: Uses "AI-sounding" intros like "In today's fast-paced world..." or "As an AI..."
+5. **Transparency Failure**: Removes "the why" or "the how" from a technical explanation, reducing signal-to-noise.
+6. **Data Leak**: Includes hardcoded secrets, local paths, or private account identifiers.
+
+## 5. Enforcement
+The `run_skillopt_benchmark.py` runner must enforce these boundaries by:
+- Checking the target path against the Editable Files allowlist before execution.
+- Validating the output against the Rejection Rules via the voice benchmark suite.
+- HALTING and alerting the operator on any boundary violation.
