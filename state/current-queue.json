@@ -1,6 +1,61 @@
 {
   "queue": [
     {
+      "id": "2026-06-w3-api-frugal-ai-li",
+      "title": "The API-Frugal AI",
+      "hook": "I stopped chasing the smartest models and started building a system that can outlast them.",
+      "type": "Win",
+      "platform": "LinkedIn",
+      "goal": "Build in public",
+      "source": "inbox",
+      "status": "scheduled",
+      "priority": 1,
+      "week": "2026-25",
+      "created_at": "2026-06-15T09:00:00Z",
+      "scheduled_time": "2026-06-16T13:00:00Z",
+      "blotato_id": "43edd964-f6e4-46d3-ba63-f278e6041cce",
+      "draft_path": "drafts/archived/2026-06-16-api-frugal-ai-li.md",
+      "status_updated_at": "2026-06-16T11:09:59.833563+00:00",
+      "updated_at": "2026-06-16T11:09:59.833563+00:00"
+    },
+    {
+      "id": "2026-06-w3-tireless-worker-trap-x",
+      "title": "The Tireless Worker Trap",
+      "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That\u2019s when I realized the tireless worker is also the most dangerous one.",
+      "type": "Struggle",
+      "platform": "X",
+      "goal": "Teach / Nurture",
+      "source": "inbox",
+      "status": "scheduled",
+      "priority": 2,
+      "week": "2026-25",
+      "created_at": "2026-06-15T09:05:00Z",
+      "scheduled_time": "2026-06-16T15:00:00Z",
+      "blotato_id": "6c4d8717-6eb4-44f3-be6f-aceb11be37d3",
+      "draft_path": "drafts/archived/2026-06-16-tireless-worker-trap-x.md",
+      "status_updated_at": "2026-06-16T11:09:59.833563+00:00",
+      "updated_at": "2026-06-16T11:09:59.833563+00:00"
+    },
+    {
+      "id": "2026-06-w3-notebooklm-skill-hack-ig",
+      "title": "The NotebookLM Skill Hack",
+      "hook": "I turned a full Stanford AI course into a reusable agent \"skill\" using a NotebookLM side-quest.",
+      "type": "Tutorial",
+      "platform": "Instagram / TikTok",
+      "goal": "Teach",
+      "source": "inbox",
+      "status": "scheduled",
+      "priority": 3,
+      "week": "2026-25",
+      "created_at": "2026-06-15T09:10:00Z",
+      "scheduled_time": "2026-06-17T09:00:00Z",
+      "blotato_id": "f554565e-4f53-4ca5-9d86-d529df75593a",
+      "draft_path": "drafts/archived/2026-06-16-notebooklm-skill-hack-ig.md",
+      "notes": "TikTok scheduling failed (requires media). IG scheduled for tomorrow.",
+      "status_updated_at": "2026-06-16T11:09:59.833563+00:00",
+      "updated_at": "2026-06-16T11:09:59.833563+00:00"
+    },
+    {
       "id": "2026-06-w2-self-knowledge-pivot-li",
       "title": "The Self-Knowledge Pivot",
       "hook": "I just deleted 10,000 chunks of high-quality RAG data. Here is why generic data was killing my agent.",
@@ -784,5 +839,5 @@
       "draft_path": "drafts/archived/2026-06-11-obsidian-thinking-layer-li.md"
     }
   ],
-  "updated": "2026-06-08"
+  "updated": "2026-06-15"
 }
