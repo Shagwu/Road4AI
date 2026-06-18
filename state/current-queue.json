@@ -44,16 +44,18 @@
       "platform": "Instagram / TikTok",
       "goal": "Teach",
       "source": "inbox",
-      "status": "scheduled",
+      "status": "published",
       "priority": 3,
       "week": "2026-25",
       "created_at": "2026-06-15T09:10:00Z",
       "scheduled_time": "2026-06-17T09:00:00Z",
       "blotato_id": "f554565e-4f53-4ca5-9d86-d529df75593a",
       "draft_path": "drafts/archived/2026-06-16-notebooklm-skill-hack-ig.md",
-      "notes": "TikTok scheduling failed (requires media). IG scheduled for tomorrow.",
-      "status_updated_at": "2026-06-16T11:09:59.833563+00:00",
-      "updated_at": "2026-06-16T11:09:59.833563+00:00"
+      "notes": "Video generated via AI Story template and published to IG and TikTok.",
+      "post_url_ig": "https://www.instagram.com/reel/DZsL5HAERwN/",
+      "post_url_tiktok": "https://www.tiktok.com/@road4ai4/video/7652371551072865557",
+      "status_updated_at": "2026-06-17T14:30:00Z",
+      "updated_at": "2026-06-17T14:30:00Z"
     },
     {
       "id": "2026-06-w2-self-knowledge-pivot-li",
