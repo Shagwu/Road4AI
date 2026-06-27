@@ -1,0 +1,54 @@
+{
+  "run_id": "20260627T170353Z-social_voice",
+  "mode": "full",
+  "benchmark": "social_voice",
+  "cases": 10,
+  "pricing_config": {
+    "path": "(default)",
+    "sha256": "(default)",
+    "source": "https://openai.com/api/pricing/"
+  },
+  "models": {
+    "target_model": "gpt-4.1-2025-04-14",
+    "evaluator_model": "gpt-4.1-2025-04-14",
+    "optimizer_model": "gpt-4.1-2025-04-14"
+  },
+  "calls": {
+    "target_model": 10,
+    "evaluator_model": 10,
+    "optimizer_model": 0
+  },
+  "tokens": {
+    "target_model": {
+      "prompt": 12080,
+      "completion": 4109,
+      "total": 16189
+    },
+    "evaluator_model": {
+      "prompt": 5834,
+      "completion": 2132,
+      "total": 7966
+    },
+    "optimizer_model": {
+      "prompt": 0,
+      "completion": 0,
+      "total": 0
+    }
+  },
+  "estimated_cost_usd": {
+    "target_model": 0.057032,
+    "evaluator_model": 0.028724,
+    "optimizer_model": 0.0,
+    "total": 0.085756
+  },
+  "reasons": {
+    "optimizer_model": "No failures found in baseline"
+  },
+  "baseline_score": 0.95,
+  "optimized_score": 0.95,
+  "baseline_score_stddev": 0.06811754546370563,
+  "optimized_score_stddev": 0.06811754546370563,
+  "baseline_failed_case_ids": [],
+  "optimized_failed_case_ids": [],
+  "improvement_pct": 0.0
+}
