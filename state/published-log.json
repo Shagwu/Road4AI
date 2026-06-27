@@ -241,6 +241,38 @@
       "notes": "Breakdown of the Monday Ideation pipeline. High-signal BTS.",
       "experimental": false,
       "url": "https://x.com/shagwu22/status/2058110688489353238"
+    },
+    {
+      "id": "2026-06-w4-stack-migration-li",
+      "title": "The Stack Migration Nobody Warns You About",
+      "platform": "LinkedIn",
+      "type": "Win",
+      "status": "published",
+      "submissionId": "11d73bf5-d3a9-4450-892e-89d61f1b1e0e",
+      "url": "https://linkedin.com/feed/update/urn:li:share:7476614729684410368",
+      "published_at": "2026-06-26T12:00:00Z",
+      "outcome": "Published to LinkedIn via Blotato Python script. Stack migration post about swapping Gemini CLI for Claude Code."
+    },
+    {
+      "id": "2026-06-w4-stack-migration-x",
+      "title": "The Stack Migration Nobody Warns You About (X)",
+      "platform": "X",
+      "type": "Win",
+      "status": "published",
+      "submissionId": "a2580d92-93b3-4ad3-9de9-2e4087ab9c79",
+      "url": "https://x.com/shagwu22/status/2070849962548535715",
+      "published_at": "2026-06-26T12:30:00Z",
+      "outcome": "Published to X via Blotato Python script. Short stack migration post."
+    },
+    {
+      "id": "2026-06-w4-stack-migration-li-blotato",
+      "title": "Stack Migration LinkedIn (with image)",
+      "platform": "LinkedIn",
+      "type": "Win",
+      "status": "scheduled",
+      "submissionId": "88525cb3-1392-412f-a76a-f1e287277a88",
+      "scheduled_at": "2026-06-29T09:00:00Z",
+      "outcome": "Scheduled for Monday 9AM with AI-generated image via Blotato visual pipeline."
     }
   ]
 }
