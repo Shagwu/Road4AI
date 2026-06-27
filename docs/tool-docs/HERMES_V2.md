@@ -10,6 +10,17 @@ Hermes v2.0 is the high-performance, distributed memory substrate for the Road4A
 
 SkillOpt validation is intentionally treated as a v2.1 proof point, not the v2.0 headline. The v2.0 reveal should stay focused on memory; the validation report is preserved separately for the v2.1 launch narrative.
 
+## Early Validation (Pre-v2.0)
+
+Before the v2.0 reveal, we validated SkillOpt locally:
+
+- **Training loop works:** Standard OpenAI client path produces coherent skill edits
+- **Cost is low:** $0.30-$0.60 per small-domain run
+- **Governance holds:** Protected files (AGENTS.md, brand voice, operating contracts) blocked from optimization
+- **No Azure lock-in:** Drop-in replacement works with standard OpenAI API
+
+This validation confirms v2.1 is ready to move from local testing to governed production runs. See `SKILLOPT_VALIDATION_REPORT.md` for the full validation report.
+
 ## 🏗️ Architecture
 
 Hermes v2.0 follows a "Distributed Pivot" strategy:

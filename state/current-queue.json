@@ -1,6 +1,25 @@
 {
   "queue": [
     {
+      "id": "2026-06-27-skillopt-validation-learnings-li",
+      "title": "What We Learned Validating SkillOpt Locally",
+      "hook": "We spent a week testing whether SkillOpt could optimize Road4AI skills without breaking governance.",
+      "type": "Behind-the-scenes",
+      "platform": "LinkedIn",
+      "goal": "Build in public",
+      "source": "SKILLOPT_VALIDATION_REPORT.md",
+      "status": "scheduled",
+      "status_updated_at": "2026-06-27T00:00:00Z",
+      "priority": 2,
+      "week": "2026-W27",
+      "created_at": "2026-06-27T00:00:00Z",
+      "updated_at": "2026-06-27T00:00:00Z",
+      "scheduled_time": "2026-06-30T12:00:00Z",
+      "blotato_id": "c81dd440-9ba6-4f48-bb55-cd64f14e0c81",
+      "draft_path": "drafts/archived/2026-06-27-skillopt-validation-learnings.md",
+      "notes": "Scheduled via Blotato for Monday 12 noon."
+    },
+    {
       "id": "2026-06-w3-rogue-agent-struggle-li",
       "title": "When Your Agent Goes Rogue (LinkedIn)",
       "hook": "To be honest, my content agent just broke my trust. Twice.",
@@ -933,5 +952,5 @@
       "draft_path": "drafts/archived/2026-06-26-stack-migration-blotato-brief.md"
     }
   ],
-  "updated": "2026-06-26"
+  "updated": "2026-06-27"
 }

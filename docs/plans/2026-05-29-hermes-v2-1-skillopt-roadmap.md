@@ -2,6 +2,8 @@
 
 > **For Claude:** Use `${SUPERPOWERS_SKILLS_ROOT}/skills/collaboration/executing-plans/SKILL.md` to implement this plan task-by-task.
 
+**VALIDATED:** Local validation complete. SkillOpt training loop works with standard OpenAI client. Early runs produced coherent, domain-aware edits. Estimated cost: $0.30-$0.60 per small-domain run. See `SKILLOPT_VALIDATION_REPORT.md` for details.
+
 **Goal:** Move SkillOpt from local validation into a governed Hermes v2.1 learning loop that can optimize selected Road4AI skills without mutating operating contracts or safety boundaries.
 
 **Architecture:** Keep Hermes v2.0 focused on memory and treat SkillOpt as the v2.1 learning layer. The implementation uses benchmark fixtures, allowlisted editable skill files, before/after evaluation reports, and human review before any optimized instruction is accepted.
@@ -628,3 +630,22 @@ Hermes v2.1 is ready to reveal when:
 - v2.1 gives Hermes a learning loop.
 - The hard part is not generating better instructions.
 - The hard part is preventing the optimizer from rewriting the rules it is supposed to obey.
+
+---
+
+## Validation Status
+
+**Date:** 2026-06-27
+**Status:** VALIDATED
+
+**What was validated locally:**
+- SkillOpt training loop works with standard OpenAI client (no Azure lock-in)
+- Early runs produced coherent, domain-aware edits
+- Governance boundary holds: protected files blocked from optimization
+- Estimated cost: $0.30-$0.60 per small-domain run
+
+**Next steps (post-v2.0):**
+- Start collecting benchmarks with `benchmark_collector.py`
+- Label 10-20 items per domain (ground truth baseline)
+- Week 3: First SkillOpt training run on social voice domain
+- Week 6: Publish blog post + v2.1 release

@@ -5,16 +5,15 @@ Drop-in replacement for SkillOpt's azure_openai.py.
 Uses standard OpenAI client instead of Azure-specific implementation.
 
 Usage:
-    from skillopt_openai import SkillOptClient
-    
-    client = SkillOptClient(
-        api_key="sk-...",
-        optimizer_model="gpt-4",
-        target_model="gpt-3.5-turbo"
+    from skillopt_openai import SkillOptClient, create_skillopt_client
+
+    client = create_skillopt_client(
+        optimizer_model="gpt-4.1-2025-04-14",
+        target_model="gpt-4.1-2025-04-14"
     )
-    
-    # Use like standard OpenAI client
-    response = client.generate_skill_edits(...)
+
+    edits = client.generate_skill_edits(skill_doc, rollout_results, domain="social_voice")
+    results = client.evaluate_skill(skill_doc, test_cases, domain="social_voice")
 """
 
 import os
@@ -80,7 +79,7 @@ class SkillOptClient:
         self,
         skill_doc: str,
         rollout_results: List[Dict[str, Any]],
-        domain: str = "qa",
+        domain: str = "social_voice",
         temperature: float = 0.7,
         max_tokens: int = 2000,
     ) -> Dict[str, Any]:
@@ -90,13 +89,13 @@ class SkillOptClient:
         Args:
             skill_doc: Current skill document (markdown)
             rollout_results: List of {task, output, target, score}
-            domain: Task domain (affects prompt)
-            temperature: Sampling temperature
-            max_tokens: Max tokens for response
-        
+        domain: Task domain (affects prompt)
+        temperature: Sampling temperature
+        max_tokens: Max tokens for response
+
         Returns:
             {
-                "edits": [{"type": "add/delete/replace", "section": "...", "content": "..."}],
+                "edits": [{"type": "add", "section": "...", "content": "..."}],
                 "reasoning": "Why these edits help",
                 "improvement_estimate": 0.8
             }
@@ -128,7 +127,7 @@ class SkillOptClient:
         self,
         skill_doc: str,
         test_cases: List[Dict[str, Any]],
-        domain: str = "qa",
+        domain: str = "social_voice",
         temperature: float = 0.0,
     ) -> Dict[str, Any]:
         """
@@ -218,12 +217,11 @@ Return JSON:
     
     def _build_agent_prompt(self, skill_doc: str, case: Dict, domain: str) -> str:
         """Build prompt for agent rollout."""
-        if domain == "qa":
+        if domain == "social_voice":
             return f"""
-Question: {case.get('question', '')}
-Context: {case.get('context', '')}
+Task: {case.get('input', case.get('question', ''))}
 
-Answer:
+Response:
 """
         return str(case)
     
@@ -280,50 +278,3 @@ def create_skillopt_client(
         use_azure=use_azure,
     )
 
-
-# Example usage
-if __name__ == "__main__":
-    # Initialize client (auto-detects Azure vs OpenAI)
-    client = create_skillopt_client(
-        optimizer_model="gpt-4",
-        target_model="gpt-3.5-turbo"
-    )
-    
-    # Example skill
-    example_skill = """
-# Question Answering Skill
-
-You are a helpful question-answering assistant.
-
-## Context Handling
-- Read all provided context carefully
-- Extract relevant information
-- Cite sources when possible
-
-## Answer Quality
-- Be concise and direct
-- Answer only what is asked
-- Admit uncertainty when appropriate
-"""
-    
-    # Example test cases
-    test_cases = [
-        {
-            "question": "What is the capital of France?",
-            "context": "France is a country in Europe. Paris is its capital.",
-            "expected_answer": "Paris"
-        }
-    ]
-    
-    # Evaluate
-    results = client.evaluate_skill(example_skill, test_cases)
-    print(f"Accuracy: {results['accuracy']:.2%}")
-    print(f"Failures: {len(results['failures'])}")
-    
-    # Generate edits if failures
-    if results['failures']:
-        edits = client.generate_skill_edits(
-            example_skill,
-            results['failures']
-        )
-        print(f"Generated {len(edits['edits'])} edits")
