@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# DEPRECATED: This Gemini CLI backend is unreliable and times out.
+# Use run_skillopt_benchmark_openai.py instead for live benchmarking.
 import argparse
 import hashlib
 import json

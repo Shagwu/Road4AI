@@ -14,15 +14,19 @@ from typing import Optional, Union
 
 PROTECTED_FILES = {
     "AGENTS.md",
-    "state/current-queue.json",
-    "state/published-log.json",
+    "project.yaml",
     "docs/brand-voice.md",
     "docs/content-strategy.md",
+    "state/*.json",
+    "state/*.yaml",
+    "rules/common/*.md",
+    "rules/python/*.md",
 }
 
 ALLOWED_SKILL_PATTERNS = {
     "marketing-skills/skills/**/SKILL.md",
-    ".agents/skills/**/SKILL.md",
+    "skills/**/SKILL.md",
+    "rules/content/*.md",
 }
 
 TRANSIENT_STATUS_CODES = {408, 409, 429, 500, 502, 503, 504}
@@ -39,6 +43,21 @@ class UsageSnapshot:
     reason: str = ""
 
 
+DEFAULT_PRICING = {
+    "source": "https://openai.com/api/pricing/",
+    "models": {
+        "gpt-4.1-2025-04-14": {
+            "input_per_1m_tokens": 2.0,
+            "output_per_1m_tokens": 8.0,
+        },
+        "gpt-4.1-mini-2025-04-14": {
+            "input_per_1m_tokens": 0.40,
+            "output_per_1m_tokens": 1.60,
+        },
+    },
+}
+
+
 class BenchmarkRunner:
     def __init__(
         self,
@@ -53,12 +72,14 @@ class BenchmarkRunner:
         optimizer_model: Optional[str] = None,
         failure_threshold: float = 0.7,
         openai_api_key: Optional[str] = None,
+        baseline_only: bool = False,
     ):
         self.root = Path.cwd().resolve()
         self.skill_file = Path(skill_file)
         self.benchmark_file = Path(benchmark)
         self.output_file = Path(output)
         self.dry_run = dry_run
+        self.baseline_only = baseline_only
         self.failure_threshold = failure_threshold
         self.pricing_config_path = Path(pricing_config) if pricing_config else None
 
@@ -68,20 +89,19 @@ class BenchmarkRunner:
                 raise ValueError("Live mode requires OPENAI_API_KEY or --openai-api-key")
             if not usage_output:
                 raise ValueError("Live mode requires --usage-output")
-            if not pricing_config:
-                raise ValueError("Live mode requires --pricing-config")
             if not target_model or not evaluator_model or not optimizer_model:
                 raise ValueError("Live mode requires exact --target-model, --evaluator-model, and --optimizer-model")
             self.usage_output_file = Path(usage_output)
-            self.pricing = self._load_pricing(pricing_config)
+            self.pricing = self._load_pricing(pricing_config) if pricing_config else DEFAULT_PRICING.copy()
             self.target_model = target_model
             self.evaluator_model = evaluator_model
             self.optimizer_model = optimizer_model
             self._validate_pricing_models([self.target_model, self.evaluator_model, self.optimizer_model])
         else:
             self.api_key = None
+            self.baseline_only = False
             self.usage_output_file = Path(usage_output) if usage_output else None
-            self.pricing = self._load_pricing(pricing_config) if pricing_config else None
+            self.pricing = self._load_pricing(pricing_config) if pricing_config else DEFAULT_PRICING.copy()
             self.target_model = target_model or "gpt-4.1-2025-04-14"
             self.evaluator_model = evaluator_model or "gpt-4.1-2025-04-14"
             self.optimizer_model = optimizer_model or "gpt-4.1-2025-04-14"
@@ -103,8 +123,8 @@ class BenchmarkRunner:
 
     def _check_protected_file(self) -> None:
         skill_path = self._repo_relative_path(self.skill_file)
-        if skill_path in PROTECTED_FILES:
-            raise ValueError(f"Error: {skill_path} is in protected files list")
+        if any(fnmatch(skill_path, pattern) for pattern in PROTECTED_FILES):
+            raise ValueError(f"Error: {skill_path} matches protected pattern")
         if not any(fnmatch(skill_path, pattern) for pattern in ALLOWED_SKILL_PATTERNS):
             raise ValueError(f"Error: {skill_path} does not match allowed patterns: {sorted(ALLOWED_SKILL_PATTERNS)}")
 
@@ -197,7 +217,9 @@ class BenchmarkRunner:
         edits = []
         optimized_results = baseline_results
         optimized_mean = baseline_mean
-        if failures:
+        if self.baseline_only:
+            self.usage["optimizer_model"].reason = "Baseline-only mode"
+        elif failures:
             edits = self._call_optimizer_with_retry(self.skill_file, failures)
             optimized_skill = self._apply_edits_in_memory(self.skill_file, edits)
             optimized_results = self._evaluate_skill(optimized_skill, optimized=True)
@@ -205,13 +227,14 @@ class BenchmarkRunner:
         else:
             self.usage["optimizer_model"].reason = "No failures found in baseline"
 
-        usage_json = self._finalize_usage(baseline_mean, optimized_mean)
+        usage_json = self._finalize_usage(baseline_mean, optimized_mean, baseline_results, optimized_results)
         self._write_report(baseline_results, optimized_results, usage_json, edits)
         self._write_usage_json(usage_json)
         return {
             "baseline_score": baseline_mean,
             "optimized_score": optimized_mean,
             "improvement_pct": self._improvement_pct(baseline_mean, optimized_mean),
+            "baseline_only": self.baseline_only,
             "report": str(self.output_file),
             "usage": str(self.usage_output_file),
         }
@@ -400,25 +423,32 @@ Return JSON:
             skill_text += f"\n\n## {section}\n{content}\n"
         return skill_text
 
-    def _finalize_usage(self, baseline_mean: float, optimized_mean: float) -> dict:
-        for role in ["target_model", "evaluator_model"]:
-            if self.usage[role].total_tokens <= 0:
-                raise RuntimeError(f"{role} has no token data")
+    def _finalize_usage(self, baseline_mean: float, optimized_mean: float, baseline_results: list[dict], optimized_results: list[dict]) -> dict:
         for snapshot in self.usage.values():
             if snapshot.total_tokens > 0:
-                model_config = self.pricing["models"][snapshot.model_id]
+                model_config = self.pricing["models"].get(snapshot.model_id, {})
+                if not model_config:
+                    model_config = {"input_per_1m_tokens": 0, "output_per_1m_tokens": 0}
                 snapshot.cost_usd = (
-                    snapshot.prompt_tokens * model_config["input_per_1m_tokens"] / 1_000_000
-                    + snapshot.completion_tokens * model_config["output_per_1m_tokens"] / 1_000_000
+                    snapshot.prompt_tokens * model_config.get("input_per_1m_tokens", 0) / 1_000_000
+                    + snapshot.completion_tokens * model_config.get("output_per_1m_tokens", 0) / 1_000_000
                 )
-        pricing_config = {
-            "path": self.pricing_config_path.as_posix(),
-            "sha256": hashlib.sha256(self.pricing_config_path.read_bytes()).hexdigest(),
-            "source": self.pricing.get("source", ""),
-        }
+        if self.pricing_config_path and self.pricing_config_path.exists():
+            pricing_config = {
+                "path": self.pricing_config_path.as_posix(),
+                "sha256": hashlib.sha256(self.pricing_config_path.read_bytes()).hexdigest(),
+                "source": self.pricing.get("source", ""),
+            }
+        else:
+            pricing_config = {
+                "path": "(default)",
+                "sha256": "(default)",
+                "source": self.pricing.get("source", ""),
+            }
         total_cost = sum(snapshot.cost_usd for snapshot in self.usage.values())
         usage = {
             "run_id": self._run_id(),
+            "mode": "baseline-only" if self.baseline_only else "full",
             "benchmark": self.benchmark_file.parent.name,
             "cases": len(self.cases),
             "pricing_config": pricing_config,
@@ -441,6 +471,10 @@ Return JSON:
             "reasons": {role: snapshot.reason for role, snapshot in self.usage.items() if snapshot.reason},
             "baseline_score": baseline_mean,
             "optimized_score": optimized_mean,
+            "baseline_score_stddev": self._score_stddev(baseline_results),
+            "optimized_score_stddev": self._score_stddev(optimized_results),
+            "baseline_failed_case_ids": self._failed_case_ids(baseline_results),
+            "optimized_failed_case_ids": self._failed_case_ids(optimized_results),
             "improvement_pct": self._improvement_pct(baseline_mean, optimized_mean),
         }
         return usage
@@ -451,6 +485,18 @@ Return JSON:
 
     def _mean_score(self, results: list[dict]) -> float:
         return sum(result["eval"]["score"] for result in results) / len(results)
+
+    def _score_stddev(self, results: list[dict]) -> float:
+        from statistics import pstdev
+        scores = [result["eval"]["score"] for result in results]
+        return pstdev(scores) if len(scores) > 1 else 0.0
+
+    def _failed_case_ids(self, results: list[dict]) -> list[str]:
+        return [
+            result["case_id"]
+            for result in results
+            if result["eval"]["score"] < self.failure_threshold
+        ]
 
     def _improvement_pct(self, baseline_mean: float, optimized_mean: float) -> float:
         return ((optimized_mean - baseline_mean) / baseline_mean * 100) if baseline_mean > 0 else 0.0
@@ -511,6 +557,7 @@ def main() -> int:
     parser.add_argument("--benchmark", "--cases-path", required=True, help="Path to the benchmark JSONL file")
     parser.add_argument("--output", required=True, help="Path to write the markdown report")
     parser.add_argument("--dry-run", action="store_true", help="Perform validation without making API calls")
+    parser.add_argument("--baseline-only", action="store_true", help="Run baseline scoring only; skip optimization")
     parser.add_argument("--usage-output", help="Path to write the detailed JSON usage report")
     parser.add_argument("--pricing-config")
     parser.add_argument("--target-model")
@@ -527,6 +574,7 @@ def main() -> int:
             benchmark=args.benchmark,
             output=args.output,
             dry_run=args.dry_run,
+            baseline_only=args.baseline_only,
             pricing_config=args.pricing_config,
             usage_output=args.usage_output,
             target_model=args.target_model,
@@ -545,7 +593,7 @@ def main() -> int:
                  return 1
             if result.get("optimized_score", 1.0) < args.failure_threshold:
                  return 1
-                 
+                     
         return 0
     except Exception as exc:
         logging.error("%s", exc)

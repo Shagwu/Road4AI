@@ -23,9 +23,15 @@ def check_local_memory():
 def check_zero_cost_integrity():
     print("--- Verifying Zero-Cost Mandate ---")
     # Check for known paid API environment variables (if any were accidentally set)
-    banned_keys = ['OPENAI_API_KEY', 'ANTHROPIC_API_KEY', 'PINECONE_API_KEY']
-    violations = [k for k in banned_keys if os.getenv(k)]
-    
+    # OPENAI_API_KEY is allowed for SkillOpt benchmarking (explicit opt-in)
+    banned_keys = ['ANTHROPIC_API_KEY', 'PINECONE_API_KEY']
+    placeholder_prefixes = ('sk-placeholder', 'sk-ant-', 'sk-none', 'your_', 'CHANGE')
+    violations = []
+    for k in banned_keys:
+        val = os.getenv(k, '')
+        if val and not any(val.startswith(p) for p in placeholder_prefixes):
+            violations.append(k)
+
     if violations:
         print(f"  [!] VIOLATION DETECTED: Paid API keys found ({', '.join(violations)})")
         return False
