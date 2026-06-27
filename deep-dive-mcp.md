@@ -1,5 +1,5 @@
 # Deep Dive: Zero-Cost MCP Integration
-## Hardware and System Control via Gemini CLI
+## Hardware and System Control via Claude Code
 
 ## Slide 1: THE MIDDLEWARE TAX
 > Most "connected" AI agents use Zapier or Make.com.
@@ -14,7 +14,7 @@
 > - **Cost:** $0.00.
 
 ## Slide 3: THE ARCHITECTURE
-> 1. **Client:** Gemini CLI (The brain).
+> 1. **Client:** Claude Code (The brain).
 > 2. **Protocol:** MCP (The nervous system).
 > 3. **Server:** Custom Python/Node scripts (The muscles).
 > 4. **Resource:** Your local files, hardware, or APIs.

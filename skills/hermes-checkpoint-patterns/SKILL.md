@@ -21,7 +21,7 @@ Do not use this for trivial one-line changes, failed experiments, or broken mid-
 
 ## The Mechanism
 
-Hermes checkpoints are structured git commits with `[hermes-context]` blocks. They turn repo history into shared memory that Gemini CLI, Codex, and other agents can parse after context resets.
+Hermes checkpoints are structured git commits with `[hermes-context]` blocks. They turn repo history into shared memory that Claude Code, Codex, and other agents can parse after context resets.
 
 The checkpoint records:
 
@@ -49,7 +49,7 @@ Remaining: <what is next>
 Tried: <what failed and why, or omit if none>
 Confidence: high | medium | low
 Context_type: build | content | system | research
-Agent: <gemini-cli | claude | codex | cos>
+Agent: <claude | codex | cos>
 [/hermes-context]
 ```
 

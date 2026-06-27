@@ -6,7 +6,7 @@ Road4AI is a developer-first movement focused on **ownership, integrity, and sca
 
 ## ⚡ The Stack
 - **Hermes v2.0**: A distributed memory substrate. High-performance, local-first, and zero-cost.
-- **Gemini CLI**: The high-signal interface for orchestrating multi-agent swarms.
+- **Claude Code + Ollama**: The high-signal interface for orchestrating multi-agent swarms with zero-cost local inference.
 - **Karen Filter**: An adversarial validation layer that kills fluff and enforces technical precision.
 
 ## 🚀 The Reveal (May 26)

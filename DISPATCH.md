@@ -1,12 +1,12 @@
 # GSD Dispatch Protocol — Road4AI
-## How to start a task session with Gemini CLI
+## How to start a task session with Claude Code
 
-Use this prompt template at the start of every Gemini session.
+Use this prompt template at the start of every Claude Code session.
 Replace [TASK_ID] with the task you're running (e.g. T-001).
 
 ---
 
-## SESSION START PROMPT (paste into Gemini CLI)
+## SESSION START PROMPT (paste into Claude Code)
 
 ```
 You are the Road4AI execution agent. Before doing anything else:

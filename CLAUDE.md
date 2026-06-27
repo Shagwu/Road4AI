@@ -1,6 +1,6 @@
 # CLAUDE.md — Road4AI
 
-This file is read by every agent that opens this repo: Claude Code, Codex, Gemini CLI, and the Chief of Staff (CoS). Read it fully before doing anything. It is the source of truth for how to behave in this project.
+This file is read by every agent that opens this repo: Claude Code, Codex, and the Chief of Staff (CoS). Read it fully before doing anything. It is the source of truth for how to behave in this project.
 
 ---
 
@@ -13,9 +13,9 @@ It is a layered multi-agent system built on local-first, CLI-native tools. No pa
 **The operator:** Shagwu (@Shagwu on GitHub, @road4ai on Instagram). Active content creator, practitioner, and the human-in-the-loop for every output this system produces.
 
 **The stack:**
-- Gemini CLI — ideation, research, first-pass drafts
+- Claude Code — ideation, research, first-pass drafts, content strategy, long-context reasoning
 - Codex — structured coding and refactoring
-- Claude — thinking partner, content strategy, long-context reasoning
+- Ollama — local model inference, zero-cost fallback
 - Blotato — scheduled social distribution
 - GitNexus — git workflow tooling
 - Magika — file type identification
@@ -92,21 +92,21 @@ These are locked. Don't re-litigate them:
 5. Artifacts: write `docs/benchmarks/voice-match-skillopt-july-2026.md`, raw outputs under `reports/skillopt/social_voice/`, and the accepted skill-improvement commit hash only after approval.
 
 **Stability proof execution:**
-- Executor: Codex or Gemini may run the June 24-25 stability task.
-- Runner engine: the current benchmark runner uses Gemini CLI for target generation and evaluator scoring.
+- Executor: Codex or Claude may run the June 24-25 stability task.
+- Runner engine: the current benchmark runner uses Claude Code for target generation and evaluator scoring.
 - Required artifacts: `reports/skillopt/social_voice/stability-test-june-2026.md` and `reports/skillopt/social_voice/stability-runs.json`.
 - Pass condition: repeated baseline-only live scoring runs must keep mean score within +/-5%, failed case overlap above 80%, and stable standard deviation.
-- If the stability proof needs a non-Gemini scoring backend, add that backend explicitly before the July benchmark cycle instead of treating Codex execution as a different model engine.
+- If the stability proof needs an alternative scoring backend, add that backend explicitly before the July benchmark cycle instead of treating Codex execution as a different model engine.
 
 **Evaluation engine:**
-- Platform: Gemini CLI, free tier.
-- Rate limit: 100 calls/day, daily reset.
-- Risk level: low for baseline-only stability runs, medium for full optimization runs until measured. A baseline-only run over 15 cases uses roughly 30 Gemini CLI calls. A full live runner pass can use roughly 61 Gemini CLI calls when failures trigger optimization and after-score evaluation.
-- Reveal transparency: state that `voice-match` was scored with Gemini CLI judgment, not Claude or OpenAI models.
+- Platform: Claude Code + Ollama (local, zero-cost).
+- Rate limit: none (local inference).
+- Risk level: low for baseline-only stability runs, medium for full optimization runs until measured. A baseline-only run over 15 cases uses roughly 30 LLM calls. A full live runner pass can use roughly 61 LLM calls when failures trigger optimization and after-score evaluation.
+- Reveal transparency: state that `voice-match` was scored with Claude Code + Ollama judgment, not hosted API models.
 
 **June 24-25 stability playbook:**
-- Run 1: June 24 morning. Use `--baseline-only`. Record timestamp, exact command, Gemini CLI version, environment notes, mean score, standard deviation, and failed case IDs.
-- Run 2: June 25 morning after the Gemini CLI daily reset. Use the same command, skill, benchmark, and environment. Record the same fields.
+- Run 1: June 24 morning. Use `--baseline-only`. Record timestamp, exact command, Claude Code version, Ollama model version, environment notes, mean score, standard deviation, and failed case IDs.
+- Run 2: June 25 morning. Use the same command, skill, benchmark, and environment. Record the same fields.
 - Save raw data from each run's `--usage-output` into `reports/skillopt/social_voice/stability-runs.json`.
 - Baseline-only command template:
 
@@ -189,7 +189,7 @@ Remaining: <what's next>
 Tried: <what failed and why — omit if nothing failed>
 Confidence: high | medium | low
 Context_type: build | content | system | research
-Agent: <gemini-cli | claude | codex | cos>
+Agent: <claude | codex | cos>
 [/hermes-context]
 ```
 

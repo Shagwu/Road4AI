@@ -5,7 +5,7 @@ phase: execute
 status: ready
 wave: 1
 depends_on: []
-assigned_to: gemini-cli
+assigned_to: claude
 
 goal: >
   Create 10-20 labeled JSONL benchmark cases that evaluate whether any

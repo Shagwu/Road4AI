@@ -5,7 +5,7 @@ phase: execute
 status: blocked
 wave: 4
 depends_on: [T-004]
-assigned_to: gemini-cli
+assigned_to: claude
 
 goal: >
   Run SkillOpt live (not dry-run) against exactly one allowlisted SKILL.md.

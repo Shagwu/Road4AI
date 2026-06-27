@@ -13,20 +13,21 @@ project:
     Built in public. Python-first.
 
 runtime:
-  primary_agent: gemini-cli
-  planner_agent: claude        # Claude = Codex/Planner role
+  primary_agent: claude-code
+  planner_agent: codex         # Codex = structured builds
   publisher: blotato
   memory_layer: hermes-v2.0
   vector_db: chromadb
 
 providers:
-  default: gemini-cli
-  fallback: claude
+  default: claude-code
+  fallback: ollama
   routing_policy: task-type    # route by: task-type | cost | privacy
 
 tools_allowed:
-  - gemini-cli
-  - claude
+  - claude-code
+  - codex
+  - ollama
   - chromadb
   - blotato
   - magika

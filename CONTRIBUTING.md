@@ -6,7 +6,7 @@ Road4AI is a movement for builders who want to own their intelligence. We are bu
 
 ## 🏗️ Our Core Pillars
 
-- **Zero-Cost First:** If it requires a subscription, it’s not for us. We prioritize local models (Ollama) and free-tier APIs (Gemini Flash).
+- **Zero-Cost First:** If it requires a subscription, it’s not for us. We prioritize local models and free-tier APIs (Claude Code + Ollama).
 - **High Signal, No Fluff:** We build systems, not slogans. Every line of code and every post must deliver value.
 - **Local-First Ownership:** Your data, your voice, your infrastructure.
 - **Human-in-the-Loop:** Agents are collaborators, not autonomous actors. Governance is enforced by architecture.
@@ -15,8 +15,8 @@ Road4AI is a movement for builders who want to own their intelligence. We are bu
 
 1. **Fork and Clone:**
    ```bash
-   git clone https://github.com/YourUsername/Road4AI-main.git
-   cd Road4AI-main
+   git clone https://github.com/Shagwu/Road4AI.git
+   cd Road4AI
    ```
 
 2. **Setup Environment:**
@@ -36,7 +36,7 @@ Road4AI is a movement for builders who want to own their intelligence. We are bu
 ## 🛠️ How to Contribute
 
 ### 1. Identify a Gap
-Check the `MAY_ROADMAP.md` or `state/current-queue.json` for planned tasks. We prioritize:
+Check `plan/index.yaml`, `WORKING-CONTEXT.md`, or `state/current-queue.json` for planned tasks. We prioritize:
 - Bug fixes in the Hermes memory bridge.
 - New zero-cost tool integrations.
 - Improvements to the Karen validation filter.

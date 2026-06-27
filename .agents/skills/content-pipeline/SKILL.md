@@ -45,7 +45,7 @@ Independent research and ideation can run in parallel. Dedup, drafting, review, 
 5. Karen review: `adversarial-review-karen` checks quality, logic, platform limits, and false confidence.
 6. Sanitizer: `public-sanitization-review` checks exploit strings, paths, secrets, private account names, and unsafe examples.
 7. Approval: only the user moves content into `drafts/approved/`.
-8. Scheduling: Gemini CLI schedules approved content through Blotato and updates shared state.
+8. Scheduling: Claude Code schedules approved content through Blotato and updates shared state.
 
 ## Parallel Ideation Workstreams
 

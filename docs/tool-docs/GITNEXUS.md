@@ -9,7 +9,7 @@ GitNexus is the primary tool for codebase analysis, architectural mapping, and k
 - **Architectural Mapping:** Identifies "god nodes" and community clusters via `GRAPH_REPORT.md`.
 
 ## Integration with Road4AI
-- Before any major architectural change, Gemini CLI or Codex reads `graphify-out/GRAPH_REPORT.md`.
+- Before any major architectural change, Claude Code or Codex reads `graphify-out/GRAPH_REPORT.md`.
 - After modifications, run `graphify update .` to keep the graph synced.
 
 ## Troubleshooting

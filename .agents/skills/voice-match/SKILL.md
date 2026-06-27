@@ -82,16 +82,15 @@ The tone is: letting someone in on a secret. Not corporate. Not polished. Real.
 
 ## CURRENT PIPELINE (Week 2)
 
-Gemini CLI ideates (5 options)
+Claude Code ideates (5 options)
 → Choose or add own idea
 → Codex writes
 → Human reviews
-→ Gemini reviews and suggests
+→ Claude reviews and suggests
 → Schedules
 
-Claude is the research and thinking partner in the middle.
-Gmail and Google Calendar handle scheduling.
-No agent write access granted yet.
+Ollama handles local inference fallback.
+Blotato handles scheduling.
 
 ---
 

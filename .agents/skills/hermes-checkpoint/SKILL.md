@@ -58,7 +58,7 @@ Remaining: <what is next in this logical unit>
 Tried: <what failed and why, or omit if nothing failed>
 Confidence: high | medium | low
 Context_type: build | content | system | research
-Agent: <gemini-cli | claude | codex | cos>
+Agent: <claude | codex | cos>
 [/hermes-context]
 ```
 

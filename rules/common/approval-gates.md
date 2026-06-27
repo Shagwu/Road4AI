@@ -13,7 +13,7 @@ Only the user moves content into `drafts/approved/`.
 
 ## Publishing
 
-Once content is approved, Gemini CLI may schedule via Blotato without a second scheduling confirmation, subject to:
+Once content is approved, Claude Code may schedule via Blotato without a second scheduling confirmation, subject to:
 
 - dedup gate passed;
 - public sanitization passed;

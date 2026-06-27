@@ -1,6 +1,6 @@
 # Content Pipeline Workflow
 
-This workflow ensures consistent collaboration between Codex and Gemini CLI.
+This workflow ensures consistent collaboration between Codex and Claude Code.
 
 ## Phase 1: Planning (Codex)
 1. **Analyze**: Read `docs/content-strategy.md` and `state/published-log.json`.
@@ -12,12 +12,12 @@ This workflow ensures consistent collaboration between Codex and Gemini CLI.
 1. **Edit**: Review the draft in `drafts/ready/`.
 2. **Approve**: Move the file to `drafts/approved/` when it's ready to post.
 
-## Phase 3: Execution (Gemini CLI)
+## Phase 3: Execution (Claude Code)
 1. **Fetch**: Read `drafts/approved/`.
 2. **Execute**: 
    - Use `blotato_create_post` to schedule or publish.
    - For threads, use `additionalPosts`.
 3. **Log**:
    - Update `state/current-queue.json` with the `postSubmissionId`, platform, and scheduled time.
-   - Move scheduled drafts from `drafts/approved/` to `drafts/archived/` after Blotato confirms they are scheduled, so Gemini and the human operator cannot mistake them for unscheduled approvals and create duplicate calendar entries.
+   - Move scheduled drafts from `drafts/approved/` to `drafts/archived/` after Blotato confirms they are scheduled, so Claude and the human operator cannot mistake them for unscheduled approvals and create duplicate calendar entries.
    - After the post publishes, update `state/published-log.json` with the final published status and URL when available.

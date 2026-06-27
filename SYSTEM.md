@@ -4,8 +4,8 @@
 This document defines the "Zero-Cost" engineering stack. Any modification that introduces recurring subscription costs is a violation of Commandment 1.
 
 ### 1. CORE BRAIN (CLIENT)
-*   **Engine:** Gemini CLI (`@google/gemini-cli`)
-*   **Model Routing:** Free-tier Gemini Flash (Primary) / Gemini Nano (Local Fallback)
+*   **Engine:** Claude Code
+*   **Model Routing:** Ollama (Local Primary) / Claude Code API (Fallback)
 *   **Cost:** $0.00 (Developer API Key / Local Inference)
 
 ### 2. NERVOUS SYSTEM (PROTOCOL)

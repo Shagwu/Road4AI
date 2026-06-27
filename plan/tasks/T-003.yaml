@@ -5,7 +5,7 @@ phase: execute
 status: blocked
 wave: 2
 depends_on: [T-001, T-002]
-assigned_to: gemini-cli
+assigned_to: claude
 
 goal: >
   Build or harden tools/run_skillopt_benchmark.py so it reads

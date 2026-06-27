@@ -59,7 +59,7 @@
 
 ## Architecture — Hermes v2.0 Stack
 Three-layer pipeline:
-1.  **Command Layer:** Gemini CLI — the local interface and reasoning entry point.
+1.  **Command Layer:** Claude Code — the local interface and reasoning entry point.
 2.  **Memory Layer:** Hermes — SQLite + HNSW memory bridge giving agents persistent cross-session context.
 3.  **Orchestration Layer:** CrewAI Flows — multi-agent coordination with typed state, routing, and guardrails.
 
@@ -129,14 +129,14 @@ Three-layer pipeline:
 
 **Tagline candidate:** "The CLI was never the destination. It was the on-ramp."
 
-**LinkedIn Bio:** "Most AI content shows you what tools exist. I show you how to build with them. Founder of Road4AI — turning every technical milestone into a lesson, live. 🔧 Gemini CLI × CrewAI"
+**LinkedIn Bio:** "Most AI content shows you what tools exist. I show you how to build with them. Founder of Road4AI — turning every technical milestone into a lesson, live. 🔧 Claude Code × Ollama"
 
 **Core Tension:** Using AI vs. Building with AI — architecture is the gap.
 
 ## Proof Points
 **April 2025 Build Milestones:**
 - **Hermes Memory Bridge:** Shipped in 30 days; persistent agent memory using SQLite + HNSW vector index.
-- **Custom MCP Tooling:** Built natively inside Gemini CLI — moved from generic tools to purpose-built operators.
+- **Custom MCP Tooling:** Built natively inside Claude Code — moved from generic tools to purpose-built operators.
 - **CrewAI Integration:** Tuned `max_iter` per agent type, implemented `ask-docs` RAG, and scaffolded CrewAI Flows.
 - **Build-in-Public:** Documented every milestone publicly on LinkedIn (@shagwu22) and Twitter — full public record.
 - **Local-to-Swarm Pipeline:** Single CLI command triggers a coordinated multi-agent workflow.

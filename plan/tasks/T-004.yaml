@@ -5,7 +5,7 @@ phase: execute
 status: blocked
 wave: 3
 depends_on: [T-003]
-assigned_to: gemini-cli
+assigned_to: claude
 
 goal: >
   Run the benchmark runner in --dry-run mode against at least one existing

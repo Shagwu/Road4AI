@@ -1,100 +1,149 @@
 # Road4AI
 
-A layered multi-agent system for solo operators. CLI-native, local-first, built on tools that don't cost money to run. 
+A zero-cost, local-first, CLI-native multi-agent AI operator stack for solo builders. Built in public by Sharon (@road4ai).
 
-## 1. What Road4AI is
+## What this is
 
-- Multi-agent stack for a solo builder (no paid APIs).
-- Designed around real workflows: ideation, build, reasoning, memory, distribution.
-- Runs from the terminal using tools like Gemini CLI, Claude, and your local models.
+Road4AI is the working blueprint for operating as an indie AI builder using agents that coordinate through shared memory, not hardcoded handoffs. No paid APIs required to run the core stack. No bloated frameworks.
 
-## 2. Architecture
+**Core philosophy:**
+- Lean first, automate later
+- Habits before infrastructure
+- Human approves before anything goes public
+- Build in public, learn out loud, share what's validated
 
-### Agent layers
+## Architecture
 
-- Ideation + research: Gemini CLI  
-- Structured builds: Codex  
-- Reasoning + strategy: Claude  
-- Memory: Hermes v2.0 (distributed context)  
-- Distribution: Blotato (social automation) 
+### Agent stack
 
-You can also include a short description of how agents talk to each other:
-- Shared memory contract via Hermes v2.0.
+| Layer | Tool | Role |
+|-------|------|------|
+| Ideation + research | Claude Code | First-pass thinking, fast iteration |
+| Structured builds | Codex | Code, refactoring, precise edits |
+| Local inference | Ollama | Zero-cost local model fallback |
+| Memory | Hermes v2.0 | Distributed context across all agents |
+| Chief of Staff | road4ai-cos (ADK) | Agent orchestration and coordination |
+| Distribution | Blotato | Scheduled social posting |
+| Git workflow | GitNexus | Version control and repo hygiene |
+
+### How agents coordinate
+
+- Shared memory contract via Hermes v2.0 (ChromaDB-backed, sub-60ms retrieval).
 - Each agent has a defined role, input/output schema, and stop conditions.
+- Coordination is governed by `AGENTS.md` (the operating contract) and `rules/`.
 
-## 3. Tech stack
+## Repo structure
 
-| Layer                 | Tool         | What it does                                    |
-|----------------------|-------------|-------------------------------------------------|
-| Ideation + research  | Gemini CLI  | First-pass thinking, fast iteration             |
-| Structured builds    | Codex       | Code, refactoring, precise edits                |
-| Reasoning + strategy | Claude      | Long-context reasoning and planning             |
-| Memory               | Hermes v2.0 | Distributed context across all agents           |
-| Distribution         | Blotato     | Scheduled content and social posting            |
-| Git workflow         | GitNexus    | Version control and repo hygiene                | 
+```
+Road4AI/
+├── AGENTS.md                  # Operating contract — read this first
+├── CLAUDE.md                  # Agent behavior rules and voice guidelines
+├── project.yaml               # Project identity and runtime config
+├── state.yaml                 # Workflow phase and task assignments
+├── state/                     # Shared state files
+│   ├── current-queue.json     # Active content pipeline queue
+│   └── published-log.json     # Record of published content
+├── rules/                     # Governance enforcement layer
+│   ├── common/                # Approval gates, dedup, git, security
+│   ├── content/               # Voice, sanitization, struggle ratio
+│   └── python/                # Hermes and CLI-native patterns
+├── skills/                    # Reusable Road4AI workflows
+├── drafts/                    # Content lifecycle (ready/ → archived/)
+├── tools/                     # Benchmark runners, sanitizers, verifiers
+├── benchmarks/                # Social voice test cases
+├── docs/                      # Brand voice, content strategy, plans
+├── road4ai-hermes/            # Standalone memory package (pip installable)
+├── road4ai-cos/               # Chief of Staff ADK agent
+└── index.html                 # Landing page (shagwu.github.io/Road4AI)
+```
 
-(That table mirrors the one already in your profile README, but here it’s clearly “system stack” for the project.) 
-
-## 4. Getting started
-
-This is where you give the “clone and run” steps, aligned with how you actually work:
+## Getting started
 
 ```bash
 # 1. Clone the repo
 git clone https://github.com/Shagwu/Road4AI.git
 cd Road4AI
 
-# 2. Create and activate a virtualenv (if using Python)
-python -m venv .venv
-source .venv/bin/activate   # macOS/Linux
-# .venv\Scripts\activate    # Windows
+# 2. Create and activate a virtualenv
+python3 -m venv .venv
+source .venv/bin/activate
 
 # 3. Install dependencies
 pip install -r requirements.txt
-
-# 4. Run the main entrypoint
-python main.py
 ```
 
-Adjust these commands to match however Road4AI is actually started (Gemini CLI entry, Makefile, Bash script, etc.).
+### Working with the content pipeline
 
-## 5. Configuration
+```bash
+# Run the queue audit
+cat state/current-queue.json | python3 -m json.tool
 
-Add a short section describing config files you plan to use:
+# Run the benchmark runner
+python3 tools/run_skillopt_benchmark.py \
+  --skill-path .agents/skills/voice-match/SKILL.md \
+  --cases-path benchmarks/social_voice/social_voice_cases.jsonl \
+  --output reports/skillopt/social_voice/baseline.md \
+  --baseline-only
 
-- `config/agents.yml` – agent roles, tools, and prompts.  
-- `config/memory.yml` – Hermes v2.0 settings and storage locations.  
-- `.env` – environment variables (keys for Claude, Gemini, local endpoints, etc.).
+# Verify content before publishing
+python3 tools/verify_content.py <draft-file>
+```
 
-Even if these files are still WIP, listing them sets expectations and gives you a roadmap.
+### Working with road4ai-hermes
 
-## 6. Workflows
+```bash
+cd road4ai-hermes
+pip install -e ".[local,test]"
+pytest tests/
+```
 
-Describe 2–3 concrete workflows in bullet form, the way a solo builder would actually run them:
+### Working with road4ai-cos
 
-- Research and plan a new feature  
-  1. Use Gemini CLI to generate first-pass plan and notes.  
-  2. Hand off to Codex agent for scaffolding code.  
-  3. Use Claude agent to review, refactor, and document.
+```bash
+cd road4ai-cos
+uv tool install google-agents-cli
+agents-cli install
+agents-cli playground
+```
 
-- Content pipeline for Road4AI  
-  1. Agents generate posts and scripts from build logs.  
-  2. Hermes v2.0 keeps context across sessions.  
-  3. Blotato handles scheduling and distribution.
+## Key workflows
 
-## 7. Roadmap
+### Content pipeline
 
-Tie it back to what you already wrote in the profile:
+1. Chief of Staff selects ideas from `inbox.md` and updates `state/current-queue.json`.
+2. Codex drafts content in `drafts/ready/`.
+3. Karen (adversarial review) signs off on drafts.
+4. User approves by moving to `drafts/approved/` (or queue status change).
+5. Claude Code schedules via Blotato, then archives to `drafts/archived/`.
 
-- Hardening Hermes v2.0 (memory backbone across agents and tools).  
-- Making the system fully reproducible for other solo builders.  
-- Adding templates for common agent workflows (content, research, coding).
+### SkillOpt benchmark cycle
 
-## 8. Links
+1. Run baseline against `voice-match` skill using `tools/run_skillopt_benchmark.py`.
+2. Run SkillOpt optimization on failed cases.
+3. Review gate inspects proposed patches.
+4. Rerun benchmark to measure delta.
 
-Finish with explicit links:
+## Session start protocol
 
-- Live site: `https://shagwu.github.io/Road4AI/`
-- Profile + narrative: `https://github.com/Shagwu`  
-- Social: Instagram, `@road4ai' 
+Every agent must read these files before doing anything:
 
+1. `AGENTS.md` — operating contract
+2. `state/current-queue.json` — what's in the pipeline
+3. `docs/brand-voice.md` — how Road4AI sounds
+4. `docs/content-strategy.md` — what we're building
+
+Then run:
+```bash
+git log --grep="CHECKPOINT:" --format="%B" -3
+```
+Parse the `[hermes-context]` blocks to understand current state.
+
+## Aesthetic
+
+Black and emerald terminal. No corporate gloss. JetBrains Mono. The look matches the philosophy: lean, precise, built for builders.
+
+## Links
+
+- Landing page: [shagwu.github.io/Road4AI](https://shagwu.github.io/Road4AI/)
+- Profile: [github.com/Shagwu](https://github.com/Shagwu)
+- Instagram: [@road4ai](https://instagram.com/road4ai)

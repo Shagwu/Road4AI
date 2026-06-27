@@ -5,7 +5,7 @@ phase: execute
 status: ready
 wave: 1
 depends_on: []
-assigned_to: gemini-cli
+assigned_to: claude
 
 goal: >
   Create the governance document that defines which files SkillOpt may edit,

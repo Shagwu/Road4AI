@@ -1,5 +1,5 @@
 # Monday Ideation Pipeline — Activation Prompt
-# Drop this into Gemini CLI every Monday morning after your inbox.md is updated.
+# Drop this into Claude Code every Monday morning after your inbox.md is updated.
 # ----------------------------------------------------------------
 
 Read inbox.md from the project root.
@@ -9,7 +9,7 @@ from the brain dump. Group by theme and flag the 2–3 that feel
 most alive or opinionated.
 
 Then run a parallel content ideation sprint:
-- Use @trend-researcher to scan what's hot in AI/Claude/Gemini CLI
+- Use @trend-researcher to scan what's hot in AI/Claude/Ollama
   this week and surface timely hooks that match the brief angles
 - Use @voice-match-ideator to generate 3 hook options per angle
   in Shagwu's exact voice (punchy, conspiratorial, no em dashes,

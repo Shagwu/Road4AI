@@ -26,27 +26,27 @@ tasks:
     title: Define SkillOpt Governance Boundary
     status: done                # ready | in-progress | verify | done | blocked
     depends_on: []
-    assigned_to: gemini-cli
+    assigned_to: claude
   T-002:
     title: Build Social Voice Benchmark
     status: done
     depends_on: []
-    assigned_to: gemini-cli
+    assigned_to: claude
   T-003:
     title: Add Benchmark Runner
     status: done
     depends_on: [T-001, T-002]
-    assigned_to: gemini-cli
+    assigned_to: claude
   T-004:
     title: Run First Dry-Run Validation
     status: verify
     depends_on: [T-003]
-    assigned_to: gemini-cli
+    assigned_to: claude
   T-005:
     title: Run One Live Controlled Optimization
     status: blocked
     depends_on: [T-004]
-    assigned_to: gemini-cli
+    assigned_to: claude
   T-006:
     title: Prepare v2.1 Launch Proof Package
     status: blocked

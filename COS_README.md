@@ -1,7 +1,7 @@
 # Road4AI — Content Ideation Agent Squad
 
 Multi-agent ideation pipeline for Road4AI content production.
-Built on Gemini CLI's native subagent (hub-and-spoke) architecture.
+Built on Claude Code's native subagent architecture.
 
 ---
 
@@ -23,9 +23,9 @@ prompts/
 
 ## Setup (one-time)
 
-**1. Enable subagents in Gemini CLI settings**
+**1. Enable subagents in Claude Code**
 
-Add this to `~/.gemini/settings.json`:
+Add this to your Claude Code settings:
 
 ```json
 {
@@ -43,7 +43,7 @@ cp -r .gemini/ /path/to/road4ai-project/.gemini/
 
 **3. Confirm agents are detected**
 
-Start Gemini CLI from your project root and run:
+Start Claude Code from your project root and run:
 ```
 /agents list
 ```
@@ -56,7 +56,7 @@ You should see: trend-researcher, voice-match-ideator, format-selector
 **Sunday:** Brain dump everything into `inbox.md` at the project root.
 Stream-of-consciousness is fine. Bullet points, half-sentences, whatever.
 
-**Monday morning:** Open Warp, `cd` into your Road4AI project, start Gemini CLI.
+**Monday morning:** Open your terminal, `cd` into your Road4AI project, start Claude Code.
 Copy the prompt from `prompts/monday-ideation.md` and paste it in.
 
 Watch the three specialist agents run in parallel.
@@ -77,7 +77,7 @@ ideas.md  (you review)
     ↓
 Codex drafts post
     ↓
-Gemini reviews for voice
+Claude reviews for voice
     ↓
 Blotato schedules
 ```
@@ -97,7 +97,7 @@ Blotato schedules
 
 - Subagents run in isolated contexts — they do not see each other's work mid-run.
   The Chief of Staff aggregates their outputs after all three complete.
-- The trend-researcher uses web_search. Make sure your Gemini CLI session
+- The trend-researcher uses web_search. Make sure your Claude Code session
   has web search tool access enabled.
 - Nothing in this pipeline posts or schedules automatically.
   Human review is baked in as a hard stop before anything leaves ideas.md.

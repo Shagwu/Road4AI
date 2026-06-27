@@ -13,6 +13,9 @@ state/*.backup.json
 
 # Internals & Temp
 .swarm/
+
+# Graphify internal caches
+graphify-out/.graphify_*
 .claude-flow/
 drafts/automation.log
 graphify-out/cache/
