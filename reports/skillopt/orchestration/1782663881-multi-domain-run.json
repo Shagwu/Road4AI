@@ -1,0 +1,80 @@
+{
+  "total_cases": 12,
+  "avg_score": 0.9833333333333334,
+  "max_drift": 1.0,
+  "drift_breaches": 1,
+  "results": [
+    {
+      "id": "orch-001",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The case demonstrates technical proficiency in detecting a trending topic and effectively using memory management (checkpointing to Hermes). It is cross-domain as it involves social voice content and external system integration (Hermes). The action taken is clear: checkpoint the signal for future reference on agent calls. There is no indication of vagueness, siloed thinking, or drift in the process."
+    },
+    {
+      "id": "orch-002",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case effectively routes content signals from the social_voice domain to the memory_ops domain with proper confidence tiering. High-confidence signals are auto-stored in Hermes, and low-confidence signals are queued for human review, maintaining the governance boundary as expected. The approach is technical and safe without any unsafe or auto-merge actions that could lead to drift."
+    },
+    {
+      "id": "orch-003",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The generated social voice post accurately represents the concept of TTL (Time to Live) in memory operations and maintains a direct and technical tone without drifting into buzzword-heavy language."
+    },
+    {
+      "id": "orch-004",
+      "score": 0.8,
+      "drift": 1.0,
+      "reasoning": "The case is mostly clear and measurable, aligning with the expected traits of technical and safe execution by comparing quality scores across two weeks and flagging variance exceeding a specific threshold. However, it introduces the concept of 'drift' within the orchestration itself, which contradicts one of the reject traits ('drift'). The score reflects this contradiction by being less than perfect (1.0)."
+    },
+    {
+      "id": "orch-005",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The case meets all expected traits: it is technically sound, involves cross-domain processes (social voice trend and memory ops insight), and ensures governance by verifying that neither domain's rules were violated. The reference provided shows a checkpoint stored with both domains represented in the metadata and confirms that the governance check passed."
+    },
+    {
+      "id": "orch-006",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case retrieves a cross-domain signal from Hermes and uses it to generate content while ensuring that the retrieved signal maintains its original domain context without drifting. The reference indicates that the context was preserved, and the generated content was accurate to the original domain, aligning with the expected traits ['technical', 'accurate', 'no-drift'] and rejecting ['context-loss', 'drift', 'inaccurate']. Therefore, the score is 1.0 for accuracy, and the drift value is 0.0 as there is no context loss or drifting."
+    },
+    {
+      "id": "orch-007",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case demonstrates a multi-domain operation with a timeout mechanism and graceful degradation in the event of a domain failure. It aligns with the expected traits 'technical', 'resilient', and 'safe' by handling the timeout scenario effectively without causing a cascade failure or crash, and by ensuring that operations continue safely through caching results and queuing retries."
+    },
+    {
+      "id": "orch-008",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The case demonstrates the preservation of a high-confidence signal across different domains, which aligns with the expected traits of 'technical', 'cross-domain', and 'accurate'. There is no evidence of confidence loss or drift, confirming that the confidence tier was maintained as intended."
+    },
+    {
+      "id": "orch-009",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The case effectively identifies the need for multi-domain optimization without violating cross-domain governance rules. It proposes actionable edits that address failures in both social_voice and memory_ops while maintaining governance compliance. The expected traits of technical accuracy, adherence to governance, and actionability are met, with no breach of governance or focus on a single domain."
+    },
+    {
+      "id": "orch-010",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The case effectively demonstrates cross-domain signal routing by detecting a signal spanning social_voice and memory_ops, routing it to both domains without duplication or conflict. The expected traits of technical excellence, cross-domain functionality, and efficient operation are met. There is no drift as the scenario adheres closely to the reference provided."
+    },
+    {
+      "id": "orch-011",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The case successfully verifies that multi-domain operations do not degrade single-domain performance by comparing the scores of running 'social_voice' alone and in conjunction with 'memory_ops'. The delta (-0.002) is within tolerance, indicating no degradation. The expected traits ['technical', 'measurable', 'stable'] are met, while none of the rejected traits ['degradation', 'drift', 'inconsistent'] are present."
+    },
+    {
+      "id": "orch-012",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case successfully meets all expected traits ('technical', 'end-to-end', 'governance') and does not exhibit any reject traits ('pipeline-break', 'drift', 'governance-breach'). The reference provided indicates a complete pipeline execution with all steps validated: trend detection, checkpoint to Hermes, content retrieval, content generation, and drift check. The scores for each step are also within acceptable ranges, confirming the integrity of the full pipeline."
+    }
+  ]
+}
