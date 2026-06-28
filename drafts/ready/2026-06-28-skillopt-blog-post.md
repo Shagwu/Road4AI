@@ -65,6 +65,23 @@ The governance boundary was clear from the start:
 
 Every proposed edit goes through human review before application. No auto-merge. No hidden self-modification.
 
+## The Orchestration Suite
+
+Before optimizing individual skills, we tested whether they could work together.
+
+We built a 12-case orchestration suite that exercises cross-domain patterns:
+
+- **Signal routing** — detect a trend, checkpoint it to Hermes, retrieve it on the next call
+- **Confidence tiering** — high confidence auto-stores, low confidence queues for review
+- **Cross-domain generation** — write social content about memory concepts (TTL, relevance scoring)
+- **Timeout handling** — verify graceful degradation when one domain times out
+- **Drift detection** — compare scores across weeks, flag breaches, halt on ±10%
+- **Pipeline integrity** — end-to-end: detect → checkpoint → retrieve → generate → verify
+
+**Result: 12/12 passing, zero drift breaches, zero governance violations.**
+
+The orchestration layer is where things get interesting. Individual skills can be good in isolation, but the real test is whether they cooperate without breaking each other's rules. The suite confirms they do.
+
 ## What We Found
 
 ### social_voice: 0.950 baseline
@@ -128,7 +145,7 @@ No auto-merge. No hidden self-modification. No "the agent improved itself overni
 
 ## What's Next
 
-**v2.1** — Hermes learns under supervision. The SkillOpt integration is validated and ready for production runs on selected skills.
+**v2.1** — Hermes learns under supervision. The SkillOpt integration is validated and ready for production runs on selected skills. Drift monitoring runs daily through July 10, with automatic alerts on threshold breaches.
 
 **v2.2** — Hermes scales. Community contribution paths expand once the memory and learning loops have proven safe operating boundaries.
 
