@@ -1,5 +1,6 @@
 {
   "total_cases": 12,
+  "baseline_summary": "11/12 PASS, 1 case redesigned (orch-004), zero API calls",
   "avg_score": 1.0,
   "max_drift": 0.0,
   "drift_breaches": 0,

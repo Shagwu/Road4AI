@@ -151,7 +151,7 @@ Decisions: <what was locked in>
 Remaining: <what's next>
 Tried: <what failed and why — omit if nothing failed>
 Confidence: high | medium | low
-Context_type: build | content | system | research
+Context_type: build | content | system | research | orchestration
 Agent: <claude | codex | cos>
 [/hermes-context]
 ```
@@ -176,6 +176,66 @@ If a rule conflicts with this file, `AGENTS.md` wins and the conflict must be re
 **Parallel** (independent operations): content ideation (Trend Researcher, Format Selector, Voice-Match Ideator), security/sanitization checks, repository exploration.
 
 **Sequential** (dependent gates): ideation → dedup gate → human review → drafting → sanitization → user approval → scheduling → queue updates.
+
+## Multi-Domain Orchestration
+
+### Orchestration Rules
+
+**DO** (no approval needed):
+- Route signals between domains with confidence tiering (high confidence ≥ 0.8 auto-stores, low confidence < 0.8 queues for review).
+- Run cross-domain drift checks comparing current scores against ±5% threshold.
+- Checkpoint multi-domain signals with full domain metadata preserved.
+- Retrieve cross-domain signals while maintaining original domain context.
+- Run single-domain operations in parallel when independent.
+
+**ASK** (get explicit human approval first):
+- Before changing cross-domain rule sets (e.g., modifying confidence thresholds or drift tolerances).
+- Before applying optimizations that span multiple domains.
+- Before routing signals that would modify protected files across domains.
+- When drift exceeds ±5% threshold in any domain.
+
+**NEVER** (hard stop):
+- Allow drift threshold breach across domains without human intervention.
+- Auto-merge cross-domain optimizations without review gate.
+- Route signals that would cause governance boundary violations in any domain.
+- Bypass confidence tiering for cross-domain operations.
+- Allow timeout cascades to propagate across domains.
+
+### Orchestration Patterns
+
+**Signal Routing:**
+```
+Domain A detects signal → Check confidence tier → 
+  High (≥0.8): Auto-route to Hermes → Retrieve on next call
+  Low (<0.8): Queue for human review → Route after approval
+```
+
+**Cross-Domain Checkpoint:**
+```
+Multi-domain signal detected → Store with full metadata →
+  {domains: [A, B], confidence: X, governance_check: passed}
+```
+
+**Drift Monitoring:**
+```
+Weekly: Compare current scores against baseline →
+  Within ±5%: No action needed
+  Exceeds ±5%: Flag for review, do not auto-correct
+```
+
+**Timeout Handling:**
+```
+Domain A times out → Cache partial result →
+  Queue retry for timed-out domain → Do not cascade failure
+```
+
+### Orchestration Metrics
+
+Track these metrics for cross-domain operations:
+- Cross-domain score variance (should remain < 0.05)
+- Confidence signal preservation rate (should be 100%)
+- Timeout cascade incidents (should be 0)
+- Drift threshold breaches (should be 0 without human approval)
 
 ## Workflow Surface Policy
 
