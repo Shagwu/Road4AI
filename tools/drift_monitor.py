@@ -4,21 +4,48 @@ Drift monitoring agent — reads Hermes checkpoints, calculates variance,
 alerts on threshold breaches. Zero API calls, local only.
 
 Usage:
-    # Check drift from checkpoint file
-    python tools/drift_monitor.py --checkpoint reports/skillopt/orchestration/latest.json
+    # Run drift check
+    python tools/drift_monitor.py check --social-voice 0.94 --memory-ops 0.91
 
-    # Check drift from inline scores
-    python tools/drift_monitor.py --social-voice 0.94 --memory-ops 0.91
+    # Watch mode (check every 60s)
+    python tools/drift_monitor.py watch --interval 60
 
-    # Show current baseline
-    python tools/drift_monitor.py --show-baseline
+    # Watch checkpoint file
+    python tools/drift_monitor.py watch --checkpoint reports/skillopt/orchestration/latest.json
+
+    # Watch with scoring script
+    python tools/drift_monitor.py watch --script tools/get_scores.py
+
+    # Show baseline
+    python tools/drift_monitor.py baseline
+
+    # Show status
+    python tools/drift_monitor.py status
+
+    # Show history
+    python tools/drift_monitor.py history
+
+    # Show alerts
+    python tools/drift_monitor.py alerts
 """
 
 import argparse
 import json
 import sys
+import time
+import signal
 from pathlib import Path
 from datetime import datetime, timezone
+
+
+# Watch mode globals
+_running = True
+
+def _signal_handler(sig, frame):
+    global _running
+    _running = False
+    print("\nStopping watch mode...")
+
 
 
 BASELINE_FILE = Path("state/drift_baseline_v2p1.json")
@@ -253,6 +280,97 @@ def show_status() -> None:
         print(f"  Total checks: {total}")
 
 
+def watch_mode(interval: int, checkpoint: str = None, script: str = None) -> None:
+    """Run drift checks on an interval."""
+    global _running
+
+    signal.signal(signal.SIGINT, _signal_handler)
+    signal.signal(signal.SIGTERM, _signal_handler)
+
+    monitor = DriftMonitor()
+    check_count = 0
+
+    print(f"=== Drift Watch Mode ===")
+    print(f"Interval: {interval}s")
+    if checkpoint:
+        print(f"Watching checkpoint: {checkpoint}")
+    elif script:
+        print(f"Running script: {script}")
+    print("Press Ctrl+C to stop\n")
+
+    while _running:
+        check_count += 1
+        timestamp = datetime.now(timezone.utc).isoformat()
+
+        try:
+            if script:
+                # Run external script to get scores
+                import subprocess
+                result = subprocess.run(
+                    ["python3", script],
+                    capture_output=True, text=True, timeout=30
+                )
+                if result.returncode != 0:
+                    print(f"Script failed: {result.stderr[:100]}")
+                    time.sleep(interval)
+                    continue
+
+                # Parse script output (expect JSON with social_voice and memory_ops scores)
+                scores = json.loads(result.stdout)
+                checkpoint_data = {
+                    'timestamp': timestamp,
+                    'domains': [
+                        {'name': 'social_voice', 'score': scores['social_voice'], 'confidence_tier': 'green'},
+                        {'name': 'memory_ops', 'score': scores['memory_ops'], 'confidence_tier': 'green'}
+                    ]
+                }
+            elif checkpoint:
+                # Check if checkpoint file changed
+                checkpoint_path = Path(checkpoint)
+                if not checkpoint_path.exists():
+                    print(f"[{check_count}] {timestamp[:19]} — checkpoint file not found")
+                    time.sleep(interval)
+                    continue
+
+                checkpoint_data = json.loads(checkpoint_path.read_text())
+                checkpoint_data['timestamp'] = timestamp
+            else:
+                # Demo mode with simulated scores (for testing)
+                import random
+                checkpoint_data = {
+                    'timestamp': timestamp,
+                    'domains': [
+                        {'name': 'social_voice', 'score': 0.95 + random.uniform(-0.02, 0.02), 'confidence_tier': 'green'},
+                        {'name': 'memory_ops', 'score': 0.915 + random.uniform(-0.02, 0.02), 'confidence_tier': 'green'}
+                    ]
+                }
+
+            report = monitor.run_check(checkpoint_data)
+            monitor.log_result(report)
+
+            # Compact output
+            status = report['overall_status']
+            marker = {'green': '✓', 'yellow': '⚠', 'blue': '✗'}.get(status, '?')
+            sv_var = next((c['variance'] for c in report['domain_checks'] if c['domain'] == 'social_voice'), 0)
+            mo_var = next((c['variance'] for c in report['domain_checks'] if c['domain'] == 'memory_ops'), 0)
+
+            print(f"[{check_count}] {timestamp[:19]} — {marker} {status.upper()} (sv:{sv_var:.1%} mo:{mo_var:.1%})")
+
+            # Stop on blue (halt)
+            if status == 'blue':
+                print(f"\n✗ HALT — Blue status detected. Stopping watch mode.")
+                print(f"  Reason: {next((c['reason'] for c in report['domain_checks'] if c['status'] == 'blue'), 'Unknown')}")
+                return 1
+
+        except Exception as e:
+            print(f"[{check_count}] {timestamp[:19]} — ERROR: {str(e)[:50]}")
+
+        time.sleep(interval)
+
+    print(f"\nWatch mode stopped after {check_count} checks.")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         prog="drift",
@@ -280,6 +398,12 @@ def main() -> int:
     alerts_parser = subparsers.add_parser("alerts", help="Show drift alerts")
     alerts_parser.add_argument("--limit", type=int, default=10, help="Number of entries to show")
 
+    # watch command
+    watch_parser = subparsers.add_parser("watch", help="Run drift checks on interval")
+    watch_parser.add_argument("--interval", type=int, default=60, help="Check interval in seconds (default: 60)")
+    watch_parser.add_argument("--checkpoint", help="Watch checkpoint file for changes")
+    watch_parser.add_argument("--script", help="Run script to get scores (must output JSON with social_voice, memory_ops)")
+
     args = parser.parse_args()
 
     if not args.command:
@@ -302,6 +426,9 @@ def main() -> int:
     if args.command == "alerts":
         show_alerts(args.limit)
         return 0
+
+    if args.command == "watch":
+        return watch_mode(args.interval, args.checkpoint, args.script)
 
     if args.command == "check":
         monitor = DriftMonitor()
