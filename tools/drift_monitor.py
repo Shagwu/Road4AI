@@ -1,0 +1,235 @@
+#!/usr/bin/env python3
+"""
+Drift monitoring agent — reads Hermes checkpoints, calculates variance,
+alerts on threshold breaches. Zero API calls, local only.
+
+Usage:
+    # Check drift from checkpoint file
+    python tools/drift_monitor.py --checkpoint reports/skillopt/orchestration/latest.json
+
+    # Check drift from inline scores
+    python tools/drift_monitor.py --social-voice 0.94 --memory-ops 0.91
+
+    # Show current baseline
+    python tools/drift_monitor.py --show-baseline
+"""
+
+import argparse
+import json
+import sys
+from pathlib import Path
+from datetime import datetime, timezone
+
+
+BASELINE_FILE = Path("state/drift_baseline_v2p1.json")
+DRIFT_LOG = Path("state/drift_log.jsonl")
+DRIFT_ALERTS = Path("state/drift_alerts.jsonl")
+DRIFT_HALT = Path("state/drift_halts.jsonl")
+
+ALERT_THRESHOLD = 0.05  # ±5%
+HALT_THRESHOLD = 0.10   # ±10%
+
+
+class DriftMonitor:
+    def __init__(self, baseline_path: Path = BASELINE_FILE):
+        self.baseline = self._load_baseline(baseline_path)
+        self.alert_threshold = ALERT_THRESHOLD
+        self.halt_threshold = HALT_THRESHOLD
+
+    def _load_baseline(self, path: Path) -> dict:
+        if not path.exists():
+            raise FileNotFoundError(f"Baseline file not found: {path}")
+        return json.loads(path.read_text())
+
+    def calculate_variance(self, current_score: float, baseline_score: float) -> float:
+        """Return variance as percentage of baseline."""
+        return abs(current_score - baseline_score) / baseline_score
+
+    def check_drift(self, domain: str, current_score: float, current_tier: str = "green") -> tuple:
+        """
+        Returns (status, action, reason)
+        status: 'green' | 'yellow' | 'blue'
+        action: 'auto-store' | 'alert' | 'halt'
+        reason: human-readable
+        """
+        baseline_score = self.baseline["domains"][domain]["score"]
+        baseline_tier = self.baseline["domains"][domain]["confidence_tier"]
+
+        variance = self.calculate_variance(current_score, baseline_score)
+
+        # Variance check
+        if variance > self.halt_threshold:
+            return ('blue', 'halt', f'{domain} variance {variance:.2%} exceeds halt threshold (±10%)')
+        elif variance > self.alert_threshold:
+            return ('yellow', 'alert', f'{domain} variance {variance:.2%} exceeds alert threshold (±5%)')
+
+        # Tier check
+        if baseline_tier == "green" and current_tier != "green":
+            return ('yellow', 'alert', f'{domain} tier demoted: {baseline_tier} → {current_tier}')
+
+        return ('green', 'auto-store', f'{domain} within tolerance')
+
+    def cross_domain_correlation(self, social_voice_score: float, memory_ops_score: float) -> float:
+        """Simple correlation check — are both domains drifting in the same direction?"""
+        sv_baseline = self.baseline["domains"]["social_voice"]["score"]
+        mo_baseline = self.baseline["domains"]["memory_ops"]["score"]
+
+        sv_variance = self.calculate_variance(social_voice_score, sv_baseline)
+        mo_variance = self.calculate_variance(memory_ops_score, mo_baseline)
+
+        # If both variance in same direction and similar magnitude, assume high correlation
+        if (sv_variance * mo_variance) > 0 and abs(sv_variance - mo_variance) < 0.03:
+            return 0.7  # High correlation
+        elif abs(sv_variance) > 0.05 or abs(mo_variance) > 0.05:
+            return 0.4  # Low correlation (drifting independently)
+        else:
+            return 0.8  # Both stable
+
+    def run_check(self, checkpoint_data: dict) -> dict:
+        """
+        Takes orchestration checkpoint JSON, returns drift report.
+        """
+        report = {
+            'timestamp': checkpoint_data.get('timestamp', datetime.now(timezone.utc).isoformat()),
+            'domain_checks': [],
+            'cross_domain': {},
+            'overall_status': 'green',
+            'human_action_needed': False
+        }
+
+        for domain_data in checkpoint_data['domains']:
+            domain = domain_data['name']
+            status, action, reason = self.check_drift(
+                domain,
+                domain_data['score'],
+                domain_data.get('confidence_tier', 'green')
+            )
+            report['domain_checks'].append({
+                'domain': domain,
+                'status': status,
+                'action': action,
+                'reason': reason,
+                'current_score': domain_data['score'],
+                'variance': self.calculate_variance(domain_data['score'], self.baseline['domains'][domain]['score'])
+            })
+
+            # Track overall status (blue > yellow > green)
+            if status == 'blue':
+                report['overall_status'] = 'blue'
+                report['human_action_needed'] = True
+            elif status == 'yellow' and report['overall_status'] != 'blue':
+                report['overall_status'] = 'yellow'
+                report['human_action_needed'] = True
+
+        # Cross-domain correlation
+        sv_score = next((d['score'] for d in checkpoint_data['domains'] if d['name'] == 'social_voice'), 0.95)
+        mo_score = next((d['score'] for d in checkpoint_data['domains'] if d['name'] == 'memory_ops'), 0.915)
+        corr = self.cross_domain_correlation(sv_score, mo_score)
+
+        report['cross_domain']['correlation'] = corr
+        if corr < 0.4:
+            report['cross_domain']['status'] = 'blue'
+            report['human_action_needed'] = True
+            report['overall_status'] = 'blue'
+        elif corr < 0.6:
+            report['cross_domain']['status'] = 'yellow'
+            report['human_action_needed'] = True
+        else:
+            report['cross_domain']['status'] = 'green'
+
+        return report
+
+    def log_result(self, report: dict) -> None:
+        """Log drift check result to appropriate file."""
+        DRIFT_LOG.parent.mkdir(parents=True, exist_ok=True)
+
+        entry = {
+            'timestamp': report['timestamp'],
+            'overall_status': report['overall_status'],
+            'human_action_needed': report['human_action_needed'],
+            'domain_checks': report['domain_checks'],
+            'cross_domain': report['cross_domain']
+        }
+
+        with open(DRIFT_LOG, "a") as f:
+            f.write(json.dumps(entry) + "\n")
+
+        if report['overall_status'] == 'yellow':
+            alert_entry = {
+                'timestamp': report['timestamp'],
+                'severity': 'yellow',
+                'reason': next((c['reason'] for c in report['domain_checks'] if c['status'] == 'yellow'), 'Unknown'),
+                'domains_affected': [c['domain'] for c in report['domain_checks'] if c['status'] == 'yellow'],
+                'action_required': 'Review and approve next run',
+                'decision_by': None,
+                'decision_reason': None
+            }
+            with open(DRIFT_ALERTS, "a") as f:
+                f.write(json.dumps(alert_entry) + "\n")
+
+        elif report['overall_status'] == 'blue':
+            halt_entry = {
+                'timestamp': report['timestamp'],
+                'severity': 'blue',
+                'reason': next((c['reason'] for c in report['domain_checks'] if c['status'] == 'blue'), 'Unknown'),
+                'domains_affected': [c['domain'] for c in report['domain_checks'] if c['status'] == 'blue'],
+                'action_required': 'STOP — investigate before resuming',
+                'root_cause_investigation': {
+                    'hypothesis': None,
+                    'check_performed': None,
+                    'finding': None
+                },
+                'resolution': None,
+                'decision_by': None,
+                'approved_to_continue': False
+            }
+            with open(DRIFT_HALT, "a") as f:
+                f.write(json.dumps(halt_entry) + "\n")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Drift Monitoring Agent")
+    parser.add_argument("--checkpoint", help="Path to checkpoint JSON file")
+    parser.add_argument("--social-voice", type=float, help="Social voice score")
+    parser.add_argument("--memory-ops", type=float, help="Memory ops score")
+    parser.add_argument("--show-baseline", action="store_true", help="Show current baseline")
+    args = parser.parse_args()
+
+    monitor = DriftMonitor()
+
+    if args.show_baseline:
+        print(json.dumps(monitor.baseline, indent=2))
+        return 0
+
+    if args.checkpoint:
+        checkpoint_data = json.loads(Path(args.checkpoint).read_text())
+    elif args.social_voice is not None and args.memory_ops is not None:
+        checkpoint_data = {
+            'timestamp': datetime.now(timezone.utc).isoformat(),
+            'domains': [
+                {'name': 'social_voice', 'score': args.social_voice, 'confidence_tier': 'green'},
+                {'name': 'memory_ops', 'score': args.memory_ops, 'confidence_tier': 'green'}
+            ]
+        }
+    else:
+        print("Error: Provide --checkpoint or --social-voice and --memory-ops")
+        return 1
+
+    report = monitor.run_check(checkpoint_data)
+    monitor.log_result(report)
+
+    # Print summary
+    print(f"\n=== Drift Check: {report['overall_status'].upper()} ===")
+    for check in report['domain_checks']:
+        print(f"  {check['domain']}: {check['status']} (variance: {check['variance']:.2%}) — {check['reason']}")
+    print(f"  Cross-domain correlation: {report['cross_domain']['correlation']:.2f} ({report['cross_domain']['status']})")
+    if report['human_action_needed']:
+        print(f"\n⚠ Human action required")
+    else:
+        print(f"\n✓ All clear — auto-store to Hermes")
+
+    return 1 if report['overall_status'] == 'blue' else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

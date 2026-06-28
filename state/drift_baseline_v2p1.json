@@ -1,0 +1,26 @@
+{
+  "baseline_date": "2026-06-28",
+  "baseline_window": "June 28, 2026 — multi-domain orchestration v2.1 validation",
+  "domains": {
+    "social_voice": {
+      "score": 0.950,
+      "variance_observed": 0.03,
+      "confidence_tier": "green",
+      "runs": 12,
+      "stability": "high (±5% target met)"
+    },
+    "memory_ops": {
+      "score": 0.915,
+      "variance_observed": 0.02,
+      "confidence_tier": "green",
+      "runs": 12,
+      "stability": "high (±5% target met)"
+    }
+  },
+  "cross_domain": {
+    "correlation_baseline": 0.8,
+    "signal_loss_incidents": 0,
+    "timeout_cascades": 0,
+    "tier_mismatches": 0
+  }
+}
