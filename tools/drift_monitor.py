@@ -27,15 +27,25 @@ Usage:
 
     # Show alerts
     python tools/drift_monitor.py alerts
+
+Slack Notifications:
+    Set SLACK_WEBHOOK_URL in .env or environment variable.
+    Notifications sent on yellow (caution) and blue (halt) status.
 """
 
 import argparse
 import json
 import sys
+import os
 import time
 import signal
 from pathlib import Path
 from datetime import datetime, timezone
+
+try:
+    import requests
+except ImportError:
+    requests = None
 
 
 # Watch mode globals
@@ -52,6 +62,17 @@ BASELINE_FILE = Path("state/drift_baseline_v2p1.json")
 DRIFT_LOG = Path("state/drift_log.jsonl")
 DRIFT_ALERTS = Path("state/drift_alerts.jsonl")
 DRIFT_HALT = Path("state/drift_halts.jsonl")
+
+SLACK_WEBHOOK_URL = os.environ.get("SLACK_WEBHOOK_URL", "")
+
+# Load from .env if present
+if not SLACK_WEBHOOK_URL:
+    env_path = Path(__file__).resolve().parent.parent / ".env"
+    if env_path.exists():
+        for line in env_path.read_text().splitlines():
+            if line.startswith("SLACK_WEBHOOK_URL="):
+                SLACK_WEBHOOK_URL = line.split("=", 1)[1].strip()
+                break
 
 ALERT_THRESHOLD = 0.05  # ±5%
 HALT_THRESHOLD = 0.10   # ±10%
@@ -212,6 +233,83 @@ class DriftMonitor:
             }
             with open(DRIFT_HALT, "a") as f:
                 f.write(json.dumps(halt_entry) + "\n")
+
+        # Send Slack notification for yellow/blue
+        if report['overall_status'] in ('yellow', 'blue'):
+            self._send_slack_notification(report)
+
+    def _send_slack_notification(self, report: dict) -> None:
+        """Send Slack notification for drift alerts."""
+        if not SLACK_WEBHOOK_URL:
+            return
+
+        if requests is None:
+            print("Warning: requests library not installed, skipping Slack notification")
+            return
+
+        status = report['overall_status']
+        emoji = '⚠️' if status == 'yellow' else '🚨'
+        color = '#FFCC00' if status == 'yellow' else '#FF0000'
+
+        # Build message
+        domain_lines = []
+        for check in report['domain_checks']:
+            if check['status'] != 'green':
+                domain_lines.append(f"• {check['domain']}: {check['variance']:.1%} variance — {check['reason']}")
+
+        reason = next((c['reason'] for c in report['domain_checks'] if c['status'] == status), 'Unknown')
+
+        payload = {
+            "attachments": [{
+                "color": color,
+                "blocks": [
+                    {
+                        "type": "header",
+                        "text": {
+                            "type": "plain_text",
+                            "text": f"{emoji} Drift Alert: {status.upper()}"
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "fields": [
+                            {"type": "mrkdwn", "text": f"*Severity:*\n{status.upper()}"},
+                            {"type": "mrkdwn", "text": f"*Time:*\n{report['timestamp'][:19]}"}
+                        ]
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": f"*Reason:*\n{reason}"
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*Domains Affected:*\n" + "\n".join(domain_lines) if domain_lines else "None"
+                        }
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "Drift Monitor v2.1 | Multi-Domain Orchestration"
+                            }
+                        ]
+                    }
+                ]
+            }]
+        }
+
+        try:
+            response = requests.post(SLACK_WEBHOOK_URL, json=payload, timeout=10)
+            if response.status_code != 200:
+                print(f"Slack notification failed: {response.status_code}")
+        except Exception as e:
+            print(f"Slack notification error: {str(e)[:50]}")
 
 
 def show_history(limit: int = 10) -> None:
