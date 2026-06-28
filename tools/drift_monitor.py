@@ -187,48 +187,155 @@ class DriftMonitor:
                 f.write(json.dumps(halt_entry) + "\n")
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Drift Monitoring Agent")
-    parser.add_argument("--checkpoint", help="Path to checkpoint JSON file")
-    parser.add_argument("--social-voice", type=float, help="Social voice score")
-    parser.add_argument("--memory-ops", type=float, help="Memory ops score")
-    parser.add_argument("--show-baseline", action="store_true", help="Show current baseline")
-    args = parser.parse_args()
+def show_history(limit: int = 10) -> None:
+    """Show recent drift check history."""
+    if not DRIFT_LOG.exists():
+        print("No drift history found.")
+        return
 
+    lines = DRIFT_LOG.read_text().splitlines()
+    recent = lines[-limit:]
+
+    print(f"\n=== Drift History (last {len(recent)} checks) ===")
+    for line in recent:
+        entry = json.loads(line)
+        ts = entry['timestamp'][:16]
+        status = entry['overall_status']
+        marker = {'green': '✓', 'yellow': '⚠', 'blue': '✗'}.get(status, '?')
+        print(f"  {marker} {ts} — {status.upper()}")
+        for check in entry.get('domain_checks', []):
+            print(f"    {check['domain']}: {check['variance']:.2%}")
+
+
+def show_alerts(limit: int = 10) -> None:
+    """Show recent drift alerts."""
+    if not DRIFT_ALERTS.exists():
+        print("No alerts found.")
+        return
+
+    lines = DRIFT_ALERTS.read_text().splitlines()
+    recent = lines[-limit:]
+
+    print(f"\n=== Drift Alerts (last {len(recent)}) ===")
+    for line in recent:
+        entry = json.loads(line)
+        ts = entry['timestamp'][:16]
+        print(f"  ⚠ {ts} — {entry['severity'].upper()}")
+        print(f"    Reason: {entry['reason']}")
+        print(f"    Domains: {', '.join(entry['domains_affected'])}")
+        print(f"    Action: {entry['action_required']}")
+
+
+def show_status() -> None:
+    """Show current drift monitoring status."""
     monitor = DriftMonitor()
 
-    if args.show_baseline:
+    print("\n=== Drift Monitoring Status ===")
+    print(f"\nBaseline: {monitor.baseline['baseline_date']}")
+    print(f"Domains:")
+    for domain, data in monitor.baseline['domains'].items():
+        print(f"  {domain}: {data['score']} (±{data['variance_observed']:.0%}) — {data['confidence_tier']}")
+
+    # Count recent incidents
+    alerts = 0
+    halts = 0
+    if DRIFT_ALERTS.exists():
+        alerts = len(DRIFT_ALERTS.read_text().splitlines())
+    if DRIFT_HALT.exists():
+        halts = len(DRIFT_HALT.read_text().splitlines())
+
+    print(f"\nIncidents:")
+    print(f"  Alerts (yellow): {alerts}")
+    print(f"  Halts (blue): {halts}")
+
+    if DRIFT_LOG.exists():
+        total = len(DRIFT_LOG.read_text().splitlines())
+        print(f"  Total checks: {total}")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        prog="drift",
+        description="Drift Monitoring Agent — Multi-Domain Orchestration v2.1"
+    )
+    subparsers = parser.add_subparsers(dest="command", help="Available commands")
+
+    # check command
+    check_parser = subparsers.add_parser("check", help="Run drift check")
+    check_parser.add_argument("--checkpoint", help="Path to checkpoint JSON file")
+    check_parser.add_argument("--social-voice", type=float, help="Social voice score")
+    check_parser.add_argument("--memory-ops", type=float, help="Memory ops score")
+
+    # baseline command
+    subparsers.add_parser("baseline", help="Show current baseline")
+
+    # status command
+    subparsers.add_parser("status", help="Show monitoring status")
+
+    # history command
+    history_parser = subparsers.add_parser("history", help="Show drift history")
+    history_parser.add_argument("--limit", type=int, default=10, help="Number of entries to show")
+
+    # alerts command
+    alerts_parser = subparsers.add_parser("alerts", help="Show drift alerts")
+    alerts_parser.add_argument("--limit", type=int, default=10, help="Number of entries to show")
+
+    args = parser.parse_args()
+
+    if not args.command:
+        parser.print_help()
+        return 0
+
+    if args.command == "baseline":
+        monitor = DriftMonitor()
         print(json.dumps(monitor.baseline, indent=2))
         return 0
 
-    if args.checkpoint:
-        checkpoint_data = json.loads(Path(args.checkpoint).read_text())
-    elif args.social_voice is not None and args.memory_ops is not None:
-        checkpoint_data = {
-            'timestamp': datetime.now(timezone.utc).isoformat(),
-            'domains': [
-                {'name': 'social_voice', 'score': args.social_voice, 'confidence_tier': 'green'},
-                {'name': 'memory_ops', 'score': args.memory_ops, 'confidence_tier': 'green'}
-            ]
-        }
-    else:
-        print("Error: Provide --checkpoint or --social-voice and --memory-ops")
-        return 1
+    if args.command == "status":
+        show_status()
+        return 0
 
-    report = monitor.run_check(checkpoint_data)
-    monitor.log_result(report)
+    if args.command == "history":
+        show_history(args.limit)
+        return 0
 
-    # Print summary
-    print(f"\n=== Drift Check: {report['overall_status'].upper()} ===")
-    for check in report['domain_checks']:
-        print(f"  {check['domain']}: {check['status']} (variance: {check['variance']:.2%}) — {check['reason']}")
-    print(f"  Cross-domain correlation: {report['cross_domain']['correlation']:.2f} ({report['cross_domain']['status']})")
-    if report['human_action_needed']:
-        print(f"\n⚠ Human action required")
-    else:
-        print(f"\n✓ All clear — auto-store to Hermes")
+    if args.command == "alerts":
+        show_alerts(args.limit)
+        return 0
 
-    return 1 if report['overall_status'] == 'blue' else 0
+    if args.command == "check":
+        monitor = DriftMonitor()
+
+        if args.checkpoint:
+            checkpoint_data = json.loads(Path(args.checkpoint).read_text())
+        elif args.social_voice is not None and args.memory_ops is not None:
+            checkpoint_data = {
+                'timestamp': datetime.now(timezone.utc).isoformat(),
+                'domains': [
+                    {'name': 'social_voice', 'score': args.social_voice, 'confidence_tier': 'green'},
+                    {'name': 'memory_ops', 'score': args.memory_ops, 'confidence_tier': 'green'}
+                ]
+            }
+        else:
+            print("Error: Provide --checkpoint or --social-voice and --memory-ops")
+            return 1
+
+        report = monitor.run_check(checkpoint_data)
+        monitor.log_result(report)
+
+        # Print summary
+        print(f"\n=== Drift Check: {report['overall_status'].upper()} ===")
+        for check in report['domain_checks']:
+            print(f"  {check['domain']}: {check['status']} (variance: {check['variance']:.2%}) — {check['reason']}")
+        print(f"  Cross-domain correlation: {report['cross_domain']['correlation']:.2f} ({report['cross_domain']['status']})")
+        if report['human_action_needed']:
+            print(f"\n⚠ Human action required")
+        else:
+            print(f"\n✓ All clear — auto-store to Hermes")
+
+        return 1 if report['overall_status'] == 'blue' else 0
+
+    return 0
 
 
 if __name__ == "__main__":
