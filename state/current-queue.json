@@ -1,6 +1,62 @@
 {
   "queue": [
     {
+      "id": "2026-06-28-skillopt-blog-post",
+      "title": "We Tested SkillOpt Locally Before Letting Hermes Learn",
+      "hook": "I didn't want Hermes to learn until I knew it could stay inside the guardrails.",
+      "type": "Behind-the-scenes",
+      "platform": "Blog",
+      "goal": "Build in public",
+      "source": "SKILLOPT_VALIDATION_REPORT.md",
+      "status": "ready_for_publishing",
+      "status_updated_at": "2026-06-28T00:00:00Z",
+      "priority": 1,
+      "week": "2026-W27",
+      "created_at": "2026-06-28T00:00:00Z",
+      "updated_at": "2026-06-28T00:00:00Z",
+      "scheduled_time": "2026-07-01T12:00:00Z",
+      "draft_path": "drafts/ready/2026-06-28-skillopt-blog-post.md",
+      "notes": "Full blog post. Blog platform not supported by Blotato — publish manually."
+    },
+    {
+      "id": "2026-06-28-skillopt-blog-x",
+      "title": "We Tested SkillOpt Locally (Thread)",
+      "hook": "I didn't want Hermes to learn until I knew it could stay inside the guardrails.",
+      "type": "Behind-the-scenes",
+      "platform": "X",
+      "goal": "Build in public",
+      "source": "SKILLOPT_VALIDATION_REPORT.md",
+      "status": "published",
+      "status_updated_at": "2026-06-28T00:00:00Z",
+      "priority": 1,
+      "week": "2026-W27",
+      "created_at": "2026-06-28T00:00:00Z",
+      "updated_at": "2026-06-28T00:00:00Z",
+      "scheduled_time": "2026-06-28T00:00:00Z",
+      "blotato_ids": [
+        "cef25ccf-e2c5-4f10-a32c-711407997f1e",
+        "f79b05a3-960e-486f-829c-c6da490524d5",
+        "f185f4c0-a70f-4f4a-97bd-febbed4c9447",
+        "3b3f2da4-13db-4dea-b6ca-ed6c23e3fc74",
+        "b670f28b-e50f-47ae-b34a-5168af27c7e0",
+        "300c10be-511e-43fa-bbba-da8a2ca87beb",
+        "48c8b594-7a2f-4a59-b295-8cad6bf9c323",
+        "2031939e-1579-49a4-bee4-adef8c117b61"
+      ],
+      "post_urls": [
+        "https://x.com/shagwu22/status/2071220595283369990",
+        "https://x.com/shagwu22/status/2071220612446531985",
+        "https://x.com/shagwu22/status/2071220632520368567",
+        "https://x.com/shagwu22/status/2071220648668430544",
+        "https://x.com/shagwu22/status/2071220668121616393",
+        "https://x.com/shagwu22/status/2071220682663322068",
+        "https://x.com/shagwu22/status/2071220697179803692",
+        "https://x.com/shagwu22/status/2071220713248153911"
+      ],
+      "draft_path": "drafts/archived/2026-06-28-skillopt-blog-x.md",
+      "notes": "8-post thread published immediately."
+    },
+    {
       "id": "2026-06-27-skillopt-validation-learnings-li",
       "title": "What We Learned Validating SkillOpt Locally",
       "hook": "We spent a week testing whether SkillOpt could optimize Road4AI skills without breaking governance.",
@@ -952,5 +1008,5 @@
       "draft_path": "drafts/archived/2026-06-26-stack-migration-blotato-brief.md"
     }
   ],
-  "updated": "2026-06-27"
+  "updated": "2026-06-28"
 }
