@@ -1,0 +1,14 @@
+{
+  "total_cases": 1,
+  "avg_score": 1.0,
+  "max_drift": 0.0,
+  "drift_breaches": 0,
+  "results": [
+    {
+      "id": "orch-004-revised",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case meets all the expected traits and does not exhibit any of the reject traits. It compares specific scores from two different weeks, reports variance for each domain within a defined threshold, and notes that no human review is required as both variances are within \u00b15%."
+    }
+  ]
+}

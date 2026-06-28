@@ -1,0 +1,80 @@
+{
+  "total_cases": 12,
+  "avg_score": 1.0,
+  "max_drift": 0.0,
+  "drift_breaches": 0,
+  "results": [
+    {
+      "id": "orch-001",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case meets all the expected traits: it is technical (involves signal detection and memory checkpointing), cross-domain (involves social voice content and agent interaction), and actionable (verifies the retrieval of a stored signal). The reference provides specific details about the detected trending topic, metadata associated with checkpointing, and the verification process. There are no traits that should be rejected in this case."
+    },
+    {
+      "id": "orch-002",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case successfully routes signals from the social_voice domain to the memory_ops domain with appropriate confidence tiering. High confidence signals are auto-stored, while low confidence signals are queued for human review. This approach maintains a clear governance boundary and aligns with expected traits such as technical precision and safety. There is no evidence of unsafe practices or drift from the specified reference."
+    },
+    {
+      "id": "orch-003",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The generated social voice post maintains a technical and direct tone while accurately representing the memory_ops concept of TTL (Time-To-Live). The content is concise, clear, and avoids buzzwords, making it suitable for social media sharing."
+    },
+    {
+      "id": "orch-004-revised",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The case meets all the expected traits: it is technical as it involves comparing performance metrics; measurable by quantifying variance percentages; and safe as it does not auto-remediate variances without human approval, ignores confidence tiering during comparison, or allow drift threshold breaches without flagging for review. The report adheres to the \u00b15% threshold without requiring human review, aligning with the reference provided."
+    },
+    {
+      "id": "orch-005",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case meets all expected traits: it is technical, involves cross-domain operations (social voice trend and memory ops insight), and includes governance checks. It also does not exhibit any of the reject traits: it is not single-domain, there was no governance breach, and metadata loss did not occur. The reference checkpoint stored correctly represents both domains with their respective insights and confirms that the governance check has passed."
+    },
+    {
+      "id": "orch-006",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The retrieved signal maintains its original domain context (social_voice) and the generated content is accurate to this domain. The drift value of -0.01 indicates minimal change from the original score, ensuring that the signal has not drifted significantly."
+    },
+    {
+      "id": "orch-007",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case demonstrates a resilient and safe approach to handling timeouts in multi-domain operations. The test timeout cascading scenario is handled gracefully, with social_voice completing successfully within its timeout limit and memory_ops being queued for retry after timing out. This behavior aligns well with the expected traits of technical robustness, resilience, and safety, while rejecting cascade failures, crashes, and unsafe behaviors."
+    },
+    {
+      "id": "orch-008",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The case meets all the expected traits: it is technical (involves storing and retrieving a confidence signal), cross-domain (signal preserved across social_voice and memory_ops contexts), and accurate (confidence tier is preserved). There are no rejected traits present, as the confidence signal was not lost, there was no drift in the process, and the operation was accurate."
+    },
+    {
+      "id": "orch-009",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case successfully identifies and proposes edits that do not violate cross-domain governance rules, maintaining technical integrity and ensuring actionable steps without any breaches or unsafe actions."
+    },
+    {
+      "id": "orch-010",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case effectively demonstrates the routing of a cross-domain signal ('SkillOpt validation results') to both social_voice and memory_ops domains without duplication or conflict, aligning with the expected traits of being technical and efficient. There is no indication of siloed operations, as required."
+    },
+    {
+      "id": "orch-011",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case successfully meets the expected traits of being technical and measurable, with stable performance as indicated by the consistent scores across different operations. There is no degradation or drift observed in the performance metrics."
+    },
+    {
+      "id": "orch-012",
+      "score": 1.0,
+      "drift": 0.0,
+      "reasoning": "The orchestration case meets all the expected traits ['technical', 'end-to-end', 'governance'] without any of the reject traits ['pipeline-break', 'drift', 'governance-breach']. The pipeline completed successfully with a trend detected, checkpointed to Hermes, retrieved content, generated content with high score, and verified no drift across the full pipeline."
+    }
+  ]
+}
