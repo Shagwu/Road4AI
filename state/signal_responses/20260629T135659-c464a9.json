@@ -1,0 +1,110 @@
+{
+  "request_id": "20260629T135659-c464a9",
+  "status": "complete",
+  "gate_status": "open",
+  "signals": [
+    {
+      "tweet_id": "2071239626128298131",
+      "author": "0xCodez",
+      "text": "Anthropic Managed Agents Lead:",
+      "confidence": 0.52,
+      "action": "queue-for-review",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 1119,
+        "retweets": 136
+      }
+    },
+    {
+      "tweet_id": "2069558832812961854",
+      "author": "adiix_official",
+      "text": "Claude Code + Obsidian = $100,000/Month",
+      "confidence": 0.537,
+      "action": "queue-for-review",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 2063,
+        "retweets": 207
+      }
+    },
+    {
+      "tweet_id": "2070918939526205494",
+      "author": "gregisenberg",
+      "text": "A friend asked me how to actually build a company that runs on AI agents.\\n\\",
+      "confidence": 0.651,
+      "action": "queue-for-review",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 3314,
+        "retweets": 350
+      }
+    },
+    {
+      "tweet_id": "2071214176526049739",
+      "author": "0xMovez",
+      "text": "Ex-Google engineer explained AI agent loops, harness, evals in 20 minutes\\",
+      "confidence": 0.646,
+      "action": "queue-for-review",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 2498,
+        "retweets": 395
+      }
+    },
+    {
+      "tweet_id": "2070541643518775354",
+      "author": "AnatoliKopadze",
+      "text": "Google just dropped a free 8-minute lesson on building your first AI agent.",
+      "confidence": 0.662,
+      "action": "queue-for-review",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 4103,
+        "retweets": 702
+      }
+    },
+    {
+      "tweet_id": "2043407722935198082",
+      "author": "gregisenberg",
+      "text": "In case you missed it...",
+      "confidence": 0.449,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 3111,
+        "retweets": 303
+      }
+    },
+    {
+      "tweet_id": "2071511467116069252",
+      "author": "JulianGoldieSEO",
+      "text": "This free system gives every AI agent you own a permanent memory that gets",
+      "confidence": 0.597,
+      "action": "queue-for-review",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 9,
+        "retweets": 5
+      }
+    },
+    {
+      "tweet_id": "2037262467684864075",
+      "author": "gregisenberg",
+      "text": "I met the guy behind Paperclip. he won't show his face, but he just built\\",
+      "confidence": 0.444,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 2617,
+        "retweets": 260
+      }
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "auto_store": 0,
+    "queue_review": 6,
+    "discard": 2
+  },
+  "processed_at": "2026-06-29T13:57:03.033025+00:00"
+}

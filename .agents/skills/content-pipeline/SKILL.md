@@ -68,8 +68,11 @@ The Chief of Staff aggregates the outputs, applies Road4AI strategy, and routes 
 6. Run the dedup gate before any queue write.
 7. Draft selected content into `drafts/ideas/` or `drafts/ready/` based on user instruction.
 8. Run Karen and public sanitizer gates before approval or scheduling.
-9. Preserve manual approval: only the user moves content into `drafts/approved/`.
-10. After a successful queue write, create a Hermes checkpoint commit.
+9. **STOP. Do not schedule.** Content stays in `drafts/ready/` until the user explicitly approves.
+10. **Only after user approval:** user moves content to `drafts/approved/`, then schedule via Blotato.
+11. After a successful queue write, create a Hermes checkpoint commit.
+
+**The approval gate is non-negotiable.** No agent may schedule content from `drafts/ready/`. Scheduling is only allowed from `drafts/approved/`. If you are uncertain whether approval was given, ask.
 
 ## Output Contract
 
@@ -89,6 +92,7 @@ Return:
 - Do not flatten Road4AI into generic AI marketing content.
 - Do not move content into `drafts/approved/`.
 - Do not publish or schedule content before approval.
+- **Do not schedule from `drafts/ready/`.** Only schedule from `drafts/approved/`. If the draft is in `ready/`, it is waiting for the user. Ask before acting.
 
 ## Related Skills
 

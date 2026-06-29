@@ -1,0 +1,50 @@
+{
+  "request_id": "20260629T135325-a8baa2",
+  "status": "complete",
+  "gate_status": "open",
+  "signals": [
+    {
+      "tweet_id": "2046310954351358378",
+      "author": "gregisenberg",
+      "text": "how to set up hermes agent step by step. built-in memory, 40+ tools, works\\",
+      "confidence": 0.4,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2037262467684864075",
+      "author": "gregisenberg",
+      "text": "I met the guy behind Paperclip. he won't show his face, but he just built\\",
+      "confidence": 0.2,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2066601447525888209",
+      "author": "gregisenberg",
+      "text": "I met a 19 year old who makes $200,000+ building apps with AI and he can't\\",
+      "confidence": 0.3,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "auto_store": 0,
+    "queue_review": 0,
+    "discard": 3
+  },
+  "processed_at": "2026-06-29T13:53:28.630709+00:00"
+}

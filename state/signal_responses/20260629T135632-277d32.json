@@ -1,0 +1,110 @@
+{
+  "request_id": "20260629T135632-277d32",
+  "status": "complete",
+  "gate_status": "open",
+  "signals": [
+    {
+      "tweet_id": "2070918939526205494",
+      "author": "gregisenberg",
+      "text": "A friend asked me how to actually build a company that runs on AI agents.\\n\\",
+      "confidence": 0.451,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 3312,
+        "retweets": 350
+      }
+    },
+    {
+      "tweet_id": "2071214176526049739",
+      "author": "0xMovez",
+      "text": "Ex-Google engineer explained AI agent loops, harness, evals in 20 minutes\\",
+      "confidence": 0.446,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 2497,
+        "retweets": 395
+      }
+    },
+    {
+      "tweet_id": "2070886159744483642",
+      "author": "0xCodez",
+      "text": "Google senior engineer just dropped a free 8-minute lesson on building AI",
+      "confidence": 0.366,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 187,
+        "retweets": 23
+      }
+    },
+    {
+      "tweet_id": "2071166031897436638",
+      "author": "kmeanskaran",
+      "text": "2025 was the year of AGENTS\\n2026 is the year of the HARNESS\\n\\nEveryone\\",
+      "confidence": 0.442,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 90,
+        "retweets": 7
+      }
+    },
+    {
+      "tweet_id": "2070128010317930527",
+      "author": "0xCodez",
+      "text": "This is an official ANTHROPIC 33-page PDF blueprint for building \\\"Effective\\",
+      "confidence": 0.391,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 395,
+        "retweets": 64
+      }
+    },
+    {
+      "tweet_id": "2070852381164630023",
+      "author": "undefinedKi",
+      "text": "https://t.co/CYsv4s0Ane",
+      "confidence": 0.37,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 200,
+        "retweets": 29
+      }
+    },
+    {
+      "tweet_id": "2070556819978866969",
+      "author": "nextjs",
+      "text": "Next.js 16.3 Preview: AI Improvements",
+      "confidence": 0.4,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 636,
+        "retweets": 47
+      }
+    },
+    {
+      "tweet_id": "2070861975358525500",
+      "author": "rohit4verse",
+      "text": "https://t.co/RZutT4s9AR",
+      "confidence": 0.361,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 164,
+        "retweets": 17
+      }
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "auto_store": 0,
+    "queue_review": 0,
+    "discard": 8
+  },
+  "processed_at": "2026-06-29T13:56:36.587631+00:00"
+}

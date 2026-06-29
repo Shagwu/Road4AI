@@ -1,6 +1,6 @@
 # Road4AI Working Context
 
-Last updated: 2026-06-03
+Last updated: 2026-06-28
 
 ## Current Sprint
 
@@ -13,6 +13,45 @@ Primary focus:
 - Formalize the five-agent content pipeline as a reusable skill.
 - Add public sanitization rules before security/autonomy content is published.
 - Extract working Road4AI operating patterns into reusable skills.
+
+## v2.1 Timeline
+
+### June 28 (Today)
+- v2.1.0 released ✅
+- GitHub release published ✅
+- X thread live ✅
+
+### June 30 (Sun)
+- LinkedIn post scheduled ✅
+
+### July 1 (Mon)
+- Blog post scheduled ✅
+- Drift monitoring starts (daily runs, 12-case orchestration suite)
+- First checkpoint to Hermes (baseline comparison)
+- COS daily review (5 min: check alerts, approve next run)
+
+### July 2–10 (Tue–Sun)
+- Daily drift monitoring (same pattern)
+- Zero blue incidents expected (local model variance within ±5%)
+- Any yellow incidents logged, investigated same day
+- Hermes checkpoint history accumulates
+
+### July 11–12 (Mon–Tue)
+- Phase 4 POC readiness audit
+  - Harvester CLI confirmed working (Agent-Reach integration)
+  - MiMo backend confirmed working (OpenAI-compatible API)
+  - Harvester → Drift Monitor hook wired (pause/resume gates configured)
+- AGENTS.md final update (drift monitoring section + Phase 4 reference)
+
+### July 15 (Fri)
+- v2.1 reveal narrative locked (ready for July 16 Phase 4 POC start)
+
+### July 16+ (Sat+)
+- Phase 4 POC begins
+- Harvester detects trends (Twitter platform test)
+- Signals route through social_voice → memory_ops → Hermes
+- Drift monitor watches live (real-time or batched, TBD)
+- v2.1 reveal posts publish (pre-scheduled or live thread, TBD)
 
 ## Recent Checkpoints
 
