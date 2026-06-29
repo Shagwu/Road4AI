@@ -81,7 +81,7 @@ These are locked. Don't re-litigate them:
 **Skill under test:**
 - Skill: `.agents/skills/voice-match/SKILL.md`
 - Test suite: `benchmarks/social_voice/social_voice_cases.jsonl`
-- Size: 15 cases: 12 tightened base cases plus 3 real June runway cases
+- Size: 10 cases: targeted reject-trait and voice quality tests (reduced from 15 in commit 10d1c5a)
 - Rationale: `voice-match` is high-signal for the audience, already has a test suite, and is safe to improve without touching governance, queue, or publishing contracts. Benchmark the runtime skill under `.agents/skills/`, not the repo teaching copy under `skills/`.
 
 **Execution flow:**
@@ -101,7 +101,7 @@ These are locked. Don't re-litigate them:
 **Evaluation engine:**
 - Platform: Claude Code + Ollama (local, zero-cost).
 - Rate limit: none (local inference).
-- Risk level: low for baseline-only stability runs, medium for full optimization runs until measured. A baseline-only run over 15 cases uses roughly 30 LLM calls. A full live runner pass can use roughly 61 LLM calls when failures trigger optimization and after-score evaluation.
+- Risk level: low for baseline-only stability runs, medium for full optimization runs until measured. A baseline-only run over 10 cases uses roughly 20 LLM calls. A full live runner pass can use roughly 41 LLM calls when failures trigger optimization and after-score evaluation.
 - Reveal transparency: state that `voice-match` was scored with Claude Code + Ollama judgment, not hosted API models.
 
 **June 24-25 stability playbook:**
