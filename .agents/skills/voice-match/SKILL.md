@@ -57,7 +57,7 @@ The voice must signal depth of experience, not just enthusiasm. Every post shoul
 
 ## Non-Negotiables (Anti-AI Tells)
 
-1. **No Em Dashes (—):** This is the clearest AI tell. Use periods, commas, or line breaks instead.
+1. **No Em Dashes:** This is a strong AI indicator. Avoid using em dashes entirely; opt for periods, commas, or line breaks instead. Every em dash in the output is a failure.
 2. **No Jargon:** If you wouldn't say it at a coffee shop, don't write it. Simplify every technical term.
 3. **No Polish:** Corporate or "perfect" sounding copy is wrong. It should sound like a raw update from the field. Avoid marketing hype words like 'game-changer' or 'revolutionizing'. Avoid claims of perfection like 'never makes mistakes'. Focus on real impact, not sales pitch.
 4. **Evidence-Backed Claims:** Any number, benchmark, or performance claim MUST include context. Never say "10ms latency" without saying cold/warm, test conditions, or comparison baseline. Own the real numbers, even when they are not impressive. The reference exemplar shows this: "under 200ms cold, under 600ms warm" beats "unprecedented speed."
@@ -90,17 +90,24 @@ The voice must signal depth of experience, not just enthusiasm. Every post shoul
 2. Identify the core "struggle" and the "win."
 3. Apply the hook mandate (lead with struggle).
 4. Rewrite using signature phrases and insider tone.
-5. Scrub for em dashes and jargon.
+5. Scrub for em dashes and jargon. Count em dashes in your output. If count > 0, replace each one before returning.
 6. Run the 8-step quality filter.
 7. Present the humanized draft for operator approval.
 
 ## Output Contract
 
-Return:
-- original hook vs. humanized hook;
-- humanized draft;
-- voice audit results (which rules were applied);
-- confirmation of em-dash removal.
+Return ONLY these sections. Do not include the original text verbatim anywhere in your output:
+
+**Humanized Hook:**
+(Your rewritten hook. Do NOT copy phrases from the input. Paraphrase entirely.)
+
+**Humanized Draft:**
+(The full rewritten post. Zero em dashes. Zero reject traits.)
+
+**Voice Audit:**
+- Em dash count in your output: [number] (must be 0)
+- Reject traits present: [list or "none"]
+- Rules applied: [list]
 
 ## Related Skills
 

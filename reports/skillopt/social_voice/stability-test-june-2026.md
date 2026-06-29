@@ -21,3 +21,15 @@
 1. **Em dash compliance**: Model generates em dashes despite Rule 1. This is a model compliance issue, not solvable by rule wording alone. Consider post-processing filter or stronger prompt anchoring.
 2. **Input quoting**: Output section quotes the input verbatim, which contains reject traits. Evaluator sometimes flags this. Consider removing the "Original Hook" section from output contract or adding instruction to paraphrase.
 3. **Case count**: Benchmark file has 10 cases, CLAUDE.md documents 15 (12 base + 3 June runway). Discrepancy needs resolution before July benchmark.
+
+**Post-processing filter (June 29)**: Built `tools/voice_postprocess.py` to deterministically strip em dashes and replace known reject phrases.
+
+Test results (3 iterations, case-001 + case-008):
+- Em dashes: 0 in all runs (deterministic removal)
+- Reject traits: consistently absent from humanized drafts
+- case-001: 0.09 → 0.793 (stable across runs)
+- case-008: 0.09 → 0.793 (stable across runs)
+
+Score ceiling with 14B model + post-processing: ~0.79-0.81. Remaining gap is model capability (missing "Manual friction focus" and "no marketing hype" traits), not post-processing. The key deliverable is deterministic compliance: zero em dashes, zero reject traits.
+
+For July benchmark: post-processor is ready for integration into the benchmark runner pipeline.
