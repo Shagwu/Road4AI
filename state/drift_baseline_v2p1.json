@@ -1,13 +1,13 @@
 {
-  "baseline_date": "2026-06-28",
-  "baseline_window": "June 28, 2026 — multi-domain orchestration v2.1 validation",
+  "baseline_date": "2026-06-29",
+  "baseline_window": "June 29, 2026 — voice-match measured ceiling with 14B + post-processor",
   "domains": {
     "social_voice": {
-      "score": 0.950,
-      "variance_observed": 0.03,
+      "score": 0.806,
+      "variance_observed": 0.05,
       "confidence_tier": "green",
-      "runs": 12,
-      "stability": "high (±5% target met)"
+      "runs": 4,
+      "stability": "high (±5% target met, measured ceiling 0.79-0.81)"
     },
     "memory_ops": {
       "score": 0.915,
