@@ -67,8 +67,9 @@ def check_guardrails(filepath, force=False):
     issues = []
 
     if not force:
-        if "drafts/ready/" not in rel and "drafts/approved/" not in rel and "drafts/archived/" not in rel:
-            issues.append(f"NOT in drafts/ready/, drafts/approved/, or drafts/archived/: {rel}")
+        if "drafts/approved/" not in rel and "drafts/archived/" not in rel:
+            issues.append(f"NOT in drafts/approved/ or drafts/approved/: {rel}")
+            issues.append("Content must be in drafts/approved/ before scheduling. User must approve first.")
 
         karen = fm.get("karen_verdict", "")
         if "APPROVED" not in karen.upper():

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.road4ai.scheduled-harvester</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/shagwu/Downloads/Road4AI-main/tools/scheduled_harvester.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/shagwu/Downloads/Road4AI-main</string>
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict>
+            <key>Hour</key>
+            <integer>8</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <dict>
+            <key>Hour</key>
+            <integer>18</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+    </array>
+    <key>StandardOutPath</key>
+    <string>/Users/shagwu/Downloads/Road4AI-main/state/harvester-cron.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/shagwu/Downloads/Road4AI-main/state/harvester-cron-error.log</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/shagwu/.agent-reach-venv/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>TWITTER_AUTH_TOKEN</key>
+        <string>bed8c7740be59583d8012f44b08f683a63a46b67</string>
+        <key>TWITTER_CT0</key>
+        <string>f60c51e16672a99ce0eb929b864f7977af041db5d94becb55cc03912b905a0b644f88e286ea94da1d079224ede04fef263f400212b393446d9d5c8a78c4b8bbf6e63153a4929b5ec013bb731151aebf2</string>
+    </dict>
+</dict>
+</plist>

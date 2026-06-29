@@ -28,6 +28,7 @@ This is the constitution for all agents working in this repo. Every session read
 - Modify `AGENTS.md` without explicit per-session human approval.
 - Move content into `drafts/approved/` on behalf of the user.
 - Publish, schedule, or mark content as approved before the approval gate is satisfied.
+- Schedule a post without `karen_verdict: APPROVED` in the draft frontmatter.
 - Delete queue entries silently.
 - Include secrets, private data, or copy-pasteable exploit payloads in public content.
 - Use `git add -A` or `git add .`. Stage files explicitly by name.
@@ -71,7 +72,8 @@ This is the constitution for all agents working in this repo. Every session read
 1. **Deduplication**: Before drafting, check `state/published-log.json` and `state/current-queue.json`.
 2. **Monday Ritual**: Every Monday, CoS parses `inbox.md` for top 5 content moments, maps to types (Struggle/Win/Tutorial/BTS), updates queue.
 3. **Approval**: Only the user moves files from `ready/` to `approved/`.
-4. **Approved Folder Hygiene**: Once approved content is scheduled in Blotato, move to `drafts/archived/` immediately. Never leave scheduled content in `approved/`.
+4. **Karen Gate**: Every draft must pass adversarial review (`karen_verdict: APPROVED` in frontmatter) before it can be scheduled. No exceptions.
+5. **Approved Folder Hygiene**: Once approved content is scheduled in Blotato, move to `drafts/archived/` immediately. Never leave scheduled content in `approved/`.
 5. **Traceability**: Every scheduled post needs a queue entry; every published post needs a published-log entry.
 6. **Governance Lock**: Any mutation to `AGENTS.md` MUST be reviewed and approved by the human conductor. No agent-to-agent negotiation of operating contracts.
 7. **Write Gate**: Agents may read `AGENTS.md` but must not write to it as part of normal task execution.
