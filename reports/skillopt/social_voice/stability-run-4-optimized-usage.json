@@ -1,0 +1,58 @@
+{
+  "run_id": "20260629T194553Z-social_voice",
+  "mode": "baseline-only",
+  "benchmark": "social_voice",
+  "cases": 10,
+  "pricing_config": {
+    "path": "reports/skillopt/ollama-pricing.json",
+    "sha256": "3f7c0490571b3f1fc4f1891df3da8f467ce8993f299ee00191af7be141aef345",
+    "source": "ollama-local-inference"
+  },
+  "models": {
+    "target_model": "qwen2.5-coder:14b",
+    "evaluator_model": "qwen2.5-coder:14b",
+    "optimizer_model": "qwen2.5-coder:14b"
+  },
+  "calls": {
+    "target_model": 10,
+    "evaluator_model": 10,
+    "optimizer_model": 0
+  },
+  "tokens": {
+    "target_model": {
+      "prompt": 14322,
+      "completion": 3924,
+      "total": 18246
+    },
+    "evaluator_model": {
+      "prompt": 5885,
+      "completion": 1732,
+      "total": 7617
+    },
+    "optimizer_model": {
+      "prompt": 0,
+      "completion": 0,
+      "total": 0
+    }
+  },
+  "estimated_cost_usd": {
+    "target_model": 0.0,
+    "evaluator_model": 0.0,
+    "optimizer_model": 0.0,
+    "total": 0.0
+  },
+  "reasons": {
+    "optimizer_model": "Baseline-only mode"
+  },
+  "baseline_score": 0.806,
+  "optimized_score": 0.806,
+  "baseline_score_stddev": 0.25471029294736663,
+  "optimized_score_stddev": 0.25471029294736663,
+  "baseline_failed_case_ids": [
+    "case-002"
+  ],
+  "optimized_failed_case_ids": [
+    "case-002"
+  ],
+  "improvement_pct": 0.0
+}

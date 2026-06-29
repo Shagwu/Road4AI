@@ -1,16 +1,68 @@
 {
-  "status": "pending",
+  "status": "ready_for_review",
   "purpose": "Repeated live scoring stability proof for voice-match before the v2.1 SkillOpt benchmark cycle.",
   "skill_path": ".agents/skills/voice-match/SKILL.md",
   "benchmark_path": "benchmarks/social_voice/social_voice_cases.jsonl",
   "case_count": 15,
   "runner": "tools/run_skillopt_benchmark.py",
   "runner_engine": "gemini-cli",
-  "executor_allowed": ["codex", "gemini"],
+  "executor_allowed": [
+    "codex",
+    "gemini"
+  ],
   "pass_criteria": {
     "mean_score_variance_pct_max": 5,
     "failed_case_overlap_pct_min": 80,
     "standard_deviation_must_be_stable": true
   },
-  "runs": []
+  "runs": [
+    {
+      "run_label": "run_1",
+      "timestamp_utc": "2026-06-29T18:58:33.825523+00:00",
+      "executor": "codex",
+      "git_commit": "8b514e3",
+      "command": "python3 tools/run_skillopt_benchmark_openai.py --skill-path .agents/skills/voice-match/SKILL.md --cases-path benchmarks/social_voice/social_voice_cases.jsonl --output reports/skillopt/social_voice/stability-run-1.md --usage-output reports/skillopt/social_voice/stability-run-1-usage.json --baseline-only --target-model qwen2.5-coder:14b --evaluator-model qwen2.5-coder:14b",
+      "environment_notes": "June 29 stability run via Ollama qwen2.5-coder:14b, 10 cases (file has 10 lines, not 15 as documented)",
+      "gemini_cli_version": "0.47.0",
+      "usage_report": "reports/skillopt/social_voice/stability-run-1-usage.json",
+      "mode": "baseline-only",
+      "baseline_score": 0.6446666666666667,
+      "baseline_score_stddev": 0.3709453388903067,
+      "baseline_failed_case_ids": [
+        "case-001",
+        "case-008",
+        "case-009"
+      ],
+      "calls": {
+        "target_model": 10,
+        "evaluator_model": 10,
+        "optimizer_model": 0
+      },
+      "case_count": 10
+    },
+    {
+      "run_label": "run_2",
+      "timestamp_utc": "2026-06-29T19:16:29.060338+00:00",
+      "executor": "codex",
+      "git_commit": "8b514e3",
+      "command": "python3 tools/run_skillopt_benchmark_openai.py --skill-path .agents/skills/voice-match/SKILL.md --cases-path benchmarks/social_voice/social_voice_cases.jsonl --output reports/skillopt/social_voice/stability-run-2.md --usage-output reports/skillopt/social_voice/stability-run-2-usage.json --baseline-only --target-model qwen2.5-coder:14b --evaluator-model qwen2.5-coder:14b",
+      "environment_notes": "June 29 stability run 2 via Ollama qwen2.5-coder:14b, 10 cases",
+      "gemini_cli_version": "0.47.0",
+      "usage_report": "reports/skillopt/social_voice/stability-run-2-usage.json",
+      "mode": "baseline-only",
+      "baseline_score": 0.643,
+      "baseline_score_stddev": 0.3705055105303204,
+      "baseline_failed_case_ids": [
+        "case-001",
+        "case-006",
+        "case-008"
+      ],
+      "calls": {
+        "target_model": 10,
+        "evaluator_model": 10,
+        "optimizer_model": 0
+      },
+      "case_count": 10
+    }
+  ]
 }

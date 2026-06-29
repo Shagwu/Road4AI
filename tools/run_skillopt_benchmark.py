@@ -31,6 +31,7 @@ PROTECTED_FILES = {
 ALLOWED_SKILL_PATTERNS = {
     "marketing-skills/skills/**/SKILL.md",
     "skills/**/SKILL.md",
+    ".agents/skills/**/SKILL.md",
     "rules/content/*.md",
 }
 

@@ -1,0 +1,9 @@
+{
+  "source": "ollama-local-inference",
+  "models": {
+    "qwen2.5-coder:14b": {
+      "input_per_1m_tokens": 0.0,
+      "output_per_1m_tokens": 0.0
+    }
+  }
+}
