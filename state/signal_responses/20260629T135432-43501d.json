@@ -1,0 +1,134 @@
+{
+  "request_id": "20260629T135432-43501d",
+  "status": "complete",
+  "gate_status": "open",
+  "signals": [
+    {
+      "tweet_id": "2069558832812961854",
+      "author": "adiix_official",
+      "text": "Claude Code + Obsidian = $100,000/Month",
+      "confidence": 0.3,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2052110589682749869",
+      "author": "gregisenberg",
+      "text": "how to use Google''s NEW open source Design.md + AI Skills to make your startup",
+      "confidence": 0.267,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2071045417182147036",
+      "author": "JulianGoldieSEO",
+      "text": "99% OF PEOPLE ARE BUILDING AI AGENTS COMPLETELY WRONG",
+      "confidence": 0.4,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2069845451634016684",
+      "author": "adiix_official",
+      "text": "I\u2019m losing my mind that 16 million people saw this and almost no one actually\\",
+      "confidence": 0.2,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2052469408598024652",
+      "author": "adiix_official",
+      "text": "SOMEONE JUST KILLED THE REAL ESTATE INDUSTRY\\n\\nA guy scanned an entire house\\",
+      "confidence": 0.2,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2071557806281327001",
+      "author": "coreyganim",
+      "text": "Someone ran one prompt for 12 hours and got what he calls personal AGI. \\n\\",
+      "confidence": 0.2,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2071586987816157447",
+      "author": "JulianGoldieSEO",
+      "text": "A free local AI coding model just built a real app on my laptop.",
+      "confidence": 0.333,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2037262467684864075",
+      "author": "gregisenberg",
+      "text": "I met the guy behind Paperclip. he won't show his face, but he just built\\",
+      "confidence": 0.2,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2071481290373963884",
+      "author": "AiswaryaVenkit1",
+      "text": "You can build your own AI second brain.",
+      "confidence": 0.333,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2071582717708300577",
+      "author": "karlarboledas",
+      "text": "10 GITHUB REPOS THAT SCRAPE THE ENTIRE INTERNET FOR YOU",
+      "confidence": 0.2,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    }
+  ],
+  "summary": {
+    "total": 10,
+    "auto_store": 0,
+    "queue_review": 0,
+    "discard": 10
+  },
+  "processed_at": "2026-06-29T13:54:36.160709+00:00"
+}

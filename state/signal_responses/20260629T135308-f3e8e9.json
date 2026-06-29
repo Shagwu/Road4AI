@@ -1,0 +1,50 @@
+{
+  "request_id": "20260629T135308-f3e8e9",
+  "status": "complete",
+  "gate_status": "open",
+  "signals": [
+    {
+      "tweet_id": "2070970422561046536",
+      "author": "aiseomastery",
+      "text": "MOST AI AGENTS FORGET EVERYTHING BECAUSE THEY START FROM A BLANK SLATE\\n\\n\\",
+      "confidence": 0.467,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2071239626128298131",
+      "author": "0xCodez",
+      "text": "Anthropic Managed Agents Lead:",
+      "confidence": 0.333,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    },
+    {
+      "tweet_id": "2069558832812961854",
+      "author": "adiix_official",
+      "text": "Claude Code + Obsidian = $100,000/Month",
+      "confidence": 0.3,
+      "action": "discard",
+      "domain": "social_voice",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0
+      }
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "auto_store": 0,
+    "queue_review": 0,
+    "discard": 3
+  },
+  "processed_at": "2026-06-29T13:53:12.202510+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "20260629T135308-f3e8e9",
+  "query": "AI agent memory",
+  "limit": 3,
+  "requester": "codex",
+  "domain": "social_voice",
+  "status": "complete",
+  "created_at": "2026-06-29T13:53:08.379956+00:00",
+  "processed_at": "2026-06-29T13:53:12.202887+00:00",
+  "response_id": "20260629T135308-f3e8e9"
+}
