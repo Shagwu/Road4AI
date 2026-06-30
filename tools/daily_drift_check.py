@@ -165,10 +165,44 @@ def run_daily_check(dry_run: bool = False):
     # Handle alerts
     if status == "yellow":
         print(f"[daily-drift] ALERT: {reason}")
+        _send_alert(status, sv_score, reason)
     elif status == "blue":
         print(f"[daily-drift] HALT: {reason}")
+        _send_alert(status, sv_score, reason)
     elif status == "green":
         print(f"[daily-drift] OK: within tolerance")
+
+
+def _send_alert(status: str, score: float, reason: str):
+    """Send alert via Slack webhook if configured, otherwise just log."""
+    import os
+    webhook_url = os.environ.get("SLACK_WEBHOOK_URL", "")
+
+    # Check .env file
+    if not webhook_url:
+        env_path = ROOT / ".env"
+        if env_path.exists():
+            for line in env_path.read_text().splitlines():
+                if line.startswith("SLACK_WEBHOOK_URL="):
+                    webhook_url = line.split("=", 1)[1].strip()
+                    break
+
+    if not webhook_url:
+        print("[daily-drift] No SLACK_WEBHOOK_URL set, alert logged only")
+        return
+
+    # Send to Slack
+    try:
+        import urllib.request
+        emoji = "🟡" if status == "yellow" else "🔴"
+        payload = json.dumps({
+            "text": f"{emoji} Road4AI Drift Alert\nStatus: {status.upper()}\nScore: {score:.3f}\nReason: {reason}"
+        }).encode()
+        req = urllib.request.Request(webhook_url, data=payload, headers={"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=10)
+        print(f"[daily-drift] Alert sent to Slack")
+    except Exception as e:
+        print(f"[daily-drift] Slack alert failed: {e}")
 
 
 def _log_check(timestamp: str, status: str, score: float, bench: dict, action: str = None, reason: str = None):
