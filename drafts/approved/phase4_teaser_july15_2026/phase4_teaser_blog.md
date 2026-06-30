@@ -38,7 +38,7 @@ I've been saying "skills don't stay static. They evolve." But here's the harder 
 
 You build guardrails that evolve too.
 
-The v2.1 release (two weeks ago) was the foundation: skills with governance baked in from the start. Orchestration rules locked into AGENTS.md. Drift thresholds defined. Confidence tiering enforced. Karen (adversarial reviewer) gates everything.
+The [v2.1 release](https://github.com/Shagwu/Road4AI/releases/tag/v2.1.0) (two weeks ago) was the foundation: skills with governance baked in from the start. Orchestration rules locked into AGENTS.md. Drift thresholds defined. Confidence tiering enforced. Karen (adversarial reviewer) gates everything.
 
 Phase 4 is where we test all that under pressure.
 

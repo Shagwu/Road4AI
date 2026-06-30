@@ -5,7 +5,9 @@ Two weeks ago, I shipped v2.1: skills that evolve without breaking governance.
 
 Governance gates locked. Drift monitoring wired. Hermes keeping score.
 
-Tomorrow, the Harvester goes live on Twitter.
+Drift monitor watches daily. ±5% alerts, ±10% halts.
+
+Tomorrow, the Harvester goes live on Twitter (read-only, 2s delay, confidence-tiered routing).
 
 Here's what happens:
 

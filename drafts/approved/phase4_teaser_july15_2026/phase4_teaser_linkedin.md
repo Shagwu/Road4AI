@@ -16,6 +16,8 @@ The question isn't "does this work?" It's "does governance hold under pressure?"
 
 When a trend gets detected, does the pipeline respect the gates? When scores drift, does the monitor catch it? When confidence is uncertain, do humans actually get a voice?
 
+When confidence is uncertain, humans get a voice. When drift exceeds thresholds, the system pauses and waits. No auto-fix. No sneaky optimization.
+
 I'm going to find out. And I'm documenting every incident.
 
 This is what solo builders need: tools that scale, governance that holds, and the transparency to prove both.
