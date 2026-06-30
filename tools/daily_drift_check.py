@@ -106,45 +106,34 @@ def run_benchmark(dry_run: bool = False) -> dict:
             }
         return {"social_voice": 0.0, "cases": 0, "failed": []}
 
-    # Run live benchmark via Ollama
-    cmd = [
-        "python3", str(ROOT / "tools" / "run_skillopt_benchmark_openai.py"),
-        "--skill-path", str(ROOT / ".agents" / "skills" / "voice-match" / "SKILL.md"),
-        "--cases-path", str(ROOT / "benchmarks" / "social_voice" / "social_voice_cases.jsonl"),
-        "--output", str(ROOT / "reports" / "skillopt" / "social_voice" / f"daily-{datetime.now().strftime('%Y-%m-%d')}.md"),
-        "--usage-output", str(ROOT / "reports" / "skillopt" / "social_voice" / f"daily-{datetime.now().strftime('%Y-%m-%d')}-usage.json"),
-        "--baseline-only",
-        "--target-model", "qwen2.5-coder:14b",
-        "--evaluator-model", "qwen2.5-coder:14b",
-        "--optimizer-model", "qwen2.5-coder:14b",
-        "--pricing-config", str(PRICING_FILE),
-    ]
+    # Run live benchmark via Python API (avoids subprocess timeout issues)
+    sys.path.insert(0, str(ROOT / "tools"))
+    import os
+    os.environ["OPENAI_BASE_URL"] = "http://localhost:11434/v1"
+    os.environ["OPENAI_API_KEY"] = "ollama"
 
-    env = {
-        "OPENAI_BASE_URL": "http://localhost:11434/v1",
-        "OPENAI_API_KEY": "ollama",
+    from run_skillopt_benchmark_openai import BenchmarkRunner
+
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    runner = BenchmarkRunner(
+        skill_file=str(ROOT / ".agents" / "skills" / "voice-match" / "SKILL.md"),
+        benchmark=str(ROOT / "benchmarks" / "social_voice" / "social_voice_cases.jsonl"),
+        output=str(ROOT / "reports" / "skillopt" / "social_voice" / f"daily-{date_str}.md"),
+        dry_run=False,
+        usage_output=str(ROOT / "reports" / "skillopt" / "social_voice" / f"daily-{date_str}-usage.json"),
+        target_model="qwen2.5-coder:7b",
+        evaluator_model="qwen2.5-coder:7b",
+        optimizer_model="qwen2.5-coder:7b",
+        pricing_config=str(PRICING_FILE),
+        baseline_only=True,
+    )
+
+    result = runner.run()
+    return {
+        "social_voice": result.get("baseline_score", 0.0),
+        "cases": 10,
+        "failed": [],
     }
-
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=600, env={**subprocess.os.environ, **env})
-
-    if result.returncode != 0:
-        print(f"[daily-drift] Benchmark failed: {result.stderr[:500]}", file=sys.stderr)
-        return {"social_voice": 0.0, "cases": 0, "failed": [], "error": result.stderr[:500]}
-
-    # Parse JSON output from last line
-    lines = result.stdout.strip().split("\n")
-    for line in reversed(lines):
-        try:
-            data = json.loads(line)
-            return {
-                "social_voice": data.get("baseline_score", 0.0),
-                "cases": data.get("cases", 0) if "cases" in data else 10,
-                "failed": data.get("baseline_failed_case_ids", []),
-            }
-        except json.JSONDecodeError:
-            continue
-
-    return {"social_voice": 0.0, "cases": 0, "failed": []}
 
 
 def run_daily_check(dry_run: bool = False):

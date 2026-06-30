@@ -4,6 +4,10 @@
     "qwen2.5-coder:14b": {
       "input_per_1m_tokens": 0.0,
       "output_per_1m_tokens": 0.0
+    },
+    "qwen2.5-coder:7b": {
+      "input_per_1m_tokens": 0.0,
+      "output_per_1m_tokens": 0.0
     }
   }
 }
