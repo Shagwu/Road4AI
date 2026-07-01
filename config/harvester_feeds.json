@@ -1,0 +1,96 @@
+{
+  "rss_feeds": [
+    {
+      "name": "Hacker News (AI agent)",
+      "url": "https://hnrss.org/newest?q=AI+agent&count=20",
+      "category": "community",
+      "priority": "high"
+    },
+    {
+      "name": "Hacker News (LLM)",
+      "url": "https://hnrss.org/newest?q=LLM&count=20",
+      "category": "community",
+      "priority": "high"
+    },
+    {
+      "name": "Hacker News (multi-agent)",
+      "url": "https://hnrss.org/newest?q=multi-agent&count=20",
+      "category": "community",
+      "priority": "high"
+    },
+    {
+      "name": "Ars Technica (AI)",
+      "url": "https://feeds.arstechnica.com/arstechnica/technology-lab",
+      "category": "news",
+      "priority": "medium"
+    },
+    {
+      "name": "Lilian Weng Blog",
+      "url": "https://lilianweng.github.io/index.xml",
+      "category": "research",
+      "priority": "high"
+    },
+    {
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/rss/",
+      "category": "industry",
+      "priority": "medium"
+    },
+    {
+      "name": "AI News (Buttondown)",
+      "url": "https://buttondown.com/ainews/rss",
+      "category": "newsletter",
+      "priority": "medium"
+    }
+  ],
+  "github_queries": [
+    "AI agent memory",
+    "multi-agent framework",
+    "local LLM inference",
+    "voice agent",
+    "agent orchestration",
+    "hermes memory"
+  ],
+  "twitter_queries": [
+    {
+      "query": "AI agent framework",
+      "category": "community",
+      "priority": "high"
+    },
+    {
+      "query": "local LLM inference",
+      "category": "community",
+      "priority": "high"
+    },
+    {
+      "query": "multi-agent orchestration",
+      "category": "community",
+      "priority": "high"
+    },
+    {
+      "query": "build in public AI",
+      "category": "community",
+      "priority": "high"
+    },
+    {
+      "query": "zero-cost AI tools",
+      "category": "community",
+      "priority": "medium"
+    },
+    {
+      "query": "AI memory architecture",
+      "category": "research",
+      "priority": "high"
+    },
+    {
+      "query": "agent governance",
+      "category": "research",
+      "priority": "medium"
+    },
+    {
+      "query": "Ollama local AI",
+      "category": "tools",
+      "priority": "medium"
+    }
+  ]
+}
