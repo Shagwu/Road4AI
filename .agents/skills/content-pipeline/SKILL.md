@@ -74,6 +74,18 @@ The Chief of Staff aggregates the outputs, applies Road4AI strategy, and routes 
 
 **The approval gate is non-negotiable.** No agent may schedule content from `drafts/ready/`. Scheduling is only allowed from `drafts/approved/`. If you are uncertain whether approval was given, ask.
 
+## Platform Constraints
+
+**Blog posts are disabled.** No blog platform is configured. Content must be routed to:
+- X (Twitter)
+- LinkedIn
+- Instagram
+- TikTok
+- Threads
+- Facebook
+
+Never propose or create queue entries with `"platform": "Blog"`. This decision was made on 2026-07-01.
+
 ## Output Contract
 
 Return:

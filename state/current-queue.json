@@ -1,6 +1,7 @@
 {
   "queue": [
     {
+<<<<<<< HEAD
       "id": "2026-06-29-context-rot-li",
       "title": "Your Agent Remembers the Wrong Things",
       "hook": "Your agent remembers the wrong things.",
@@ -95,6 +96,8 @@
       "notes": "LinkedIn adaptation of blog post. Scheduled via Blotato."
     },
     {
+=======
+>>>>>>> 4e149f1 (chore: remove blog platform, add platform constraints)
       "id": "2026-06-28-skillopt-blog-x",
       "title": "We Tested SkillOpt Locally (Thread)",
       "hook": "I didn't want Hermes to learn until I knew it could stay inside the guardrails.",
@@ -1120,23 +1123,6 @@
       "blotato_id": "67a9535e-028d-4193-b5c6-539104673902",
       "draft_path": "drafts/archived/phase4_teaser_linkedin.md",
       "notes": "Single post scheduled via Blotato. Links in first comment. Pin for 48h."
-    },
-    {
-      "id": "2026-07-15-phase4-teaser-blog",
-      "title": "Phase 4 Begins: Governance Under Fire",
-      "hook": "How I built multi-domain AI skills with governance gates that actually hold.",
-      "type": "Behind-the-scenes",
-      "platform": "Blog",
-      "goal": "Build in public",
-      "source": "phase4_teaser_blog.md",
-      "status": "archived",
-      "status_updated_at": "2026-07-01T00:00:00Z",
-      "priority": 1,
-      "week": "2026-W28",
-      "created_at": "2026-06-30T00:00:00Z",
-      "updated_at": "2026-07-01T00:00:00Z",
-      "draft_path": "drafts/archived/phase4_teaser_blog.md",
-      "notes": "Dropped for now. Blog platform not set up. Can revisit later."
     },
     {
       "id": "2026-06-30-hermes-ecosystem-li",

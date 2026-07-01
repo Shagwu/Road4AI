@@ -29,3 +29,15 @@ Do not merge, rename, or reframe automatically.
 ## Queue Shape
 
 `state/current-queue.json` currently stores entries under a top-level `queue` key. Agents must preserve the existing file shape unless the user explicitly approves a schema migration.
+
+## Platform Constraints
+
+**Blog posts are disabled.** No blog platform is configured. All content must be routed to supported platforms only:
+- X (Twitter)
+- LinkedIn
+- Instagram
+- TikTok
+- Threads
+- Facebook
+
+Any queue entry with `"platform": "Blog"` must be rejected at the dedup gate. This decision was made on 2026-07-01 and is permanent until a blog platform is explicitly configured and approved by the operator.
