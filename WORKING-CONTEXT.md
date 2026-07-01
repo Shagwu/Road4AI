@@ -71,6 +71,45 @@ Primary focus:
 - May 19 reveal runbook, reply strategy, safety layers, and final reveal momentum added.
 - May 13-14 Hermes v2.0 distributed substrate, self-knowledge index, Hermes-CrewAI bridge, strict governance lock, and checkpoint v2.0 flow established.
 
+## Deferred Evaluations
+
+### Memanto Semantic Memory (evaluated June 2026)
+
+**Decision:** Defer to Phase 5 RFC. Do not integrate until Harvester CLI + MiMo POC is validated and shipped.
+
+**What it is:** Memanto (moorcheh-ai/memanto) is a semantic memory agent that provides `remember`, `recall`, and `answer` operations. Built on Moorcheh, an information-theoretic search engine with sub-90ms retrieval, no vector DB, no indexing delay. 1,472 stars, MIT, Python. Supports Claude Code, Cursor, Codex, and 14+ other agents.
+
+**Why defer:**
+- Hermes is working. Git checkpoints are adequate for 1-3 agents with human-in-the-loop.
+- Road4AI philosophy: "habits before infrastructure." Hermes is a habit. Memanto is infrastructure (Docker container, running service).
+- Phase 4 has a hard deadline (July 15, 2026). Ship the POC first, then measure whether semantic memory is a bottleneck.
+- The locked architectural decisions say "no cloud-only dependencies in the main path." Memanto on-prem respects this, but adds a Docker dependency.
+
+**Revisit threshold:** 5+ concurrent autonomous agents, or 1,000+ checkpoints where `git log --grep` becomes unwieldy.
+
+**Shorter-term alternative if grep becomes slow before Phase 5:** Add a lightweight metadata index to Hermes (JSON summary of each checkpoint's agents, timestamp, outcome) rather than swapping engines. Keeps the habit intact.
+
+**Project health:** Active maintenance (1.4k stars, MIT, 413 forks). No risk of disappearance if wanted in 6 months.
+
+---
+
+### OmniRoute Multi-Provider AI Gateway (evaluated July 2026)
+
+**Decision:** Deferred, not adopted.
+
+**What it is:** Self-hosted local proxy, one OpenAI-compatible endpoint routing across 230+ LLM providers (50+ free tiers), auto-fallback, MIT licensed, no cloud in request path.
+
+**Why defer:**
+- No current need. MiMo/qwen2.5-coder:14b via Ollama already solves local-first inference for Phase 4.
+- OmniRoute solves a cloud-API rate-limit problem Road4AI doesn't have.
+- Large, fast-moving, single-maintainer-heavy codebase (MITM proxy, OAuth, credential storage). More attack surface than current stack for no active benefit.
+
+**Revisit trigger:** If a future phase requires cloud-provider fallback that Ollama/MiMo can't cover, or multi-provider routing becomes a real need.
+
+**Source:** github.com/diegosouzapw/OmniRoute (npm install -g omniroute)
+
+---
+
 ## Active Constraints
 
 - `AGENTS.md` requires explicit human approval before edits.
@@ -86,6 +125,8 @@ Primary focus:
 2. Consider filesystem-level protection for `AGENTS.md`.
 3. Add broader hook coverage for publishing workflows if the deterministic sanitizer needs stronger enforcement.
 4. Decide whether to consolidate overlapping content pipeline skills after Phase 3 extraction.
+5. Phase 5 RFC: evaluate Memanto semantic memory if scale threshold is reached (5+ concurrent agents, 1k+ checkpoints).
+6. Phase 5 RFC: evaluate OmniRoute multi-provider AI gateway if cloud-provider fallback or multi-provider routing becomes a real need.
 
 ## Content Pipeline Pattern
 
