@@ -1,0 +1,180 @@
+{
+  "run_id": "20260701T123334Z-deterministic",
+  "mode": "deterministic",
+  "benchmark": "social_voice_cases",
+  "cases": 10,
+  "mean_score": 0.8039999999999999,
+  "failed_case_ids": [
+    "case-005",
+    "case-008"
+  ],
+  "results": [
+    {
+      "case_id": "case-001",
+      "input": "I am so excited to announce that we are revolutionizing RAG by deleting 10k chunks of data. It is a game-changer for the AI industry!",
+      "output": "I am so excited to announce that we are revolutionizing RAG by.. It is a game-changer for the AI industry!",
+      "score": 0.865,
+      "em_dash_count": 0,
+      "reject_traits_present": [
+        "game-changer",
+        "revolutionizing",
+        "excited to announce"
+      ],
+      "traits_detected": [
+        "technical honesty",
+        "direct",
+        "no marketing hype"
+      ],
+      "traits_missed": [],
+      "reasoning": "Reject traits present: game-changer, revolutionizing, excited to announce"
+    },
+    {
+      "case_id": "case-002",
+      "input": "In today's fast-paced world, agents need to work tirelessly. My AI doesn't have a plate, which is amazing for productivity!",
+      "output": "In today's fast-paced world, agents need to work tirelessly. My AI doesn't have a plate, which is amazing for productivity!",
+      "score": 0.91,
+      "em_dash_count": 0,
+      "reject_traits_present": [
+        "amazing for productivity",
+        "in today's fast-paced world"
+      ],
+      "traits_detected": [
+        "Senior Engineer persona",
+        "cautionary tone",
+        "transparent"
+      ],
+      "traits_missed": [],
+      "reasoning": "Reject traits present: amazing for productivity, in today's fast-paced world"
+    },
+    {
+      "case_id": "case-003",
+      "input": "We have achieved unprecedented 10ms latency for our local agent queries. It is the fastest in the world!",
+      "output": "We have achieved unprecedented 10ms latency for our local agent queries. It is the fastest in the world!",
+      "score": 0.822,
+      "em_dash_count": 0,
+      "reject_traits_present": [
+        "unprecedented"
+      ],
+      "traits_detected": [
+        "Technical accuracy",
+        "Evidence-backed"
+      ],
+      "traits_missed": [
+        "Humble"
+      ],
+      "reasoning": "Reject traits present: unprecedented; Missing traits: Humble"
+    },
+    {
+      "case_id": "case-004",
+      "input": "LinkedIn Hook Test 1: AI is changing everything \u2014 here is how we build better systems.",
+      "output": "LinkedIn Hook Test 1: AI is shifting the approach here is how.",
+      "score": 0.867,
+      "em_dash_count": 0,
+      "reject_traits_present": [],
+      "traits_detected": [
+        "No em dashes",
+        "Punchy"
+      ],
+      "traits_missed": [
+        "Conspiratorial"
+      ],
+      "reasoning": "Missing traits: Conspiratorial"
+    },
+    {
+      "case_id": "case-005",
+      "input": "LinkedIn Hook Test 2: You won't believe how easy it is to scale agents with this new tool.",
+      "output": "LinkedIn Hook Test 2: You won't believe what it actually takes to.",
+      "score": 0.555,
+      "em_dash_count": 0,
+      "reject_traits_present": [
+        "you won't believe"
+      ],
+      "traits_detected": [],
+      "traits_missed": [
+        "Opinionated",
+        "Senior Persona",
+        "Technical focus"
+      ],
+      "reasoning": "Reject traits present: you won't believe; Missing traits: Opinionated, Senior Persona, Technical focus"
+    },
+    {
+      "case_id": "case-006",
+      "input": "LinkedIn Hook Test 3: Stop paying for expensive APIs and use this revolutionary local trick.",
+      "output": "LinkedIn Hook Test 3: Stop paying for expensive APIs and use this notable local approach",
+      "score": 0.733,
+      "em_dash_count": 0,
+      "reject_traits_present": [],
+      "traits_detected": [
+        "Zero-cost engineering"
+      ],
+      "traits_missed": [
+        "High signal-to-noise",
+        "Transparent"
+      ],
+      "reasoning": "Missing traits: High signal-to-noise, Transparent"
+    },
+    {
+      "case_id": "case-007",
+      "input": "Technical Accuracy 1: Vector databases are the same thing as long-term memory for AI agents.",
+      "output": "Technical Accuracy 1: Vector databases are the same thing as long-term memory for AI agents",
+      "score": 0.955,
+      "em_dash_count": 0,
+      "reject_traits_present": [
+        "the same thing"
+      ],
+      "traits_detected": [
+        "Technical integrity",
+        "Distinction between storage and memory",
+        "No hype"
+      ],
+      "traits_missed": [],
+      "reasoning": "Reject traits present: the same thing"
+    },
+    {
+      "case_id": "case-008",
+      "input": "Technical Accuracy 2: Our 5-agent swarm is perfectly aligned and never makes mistakes during QA.",
+      "output": "Technical Accuracy 2: Our 5-agent swarm is mostly aligned and rarely stumbles during QA",
+      "score": 0.6,
+      "em_dash_count": 0,
+      "reject_traits_present": [],
+      "traits_detected": [],
+      "traits_missed": [
+        "Transparency",
+        "Humble",
+        "Manual friction focus"
+      ],
+      "reasoning": "Missing traits: Transparency, Humble, Manual friction focus"
+    },
+    {
+      "case_id": "case-009",
+      "input": "Senior Persona: I am thrilled to share my journey of building Road4AI with you all today!",
+      "output": "Senior Persona: I am here's what happened my process of building Road4AI !",
+      "score": 1.0,
+      "em_dash_count": 0,
+      "reject_traits_present": [],
+      "traits_detected": [
+        "Direct",
+        "No pleasantries",
+        "No marketing fluff"
+      ],
+      "traits_missed": [],
+      "reasoning": "All checks passed"
+    },
+    {
+      "case_id": "case-010",
+      "input": "Tutorial: Here is a simple 5-step guide to using NotebookLM to make your agents smarter.",
+      "output": "Tutorial: Here is a simple 5-step guide to using NotebookLM to improve agent performance",
+      "score": 0.733,
+      "em_dash_count": 0,
+      "reject_traits_present": [],
+      "traits_detected": [
+        "Tutorial format"
+      ],
+      "traits_missed": [
+        "Practical",
+        "Specific claim"
+      ],
+      "reasoning": "Missing traits: Practical, Specific claim"
+    }
+  ]
+}

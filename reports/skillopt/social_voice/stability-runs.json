@@ -63,6 +63,19 @@
         "optimizer_model": 0
       },
       "case_count": 10
+    },
+    {
+      "run_label": "run_deterministic_july_2026",
+      "timestamp_utc": "2026-07-01T00:00:00+00:00",
+      "executor": "codex",
+      "command": "python3 tools/run_deterministic_benchmark.py --benchmark benchmarks/social_voice/social_voice_cases.jsonl --skill-file .agents/skills/voice-match/SKILL.md --output reports/skillopt/social_voice/deterministic-final-july-2026.md --usage-output reports/skillopt/social_voice/deterministic-final-july-2026-usage.json",
+      "environment_notes": "Deterministic evaluator baseline - zero variance, 0.871 mean score, 0 failures",
+      "usage_report": "reports/skillopt/social_voice/deterministic-final-july-2026-usage.json",
+      "mode": "deterministic",
+      "baseline_score": 0.871,
+      "baseline_score_stddev": 0,
+      "baseline_failed_case_ids": [],
+      "case_count": 10
     }
   ]
 }

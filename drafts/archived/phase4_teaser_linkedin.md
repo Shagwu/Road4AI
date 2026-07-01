@@ -1,3 +1,9 @@
+---
+karen_verdict: APPROVED
+status: approved
+platform: li
+---
+
 # Phase 4 POC Teaser: LinkedIn Post (July 15)
 
 ## Copy-Paste Ready

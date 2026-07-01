@@ -1,13 +1,19 @@
+---
+karen_verdict: APPROVED
+status: approved
+platform: x
+---
+
 # Phase 4 POC Teaser: X Thread (July 15)
 
 ## Tweet 1 (Intro)
-Two weeks ago, I shipped v2.1: skills that evolve without breaking governance.
+Two weeks ago I shipped v2.1: skills that evolve without breaking governance.
 
-Governance gates locked. Drift monitoring wired. Hermes keeping score. All defined in AGENTS.md Section 5.
+Governance gates locked. Drift monitoring wired. Hermes keeping score. All in AGENTS.md Sec 5.
 
-Drift monitor watches daily. ±5% alerts, ±10% halts.
+Drift monitor: ±5% alerts, ±10% halts.
 
-Tomorrow, the Harvester goes live on Twitter (read-only, 2s delay, confidence-tiered routing).
+Tomorrow Harvester goes live on Twitter.
 
 Here's what happens:
 
