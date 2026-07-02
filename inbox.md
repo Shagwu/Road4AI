@@ -189,3 +189,46 @@ This week focused on the transition from "Demo Scale" to "System Scale," highlig
 
 **Scout confidence:** 🔥 high signal
 ---
+
+## HARVESTER DROP — 2026-06-30
+
+**Source type:** github + rss (harvester pipeline)
+**Method:** Automated signal capture via `tools/harvester_reader.py --config`
+**Signals processed:** 49 | **Queued:** 7 | **Discarded:** 42
+
+### High Relevance (0.75)
+
+**hermes-core-skills**
+- URL: https://github.com/ChrisLamDev/hermes-core-skills
+- What: 25 executable AI agent skills for debugging, planning, token efficiency, and security
+- Stats: 5 stars, created June 22, 2026
+- Signal: Community building skills similar to Road4AI's skill architecture
+- Action: Watch for patterns, no action needed
+
+**hermes-hud**
+- URL: https://github.com/Lucasdjs22/hermes-hud
+- What: Terminal HUD for monitoring Hermes agent memory, skills, and behavior
+- Stats: 2 stars, created April 26, 2026
+- Signal: Someone built a visual monitoring layer for Hermes
+- Action: Phase 5 candidate for observability
+
+### Medium Relevance (0.55-0.60)
+
+**CCMAF**
+- URL: https://github.com/drushegh/CCMAF
+- What: Stack-agnostic multi-agent framework for Claude Code with specialized roles
+- Stats: 1 star, created June 29, 2026 (yesterday)
+- Signal: Overlaps with Road4AI's multi-agent coordination
+- Action: Park for architectural patterns
+
+**mercury**
+- URL: https://github.com/fucheng830/mercury
+- What: Hermes memory system local client daemon — monitors ~/.claude/ files, generates embeddings
+- Stats: 0 stars, created May 11, 2026
+- Signal: Built around same Hermes pattern, local daemon approach
+- Action: Park for ecosystem awareness
+
+### Discarded
+- hermes-memory-fabric-plugin (empty repo)
+- autogen-financial-analysis (off-topic, finance domain)
+- Road4AI (self-reference)

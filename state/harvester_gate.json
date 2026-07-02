@@ -1,9 +1,10 @@
 {
-  "status": "open",
+  "paused": false,
+  "reason": null,
   "paused_at": null,
-  "pause_reason": null,
-  "resumed_at": "2026-06-28T18:47:56.622052+00:00",
-  "resume_reason": "Fixed: harvester no longer feeds confidence into drift monitor",
-  "signals_processed": 122,
-  "signals_blocked": 4
+  "resumed_at": null,
+  "total_signals": 53,
+  "auto_stored": 0,
+  "queued": 7,
+  "discarded": 46
 }

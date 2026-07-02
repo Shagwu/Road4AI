@@ -1,0 +1,10 @@
+{
+  "id": "gh-fucheng830-mercury",
+  "source": "github",
+  "content": "mercury: Hermes memory system local client daemon - monitors ~/.claude/ files, generates embeddings, syncs to server",
+  "author": "fucheng830",
+  "url": "https://github.com/fucheng830/mercury",
+  "timestamp": "2026-06-30T08:05:49Z",
+  "confidence": 0.55,
+  "query": "hermes memory"
+}

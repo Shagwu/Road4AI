@@ -1,0 +1,10 @@
+{
+  "id": "gh-drushegh-CCMAF",
+  "source": "github",
+  "content": "CCMAF: A stack-agnostic multi-agent framework for Claude Code: specialised agent roles (architect, developer, tester, reviewer), durable state files, machine-readable contracts, and lifecycle hooks that make AI coding agents work like a disciplined senior team. Self-updating core, with optional skills and a project console.",
+  "author": "drushegh",
+  "url": "https://github.com/drushegh/CCMAF",
+  "timestamp": "2026-06-30T10:34:06Z",
+  "confidence": 0.6000000000000001,
+  "query": "multi-agent framework"
+}

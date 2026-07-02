@@ -162,6 +162,51 @@ def parse_draft(filepath):
     return post_text, image_prompt
 
 
+def parse_thread(filepath):
+    """Parse a thread markdown file into individual tweets.
+
+    Looks for ## Tweet N headers or similar patterns to split content.
+    Returns list of tweet texts, or None if not a thread.
+    """
+    content = Path(filepath).read_text()
+
+    # Check if this is a thread (has ## Tweet N pattern)
+    tweet_pattern = re.compile(r"^##\s+Tweet\s+\d+", re.MULTILINE)
+    if not tweet_pattern.search(content):
+        return None
+
+    # Split by tweet headers
+    parts = re.split(r"(?=^##\s+Tweet\s+\d+)", content, flags=re.MULTILINE)
+
+    tweets = []
+    for part in parts:
+        part = part.strip()
+        if not part:
+            continue
+        # Skip if it's not a tweet section (e.g., Karen checklist, publication instructions)
+        if not re.match(r"^##\s+Tweet\s+\d+", part):
+            continue
+        # Remove the header line
+        lines = part.split("\n")
+        tweet_lines = []
+        started = False
+        for line in lines:
+            if re.match(r"^##\s+Tweet\s+\d+", line):
+                started = True
+                continue
+            if started:
+                # Stop at next section or checklist
+                if line.startswith("## ") or line.startswith("---") or line.startswith("## Karen"):
+                    break
+                tweet_lines.append(line)
+
+        tweet_text = "\n".join(tweet_lines).strip()
+        if tweet_text:
+            tweets.append(tweet_text)
+
+    return tweets if tweets else None
+
+
 def detect_platform_from_filename(filepath):
     name = Path(filepath).stem
     for suffix, (account_id, platform) in PLATFORMS.items():
@@ -262,7 +307,7 @@ def generate_visual(api_key, prompt, title="Road4AI Visual"):
     return []
 
 
-def schedule_post(api_key, account_id, platform, text, scheduled_time=None, next_slot=False, image_urls=None):
+def schedule_post(api_key, account_id, platform, text, scheduled_time=None, next_slot=False, image_urls=None, additional_posts=None):
     arguments = {
         "accountId": account_id,
         "platform": platform,
@@ -274,6 +319,8 @@ def schedule_post(api_key, account_id, platform, text, scheduled_time=None, next
         arguments["useNextFreeSlot"] = True
     if image_urls:
         arguments["mediaUrls"] = image_urls
+    if additional_posts:
+        arguments["additionalPosts"] = additional_posts
 
     params = {
         "name": "blotato_create_post",
@@ -284,6 +331,47 @@ def schedule_post(api_key, account_id, platform, text, scheduled_time=None, next
         return {"error": result["error"].get("message", str(result["error"]))}
     inner = result.get("result", result)
     return inner
+
+
+def schedule_thread(api_key, account_id, tweets, scheduled_time=None, next_slot=False, image_urls=None):
+    """Schedule a thread using Blotato's additionalPosts parameter.
+
+    Args:
+        api_key: Blotato API key
+        account_id: X/Twitter account ID
+        tweets: List of tweet texts
+        scheduled_time: ISO 8601 time for the thread
+        next_slot: Use next available slot
+        image_urls: Optional image URLs for first tweet
+
+    Returns:
+        Result from blotato_create_post
+    """
+    print(f"Posting thread ({len(tweets)} tweets)...", end=" ", flush=True)
+
+    # First tweet is the main text, rest go in additionalPosts
+    first_tweet = tweets[0]
+    additional_posts = [{"text": tweet} for tweet in tweets[1:]]
+
+    result = schedule_post(
+        api_key,
+        account_id,
+        "twitter",
+        first_tweet,
+        scheduled_time=scheduled_time,
+        next_slot=next_slot,
+        image_urls=image_urls,
+        additional_posts=additional_posts,
+    )
+
+    info = extract_result(result)
+    status = info.get("status", "unknown")
+    url = info.get("url", "")
+    print(f"{status}")
+    if url:
+        print(f"  URL: {url}")
+
+    return info
 
 
 def extract_result(result):
@@ -395,23 +483,44 @@ def main():
 
     text, image_prompt = parse_draft(filepath)
 
-    print(f"Platforms: {', '.join(platforms)}")
-    print(f"Text length: {len(text)} chars")
-    print(f"Image prompt: {'yes' if image_prompt else 'no'}")
-    print(f"Karen: {fm.get('karen_verdict', '(none)')}")
-    if scheduled_time:
-        print(f"Scheduled: {scheduled_time}")
-    elif next_slot:
-        print("Scheduled: next available slot")
+    # Check if this is a thread (X platform with ## Tweet N headers)
+    is_thread = "x" in platforms and parse_thread(filepath) is not None
+    tweets = parse_thread(filepath) if is_thread else None
+
+    if is_thread:
+        print(f"Thread detected: {len(tweets)} tweets")
+        print(f"Platform: x (twitter)")
+        print(f"Karen: {fm.get('karen_verdict', '(none)')}")
+        if scheduled_time:
+            print(f"Scheduled: {scheduled_time}")
+        elif next_slot:
+            print("Scheduled: next available slot")
+        else:
+            print("Scheduled: now")
+        print("---")
+        for i, tweet in enumerate(tweets):
+            print(f"Tweet {i+1}: {tweet[:80]}...")
+        print("---")
     else:
-        print("Scheduled: now")
-    print("---")
-    print(text[:300] + "..." if len(text) > 300 else text)
-    print("---")
+        print(f"Platforms: {', '.join(platforms)}")
+        print(f"Text length: {len(text)} chars")
+        print(f"Image prompt: {'yes' if image_prompt else 'no'}")
+        print(f"Karen: {fm.get('karen_verdict', '(none)')}")
+        if scheduled_time:
+            print(f"Scheduled: {scheduled_time}")
+        elif next_slot:
+            print("Scheduled: next available slot")
+        else:
+            print("Scheduled: now")
+        print("---")
+        print(text[:300] + "..." if len(text) > 300 else text)
+        print("---")
 
     if not auto_yes:
         try:
-            confirm = input(f"Post to {len(platforms)} platform(s)? [y/N] ").strip().lower()
+            count = len(tweets) if is_thread else len(platforms)
+            label = "tweets in thread" if is_thread else f"platform(s)"
+            confirm = input(f"Post to {count} {label}? [y/N] ").strip().lower()
         except (EOFError, KeyboardInterrupt):
             print("\nCancelled.")
             sys.exit(0)
@@ -427,19 +536,35 @@ def main():
     results = []
     for suffix in platforms:
         account_id, platform = PLATFORMS[suffix]
-        print(f"\nPosting to {platform}...", end=" ", flush=True)
-        try:
-            result = schedule_post(api_key, account_id, platform, text, scheduled_time, next_slot, image_urls=image_urls)
-            info = extract_result(result)
-            results.append({"platform": platform, **info})
-            status = info.get("status", "unknown")
-            url = info.get("url", "")
-            print(f"{status}")
-            if url:
-                print(f"  URL: {url}")
-        except Exception as e:
-            results.append({"platform": platform, "error": str(e)})
-            print(f"FAILED: {e}")
+        if is_thread and platform == "twitter":
+            print(f"\nPosting thread to {platform}...")
+            try:
+                thread_result = schedule_thread(
+                    api_key,
+                    account_id,
+                    tweets,
+                    scheduled_time=scheduled_time,
+                    next_slot=next_slot,
+                    image_urls=image_urls,
+                )
+                results.append({"platform": platform, "thread": True, "tweets": len(tweets), **thread_result})
+            except Exception as e:
+                results.append({"platform": platform, "error": str(e)})
+                print(f"FAILED: {e}")
+        else:
+            print(f"\nPosting to {platform}...", end=" ", flush=True)
+            try:
+                result = schedule_post(api_key, account_id, platform, text, scheduled_time, next_slot, image_urls=image_urls)
+                info = extract_result(result)
+                results.append({"platform": platform, **info})
+                status = info.get("status", "unknown")
+                url = info.get("url", "")
+                print(f"{status}")
+                if url:
+                    print(f"  URL: {url}")
+            except Exception as e:
+                results.append({"platform": platform, "error": str(e)})
+                print(f"FAILED: {e}")
 
     print(f"\n{'='*50}")
     print("Results:")
@@ -447,6 +572,14 @@ def main():
         platform = r["platform"]
         if "error" in r:
             print(f"  {platform:12s} FAILED  {r['error']}")
+        elif r.get("thread"):
+            sid = r.get("submission_id") or "?"
+            status = r.get("status") or "scheduled"
+            tweet_count = r.get("tweets", "?")
+            url = r.get("url") or ""
+            print(f"  {platform:12s} THREAD ({tweet_count} tweets) {status:12s} {sid}")
+            if url:
+                print(f"  {'':12s} {url}")
         else:
             sid = r.get("submission_id") or "?"
             status = r.get("status") or "scheduled"

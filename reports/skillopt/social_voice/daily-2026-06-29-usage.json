@@ -1,0 +1,58 @@
+{
+  "run_id": "20260629T215355Z-social_voice",
+  "mode": "baseline-only",
+  "benchmark": "social_voice",
+  "cases": 10,
+  "pricing_config": {
+    "path": "/Users/shagwu/Downloads/Road4AI-main/reports/skillopt/ollama-pricing.json",
+    "sha256": "5bde6a53951cebcf3e3d7defe03bca11601768e9b9974a5be1def0de29e63eab",
+    "source": "ollama-local-inference"
+  },
+  "models": {
+    "target_model": "qwen2.5-coder:7b",
+    "evaluator_model": "qwen2.5-coder:7b",
+    "optimizer_model": "qwen2.5-coder:7b"
+  },
+  "calls": {
+    "target_model": 10,
+    "evaluator_model": 10,
+    "optimizer_model": 0
+  },
+  "tokens": {
+    "target_model": {
+      "prompt": 14892,
+      "completion": 1973,
+      "total": 16865
+    },
+    "evaluator_model": {
+      "prompt": 3935,
+      "completion": 1341,
+      "total": 5276
+    },
+    "optimizer_model": {
+      "prompt": 0,
+      "completion": 0,
+      "total": 0
+    }
+  },
+  "estimated_cost_usd": {
+    "target_model": 0.0,
+    "evaluator_model": 0.0,
+    "optimizer_model": 0.0,
+    "total": 0.0
+  },
+  "reasons": {
+    "optimizer_model": "Baseline-only mode"
+  },
+  "baseline_score": 0.8088333333333333,
+  "optimized_score": 0.8088333333333333,
+  "baseline_score_stddev": 0.10729515366501881,
+  "optimized_score_stddev": 0.10729515366501881,
+  "baseline_failed_case_ids": [
+    "case-003"
+  ],
+  "optimized_failed_case_ids": [
+    "case-003"
+  ],
+  "improvement_pct": 0.0
+}

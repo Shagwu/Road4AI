@@ -21,6 +21,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 from harvester_drift_hook import load_gate, route_signal, save_gate
 
+CONFIG_FILE = ROOT / "config" / "harvester_feeds.json"
+
 # Relevance keywords for confidence scoring
 HIGH_RELEVANCE = ["road4ai", "shagwu", "multi-agent", "hermes", "voice-match", "skillopt", "blotato"]
 MEDIUM_RELEVANCE = ["ai agent", "local inference", "ollama", "zero-cost", "content pipeline", "build in public"]
@@ -135,6 +137,17 @@ def read_github(query: str, limit: int = 5) -> list:
         return []
 
 
+def _strip_cdata(text: str) -> str:
+    """Remove CDATA wrappers from XML text."""
+    return re.sub(r"<!\[CDATA\[|\]\]>", "", text)
+
+
+def _unescape_html(text: str) -> str:
+    """Unescape common HTML entities."""
+    import html
+    return html.unescape(text)
+
+
 def read_rss(url: str, limit: int = 5) -> list:
     """Read RSS feed items."""
     try:
@@ -164,7 +177,11 @@ def read_rss(url: str, limit: int = 5) -> list:
             desc_text = desc.group(1).strip() if desc else ""
             link_text = link.group(1).strip() if link else url
 
-            # Strip HTML tags
+            # Strip CDATA wrappers, unescape HTML entities, then strip tags
+            title_text = _strip_cdata(title_text)
+            desc_text = _strip_cdata(desc_text)
+            title_text = _unescape_html(title_text)
+            desc_text = _unescape_html(desc_text)
             title_text = re.sub(r"<[^>]+>", "", title_text)
             desc_text = re.sub(r"<[^>]+>", "", desc_text)
 
@@ -192,6 +209,13 @@ PLATFORM_READERS = {
 }
 
 
+def load_config() -> dict:
+    """Load harvester feeds config."""
+    if CONFIG_FILE.exists():
+        return json.loads(CONFIG_FILE.read_text())
+    return {"rss_feeds": [], "github_queries": []}
+
+
 def main():
     parser = argparse.ArgumentParser(description="Harvester reader — reads signals from platforms")
     parser.add_argument("--platform", choices=list(PLATFORM_READERS.keys()), help="Platform to read from")
@@ -199,41 +223,70 @@ def main():
     parser.add_argument("--url", help="RSS feed URL (for --platform rss)")
     parser.add_argument("--limit", type=int, default=5, help="Max signals per platform")
     parser.add_argument("--all", action="store_true", help="Read from all available platforms")
+    parser.add_argument("--all-feeds", action="store_true", help="Read from all feeds in config")
+    parser.add_argument("--config", action="store_true", help="Use config/harvester_feeds.json")
     parser.add_argument("--dry-run", action="store_true", help="Score but don't route to drift hook")
     args = parser.parse_args()
 
     gate = load_gate()
     all_signals = []
 
-    platforms = list(PLATFORM_READERS.keys()) if args.all else [args.platform]
-    if not platforms:
-        print("Error: specify --platform or --all", file=sys.stderr)
-        sys.exit(1)
+    if args.config or args.all_feeds:
+        config = load_config()
+        # Run all RSS feeds from config
+        for feed in config.get("rss_feeds", []):
+            signals = read_rss(feed["url"], args.limit)
+            for sig in signals:
+                sig["confidence"] = score_confidence(sig["content"], sig["source"])
+                sig["feed_name"] = feed["name"]
+                if args.dry_run:
+                    print(json.dumps(sig, indent=2))
+                else:
+                    result = route_signal(gate, sig)
+                    print(json.dumps(result))
+                all_signals.append(sig)
+        # Run all GitHub queries from config
+        for query in config.get("github_queries", []):
+            signals = read_github(query, args.limit)
+            for sig in signals:
+                sig["confidence"] = score_confidence(sig["content"], sig["source"])
+                sig["query"] = query
+                if args.dry_run:
+                    print(json.dumps(sig, indent=2))
+                else:
+                    result = route_signal(gate, sig)
+                    print(json.dumps(result))
+                all_signals.append(sig)
+    else:
+        platforms = list(PLATFORM_READERS.keys()) if args.all else [args.platform]
+        if not platforms:
+            print("Error: specify --platform, --all, or --config", file=sys.stderr)
+            sys.exit(1)
 
-    for platform in platforms:
-        reader = PLATFORM_READERS[platform]
-        if platform == "rss" and args.url:
-            signals = reader(args.url, args.limit)
-        elif platform == "rss":
-            print(f"[harvester] RSS requires --url", file=sys.stderr)
-            continue
-        else:
-            signals = reader(args.query, args.limit)
-
-        # Score and route each signal
-        for sig in signals:
-            sig["confidence"] = score_confidence(sig["content"], sig["source"])
-            if args.dry_run:
-                print(json.dumps(sig, indent=2))
+        for platform in platforms:
+            reader = PLATFORM_READERS[platform]
+            if platform == "rss" and args.url:
+                signals = reader(args.url, args.limit)
+            elif platform == "rss":
+                print(f"[harvester] RSS requires --url", file=sys.stderr)
+                continue
             else:
-                result = route_signal(gate, sig)
-                print(json.dumps(result))
-            all_signals.append(sig)
+                signals = reader(args.query, args.limit)
+
+            # Score and route each signal
+            for sig in signals:
+                sig["confidence"] = score_confidence(sig["content"], sig["source"])
+                if args.dry_run:
+                    print(json.dumps(sig, indent=2))
+                else:
+                    result = route_signal(gate, sig)
+                    print(json.dumps(result))
+                all_signals.append(sig)
 
     if not args.dry_run:
         save_gate(gate)
 
-    print(f"\n[harvester] Processed {len(all_signals)} signals from {len(platforms)} platform(s)", file=sys.stderr)
+    print(f"\n[harvester] Processed {len(all_signals)} signals", file=sys.stderr)
 
 
 if __name__ == "__main__":
