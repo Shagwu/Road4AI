@@ -1091,15 +1091,16 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "SKILLOPT_VALIDATION_REPORT.md",
-      "status": "ready_for_publishing",
+      "status": "scheduled",
       "status_updated_at": "2026-07-02T00:00:00Z",
       "priority": 1,
       "week": "2026-W28",
       "created_at": "2026-06-29T15:00:00Z",
       "updated_at": "2026-07-02T00:00:00Z",
       "scheduled_time": "2026-07-15T12:00:00Z",
-      "draft_path": "drafts/approved/2026-07-15-v2-1-reveal.md",
-      "notes": "v2.1 reveal post. Operator-approved. Ready for Blotato scheduling."
+      "blotato_id": "5a14edda-7a70-45be-8f0e-7f9fa02721f1",
+      "draft_path": "drafts/archived/2026-07-15-v2-1-reveal.md",
+      "notes": "v2.1 reveal post scheduled via Blotato for July 15 12:00 UTC."
     }
   ],
   "updated": "2026-07-02"
