@@ -33,3 +33,4 @@ chroma_db.bak/
 # Local tool configs
 .mimocode/
 config/mcporter.json
+state/*.log
