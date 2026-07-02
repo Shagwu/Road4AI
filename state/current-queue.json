@@ -1082,7 +1082,25 @@
       "scheduled_time": "2026-06-29T09:00:00Z",
       "blotato_id": "88525cb3-1392-412f-a76a-f1e287277a88",
       "draft_path": "drafts/archived/2026-06-26-stack-migration-blotato-brief.md"
+    },
+    {
+      "id": "2026-07-15-v2-1-reveal-linkedin",
+      "title": "Hermes v2.1: Skills That Evolve Without Breaking the Rules",
+      "hook": "Hermes v2.1 is live. Here is what it does and how we proved it works.",
+      "type": "Win",
+      "platform": "LinkedIn",
+      "goal": "Build in public",
+      "source": "SKILLOPT_VALIDATION_REPORT.md",
+      "status": "ready_for_publishing",
+      "status_updated_at": "2026-07-02T00:00:00Z",
+      "priority": 1,
+      "week": "2026-W28",
+      "created_at": "2026-06-29T15:00:00Z",
+      "updated_at": "2026-07-02T00:00:00Z",
+      "scheduled_time": "2026-07-15T12:00:00Z",
+      "draft_path": "drafts/approved/2026-07-15-v2-1-reveal.md",
+      "notes": "v2.1 reveal post. Operator-approved. Ready for Blotato scheduling."
     }
   ],
-  "updated": "2026-06-28"
+  "updated": "2026-07-02"
 }
