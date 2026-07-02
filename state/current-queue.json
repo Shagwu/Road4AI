@@ -1097,10 +1097,10 @@
       "week": "2026-W28",
       "created_at": "2026-06-29T15:00:00Z",
       "updated_at": "2026-07-02T00:00:00Z",
-      "scheduled_time": "2026-07-15T12:00:00Z",
-      "blotato_id": "5a14edda-7a70-45be-8f0e-7f9fa02721f1",
+      "scheduled_time": "2026-07-15T16:00:00Z",
+      "blotato_id": "afad6847-29bf-425d-8216-437ddd4c6c61",
       "draft_path": "drafts/archived/2026-07-15-v2-1-reveal.md",
-      "notes": "v2.1 reveal post scheduled via Blotato for July 15 12:00 UTC."
+      "notes": "v2.1 reveal post rescheduled to 16:00 UTC to avoid LinkedIn conflict with Phase 4 teaser."
     },
     {
       "id": "2026-07-15-phase4-teaser-x",
