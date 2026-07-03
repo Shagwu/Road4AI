@@ -1,7 +1,6 @@
 {
   "queue": [
     {
-<<<<<<< HEAD
       "id": "2026-06-29-context-rot-li",
       "title": "Your Agent Remembers the Wrong Things",
       "hook": "Your agent remembers the wrong things.",
@@ -59,24 +58,6 @@
       "notes": "Response to trending tweet about agent memory. Positions Hermes as the upgrade from vault to brain."
     },
     {
-      "id": "2026-06-28-skillopt-blog-post",
-      "title": "We Tested SkillOpt Locally Before Letting Hermes Learn",
-      "hook": "I didn't want Hermes to learn until I knew it could stay inside the guardrails.",
-      "type": "Behind-the-scenes",
-      "platform": "Blog",
-      "goal": "Build in public",
-      "source": "SKILLOPT_VALIDATION_REPORT.md",
-      "status": "archived",
-      "status_updated_at": "2026-06-30T00:00:00Z",
-      "priority": 1,
-      "week": "2026-W27",
-      "created_at": "2026-06-28T00:00:00Z",
-      "updated_at": "2026-06-30T00:00:00Z",
-      "scheduled_time": "2026-07-01T12:00:00Z",
-      "draft_path": "drafts/archived/2026-06-28-skillopt-blog-post.md",
-      "notes": "Archived. No blog platform available. Content repurposed as LinkedIn post (2026-07-01-skillopt-li)."
-    },
-    {
       "id": "2026-06-28-skillopt-blog-post-li",
       "title": "We Tested SkillOpt Locally (LinkedIn)",
       "hook": "I didn't want Hermes to learn until I knew it could stay inside the guardrails.",
@@ -96,8 +77,6 @@
       "notes": "LinkedIn adaptation of blog post. Scheduled via Blotato."
     },
     {
-=======
->>>>>>> 4e149f1 (chore: remove blog platform, add platform constraints)
       "id": "2026-06-28-skillopt-blog-x",
       "title": "We Tested SkillOpt Locally (Thread)",
       "hook": "I didn't want Hermes to learn until I knew it could stay inside the guardrails.",
@@ -1180,72 +1159,45 @@
       "blotato_id": "ed139a19-ee86-4ffc-9545-173892afd339",
       "draft_path": "drafts/approved/2026-07-01-skillopt-li.md",
       "notes": "LinkedIn companion to SkillOpt blog post. Condensed version focusing on governance boundary results."
-    }
-  ],
-  "updated": "2026-06-30,
+    },
     {
-      "id": "2026-07-15-v2-1-reveal-linkedin",
-      "title": "Hermes v2.1: Skills That Evolve Without Breaking the Rules",
-      "hook": "Hermes v2.1 is live. Here is what it does and how we proved it works.",
+      "id": "2026-07-15-v2-1-reveal-x",
+      "title": "v2.1 Benchmark Reveal (X Thread)",
+      "hook": "voice-match scored 0.6447 on its own benchmark. Today it scores 0.871.",
+      "type": "Win",
+      "platform": "X",
+      "goal": "Build in public",
+      "source": "SKILLOPT_VALIDATION_REPORT.md",
+      "status": "scheduled",
+      "status_updated_at": "2026-07-03T00:00:00Z",
+      "priority": 1,
+      "week": "2026-W28",
+      "created_at": "2026-07-03T00:00:00Z",
+      "updated_at": "2026-07-03T00:00:00Z",
+      "scheduled_time": "2026-07-15T15:30:00Z",
+      "blotato_id": "a95de749-df9c-428d-8a00-facac78caa91",
+      "draft_path": "drafts/approved/v2.1-benchmark-reveal-x.md",
+      "notes": "5-tweet thread. Pin to profile for 24h."
+    },
+    {
+      "id": "2026-07-15-v2-1-reveal-li",
+      "title": "v2.1 Benchmark Reveal (LinkedIn)",
+      "hook": "voice-match scored 0.6447 on its own benchmark. Today it scores 0.871.",
       "type": "Win",
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "SKILLOPT_VALIDATION_REPORT.md",
       "status": "scheduled",
-      "status_updated_at": "2026-07-02T00:00:00Z",
+      "status_updated_at": "2026-07-03T00:00:00Z",
       "priority": 1,
       "week": "2026-W28",
-      "created_at": "2026-06-29T15:00:00Z",
-      "updated_at": "2026-07-02T00:00:00Z",
+      "created_at": "2026-07-03T00:00:00Z",
+      "updated_at": "2026-07-03T00:00:00Z",
       "scheduled_time": "2026-07-15T16:00:00Z",
-      "blotato_id": "afad6847-29bf-425d-8216-437ddd4c6c61",
-      "draft_path": "drafts/archived/2026-07-15-v2-1-reveal.md",
-      "notes": "v2.1 reveal post rescheduled to 16:00 UTC to avoid LinkedIn conflict with Phase 4 teaser."
-    },
-    {
-      "id": "2026-07-15-phase4-teaser-x",
-      "title": "Phase 4 POC Teaser: Skills Evolve, Guardrails Too",
-      "hook": "Two weeks ago, I shipped v2.1: skills that evolve without breaking governance.",
-      "type": "Behind-the-scenes",
-      "platform": "X",
-      "goal": "Build in public",
-      "source": "phase4_teaser_x_thread.md",
-      "status": "scheduled",
-      "status_updated_at": "2026-07-02T00:00:00Z",
-      "priority": 1,
-      "week": "2026-W28",
-      "created_at": "2026-07-02T00:00:00Z",
-      "updated_at": "2026-07-02T00:00:00Z",
-      "scheduled_time": "2026-07-15T08:00:00Z",
-      "blotato_ids": [
-        "94a7f20b-9bf1-40b9-aa51-dea2cfa6737b",
-        "97613a2d-569e-42aa-b8aa-8712a900fe93",
-        "cad37a4d-4667-4fff-916e-e15d731e6cae",
-        "4c12dd93-8a63-4b2f-a611-567ec0fba6c4",
-        "9dbe6f31-ce4d-4cd6-b5ca-62bff20857b0"
-      ],
-      "draft_path": "drafts/approved/x-thread-teaser/",
-      "notes": "5-tweet thread scheduled via Blotato. Tweets at 08:00-08:04 UTC."
-    },
-    {
-      "id": "2026-07-15-phase4-teaser-linkedin",
-      "title": "Phase 4 Begins Tomorrow: Governance Under Fire",
-      "hook": "Phase 4 begins tomorrow. Here's what we've built.",
-      "type": "Behind-the-scenes",
-      "platform": "LinkedIn",
-      "goal": "Build in public",
-      "source": "phase4_teaser_linkedin.md",
-      "status": "scheduled",
-      "status_updated_at": "2026-07-02T00:00:00Z",
-      "priority": 1,
-      "week": "2026-W28",
-      "created_at": "2026-07-02T00:00:00Z",
-      "updated_at": "2026-07-02T00:00:00Z",
-      "scheduled_time": "2026-07-15T12:00:00Z",
-      "blotato_id": "d50aba43-0a6e-49ab-aa43-51f4a40705a8",
-      "draft_path": "drafts/approved/phase4_teaser_linkedin.md",
-      "notes": "LinkedIn post scheduled via Blotato for July 15 12:00 UTC."
+      "blotato_id": "aa62be2b-4806-432d-b723-a8ba08fa8aad",
+      "draft_path": "drafts/approved/v2.1-benchmark-reveal-li.md",
+      "notes": "Single post with comment links. Pin for 48h."
     }
   ],
-  "updated": "2026-07-02"
+  "updated": "2026-07-03"
 }
