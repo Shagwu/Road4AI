@@ -25,7 +25,6 @@ Primary focus:
 - LinkedIn post scheduled ✅
 
 ### July 1 (Mon)
-- Blog post scheduled ✅
 - Drift monitoring starts (daily runs, 12-case orchestration suite)
 - First checkpoint to Hermes (baseline comparison)
 - COS daily review (5 min: check alerts, approve next run)
