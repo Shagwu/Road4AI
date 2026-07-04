@@ -73,6 +73,7 @@ The voice is letting someone in on a secret. It is not explanatory or educationa
 4. **Evidence-Backed Claims:** Any number, benchmark, or performance claim MUST include context. Never say "10ms latency" without saying cold/warm, test conditions, or comparison baseline. Own the real numbers, even when they are not impressive. The reference exemplar shows this: "under 200ms cold, under 600ms warm" beats "unprecedented speed."
 5. **Human in the Loop:** Always end with a prompt for human review before finalization.
 6. **Rewrite Input Reject Traits:** When the input contains reject traits (e.g., 'perfectly aligned', 'never makes mistakes', 'game-changer', 'amazing for productivity', 'trick', 'revolutionary', 'simple guide', 'you won't believe', 'thrilled to share'), the humanized output MUST rewrite those phrases. Do not carry them forward. Replace with honest, nuanced alternatives.
+7. **Overconfidence → Manual Friction:** When the input claims perfection, zero errors, or total alignment (e.g., 'perfectly aligned', 'never makes mistakes', 'flawless'), the rewrite MUST acknowledge that human oversight and manual friction are what prevent failure. Do not just remove the hype. Replace it with the truth: vigilance, not automation, is the real guardrail. Example: "Our swarm is perfectly aligned" becomes "Our swarm only works because someone checks it every time."
 
 ## Platform Structural Mandates
 
