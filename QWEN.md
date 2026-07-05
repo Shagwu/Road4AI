@@ -18,6 +18,14 @@ Use it as a planning guide, then inspect the actual repo.
 When asked to generate `daily-plan.md`, optimize for actionability rather than explanation.
 The output should help decide what to do today, in order of priority.
 
+When there is any active milestone or public date (for example reveals, audits, POCs, or scheduled content windows), prioritize tasks that protect or advance that milestone before generic stability or infrastructure work.
+
+Examples of milestones in this repo:
+- Upcoming reveals (for example v2.1 reveal on July 15).
+- Proof packages and benchmark artifacts referenced by public posts.
+- Scheduled content windows (for example Blotato queues, `drafts/approved/`).
+- Governance or audit dates (for example Phase 4 POC readiness window).
+
 Prioritize work in this order unless current repo evidence suggests otherwise:
 
 1. Shipping work that produces a visible deliverable.
@@ -39,6 +47,8 @@ Prefer tasks that end in one of these outcomes:
 
 Before writing `daily-plan.md`, inspect the highest-signal sources first.
 Do not summarize the whole repository unless specifically asked.
+
+When a milestone window is active, read the queue, plan, and ship directories first, and frame P1/P2 around those milestones before suggesting generic infra work.
 
 Check these first, in roughly this order:
 
