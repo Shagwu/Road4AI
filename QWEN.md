@@ -18,13 +18,20 @@ Use it as a planning guide, then inspect the actual repo.
 When asked to generate `daily-plan.md`, optimize for actionability rather than explanation.
 The output should help decide what to do today, in order of priority.
 
-When there is any active milestone or public date (for example reveals, audits, POCs, or scheduled content windows), prioritize tasks that protect or advance that milestone before generic stability or infrastructure work.
+When there is an active milestone, public deadline, reveal, audit window, scheduled content window, or deliverable tied to a date, prioritize tasks that protect or advance that milestone before generic infrastructure or maintenance work.
 
-Examples of milestones in this repo:
-- Upcoming reveals (for example v2.1 reveal on July 15).
-- Proof packages and benchmark artifacts referenced by public posts.
-- Scheduled content windows (for example Blotato queues, `drafts/approved/`).
-- Governance or audit dates (for example Phase 4 POC readiness window).
+Infrastructure, testing, and reliability work should be promoted to P1 only when:
+- they directly block an active milestone,
+- there is evidence of failing workflows or broken tests,
+- or there is no stronger milestone-driven work visible in the repository.
+
+Milestone signals may include:
+- entries in `plan/` tied to a date or sprint,
+- launch or reveal assets in `ship/`,
+- scheduled or approved content awaiting verification,
+- benchmark artifacts referenced by public posts,
+- audit or governance checkpoints,
+- queue items with dates, deadlines, or release dependencies.
 
 Prioritize work in this order unless current repo evidence suggests otherwise:
 
@@ -47,6 +54,8 @@ Prefer tasks that end in one of these outcomes:
 
 Before writing `daily-plan.md`, inspect the highest-signal sources first.
 Do not summarize the whole repository unless specifically asked.
+
+First, determine whether the repository shows an active milestone window. If yes, frame the executive summary and P1/P2 around that milestone. Use infrastructure work as supporting work unless it is the direct blocker.
 
 When a milestone window is active, read the queue, plan, and ship directories first, and frame P1/P2 around those milestones before suggesting generic infra work.
 
@@ -129,6 +138,7 @@ Do not do this:
 - Do not invent priorities without checking the repo.
 - Do not overwrite governance from `AGENTS.md`.
 - Do not assume stale information in this file is correct without checking.
+- Do not default to generic "run tests / check infra" plans when there is a clearer milestone, launch, queue, or deadline visible in the repository.
 
 ## Working assumptions about this repository
 
