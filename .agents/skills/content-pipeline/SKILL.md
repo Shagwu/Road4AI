@@ -62,15 +62,16 @@ The Chief of Staff aggregates the outputs, applies Road4AI strategy, and routes 
 
 1. Read the required coordination files: `AGENTS.md`, `state/current-queue.json`, `docs/brand-voice.md`, and `docs/content-strategy.md`.
 2. Run the queue audit.
-3. Identify the source material and whether it is inbox-derived, roadmap-derived, or experimental.
-4. Generate 3-5 ranked candidate ideas.
-5. For each idea, include title, hook, type, platform, goal, source, priority, and why it fits now.
-6. Run the dedup gate before any queue write.
-7. Draft selected content into `drafts/ideas/` or `drafts/ready/` based on user instruction.
-8. Run Karen and public sanitizer gates before approval or scheduling.
-9. **STOP. Do not schedule.** Content stays in `drafts/ready/` until the user explicitly approves.
-10. **Only after user approval:** user moves content to `drafts/approved/`, then schedule via Blotato.
-11. After a successful queue write, create a Hermes checkpoint commit.
+3. **Run the Struggle ratio guardrail:** `python tools/check_struggle_ratio.py`. If it returns FAIL, generate at least one Struggle candidate before proceeding. The ratio must stay at or above 25% across the last 10 entries (published + scheduled + ready). This is a blocking gate, not a suggestion.
+4. Identify the source material and whether it is inbox-derived, roadmap-derived, or experimental.
+5. Generate 3-5 ranked candidate ideas. If the guardrail flagged a deficit, at least one candidate must be Struggle type.
+6. For each idea, include title, hook, type, platform, goal, source, priority, and why it fits now.
+7. Run the dedup gate before any queue write.
+8. Draft selected content into `drafts/ideas/` or `drafts/ready/` based on user instruction.
+9. Run Karen and public sanitizer gates before approval or scheduling.
+10. **STOP. Do not schedule.** Content stays in `drafts/ready/` until the user explicitly approves.
+11. **Only after user approval:** user moves content to `drafts/approved/`, then schedule via Blotato.
+12. After a successful queue write, create a Hermes checkpoint commit.
 
 **The approval gate is non-negotiable.** No agent may schedule content from `drafts/ready/`. Scheduling is only allowed from `drafts/approved/`. If you are uncertain whether approval was given, ask.
 
@@ -105,6 +106,7 @@ Return:
 - Do not move content into `drafts/approved/`.
 - Do not publish or schedule content before approval.
 - **Do not schedule from `drafts/ready/`.** Only schedule from `drafts/approved/`. If the draft is in `ready/`, it is waiting for the user. Ask before acting.
+- **Do not write queue entries when the Struggle ratio guardrail fails.** Run `python tools/check_struggle_ratio.py` before any queue write. If it returns FAIL, generate Struggle content first. No exceptions.
 
 ## Related Skills
 
