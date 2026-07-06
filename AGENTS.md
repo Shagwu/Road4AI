@@ -99,6 +99,12 @@ Optional: `source`, `week` (YYYY-WW), `created_at`, `updated_at`, `notes`, `expe
 
 **Struggle posts**: do not require resolution; the struggle IS the content. Maintain 25–30% Struggle ratio in top 10 queue items.
 
+## Struggle Ratio Guardrail
+
+**Blocking rule.** Before any queue write, run `python tools/check_struggle_ratio.py`. If it returns FAIL (exit code 1), generate at least one Struggle candidate and add it to the queue before proceeding. Applies to every agent, no exceptions.
+
+Rationale: the passive 25–30% rule in the Queue Schema was not enforced, causing a 16-post Struggle drought (June 2–30, 2026). This guardrail makes the ratio a hard gate, not a suggestion.
+
 ## Content Dedup Gate
 
 **Blocking rule.** No entry may be written to `state/current-queue.json` until all four checks pass. Applies to every agent, no exceptions.
