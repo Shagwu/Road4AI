@@ -699,5 +699,12 @@
     "status": "scheduled",
     "updated_at": "2026-07-07T13:13:50.039870+00:00",
     "note": "v2 rewritten, scheduled 10:00 UTC (09:00 WAT)"
+  },
+  {
+    "id": "2026-07-26-audit-caught-bts-x",
+    "title": "What the Audit Caught",
+    "platform": "x",
+    "published_at": "2026-07-26T11:00:00Z",
+    "type": "Behind-the-scenes"
   }
 ]

@@ -1378,8 +1378,8 @@
       "source": "session-2026-07-07",
       "created_at": "2026-07-07T17:31:29Z",
       "notes": "POC audit story: 0.871 is deterministic (different execution path), 0.788 is live Ollama (reproducible). The flattering number vs the honest number.",
-      "blotato_id": "c2d14f1f-7f24-4b6e-aef2-74edd4045899",
-      "scheduled_time": "2026-07-20T10:00:00Z"
+      "scheduled_time": "2026-07-20T10:00:00Z",
+      "blotato_id": "18abdc72-732d-41fa-ad49-a0d9bc99c301"
     },
     {
       "id": "2026-07-22-benchmark-runner-tutorial-li",
@@ -1394,8 +1394,8 @@
       "source": "session-2026-07-07",
       "created_at": "2026-07-07T17:31:29Z",
       "notes": "Walk through run_skillopt_benchmark.py. Timely after the reveal.",
-      "blotato_id": "68038e3c-86b1-4601-837f-d37794ba6d7b",
-      "scheduled_time": "2026-07-22T10:00:00Z"
+      "scheduled_time": "2026-07-22T10:00:00Z",
+      "blotato_id": "272fa88c-3f1a-483a-901f-5d3f3dfa4bab"
     },
     {
       "id": "2026-07-24-phase4-first-week-win-li",
@@ -1410,8 +1410,8 @@
       "source": "session-2026-07-07",
       "created_at": "2026-07-07T17:31:29Z",
       "notes": "First week of Phase 4 results. Depends on actual Phase 4 data from July 16-23.",
-      "blotato_id": "37c6d03b-e05e-45cf-9125-6f3cfd987a34",
-      "scheduled_time": "2026-07-24T10:00:00Z"
+      "scheduled_time": "2026-07-24T10:00:00Z",
+      "blotato_id": "e9876903-323a-4c3d-aed5-b1bd1e45c976"
     },
     {
       "id": "2026-07-26-audit-caught-bts-x",
@@ -1420,13 +1420,12 @@
       "type": "Behind-the-scenes",
       "platform": "X",
       "goal": "Build in public",
-      "status": "scheduled",
+      "status": "published",
       "status_updated_at": "2026-07-07T12:00:00Z",
       "priority": 2,
       "source": "session-2026-07-07",
       "created_at": "2026-07-07T17:31:29Z",
       "notes": "X thread version of the number correction story.",
-      "blotato_id": "94f4e540-f21a-4e05-a5c5-f7477d7e2d9c",
       "scheduled_time": "2026-07-26T10:00:00Z"
     }
   ],
