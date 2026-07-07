@@ -9,7 +9,7 @@
 
 Hermes v2.1 introduces SkillOpt, a governed self-improvement loop. The voice-match skill was benchmarked, optimized, and validated through an automated pipeline with human approval gates.
 
-**Key result**: voice-match scored 0.6447 on its own benchmark. After optimization: 0.871. Zero failures. +35%. Total compute cost: $0.0139.
+**Key result**: voice-match scored 0.6447 on its own benchmark. After optimization: 0.871. Zero failures. +35%. Compute cost: $0.00 (local Ollama).
 
 ## Task Gate Checklist
 
@@ -20,7 +20,7 @@ Hermes v2.1 introduces SkillOpt, a governed self-improvement loop. The voice-mat
 | T-003: Add Benchmark Runner | DONE | `tools/run_skillopt_benchmark.py` | Runner enforces governance boundary |
 | T-004: Run First Dry-Run Validation | DONE | `verify/reports/V-001.md` (PASS) | Dry-run completes, governance enforced |
 | T-005: Run One Live Controlled Optimization | DONE | `verify/reports/V-002.md` (PASS) | Live run with all safety gates, no files mutated |
-| T-006: Prepare v2.1 Launch Proof Package | THIS | `ship/release-notes.md`, reveal posts | Release notes + content ready |
+| T-006: Prepare v2.1 Launch Proof Package | DONE | `ship/release-notes.md`, reveal posts | Release notes + content ready |
 
 ## Proof Artifacts
 

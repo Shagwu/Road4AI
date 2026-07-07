@@ -32,13 +32,13 @@ SkillOpt operates under explicit constraints defined in `docs/plans/HERMES_V2_1_
 | Metric | Before | After |
 |--------|--------|-------|
 | Score | 0.6447 | 0.871 |
-| Failed cases | 5 | 0 |
+| Failed cases | 3 | 0 |
 | Improvement | — | +35% |
-| Compute cost | — | $0.0139 |
 
 - Model: `qwen2.5-coder:14b` (local Ollama, zero API cost)
 - Post-processor: deterministic em dash stripping (47-line Python script)
 - Skill update: targeted rewrite of three rules (tone anchoring, reject list, hook section removal)
+- Compute cost: $0.00 (local Ollama, zero-cost stack)
 
 ### Validation Infrastructure
 
