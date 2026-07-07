@@ -14,6 +14,8 @@ Usage:
 Guardrails:
   - Draft must be in drafts/approved/ (use --force to override)
   - Karen verdict must be APPROVED in frontmatter (use --force to override)
+  - Draft must not already be scheduled (check published-log + queue blotato_id)
+  - Draft must not have scheduled: true in frontmatter
 """
 
 import json
@@ -34,6 +36,63 @@ PLATFORMS = {
 }
 
 MCP_ENDPOINT = "https://mcp.blotato.com/mcp"
+
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def check_duplication(filepath, fm):
+    """Check if this draft has already been scheduled. Returns list of issues."""
+    issues = []
+    filename = Path(filepath).stem
+
+    # 1. Check if draft has scheduled: true in frontmatter
+    if fm.get("scheduled", "").lower() == "true":
+        issues.append(f"Draft already marked as scheduled (frontmatter: scheduled: true)")
+
+    # 2. Check published-log.json
+    pub_log = ROOT / "state" / "published-log.json"
+    if pub_log.exists():
+        try:
+            pub_data = json.loads(pub_log.read_text())
+            pub_entries = pub_data if isinstance(pub_data, list) else pub_data.get("entries", [])
+            for entry in pub_entries:
+                entry_title = entry.get("title", "")
+                entry_id = entry.get("id", "")
+                # Match by title similarity or filename substring
+                if (filename in entry_id or filename in entry_title.replace(" ", "-").lower()
+                        or entry_title.replace(" ", "-").lower() in filename):
+                    issues.append(
+                        f"Already in published-log: '{entry_title}' "
+                        f"(published {entry.get('published_at', 'unknown')})"
+                    )
+                    break
+        except (json.JSONDecodeError, KeyError):
+            pass
+
+    # 3. Check queue for existing blotato_id
+    queue_path = ROOT / "state" / "current-queue.json"
+    if queue_path.exists():
+        try:
+            qdata = json.loads(queue_path.read_text())
+            queue = qdata.get("queue", qdata) if isinstance(qdata, dict) else qdata
+            for entry in queue:
+                entry_id = entry.get("id", "")
+                if filename in entry_id or entry_id in filename:
+                    if entry.get("blotato_id"):
+                        issues.append(
+                            f"Queue entry '{entry_id}' already has blotato_id: "
+                            f"{entry['blotato_id']}"
+                        )
+                    if entry.get("status") == "published":
+                        issues.append(
+                            f"Queue entry '{entry_id}' is already status: published"
+                        )
+                    break
+        except (json.JSONDecodeError, KeyError):
+            pass
+
+    return issues
 
 
 def load_api_key():
@@ -390,6 +449,22 @@ def extract_result(result):
     return {}
 
 
+def mark_as_scheduled(filepath):
+    """Add scheduled: true to frontmatter after successful Blotato submission."""
+    path = Path(filepath)
+    content = path.read_text()
+    fm_match = re.match(r"^(---\s*\n)(.*?\n)(---\s*\n)", content, re.DOTALL)
+    if not fm_match:
+        return
+    fm_block = fm_match.group(2)
+    if "scheduled:" in fm_block.lower():
+        return  # already marked
+    # Add scheduled: true at end of frontmatter
+    new_fm = fm_block.rstrip() + "\nscheduled: true\n"
+    new_content = fm_match.group(1) + new_fm + fm_match.group(3) + content[fm_match.end():]
+    path.write_text(new_content)
+
+
 def main():
     args = sys.argv[1:]
     auto_yes = "--yes" in args or "-y" in args
@@ -442,6 +517,18 @@ def main():
         sys.exit(1)
 
     fm, issues = check_guardrails(filepath, force)
+
+    # Duplication check (unless --force)
+    if not force:
+        dup_issues = check_duplication(filepath, fm)
+        if dup_issues:
+            print("DUPLICATION BLOCKED:")
+            for issue in dup_issues:
+                print(f"  - {issue}")
+            print("")
+            print("This content appears to already be scheduled or published.")
+            print("Use --force to bypass (not recommended)")
+            sys.exit(1)
 
     if check_only:
         print(f"Guardrail check: {filepath}")
@@ -568,6 +655,7 @@ def main():
 
     print(f"\n{'='*50}")
     print("Results:")
+    any_success = False
     for r in results:
         platform = r["platform"]
         if "error" in r:
@@ -580,6 +668,7 @@ def main():
             print(f"  {platform:12s} THREAD ({tweet_count} tweets) {status:12s} {sid}")
             if url:
                 print(f"  {'':12s} {url}")
+            any_success = True
         else:
             sid = r.get("submission_id") or "?"
             status = r.get("status") or "scheduled"
@@ -587,6 +676,16 @@ def main():
             print(f"  {platform:12s} {status:12s} {sid}")
             if url:
                 print(f"  {'':12s} {url}")
+            any_success = True
+
+    # Mark draft as scheduled to prevent duplicates
+    if any_success:
+        try:
+            mark_as_scheduled(filepath)
+            print(f"\n  Draft marked as scheduled: {filepath}")
+        except Exception as e:
+            print(f"\n  WARNING: Could not mark draft as scheduled: {e}")
+            print(f"  Manual action required: add 'scheduled: true' to frontmatter")
 
 
 if __name__ == "__main__":

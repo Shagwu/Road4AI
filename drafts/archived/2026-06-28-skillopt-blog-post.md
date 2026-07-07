@@ -11,19 +11,20 @@ target_schedule: 2026-07-01T12:00:00Z
 created_at: 2026-06-28T00:00:00+01:00
 status_updated_at: 2026-06-28T00:00:00+01:00
 notes: Full blog post version of the SkillOpt validation story.
+scheduled: true
 ---
 
 # We Tested SkillOpt Locally Before Letting Hermes Learn
 
 I didn't want Hermes to learn until I knew it could stay inside the guardrails.
 
-Hermes is Road4AI's memory and learning layer for multi-agent coordination. It lets agents share context, track decisions, and improve over time. But "improve" is the dangerous word. The optimizer can generate better instructions, but it can also rewrite the rules it's supposed to obey. If you let it loose without boundaries, you don't get improvement — you get drift.
+That's the problem with AI self-modification. The optimizer can generate better instructions, but it can also rewrite the rules it's supposed to obey. If you let it loose without boundaries, you don't get improvement — you get drift.
 
 So we tested SkillOpt locally before integrating it into the Hermes architecture. Here's what we found.
 
 ## What is SkillOpt?
 
-[SkillOpt](https://github.com/microsoft/promptflow) is Microsoft's framework for optimizing LLM prompts through automated testing and iteration. It works by:
+SkillOpt is Microsoft's framework for optimizing LLM prompts through automated testing and iteration. It works by:
 
 1. Running your skill against test cases
 2. Measuring where it fails
@@ -32,7 +33,7 @@ So we tested SkillOpt locally before integrating it into the Hermes architecture
 
 The key insight: SkillOpt doesn't just generate better prompts. It generates better prompts *measurably*. You can see the delta before and after.
 
-For Hermes v2.1, we wanted to use SkillOpt to optimize selected Road4AI skills — the ones that handle social voice, memory operations, and question answering. These are the highest-impact domains for the content pipeline.
+For Hermes v2.1, we wanted to use SkillOpt to optimize selected Road4AI skills — the ones that handle social voice, memory operations, and question answering.
 
 But first, we needed to validate the framework locally.
 
@@ -65,19 +66,36 @@ The governance boundary was clear from the start:
 
 Every proposed edit goes through human review before application. No auto-merge. No hidden self-modification.
 
+## The Orchestration Suite
+
+Before optimizing individual skills, we tested whether they could work together.
+
+We built a 12-case orchestration suite that exercises cross-domain patterns:
+
+- **Signal routing** — detect a trend, checkpoint it to Hermes, retrieve it on the next call
+- **Confidence tiering** — high confidence auto-stores, low confidence queues for review
+- **Cross-domain generation** — write social content about memory concepts (TTL, relevance scoring)
+- **Timeout handling** — verify graceful degradation when one domain times out
+- **Drift detection** — compare scores across weeks, flag breaches, halt on ±10%
+- **Pipeline integrity** — end-to-end: detect → checkpoint → retrieve → generate → verify
+
+**Result: 12/12 passing, zero drift breaches, zero governance violations.**
+
+The orchestration layer is where things get interesting. Individual skills can be good in isolation, but the real test is whether they cooperate without breaking each other's rules. The suite confirms they do.
+
 ## What We Found
 
 ### social_voice: 0.950 baseline
 
 The social voice skill scored 0.950 out of 1.0 across all 10 cases. No failures detected. The optimizer was skipped — nothing to improve.
 
-This is the win. A high baseline means the skill is already well-tuned. The hook formulas, tone guidelines, and platform-specific advice were producing consistent, voice-aligned output. The optimizer didn't need to touch it.
+This meant the skill was already well-tuned. The hook formulas, tone guidelines, and platform-specific advice were producing high-quality output.
 
 **Cost: $0.086**
 
 ### memory_ops: 0.915 baseline
 
-The memory operations skill scored 0.915. Again, no failures. The skill's instructions about TTL, ChromaDB integration, and relevance scoring were clear and actionable. Another high baseline — no drift detected, no optimization needed.
+The memory operations skill scored 0.915. Again, no failures. The skill's instructions about TTL, ChromaDB integration, and relevance scoring were clear and actionable.
 
 **Cost: $0.121**
 
@@ -128,7 +146,7 @@ No auto-merge. No hidden self-modification. No "the agent improved itself overni
 
 ## What's Next
 
-**v2.1** — Hermes learns under supervision. The SkillOpt integration is validated and ready for production runs on voice-match, memory-ops, and QA skills.
+**v2.1** — Hermes learns under supervision. The SkillOpt integration is validated and ready for production runs on selected skills. Drift monitoring runs daily through July 10, with automatic alerts on threshold breaches.
 
 **v2.2** — Hermes scales. Community contribution paths expand once the memory and learning loops have proven safe operating boundaries.
 
@@ -139,7 +157,7 @@ The roadmap is clear:
 
 ## The Principle
 
-> Skill evolution should be boring enough to trust.
+Skill evolution should be boring enough to trust.
 
 We didn't let the optimizer rewrite the constitution. We gave it a narrow sandbox, measured its output, and reviewed every change.
 

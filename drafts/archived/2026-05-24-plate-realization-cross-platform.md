@@ -9,6 +9,7 @@ status: ready_for_publishing
 created_at: 2026-05-24T16:20:00Z
 status_updated_at: 2026-05-24T16:20:00Z
 notes: Adapted from drafts/approved/2026-05-20-plate-realization.md for non-X, non-LinkedIn distribution.
+scheduled: true
 ---
 
 # Cross-Platform Pack: The Plate Realization

@@ -34,3 +34,13 @@ chroma_db.bak/
 .mimocode/
 config/mcporter.json
 state/*.log
+state/drift_log.jsonl
+
+# Generated daily reports
+reports/skillopt/social_voice/daily-*
+
+# Local tool caches
+.qwen/
+
+# Media
+videos/

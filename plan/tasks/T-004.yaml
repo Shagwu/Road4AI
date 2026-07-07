@@ -2,7 +2,7 @@
 id: T-004
 title: Run First Dry-Run Validation
 phase: execute
-status: blocked
+status: done
 wave: 3
 depends_on: [T-003]
 assigned_to: claude

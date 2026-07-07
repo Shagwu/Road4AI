@@ -4,6 +4,7 @@ date: 2026-06-24
 type: behind-the-scenes
 platform: linkedin
 status: working-draft
+scheduled: true
 ---
 
 ## Hook

@@ -7,6 +7,7 @@ goal: build_in_public
 hook: Last week, my incident triage agent was hallucinating 40% of the root causes. This morning, it hit a 100% pass rate on the evaluation suite.
 status: ready_for_publishing
 karen_verdict: APPROVED (after audit)
+scheduled: true
 ---
 
 # From 0% to 100%: The Triage Win

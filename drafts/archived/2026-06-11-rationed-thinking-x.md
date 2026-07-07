@@ -10,6 +10,7 @@ status: approved
 created_at: 2026-06-06T00:00:00+01:00
 status_updated_at: 2026-06-06T00:00:00+01:00
 notes: Approved by user. Not scheduled in this pass.
+scheduled: true
 ---
 
 # X Thread Draft: Rationed Thinking

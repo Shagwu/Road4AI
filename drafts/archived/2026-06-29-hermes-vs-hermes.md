@@ -11,6 +11,7 @@ target_schedule: 2026-07-03T12:00:00Z
 created_at: 2026-06-29T14:30:00Z
 status_updated_at: 2026-06-29T14:30:00Z
 notes: Response to Nous Research Hermes trending. Different product, same name. Positions Road4AI memory governance.
+scheduled: true
 ---
 
 Two projects named Hermes are solving different problems.

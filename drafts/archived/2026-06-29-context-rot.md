@@ -11,6 +11,7 @@ target_schedule: 2026-07-04T12:00:00Z
 created_at: 2026-06-29T14:45:00Z
 status_updated_at: 2026-06-29T14:45:00Z
 notes: Continuation of memory governance series. Focuses on context poisoning — when old memory silently degrades agent performance.
+scheduled: true
 ---
 
 Last week my agent gave me advice from three months ago.

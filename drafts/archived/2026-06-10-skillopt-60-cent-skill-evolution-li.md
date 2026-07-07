@@ -10,6 +10,7 @@ status: approved
 created_at: 2026-06-06T00:00:00+01:00
 status_updated_at: 2026-06-06T00:00:00+01:00
 notes: Approved short version for scheduling.
+scheduled: true
 ---
 
 # LinkedIn Draft: The $0.60 Skill Evolution

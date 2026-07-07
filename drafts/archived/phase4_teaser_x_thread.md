@@ -2,6 +2,7 @@
 karen_verdict: APPROVED
 status: approved
 platform: x
+scheduled: true
 ---
 
 # Phase 4 POC Teaser: X Thread (July 15)

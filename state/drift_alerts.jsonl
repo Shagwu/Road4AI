@@ -1,1 +1,2 @@
 {"timestamp": "2026-06-28T16:51:13.907230+00:00", "severity": "yellow", "reason": "social_voice variance 7.37% exceeds alert threshold (\u00b15%)", "domains_affected": ["social_voice"], "action_required": "Review and approve next run", "decision_by": null, "decision_reason": null}
+{"timestamp": "2026-07-04T11:40:17.457264+00:00", "domain": "social_voice", "score": 0.7656666666666666, "cases": 10, "failed": [], "status": "yellow", "action": "alert", "reason": "social_voice variance 5.00% exceeds alert threshold (\u00b15%)"}

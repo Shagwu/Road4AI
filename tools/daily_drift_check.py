@@ -1,10 +1,23 @@
 #!/usr/bin/env python3
-"""Daily drift check — runs voice-match benchmark and checks drift against baseline.
+"""Daily drift check — runs voice-match benchmark and checks drift against baseline."""
 
-Usage:
-    python tools/daily_drift_check.py
-    python tools/daily_drift_check.py --dry-run
-"""
+# Added persistent logging to state/drift-cron.log to capture stdout for cron monitoring.
+import sys
+from pathlib import Path
+
+# Define log path for cron output
+CRON_LOG_PATH = Path(__file__).resolve().parent.parent / "state" / "drift-cron.log"
+
+
+def _cron_log(msg: str):
+    """Append a plain-text message to the cron log file."""
+    try:
+        CRON_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with open(CRON_LOG_PATH, "a") as f:
+            f.write(msg + "\n")
+    except Exception as e:
+        # Fallback: print error to stderr; do not halt execution
+        print(f"[daily-drift] Failed to write cron log: {e}", file=sys.stderr)
 
 import argparse
 import json
@@ -71,37 +84,52 @@ def run_daily_check(dry_run: bool = False):
     """Run daily drift check and log results."""
     timestamp = datetime.now(timezone.utc).isoformat()
 
-    print(f"[daily-drift] Starting daily check at {timestamp}")
+    # Start logging
+    msg = f"[daily-drift] Starting daily check at {timestamp}"
+    print(msg)
+    _cron_log(msg)
 
     # Run benchmark
     bench = run_benchmark(dry_run)
     sv_score = bench["social_voice"]
 
     if sv_score == 0.0 and bench.get("error"):
-        print(f"[daily-drift] Benchmark error: {bench['error']}", file=sys.stderr)
+        err_msg = f"[daily-drift] Benchmark error: {bench['error']}"
+        print(err_msg, file=sys.stderr)
+        _cron_log(err_msg)
         _log_check(timestamp, "error", sv_score, bench)
         return
 
-    print(f"[daily-drift] Social voice score: {sv_score:.3f} (cases: {bench['cases']}, failed: {bench['failed']})")
+    score_msg = f"[daily-drift] Social voice score: {sv_score:.3f} (cases: {bench['cases']}, failed: {bench['failed']})"
+    print(score_msg)
+    _cron_log(score_msg)
 
     # Check drift
     monitor = DriftMonitor()
     status, action, reason = monitor.check_drift("social_voice", sv_score)
 
-    print(f"[daily-drift] Status: {status} | Action: {action} | {reason}")
+    status_msg = f"[daily-drift] Status: {status} | Action: {action} | {reason}"
+    print(status_msg)
+    _cron_log(status_msg)
 
     # Log the check
     _log_check(timestamp, status, sv_score, bench, action, reason)
 
     # Handle alerts
     if status == "yellow":
-        print(f"[daily-drift] ALERT: {reason}")
+        alert_msg = f"[daily-drift] ALERT: {reason}"
+        print(alert_msg)
+        _cron_log(alert_msg)
         _send_alert(status, sv_score, reason)
     elif status == "blue":
-        print(f"[daily-drift] HALT: {reason}")
+        halt_msg = f"[daily-drift] HALT: {reason}"
+        print(halt_msg)
+        _cron_log(halt_msg)
         _send_alert(status, sv_score, reason)
     elif status == "green":
-        print(f"[daily-drift] OK: within tolerance")
+        ok_msg = f"[daily-drift] OK: within tolerance"
+        print(ok_msg)
+        _cron_log(ok_msg)
 
 
 def _send_alert(status: str, score: float, reason: str):
