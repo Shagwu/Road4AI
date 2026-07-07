@@ -6,7 +6,7 @@
 # This file is the orchestrator's queue. Read it to determine what runs next.
 
 project: hermes-v2.1-skillopt
-phase: execute
+phase: ship
 created: "2026-05-30"
 
 execution_order:
@@ -22,8 +22,7 @@ execution_order:
   wave_5:           # requires T-005 — content/launch task
     - T-006
 
-next_ready:
-  - T-006
+next_ready: []
 
 dependency_graph:
   T-001: []

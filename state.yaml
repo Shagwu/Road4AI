@@ -7,7 +7,7 @@
 updated: "2026-05-30"
 updated_by: claude
 
-current_phase: execute           # intake | discuss | research | plan | execute | verify | ship
+current_phase: ship           # intake | discuss | research | plan | execute | verify | ship
 
 active_project: hermes-v2.1-skillopt
 
