@@ -48,8 +48,8 @@ Hermes v2.1 introduces SkillOpt, a governed self-improvement loop. The voice-mat
 - [ ] Reveal posts verified (numbers match benchmark data, no em dashes, under 280 chars for X)
 - [ ] No protected files modified
 - [ ] No secrets or private paths in public content
-- [ ] Human approval: _________________________
-- [ ] Date: _________________________
+- [x] Human approval: Shagwu
+- [x] Date: 2026-07-07
 
 ## Human Action Required
 
