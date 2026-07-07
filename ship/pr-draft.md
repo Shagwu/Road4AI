@@ -36,7 +36,7 @@ Hermes v2.1 introduces SkillOpt, a governed self-improvement loop. The voice-mat
 | Phase 4 POC Teaser | X | 08:00 | Scheduled in Blotato |
 | Phase 4 POC Teaser | LinkedIn | 12:00 | Scheduled in Blotato |
 | v2.1 Benchmark Reveal | X (5-tweet thread) | 15:30 | Scheduled in Blotato |
-| v2.1 Benchmark Reveal | LinkedIn | 16:00 | Scheduled in Blotato |
+| v2.1 Benchmark Reveal | LinkedIn | 10:00 | Scheduled in Blotato |
 | v2.1 Blog Post | Manual publish | 18:00 | Draft ready, manual action |
 
 ## Merge Checklist
