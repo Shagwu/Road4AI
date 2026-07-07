@@ -49,7 +49,7 @@ tasks:
     assigned_to: claude
   T-006:
     title: Prepare v2.1 Launch Proof Package
-    status: ready
+    status: done
     depends_on: [T-005]
     assigned_to: claude
 
