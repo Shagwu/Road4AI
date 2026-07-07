@@ -37,6 +37,14 @@ PLATFORMS = {
 
 MCP_ENDPOINT = "https://mcp.blotato.com/mcp"
 
+VISUAL_TEMPLATES = {
+    "carousel": "53cfec04-2500-41cf-8cc1-ba670d2c341a",  # Instagram Carousel Slideshow (short ID)
+    "quote_card": "/base/v2/quote-card/f941e306-76f7-45da-b3d9-7463af630e91/v1",
+    "image": "/base/v2/images-with-text/0ddb8655-c3da-43da-9f7d-be1915ca7818/v1",
+    "tutorial": "/base/v2/tutorial-carousel/e095104b-e6c5-4a81-a89d-b0df3d7c5baf/v1",
+    "video": "/base/v2/ai-story-video/5903fe43-514d-40ee-a060-0d6628c5f8fd/v1",
+}
+
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -190,15 +198,17 @@ def parse_schedule(value):
 def parse_draft(filepath):
     content = Path(filepath).read_text()
 
-    image_prompt = ""
-    # Match bold format: **Blotato image prompt:**
-    prompt_match = re.search(
-        r"\*\*Blotato image prompt:\*\*\s*\n(.+?)(?=\n---|\n\n#|\n\n\*\*)",
+    # Extract ALL Blotato image prompt blocks (for carousels with multiple slides)
+    all_image_prompts = re.findall(
+        r"\*\*Blotato image prompt:\*\*\s*\n(.+?)(?=\n\*\*Blotato|\n---|\n#|\Z)",
         content,
         re.DOTALL,
     )
-    if prompt_match:
-        image_prompt = prompt_match.group(1).strip()
+    all_image_prompts = [p.strip() for p in all_image_prompts if p.strip()]
+
+    # Single prompt (backward compatible)
+    image_prompt = all_image_prompts[0] if all_image_prompts else ""
+
     # Match heading format: ## Image Prompt ...
     if not image_prompt:
         heading_match = re.search(
@@ -208,6 +218,7 @@ def parse_draft(filepath):
         )
         if heading_match:
             image_prompt = heading_match.group(1).strip()
+            all_image_prompts = [image_prompt]
 
     lines = content.split("\n")
     start = 0
@@ -218,7 +229,7 @@ def parse_draft(filepath):
     post_text = "\n".join(lines[start:]).strip()
     post_text = re.sub(r"\n---\n.*", "", post_text, flags=re.DOTALL).strip()
 
-    return post_text, image_prompt
+    return post_text, image_prompt, all_image_prompts
 
 
 def parse_thread(filepath):
@@ -314,13 +325,14 @@ def mcp_call(api_key, method, params):
         return {"error": {"message": f"Invalid JSON response: {resp.text[:200]}"}}
 
 
-def generate_visual(api_key, prompt, title="Road4AI Visual"):
-    """Generate a visual via Blotato and return image URLs."""
-    print(f"  Generating visual: {title}...", end=" ", flush=True)
+def generate_visual(api_key, prompt, title="Road4AI Visual", visual_type="image"):
+    """Generate a visual via Blotato and return image URLs or video URL."""
+    template_id = VISUAL_TEMPLATES.get(visual_type, VISUAL_TEMPLATES["image"])
+    print(f"  Generating {visual_type}: {title}...", end=" ", flush=True)
     result = mcp_call(api_key, "tools/call", {
         "name": "blotato_create_visual",
         "arguments": {
-            "templateId": "9f4e66cd-b784-4c02-b2ce-e6d0765fd4c0",
+            "templateId": template_id,
             "prompt": prompt,
             "title": title,
         },
@@ -339,10 +351,12 @@ def generate_visual(api_key, prompt, title="Road4AI Visual"):
         print("FAILED: no visual ID")
         return []
 
-    # Poll until done
+    # Poll until done (300s timeout for videos)
     import time
-    for attempt in range(30):
-        time.sleep(5)
+    max_attempts = 60 if visual_type == "video" else 30
+    poll_interval = 5
+    for attempt in range(max_attempts):
+        time.sleep(poll_interval)
         status_result = mcp_call(api_key, "tools/call", {
             "name": "blotato_get_visual_status",
             "arguments": {"id": visual_id},
@@ -354,11 +368,21 @@ def generate_visual(api_key, prompt, title="Road4AI Visual"):
         if not status_content:
             continue
         status_data = json.loads(status_content[0].get("text", "{}"))
-        status = status_data.get("item", {}).get("status", "")
+        item = status_data.get("item", {})
+        status = item.get("status", "")
         if status == "done":
-            urls = status_data.get("item", {}).get("imageUrls", [])
-            print(f"done ({len(urls)} image(s))")
-            return urls
+            # Videos return mediaUrl, images/carousels return imageUrls
+            media_url = item.get("mediaUrl")
+            image_urls = item.get("imageUrls", [])
+            if media_url and visual_type == "video":
+                print(f"done (video)")
+                return [media_url]
+            elif image_urls:
+                print(f"done ({len(image_urls)} image(s))")
+                return image_urls
+            else:
+                print("FAILED: no media in response")
+                return []
         elif status in ("failed", "error"):
             print(f"FAILED: {status}")
             return []
@@ -568,7 +592,8 @@ def main():
 
     scheduled_time = parse_schedule(schedule_flag) if schedule_flag else None
 
-    text, image_prompt = parse_draft(filepath)
+    text, image_prompt, all_image_prompts = parse_draft(filepath)
+    visual_type = fm.get("visual_type", "image")
 
     # Check if this is a thread (X platform with ## Tweet N headers)
     is_thread = "x" in platforms and parse_thread(filepath) is not None
@@ -616,9 +641,16 @@ def main():
             sys.exit(0)
 
     image_urls = []
-    if image_prompt:
-        print("\n[Image Generation]")
-        image_urls = generate_visual(api_key, image_prompt, title="Road4AI Post Image")
+    if image_prompt or all_image_prompts:
+        print(f"\n[Visual Generation: {visual_type}]")
+        if visual_type == "carousel" and len(all_image_prompts) > 1:
+            # Combine all slide prompts into one prompt for the carousel template
+            combined = "Create a carousel with these slides:\n"
+            for i, p in enumerate(all_image_prompts, 1):
+                combined += f"\nSlide {i}/{len(all_image_prompts)}: {p}\n"
+            image_urls = generate_visual(api_key, combined, title="Road4AI Carousel", visual_type=visual_type)
+        else:
+            image_urls = generate_visual(api_key, image_prompt, title="Road4AI Post Image", visual_type=visual_type)
 
     results = []
     for suffix in platforms:
