@@ -11,6 +11,7 @@ target_schedule: 2026-06-30T18:00:00Z
 created_at: 2026-06-28T00:00:00+01:00
 status_updated_at: 2026-06-28T00:00:00+01:00
 notes: Twitter/X thread version of the SkillOpt validation blog post.
+scheduled: true
 ---
 
 # Twitter/X Thread: We Tested SkillOpt Locally

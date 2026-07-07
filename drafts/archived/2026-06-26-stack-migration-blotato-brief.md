@@ -2,6 +2,7 @@
 karen_verdict: APPROVED (after audit)
 status: approved
 platform: linkedin
+scheduled: true
 ---
 
 # Blotato Scheduling Brief

@@ -7,6 +7,7 @@ goal: Build in public
 status: draft
 karen_verdict: PENDING
 format: thread (5 tweets)
+scheduled: true
 ---
 
 1/ My agents started hallucinating their way off the Road4AI roadmap.

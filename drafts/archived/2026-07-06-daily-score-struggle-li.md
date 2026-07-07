@@ -6,6 +6,7 @@ platform: LinkedIn
 goal: Build in public
 status: draft
 karen_verdict: PENDING
+scheduled: true
 ---
 
 I check one number every morning. Some days it drifts yellow. I still can't prompt it back.

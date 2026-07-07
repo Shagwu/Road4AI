@@ -8,6 +8,7 @@ hook: I just watched a team of 5 AI agents deploy themselves, update their own o
 status: published
 karen_verdict: APPROVED (after audit)
 notes: Published short version to X to satisfy the 280-character limit.
+scheduled: true
 ---
 
 5 AI agents just deployed themselves, updated their operating contract, and offered to QA the work.

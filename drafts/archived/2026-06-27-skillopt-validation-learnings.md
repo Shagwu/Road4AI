@@ -11,6 +11,7 @@ karen_verdict: APPROVED
 created_at: 2026-06-27T00:00:00+01:00
 status_updated_at: 2026-06-27T00:00:00+01:00
 notes: Draft based on validation report lines 236-256 learnings. Approved for Monday 12 noon.
+scheduled: true
 ---
 
 # What We Learned Validating SkillOpt Locally

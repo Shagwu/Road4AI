@@ -670,5 +670,32 @@
     "published_at": "2026-07-06T00:00:00+00:00",
     "blotato_id": "ed139a19-ee86-4ffc-9545-173892afd339",
     "notes": "LinkedIn companion to SkillOpt blog post. Condensed version focusing on governance boundary results."
+  },
+  {
+    "id": "2026-07-15-phase4-teaser-x",
+    "title": "Phase 4 POC Teaser: Skills Evolve, Guardrails Too",
+    "type": "Behind-the-scenes",
+    "platform": "X",
+    "published_at": "2026-07-07T11:41:49.752565+00:00",
+    "source": "blotato",
+    "note": "Scheduled and posted via Blotato. Duplicates deleted."
+  },
+  {
+    "id": "2026-07-15-v2-1-reveal-x",
+    "title": "v2.1 Benchmark Reveal (X Thread)",
+    "type": "Win",
+    "platform": "X",
+    "published_at": "2026-07-07T11:41:49.752565+00:00",
+    "source": "blotato",
+    "note": "Scheduled and posted via Blotato. Duplicates deleted."
+  },
+  {
+    "id": "2026-07-15-v2-1-reveal-li",
+    "title": "v2.1 Benchmark Reveal (LinkedIn)",
+    "type": "Win",
+    "platform": "LinkedIn",
+    "published_at": "2026-07-07T11:41:49.752565+00:00",
+    "source": "blotato",
+    "note": "Scheduled and posted via Blotato. Duplicates deleted."
   }
 ]

@@ -11,6 +11,7 @@ status_updated_at: 2026-06-06T19:35:00+01:00
 visual_asset: assets/social/2026-06-08-self-knowledge-pivot-collage.svg
 upload_asset: assets/social/2026-06-08-self-knowledge-pivot-collage.svg.png
 notes: Companion pack scheduled through Blotato for Threads, Facebook, Instagram, and TikTok on 2026-06-08.
+scheduled: true
 ---
 
 # Cross-Platform Pack: The Self-Knowledge Pivot

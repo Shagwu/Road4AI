@@ -11,6 +11,7 @@ target_schedule: 2026-07-02T12:00:00Z
 created_at: 2026-06-29T13:00:00Z
 status_updated_at: 2026-06-29T13:00:00Z
 notes: Response to trending tweet about agent memory using Obsidian + OMI. Positions Hermes as the upgrade. Karen reviewed 2026-06-29: no surviving issues (qwen2.5-coder:14b + llama3.2:3b).
+scheduled: true
 ---
 
 I saw a tweet today describing a "permanent memory system" for AI agents.

@@ -39,12 +39,12 @@ tasks:
     assigned_to: claude
   T-004:
     title: Run First Dry-Run Validation
-    status: verify
+    status: done
     depends_on: [T-003]
     assigned_to: claude
   T-005:
     title: Run One Live Controlled Optimization
-    status: blocked
+    status: ready
     depends_on: [T-004]
     assigned_to: claude
   T-006:

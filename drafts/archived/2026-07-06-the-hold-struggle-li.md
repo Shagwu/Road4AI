@@ -6,6 +6,7 @@ platform: LinkedIn
 goal: Build in public
 status: draft
 karen_verdict: PENDING
+scheduled: true
 ---
 
 Everything is ready. The drafts are approved. The posts are scheduled. I'm still not pressing publish.

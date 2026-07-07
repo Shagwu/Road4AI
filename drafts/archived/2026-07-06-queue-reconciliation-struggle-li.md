@@ -6,6 +6,7 @@ platform: LinkedIn
 goal: Build in public
 status: draft
 karen_verdict: PENDING
+scheduled: true
 ---
 
 I thought 32 posts were live. Turns out the system scheduled them but never confirmed they shipped.

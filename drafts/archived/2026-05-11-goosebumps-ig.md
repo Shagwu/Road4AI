@@ -7,6 +7,7 @@ goal: Nurture
 hook: There is a specific second when 'I told it to' becomes 'it understood.'
 status: ready_for_publishing
 karen_verdict: APPROVED (after audit)
+scheduled: true
 ---
 
 # The Emergence Moment

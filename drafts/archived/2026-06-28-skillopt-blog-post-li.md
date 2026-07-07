@@ -11,6 +11,7 @@ target_schedule: 2026-07-01T12:00:00Z
 created_at: 2026-06-28T00:00:00+01:00
 status_updated_at: 2026-06-28T00:00:00+01:00
 notes: LinkedIn adaptation of the SkillOpt blog post.
+scheduled: true
 ---
 
 I didn't want Hermes to learn until I knew it could stay inside the guardrails.

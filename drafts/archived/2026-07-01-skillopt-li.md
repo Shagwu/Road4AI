@@ -9,6 +9,7 @@ status: ready_for_editing
 target_schedule: 2026-07-01T12:00:00Z
 created_at: 2026-06-28T00:00:00+01:00
 notes: LinkedIn companion to the SkillOpt blog post. Condensed version focusing on governance boundary results.
+scheduled: true
 ---
 
 I didn't want Hermes to learn until I knew it could stay inside the guardrails.

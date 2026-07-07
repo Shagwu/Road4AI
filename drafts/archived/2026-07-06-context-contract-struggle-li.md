@@ -8,6 +8,7 @@ status: ready_for_publishing
 karen_verdict: APPROVED
 format: carousel (6 slides)
 visual_style: black and emerald terminal aesthetic, bold white text, dark backgrounds
+scheduled: true
 ---
 
 **Blotato image prompt:**

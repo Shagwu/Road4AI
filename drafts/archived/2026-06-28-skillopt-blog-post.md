@@ -11,6 +11,7 @@ target_schedule: 2026-07-01T12:00:00Z
 created_at: 2026-06-28T00:00:00+01:00
 status_updated_at: 2026-06-28T00:00:00+01:00
 notes: Full blog post version of the SkillOpt validation story.
+scheduled: true
 ---
 
 # We Tested SkillOpt Locally Before Letting Hermes Learn

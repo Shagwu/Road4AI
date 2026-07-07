@@ -1077,8 +1077,8 @@
       "platform": "X",
       "goal": "Build in public",
       "source": "phase4_teaser_x_thread.md",
-      "status": "scheduled",
-      "status_updated_at": "2026-07-01T00:00:00Z",
+      "status": "published",
+      "status_updated_at": "2026-07-07T11:41:49.752565+00:00",
       "priority": 1,
       "week": "2026-W28",
       "created_at": "2026-06-30T00:00:00Z",
@@ -1086,7 +1086,8 @@
       "scheduled_time": "2026-07-15T08:00:00Z",
       "blotato_id": "8c9e0b42-e158-4373-8968-d3d0b08e68af",
       "draft_path": "drafts/archived/phase4_teaser_x_thread.md",
-      "notes": "5-tweet thread scheduled via Blotato. Pin to profile for 24h. Links in tweet 1."
+      "notes": "5-tweet thread scheduled via Blotato. Pin to profile for 24h. Links in tweet 1.",
+      "published_at": "2026-07-07T11:41:49.752565+00:00"
     },
     {
       "id": "2026-07-15-phase4-teaser-linkedin",
@@ -1172,8 +1173,8 @@
       "platform": "X",
       "goal": "Build in public",
       "source": "SKILLOPT_VALIDATION_REPORT.md",
-      "status": "scheduled",
-      "status_updated_at": "2026-07-03T00:00:00Z",
+      "status": "published",
+      "status_updated_at": "2026-07-07T11:41:49.752565+00:00",
       "priority": 1,
       "week": "2026-W28",
       "created_at": "2026-07-03T00:00:00Z",
@@ -1181,7 +1182,8 @@
       "scheduled_time": "2026-07-15T15:30:00Z",
       "blotato_id": "a95de749-df9c-428d-8a00-facac78caa91",
       "draft_path": "drafts/approved/v2.1-benchmark-reveal-x.md",
-      "notes": "5-tweet thread. Pin to profile for 24h."
+      "notes": "5-tweet thread. Pin to profile for 24h.",
+      "published_at": "2026-07-07T11:41:49.752565+00:00"
     },
     {
       "id": "2026-07-15-v2-1-reveal-li",
@@ -1191,8 +1193,8 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "SKILLOPT_VALIDATION_REPORT.md",
-      "status": "scheduled",
-      "status_updated_at": "2026-07-03T00:00:00Z",
+      "status": "published",
+      "status_updated_at": "2026-07-07T11:41:49.752565+00:00",
       "priority": 1,
       "week": "2026-W28",
       "created_at": "2026-07-03T00:00:00Z",
@@ -1200,7 +1202,8 @@
       "scheduled_time": "2026-07-15T16:00:00Z",
       "blotato_id": "aa62be2b-4806-432d-b723-a8ba08fa8aad",
       "draft_path": "drafts/approved/v2.1-benchmark-reveal-li.md",
-      "notes": "Single post with comment links. Pin for 48h."
+      "notes": "Single post with comment links. Pin for 48h.",
+      "published_at": "2026-07-07T11:41:49.752565+00:00"
     },
     {
       "id": "2026-07-06-daily-score-struggle-li",

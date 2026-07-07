@@ -6,6 +6,7 @@ platform: LinkedIn
 goal: Build in public
 status: draft
 karen_verdict: PENDING
+scheduled: true
 ---
 
 The benchmark passed. The skill improved. Now I'm staring at a system that works and wondering what I'm supposed to do next.
