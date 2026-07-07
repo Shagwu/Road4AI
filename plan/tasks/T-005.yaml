@@ -2,7 +2,7 @@
 id: T-005
 title: Run One Live Controlled Optimization
 phase: execute
-status: ready
+status: done
 wave: 4
 depends_on: [T-004]
 assigned_to: claude

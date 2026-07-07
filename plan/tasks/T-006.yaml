@@ -2,7 +2,7 @@
 id: T-006
 title: Prepare v2.1 Launch Proof Package
 phase: execute
-status: blocked
+status: ready
 wave: 5
 depends_on: [T-005]
 assigned_to: claude              # content + narrative = Claude's lane

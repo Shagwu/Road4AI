@@ -44,12 +44,12 @@ tasks:
     assigned_to: claude
   T-005:
     title: Run One Live Controlled Optimization
-    status: ready
+    status: done
     depends_on: [T-004]
     assigned_to: claude
   T-006:
     title: Prepare v2.1 Launch Proof Package
-    status: blocked
+    status: ready
     depends_on: [T-005]
     assigned_to: claude
 

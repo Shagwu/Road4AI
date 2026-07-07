@@ -23,7 +23,7 @@ execution_order:
     - T-006
 
 next_ready:
-  - T-005
+  - T-006
 
 dependency_graph:
   T-001: []
