@@ -694,8 +694,10 @@
     "title": "v2.1 Benchmark Reveal (LinkedIn)",
     "type": "Win",
     "platform": "LinkedIn",
-    "published_at": "2026-07-07T11:41:49.752565+00:00",
-    "source": "blotato",
-    "note": "Scheduled and posted via Blotato. Duplicates deleted."
+    "scheduled_time": "2026-07-15T09:00:00Z",
+    "blotato_id": "d5be0a59-6f78-491d-9b1a-92e0fadd306f",
+    "status": "scheduled",
+    "updated_at": "2026-07-07T12:46:37.289561+00:00",
+    "note": "Rescheduled from 16:00 to 09:00 UTC. Rewritten with correct numbers."
   }
 ]
