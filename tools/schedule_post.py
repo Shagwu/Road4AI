@@ -237,15 +237,20 @@ def parse_draft(filepath):
 
     # Split by --- separator (between image prompts and post text)
     sections = re.split(r"\n---\n", after_frontmatter)
-    # Take the last section that doesn't contain Blotato image prompts
+    # Take the FIRST section that doesn't contain Blotato image prompts
+    # (the post body is always the first section; later sections are
+    # Links, Publication Instructions, etc. — those must not be posted)
     post_text = ""
-    for section in reversed(sections):
+    for section in sections:
         if "**Blotato image prompt:**" not in section:
             post_text = section.strip()
             break
     # Fallback: if all sections have prompts, strip prompts from full text
     if not post_text:
         post_text = re.sub(r"\*\*Blotato image prompt:\*\*\s*\n(.+?)(?=\n\*\*Blotato|\Z)", "", after_frontmatter, flags=re.DOTALL).strip()
+
+    # Strip leading markdown title (# Title) — Blotato doesn't need it
+    post_text = re.sub(r"^#\s+.+\n\n?", "", post_text).strip()
 
     return post_text, image_prompt, all_image_prompts
 
