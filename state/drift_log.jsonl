@@ -28,3 +28,6 @@
 {"timestamp": "2026-07-05T10:01:28.891891+00:00", "domain": "social_voice", "score": 0.8213333333333332, "cases": 10, "failed": [], "status": "green", "action": "auto-store", "reason": "social_voice within tolerance"}
 {"timestamp": "2026-07-06T12:37:41.583393+00:00", "domain": "social_voice", "score": 0.8006666666666666, "cases": 10, "failed": [], "status": "green", "action": "auto-store", "reason": "social_voice within tolerance"}
 {"timestamp": "2026-07-06T14:17:32.413557+00:00", "domain": "social_voice", "score": 0.7843333333333333, "cases": 10, "failed": [], "status": "green", "action": "auto-store", "reason": "social_voice within tolerance"}
+{"timestamp": "2026-07-07T11:12:25.570417+00:00", "domain": "social_voice", "score": 0.806, "cases": 10, "failed": ["case-002"], "status": "green", "action": "auto-store", "reason": "social_voice within tolerance"}
+{"timestamp": "2026-07-07T11:14:20.747392+00:00", "domain": "social_voice", "score": 0.806, "cases": 10, "failed": ["case-002"], "status": "green", "action": "auto-store", "reason": "social_voice within tolerance"}
+{"timestamp": "2026-07-07T11:14:35.137413+00:00", "domain": "social_voice", "score": 0.796, "cases": 10, "failed": [], "status": "green", "action": "auto-store", "reason": "social_voice within tolerance"}
