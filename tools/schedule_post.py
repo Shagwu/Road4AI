@@ -222,12 +222,30 @@ def parse_draft(filepath):
 
     lines = content.split("\n")
     start = 0
-    for i, line in enumerate(lines):
-        if line.strip() == "---" and i > 3:
-            start = i + 1
+    # Skip frontmatter: if line 0 is ---, find the closing ---
+    if lines[0].strip() == "---":
+        for i in range(1, len(lines)):
+            if lines[i].strip() == "---":
+                start = i + 1
+                break
+    else:
+        for i, line in enumerate(lines):
+            if line.strip() == "---" and i > 3:
+                start = i + 1
+                break
+    after_frontmatter = "\n".join(lines[start:]).strip()
+
+    # Split by --- separator (between image prompts and post text)
+    sections = re.split(r"\n---\n", after_frontmatter)
+    # Take the last section that doesn't contain Blotato image prompts
+    post_text = ""
+    for section in reversed(sections):
+        if "**Blotato image prompt:**" not in section:
+            post_text = section.strip()
             break
-    post_text = "\n".join(lines[start:]).strip()
-    post_text = re.sub(r"\n---\n.*", "", post_text, flags=re.DOTALL).strip()
+    # Fallback: if all sections have prompts, strip prompts from full text
+    if not post_text:
+        post_text = re.sub(r"\*\*Blotato image prompt:\*\*\s*\n(.+?)(?=\n\*\*Blotato|\Z)", "", after_frontmatter, flags=re.DOTALL).strip()
 
     return post_text, image_prompt, all_image_prompts
 
