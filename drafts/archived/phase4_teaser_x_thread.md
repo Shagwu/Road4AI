@@ -21,7 +21,7 @@ Here's what happens:
 ## Tweet 2 (Signal Flow)
 A trend lands. Harvester detects it.
 
-Signal routes to voice-match (0.806 baseline, ±5% alert threshold).
+Signal routes to voice-match (0.788 baseline, ±5% alert threshold).
 
 Confidence score comes back. Green? Routes to memory-ops. Yellow? Queued for review.
 
@@ -52,7 +52,7 @@ Let's go.
 
 ## Karen Review Checklist for X Thread
 
-- [ ] All numbers accurate (0.806, ±5%, ±10%)?
+- [ ] All numbers accurate (0.788, ±5%, ±10%)?
 - [ ] No overstatement (governance "holds under pressure" vs "we hope")?
 - [ ] Tone matches brand (punchy, conspiratorial, coffee-shop conversation)?
 - [ ] No em dashes used?

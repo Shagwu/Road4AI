@@ -11,7 +11,7 @@ scheduled: true
 
 Phase 4 begins tomorrow. Here's what we've built.
 
-Two weeks ago, I shipped SkillOpt v2.1: a system for multi-domain skills that improve themselves without breaking governance. Voice-match at 0.871 (deterministic baseline). Memory-ops at 0.915. Both locked.
+Two weeks ago, I shipped SkillOpt v2.1: a system for multi-domain skills that improve themselves without breaking governance. Voice-match at 0.788 (live Ollama, zero failures). Memory-ops at 0.915. Both locked.
 
 Then I built the orchestration layer. Social voice scores a trend, confidence gets tiered (green ≥ 0.8 auto-stores; yellow/blue queue for review), memory-ops retrieves with full context preserved. Drift monitoring watches every move. ±5% triggers an alert. ±10% triggers a halt.
 

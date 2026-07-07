@@ -9,7 +9,7 @@
 
 July 1 through July 14, I ran daily drift monitoring.
 
-Ten data points. Voice-match baseline at 0.806. Observed variance: ±4% to ±3.2%. Green status every day. No governance breaches.
+Ten data points. Voice-match baseline at 0.788. Observed variance: ±4% to ±3.2%. Green status every day. No governance breaches.
 
 That was the rehearsal.
 
@@ -19,7 +19,7 @@ Tomorrow, the Harvester goes live on Twitter.
 
 ## What Happens Next
 
-A trend gets detected on Twitter. The signal routes through voice-match, which scores it against a baseline (0.806, ±5% alert threshold, ±10% halt threshold).
+A trend gets detected on Twitter. The signal routes through voice-match, which scores it against a baseline (0.788, ±5% alert threshold, ±10% halt threshold).
 
 The confidence tier comes back:
 - **Green** (≥ 0.8): Signal auto-stores to Hermes, cascades to memory-ops
@@ -115,7 +115,7 @@ Then we see if theory works.
 
 ## Karen Review Checklist for Blog Post
 
-- [ ] All numbers accurate (0.806, 0.915, ±5%, ±10%, July 1-14 monitoring)?
+- [ ] All numbers accurate (0.788, 0.915, ±5%, ±10%, July 1-14 monitoring)?
 - [ ] No overstatement ("governance holds under pressure" vs "we hope")?
 - [ ] Tone consistent with learning-in-public narrative (honest, transparent, no spin)?
 - [ ] No em dashes used?

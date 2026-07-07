@@ -25,7 +25,7 @@ This runs mistral-nemo (adversary) + qwen2.5-coder:14b (filter) against all thre
 ### Step 2: Karen Looks For These Issues
 
 **Factual Accuracy:**
-- Voice-match baseline: 0.806 (measured ceiling with 14B + post-processor) ✓
+- Voice-match baseline: 0.788 (live Ollama, zero failures) ✓
 - Memory-ops baseline: 0.915 (v2.1 confirmed) ✓
 - Drift thresholds: ±5% alert / ±10% halt ✓
 - July 1–14 monitoring: 10 days, green status, no breaches ✓

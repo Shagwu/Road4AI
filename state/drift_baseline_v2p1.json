@@ -1,13 +1,13 @@
 {
-  "baseline_date": "2026-06-29",
-  "baseline_window": "June 29, 2026 — voice-match measured ceiling with 14B + post-processor",
+  "baseline_date": "2026-07-07",
+  "baseline_window": "July 7, 2026 — voice-match live Ollama (qwen2.5-coder:7b), zero failures",
   "domains": {
     "social_voice": {
-      "score": 0.806,
+      "score": 0.788,
       "variance_observed": 0.05,
       "confidence_tier": "green",
       "runs": 4,
-      "stability": "high (±5% target met, measured ceiling 0.79-0.81)"
+      "stability": "high (±5% target met)"
     },
     "memory_ops": {
       "score": 0.915,
