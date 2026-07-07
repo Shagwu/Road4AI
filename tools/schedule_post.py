@@ -48,6 +48,13 @@ VISUAL_TEMPLATES = {
 
 ROOT = Path(__file__).resolve().parent.parent
 
+VISUAL_VARIETY_CYCLE = ["carousel", "quote_card", "image", "tutorial", "video"]
+VISUAL_STATE_FILE = ROOT / "state" / "visual_variety.json"
+BRAND_STYLE_PREFIX = (
+    "Black and emerald terminal aesthetic. Dark background, emerald green accents, "
+    "bold white sans-serif text, no corporate stock photos, no emojis. "
+)
+
 
 def check_duplication(filepath, fm):
     """Check if this draft has already been scheduled. Returns list of issues."""
@@ -112,6 +119,48 @@ def load_api_key():
                 if val and not val.startswith("#"):
                     return val
     return os.environ.get("BLOTATO_API_KEY", "")
+
+
+def get_next_visual_type():
+    """Read visual_variety.json and return the next visual type in the cycle."""
+    last_type = "video"  # default: start with carousel (first in cycle)
+    if VISUAL_STATE_FILE.exists():
+        try:
+            state = json.loads(VISUAL_STATE_FILE.read_text())
+            last_type = state.get("last_type", "video")
+        except (json.JSONDecodeError, KeyError):
+            pass
+    try:
+        idx = VISUAL_VARIETY_CYCLE.index(last_type)
+    except ValueError:
+        idx = len(VISUAL_VARIETY_CYCLE) - 1
+    next_idx = (idx + 1) % len(VISUAL_VARIETY_CYCLE)
+    return VISUAL_VARIETY_CYCLE[next_idx]
+
+
+def save_visual_type(visual_type):
+    """Record the visual type just used for variety tracking."""
+    VISUAL_STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    VISUAL_STATE_FILE.write_text(json.dumps({"last_type": visual_type}, indent=2))
+
+
+def auto_visual_prompt(post_text):
+    """Generate a Blotato visual prompt from post content.
+
+    Extracts the hook (first sentence or first line) and wraps it in
+    brand style for the visual template.
+    """
+    # Take the first non-empty line as the hook
+    lines = [l.strip() for l in post_text.split("\n") if l.strip()]
+    hook = lines[0] if lines else post_text[:100]
+    # Truncate to ~80 chars for visual readability
+    if len(hook) > 80:
+        hook = hook[:77] + "..."
+    return (
+        f"{BRAND_STYLE_PREFIX}"
+        f"Bold white text: \"{hook}\". "
+        f"Emerald accent bar at bottom. Clean, minimal, text-forward."
+    )
 
 
 def parse_frontmatter(content):
@@ -664,6 +713,12 @@ def main():
             sys.exit(0)
 
     image_urls = []
+    # Auto-generate visual for LinkedIn posts that lack one
+    if "li" in platforms and not image_prompt and not all_image_prompts:
+        visual_type = get_next_visual_type()
+        image_prompt = auto_visual_prompt(text)
+        print(f"\n[Auto-visual: {visual_type}]")
+        print(f"  Prompt: {image_prompt[:100]}...")
     if image_prompt or all_image_prompts:
         print(f"\n[Visual Generation: {visual_type}]")
         if visual_type == "carousel" and len(all_image_prompts) > 1:
@@ -674,6 +729,8 @@ def main():
             image_urls = generate_visual(api_key, combined, title="Road4AI Carousel", visual_type=visual_type)
         else:
             image_urls = generate_visual(api_key, image_prompt, title="Road4AI Post Image", visual_type=visual_type)
+        if image_urls:
+            save_visual_type(visual_type)
 
     results = []
     for suffix in platforms:
