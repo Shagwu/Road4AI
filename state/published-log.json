@@ -694,10 +694,10 @@
     "title": "v2.1 Benchmark Reveal (LinkedIn)",
     "type": "Win",
     "platform": "LinkedIn",
-    "scheduled_time": "2026-07-15T09:00:00Z",
-    "blotato_id": "d5be0a59-6f78-491d-9b1a-92e0fadd306f",
+    "scheduled_time": "2026-07-15T10:00:00Z",
+    "blotato_id": "65346eb7-cd51-4914-a942-8e8a959b6c0d",
     "status": "scheduled",
-    "updated_at": "2026-07-07T12:46:37.289561+00:00",
-    "note": "Rescheduled from 16:00 to 09:00 UTC. Rewritten with correct numbers."
+    "updated_at": "2026-07-07T13:13:50.039870+00:00",
+    "note": "v2 rewritten, scheduled 10:00 UTC (09:00 WAT)"
   }
 ]
