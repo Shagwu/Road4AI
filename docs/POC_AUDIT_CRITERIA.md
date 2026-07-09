@@ -32,8 +32,7 @@ The original reveal posts cited 0.871 as the optimized score. This number comes 
 
 **Corrected claim:** 0.6447 → 0.788 live, local Ollama, zero API cost, zero failures. Deterministic 0.871 disclosed as separate methodology.
 
-**Content already corrected:** `v2.1-benchmark-reveal-li-v2.md` (LinkedIn reveal)
-**Content pending correction:** X reveal, LinkedIn Phase 4 teaser, X Phase 4 thread, blog post
+**Content corrected:** `v2.1-benchmark-reveal-li-v2.md` (LinkedIn reveal), X thread (tweet 5 patched), blog post (scope-clarifier added). All reconciled 2026-07-09.
 
 ---
 
@@ -85,3 +84,11 @@ The reveal claims results from a 14B model but the live validation (V-002) ran o
 | 2026-07-13 | Fix or disclose soft fails | Shagwu + Claude |
 | 2026-07-14 | Final gate review | Shagwu |
 | 2026-07-15 | Publish (if all hard fails pass) | Shagwu |
+
+---
+
+## Karen Override Log
+
+### 2026-07-09: run_skillopt_benchmark.py — REQUEST_CHANGES overridden
+
+Override Karen REQUEST_CHANGES on run_skillopt_benchmark.py: both flags are false positives. "eval() XSS" = `_score_eval` method name, no builtin `eval()` call. "Race condition" = no threading/Lock/multiprocessing in file. Verified by manual read. Does not affect reveal draft approvals (LinkedIn v2, X thread, blog — all clean, independently gated).
