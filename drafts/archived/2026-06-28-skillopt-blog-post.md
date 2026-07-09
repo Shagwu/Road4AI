@@ -85,6 +85,8 @@ The orchestration layer is where things get interesting. Individual skills can b
 
 ## What We Found
 
+Heads up, these three numbers aren't the 0.788 from the social posts. That's voice-match. These are per-domain scores from the full suite. Different measurement, same launch.
+
 ### social_voice: 0.950 baseline
 
 The social voice skill scored 0.950 out of 1.0 across all 10 cases. No failures detected. The optimizer was skipped — nothing to improve.
