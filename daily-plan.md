@@ -1,47 +1,32 @@
-# Daily Plan - 2026-07-07
+# Daily Plan - 2026-07-10
 
-Generated: 2026-07-07T12:02:00Z
+Generated: 2026-07-10
 
 ## Executive summary
-
-1 task(s) in progress; 1 task(s) blocked; 7 content item(s) scheduled.
+v2.1 reveal is 5 days away (July 15). Today's post "After It Learns" publishes to LinkedIn at 12:00 UTC. POC audit scores accepted as-is (0.788 headline, 0.871 deterministic disclosed separately). No fresh benchmark runs needed. All SkillOpt tasks complete.
 
 ## P1 - Highest priority
-
-- No P1 items detected. Check queue for new ideas.
+- **Verify "After It Learns" LinkedIn post in Blotato** — already confirmed scheduled (Blotato ID: 32f4f71f). Post is live at 12:00 UTC today. No action needed.
+- **Confirm landing page reflects v2.1** — `shagwu.github.io/Road4AI/` must show v2.1 release notes and Phase 4 teaser by July 15. Expected output: landing page verified or issues flagged.
 
 ## P2 - Important next work
-
-- **T-006** — blocked (waiting on upstream)
-- T-005 (Run One Live Controlled Optimization) is now ready. Content pipeline dedup is enforced programmatically.
-- July 15 reveal publish. Phase 4 POC readiness audit July 11-12. Continue daily drift monitoring.
-- Blog manual publish on July 15. Phase 4 POC readiness audit July 11-12.
+- **Review Jul 11 X thread "Context Contract"** — scheduled for tomorrow, ensure it's in Blotato and under 280 chars per tweet. Expected output: thread confirmed scheduled.
 
 ## P3 - Lower priority / support work
-
-- Fixed daily_drift_check.py syntax error (unclosed docstring). Created daily_morning_brief.py for Mon-Fri 6am auto-generation of daily-plan.md. Added three dedup guardrails to schedule_post.py (published-log check, queue blotato_id check, scheduled frontmatter marker). Moved 3 approved drafts to archived, updated queue and published-log. T-004 verified done, T-005 unblocked. Removed auto-schedule nudge from daily brief.
-- Deterministic benchmark at 0.871, zero failures, no drift from baseline. X thread (15:30 UTC) and LinkedIn (16:00 UTC) reveal posts scheduled via Blotato for July 15. Blog draft removed per rules/common/content-dedup-gate.md:35-43. Queue conflict resolved, stale WORKING-CONTEXT reference cleaned.
-- Drift monitoring check (automated)
+- **Struggle posts Jul 17-19** — three Struggle posts need drafts written and Karen-approved before scheduling. Check if any drafts exist in `drafts/ready/`. Expected output: draft status clear, blockers flagged if missing.
+- **Archive approved content** — check `drafts/approved/` for any scheduled posts that should have been moved to `drafts/archived/` after Blotato confirmation. Expected output: approved folder clean.
 
 ## Risks / blockers
+- **Karen two-model review** — `mistral-nemo` not pulled locally. Full Karen review may be needed for reveal posts on July 15. Decision: defer unless needed.
 
-- 1 task(s) blocked: T-006
+## Quick wins
+- Verify Jul 10 post title and hook match queue entry in `state/current-queue.json`
+- Run `ls drafts/approved/` to check for stale approved content
+- Spot-check landing page for v2.1 branding
 
-## Queue audit
-
-```
-Total entries : 72
-Published     : 65
-Scheduled     : 7
-Struggle (T10): 4/10 (40%)
-Git status    : 20 uncommitted file(s): drafts/approved/phase4_teaser_linkedin.md, drafts/approved/v2.1-benchmark-reveal-li.md, drafts/approved/v2.1-benchmark-reveal-x.md, drafts/approved/x-thread-teaser/tweet1.md, drafts/approved/x-thread-teaser/tweet2.md
-```
-
-## Last Hermes checkpoint
-
-```
-CHECKPOINT: Fix drift check, add daily brief, dedup scheduling pipeline
-
-[hermes-context]
-Decisions: Fixed daily_drift_check.py syntax error (unclosed docstring). Created daily_morning_brief.py for Mon-Fri 6am auto-generation of daily-plan.md. Added three dedup guardrails to schedule_post.py (published-log check, queue blotato_id check, scheduled frontmatter marker). Moved 3 approved drafts to archived, updated queue and published-log. T-004 verified done, T-005 unblocked. Removed auto-schedule 
-```
+## Proposed order
+1. Verify "After It Learns" post in Blotato (P1) — DONE
+2. Check landing page for v2.1 content (P1)
+3. Confirm Jul 11 X thread is scheduled and under constraints (P2)
+4. Audit `drafts/approved/` and `drafts/ready/` for stale items (P3)
+5. Flag Jul 17-19 Struggle post draft status (P3)

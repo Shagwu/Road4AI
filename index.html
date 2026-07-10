@@ -8,7 +8,6 @@
       name="description"
       content="Road4AI is a zero-cost AI operator blueprint for builders who want local-first, CLI-native workflows instead of subscription-heavy dashboards."
     />
-    <!-- FIX 1: Load JetBrains Mono from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -347,6 +346,27 @@
         color: var(--accent-2);
       }
 
+      .score-highlight {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .score-old {
+        color: var(--muted);
+        text-decoration: line-through;
+      }
+
+      .version-badge {
+        display: inline-block;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        padding: 4px 8px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 12px;
+      }
+
       @media (max-width: 900px) {
         .hero-grid,
         .cards,
@@ -384,7 +404,7 @@
       <section class="hero">
         <div class="hero-grid">
           <div class="panel">
-            <div class="eyebrow">Zero-Cost AI For Operators</div>
+            <div class="eyebrow">v2.1 Released</div>
             <h1>Stop Renting Intelligence.</h1>
             <p class="lede">
               Road4AI is a zero-cost AI operator blueprint for builders who want
@@ -392,37 +412,35 @@
               dashboards.
             </p>
             <p>
-              Built for indie hackers, technical founders, and engineers who
-              want to own the environment.
+              v2.1 adds SkillOpt: a governed learning loop that optimizes your
+              agent skills locally, without breaking governance or burning API credits.
             </p>
             <div class="actions">
-              <!-- FIX 2: Link to GitHub blob view so markdown renders properly -->
-              <a class="button primary" href="https://github.com/Shagwu/Road4AI/blob/main/SYSTEM.md">Inspect The Blueprint</a>
-              <!-- FIX 3: Link to raw file for the Python script so it's viewable/downloadable -->
-              <a class="button secondary" href="https://github.com/Shagwu/Road4AI/blob/main/verify_repo.py">Run The Verifier</a>
+              <a class="button primary" href="https://github.com/Shagwu/Road4AI/blob/main/AGENTS.md">Read The Blueprint</a>
+              <a class="button secondary" href="https://github.com/Shagwu/Road4AI/blob/main/CHANGELOG.md">View Changelog</a>
             </div>
           </div>
           <aside class="panel terminal">
             <div class="terminal-head">
               <span>road4ai://operator-shell</span>
-              <span>status: live</span>
+              <span>v2.1</span>
             </div>
             <p class="prompt-line">
-              <span class="prompt">$</span> python3 verify_repo.py /path/to/repo
+              <span class="prompt">$</span> python3 run_skillopt_benchmark.py \
             </p>
             <p class="prompt-line">
-              <span class="prompt">></span> detect true file types
+              <span class="prompt">></span> live Ollama: <span class="score-highlight">0.788</span>
             </p>
             <p class="prompt-line">
-              <span class="prompt">></span> flag suspicious mismatches
+              <span class="prompt">></span> deterministic: 0.871
             </p>
             <p class="prompt-line">
-              <span class="prompt">></span> list binaries before execution
+              <span class="prompt">></span> failures: 0
             </p>
             <div class="mini-list">
-              <div class="mini-item">core brain: Gemini CLI + local fallback</div>
-              <div class="mini-item">protocol: MCP-connected local workflow</div>
-              <div class="mini-item">safety: Magika-based repo verification</div>
+              <div class="mini-item">learning: SkillOpt governance boundary held</div>
+              <div class="mini-item">memory: Hermes v2.0 distributed checkpoints</div>
+              <div class="mini-item">cost: $0.00 (local inference, zero APIs)</div>
             </div>
           </aside>
         </div>
@@ -432,7 +450,7 @@
           <div class="tag">CLI-Native</div>
           <div class="tag">Local-First</div>
           <div class="tag">Open Source</div>
-          <div class="tag">Magika-Powered</div>
+          <div class="tag">Self-Optimizing</div>
         </div>
       </section>
 
@@ -465,29 +483,29 @@
           <article class="card">
             <h3>Zero-cost by default</h3>
             <p>
-              Prefer local models and free tiers before paid subscriptions
-              become the default answer.
+              Local models and free tiers first. Paid subscriptions only when
+              they earn it. No vendor lock-in, no subscription creep.
             </p>
           </article>
           <article class="card">
-            <h3>Own the workflow</h3>
+            <h3>Skills that evolve</h3>
             <p>
-              Run a stack you can inspect, script, version, and evolve on your
-              own terms.
+              SkillOpt optimizes your agent skills locally. Governance boundary
+              protects AGENTS.md, brand voice, and operating contracts.
             </p>
           </article>
           <article class="card">
-            <h3>Verify before you trust</h3>
+            <h3>Memory that matters</h3>
             <p>
-              Audit downloaded or forked repositories with a Magika-based
-              verifier that flags mismatches and suspicious binaries.
+              Hermes v2.0 gives your agents distributed memory via structured
+              git checkpoints. No vector DB required. No cloud dependency.
             </p>
           </article>
           <article class="card">
-            <h3>Learn a repeatable system</h3>
+            <h3>Verifiable results</h3>
             <p>
-              Road4AI is not just a repo. It is a model for how technical
-              builders can operate AI workflows without vendor dependence.
+              Every optimization is benchmarked locally. Scores are reproducible.
+              No flash demos, no cherry-picked numbers, no hosted API required.
             </p>
           </article>
         </div>
@@ -495,33 +513,31 @@
 
       <section>
         <div class="section-head">
-          <h2>From repo to operator stack in three steps.</h2>
+          <h2>v2.1: Skills that evolve without breaking governance.</h2>
         </div>
         <div class="steps">
           <article class="step">
             <div class="step-index">01</div>
-            <h3>Inspect the philosophy</h3>
+            <h3>Run the benchmark</h3>
             <p>
-              Read <a href="https://github.com/Shagwu/Road4AI/blob/main/manifesto.md">manifesto.md</a> and
-              <a href="https://github.com/Shagwu/Road4AI/blob/main/SYSTEM.md">SYSTEM.md</a> to understand the zero-cost-first
-              model.
+              Score your skills against a local test suite. Every run is
+              reproducible, zero API cost.
             </p>
           </article>
           <article class="step">
             <div class="step-index">02</div>
-            <h3>Verify the codebase</h3>
+            <h3>Optimize with SkillOpt</h3>
             <p>
-              Use <a href="https://github.com/Shagwu/Road4AI/blob/main/verify_repo.py"><code>verify_repo.py</code></a> to
-              scan a repository and catch file mismatches or unexpected binaries
-              before execution.
+              SkillOpt proposes edits to improve voice, tone, and governance
+              compliance. Every edit requires human approval.
             </p>
           </article>
           <article class="step">
             <div class="step-index">03</div>
-            <h3>Build on owned infrastructure</h3>
+            <h3>Verify and ship</h3>
             <p>
-              Run local-first tools, free-tier models, and MCP-connected
-              services inside a workflow you control.
+              Rerun the benchmark. Confirmed <span class="score-highlight">0.788</span>
+              live Ollama, zero API cost, no protected file mutations.
             </p>
           </article>
         </div>
@@ -533,24 +549,25 @@
         </div>
         <div class="proof">
           <article class="proof-card">
-            <h3>Safety</h3>
+            <h3>SkillOpt Integration</h3>
             <p>
-              <a href="https://github.com/Shagwu/Road4AI/blob/main/verify_repo.py"><code>verify_repo.py</code></a> uses
-              Magika to detect mismatched file types and binaries.
+              Governed learning loop with human review gates. Protected files
+              blocked from optimization. Validated across 10 benchmark cases.
             </p>
           </article>
           <article class="proof-card">
-            <h3>Architecture</h3>
+            <h3>Hermes v2.0 Memory</h3>
             <p>
-              <a href="https://github.com/Shagwu/Road4AI/blob/main/SYSTEM.md">SYSTEM.md</a> defines the zero-cost
-              infrastructure stack.
+              Distributed memory via structured git checkpoints. No vector DB,
+              no cloud. Any agent picks up where the last one left off.
             </p>
           </article>
           <article class="proof-card">
-            <h3>Point of View</h3>
+            <h3>POC Audit Passed</h3>
             <p>
-              <a href="https://github.com/Shagwu/Road4AI/blob/main/manifesto.md">manifesto.md</a> explains the operator
-              thesis and why the CLI matters.
+              Live Ollama score: <span class="score-highlight">0.788</span>.
+              Deterministic score: 0.871. No protected file mutations.
+              All hard fail gates pass.
             </p>
           </article>
         </div>
@@ -583,7 +600,7 @@
 
       <section class="cta">
         <div class="panel">
-          <div class="eyebrow">Directive</div>
+          <div class="eyebrow">v2.1 Released</div>
           <h2>Choose your side.</h2>
           <p>
             The GUI is for consumers. The CLI is for creators. Road4AI gives
@@ -591,9 +608,8 @@
             own.
           </p>
           <div class="actions">
-            <!-- FIX 4: "Clone The Repo" now points to the actual repo root, not README.md -->
             <a class="button primary" href="https://github.com/Shagwu/Road4AI">Clone The Repo</a>
-            <a class="button secondary" href="https://github.com/Shagwu/Road4AI/blob/main/manifesto.md">Read The Manifesto</a>
+            <a class="button secondary" href="https://github.com/Shagwu/Road4AI/blob/main/CHANGELOG.md">Read The Changelog</a>
           </div>
         </div>
       </section>
@@ -601,8 +617,7 @@
 
     <footer class="shell footer">
       <p>
-        Road4AI is a zero-cost AI operator blueprint for local-first,
-        CLI-native workflows.
+        Road4AI v2.1: Zero-cost AI operator blueprint with governed skill optimization.
       </p>
     </footer>
   </body>
