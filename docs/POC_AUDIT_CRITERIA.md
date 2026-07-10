@@ -93,12 +93,18 @@ The reveal claims results from a 14B model but the live validation (V-002) ran o
 
 Override Karen REQUEST_CHANGES on run_skillopt_benchmark.py: both flags are false positives. "eval() XSS" = `_score_eval` method name, no builtin `eval()` call. "Race condition" = no threading/Lock/multiprocessing in file. Verified by manual read. Does not affect reveal draft approvals (LinkedIn v2, X thread, blog — all clean, independently gated).
 
-### 2026-07-10: index.html landing page v2.1 — REQUEST_CHANGES false positive
+### 2026-07-10: index.html landing page v2.1 — REQUEST_CHANGES false positive (ROOT CAUSE FOUND AND FIXED)
 
-Karen ran on landing page update with deterministic fallback (mistral-nemo unavailable). REQUEST_CHANGES flagged CSS/nav lines (384-392) and footer (590) rather than actual content claims. No adversarial pass ran against the numerical claims in the HTML. Two findings:
+Karen ran on landing page update with deterministic fallback (mistral-nemo unavailable). REQUEST_CHANGES flagged CSS/nav lines rather than actual content claims. No adversarial pass ran against the numerical claims in the HTML.
 
-1. **Karen deterministic fallback flags structural lines, not content.** REQUEST_CHANGES cannot be trusted as a signal without manual inspection of what got flagged. This is a second, smaller gap on top of the PR #2 review gate issue.
+**Root cause (fixed in karen.py):**
+1. Mode detection (line 315) only checked `.md`, `.txt`, `.json`, `.log` — HTML fell through to CODE mode, so Karen's prompts told the model it was reviewing executable source code.
+2. Adversary error strings (404, timeout) were passed to Karen's filter as if they were real accusations. The filter then hallucinated line-number references based on the diff alone.
 
-2. **Self-verification is not independent review.** The same agent that produced fabricated numbers (0.6447, +22%, 0.7504, "zero em dashes") was the one that grepped source files to verify or remove them. It worked here because a human caught the pattern and demanded source-file grounding. The pipeline has no gate that would catch this by default.
+**Fixes applied:**
+- Added `.html` to content mode detection in `karen.py:315`
+- Adversary errors now abort review instead of being passed to Karen filter (`karen.py:217-223`)
+
+**Self-verification gap (still open):** The same agent that produced fabricated numbers was the one that verified them. This worked because a human caught the pattern. The pipeline has no gate that catches this by default. Addressed by the public-facing content gate rule added to `rules/common/approval-gates.md`.
 
 Landing page content corrected before ship. See `docs/retroactive-audits/2026-07-10-landing-page-v2.1.md` for full audit log.

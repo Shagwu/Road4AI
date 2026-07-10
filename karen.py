@@ -217,6 +217,11 @@ def run_adversary(diff: str, model: str, mode: str, input_type: str) -> str:
     result = ollama_chat(model, prompt, label="Adversary")
     if not result:
         return "[Adversary returned no output — diff may be too small or model errored silently.]"
+    if result.startswith("[Error calling Ollama"):
+        print(f"\n[Karen] ❌  Adversary failed: {result}")
+        print("        Cannot filter without adversary output. Aborting review.")
+        print("        Fix: pull the model with `ollama pull {model}` and retry.")
+        sys.exit(1)
     return result
 
 # ─────────────────────────────────────────────
@@ -310,9 +315,9 @@ def main():
     mode = "CODE"
     input_type = "executable source code"
     
-    # Check if we are primarily looking at markdown/txt
+    # Check if we are primarily looking at markdown/txt/html
     files_in_diff = [line for line in diff.split('\n') if line.startswith('+++ b/')]
-    if all(any(f.endswith(ext) for ext in ['.md', '.txt', '.json', '.log']) for f in files_in_diff):
+    if all(any(f.endswith(ext) for ext in ['.md', '.txt', '.json', '.log', '.html']) for f in files_in_diff):
         mode = "CONTENT"
         input_type = "prose/markdown/data, no executable code"
 
