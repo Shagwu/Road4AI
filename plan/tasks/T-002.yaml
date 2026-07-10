@@ -2,7 +2,7 @@
 id: T-002
 title: Build Social Voice Benchmark
 phase: execute
-status: ready
+status: done
 wave: 1
 depends_on: []
 assigned_to: claude

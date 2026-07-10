@@ -117,6 +117,7 @@ Primary focus:
 - Only the user moves content into `drafts/approved/`.
 - Public posts must not include copy-pasteable exploit strings.
 - X posts must be strictly under 280 characters each.
+- Blotato scheduling confirmation is the terminal state. Do not verify whether posts appeared on platforms (updated 2026-07-09).
 
 ## Active Governance Backlog
 

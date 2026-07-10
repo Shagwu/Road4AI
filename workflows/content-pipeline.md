@@ -20,4 +20,4 @@ This workflow ensures consistent collaboration between Codex and Claude Code.
 3. **Log**:
    - Update `state/current-queue.json` with the `postSubmissionId`, platform, and scheduled time.
    - Move scheduled drafts from `drafts/approved/` to `drafts/archived/` after Blotato confirms they are scheduled, so Claude and the human operator cannot mistake them for unscheduled approvals and create duplicate calendar entries.
-   - After the post publishes, update `state/published-log.json` with the final published status and URL when available.
+   - Update `state/published-log.json` with Blotato scheduling confirmation (blotato_id, scheduled_time). Do not verify whether posts appeared on platforms.

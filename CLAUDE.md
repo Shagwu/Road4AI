@@ -74,9 +74,11 @@ These are locked. Don't re-litigate them:
 - Obsidian is a thinking/navigation layer only. Recovery flows rebuild it from Markdown and git history; Obsidian workspace state, graph position, and UI metadata are not Hermes checkpoint inputs.
 - v2.1 scope does not include the Visual Memory Loop. v2.1 is the governed SkillOpt learning layer: benchmarks, allowlisted skill optimization, review gates, and proof package. Visual Memory Loop is a Phase 5+ candidate because it adds a new product surface, storage/retrieval semantics, media governance, and UX decisions that would blur the v2.1 learning-loop boundary.
 
-### V2.1 Benchmark Proof Plan (July 2026)
+### V2.1 Benchmark Proof Plan (July 2026) — COMPLETE
 
 **Reveal date target:** Wednesday, July 15, 2026.
+**Status:** All tasks complete (T-001 through T-006). Scores accepted. Monitoring stopped July 8, 2026.
+**Final benchmark scores:** Baseline 0.6447, optimized 0.788 (live Ollama), deterministic 0.871.
 
 **Skill under test:**
 - Skill: `.agents/skills/voice-match/SKILL.md`
@@ -84,7 +86,7 @@ These are locked. Don't re-litigate them:
 - Size: 10 cases: targeted reject-trait and voice quality tests (reduced from 15 in commit 10d1c5a)
 - Rationale: `voice-match` is high-signal for the audience, already has a test suite, and is safe to improve without touching governance, queue, or publishing contracts. Benchmark the runtime skill under `.agents/skills/`, not the repo teaching copy under `skills/`.
 
-**Execution flow:**
+**Execution flow (completed):**
 1. Baseline: run the current skill against the suite, recording mean score, failures, and failure types.
 2. Optimization: run SkillOpt against failed cases only.
 3. Review gate: inspect the proposed patch against governance and voice constraints. Do not auto-apply.
@@ -135,10 +137,10 @@ python3 tools/record_stability_run.py \
 - Validation: mean score variance within +/-5% is acceptable. Greater than +/-10% requires investigation. Failed case overlap above 80% passes. Between 60-80% requires review. Below 60% is a signal to debug before July 1.
 - Pass means ready for SkillOpt optimization. Fail means debug the runner before the July benchmark cycle.
 
-**Timeline:**
+**Timeline (completed):**
 - Budget: 1 week nominal, plus 2-3 day buffer for runner or benchmark cleanup.
 - Start: July 1, 2026, after June runway posts land.
-- Complete: July 8, 2026, leaving one week for reveal draft and Karen gate before July 15.
+- Complete: July 8, 2026 — all tasks done, scores accepted, monitoring stopped.
 
 **Risk mitigation:**
 - Runner stability: before July 1, validate that the runner produces consistent scores on `voice-match`.
@@ -147,10 +149,10 @@ python3 tools/record_stability_run.py \
 - Governance review: self-review against `docs/plans/HERMES_V2_1_SKILLOPT_GOVERNANCE.md` before Karen.
 
 **Pre-reveal checklist:**
-- [ ] Dry-run runner on `voice-match` by June 24-25.
-- [ ] Review benchmark cases for quality by June 25-26.
-- [ ] Execute benchmark cycle July 1-8.
-- [ ] Draft reveal with actual numbers July 8-12.
+- [x] Dry-run runner on `voice-match` by June 24-25.
+- [x] Review benchmark cases for quality by June 25-26.
+- [x] Execute benchmark cycle July 1-8.
+- [x] Draft reveal with actual numbers July 8-12.
 - [ ] Karen gate review July 12-14.
 - [ ] Final polish and publish July 15.
 

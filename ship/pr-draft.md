@@ -9,7 +9,7 @@
 
 Hermes v2.1 introduces SkillOpt, a governed self-improvement loop. The voice-match skill was benchmarked, optimized, and validated through an automated pipeline with human approval gates.
 
-**Key result**: voice-match scored 0.6447 on its own benchmark. After optimization: 0.871. Zero failures. +35%. Compute cost: $0.00 (local Ollama).
+**Key result**: voice-match scored 0.6447 on its own benchmark. After optimization: 0.788. Zero failures. +22%. Compute cost: $0.00 (local Ollama). (Deterministic eval scored 0.871, separate methodology.)
 
 ## Task Gate Checklist
 
