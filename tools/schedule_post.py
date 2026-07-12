@@ -8,6 +8,7 @@ Usage:
   python tools/schedule_post.py drafts/approved/post.md --schedule "2026-06-28T09:00:00Z"
   python tools/schedule_post.py drafts/approved/post.md --schedule "+2h"
   python tools/schedule_post.py drafts/approved/post.md --next-slot
+  python tools/schedule_post.py drafts/approved/post.md --clone-media <submission_id> --platform ig
   python tools/schedule_post.py --check drafts/ready/post.md
   python tools/schedule_post.py --list
 
@@ -16,6 +17,11 @@ Guardrails:
   - Karen verdict must be APPROVED in frontmatter (use --force to override)
   - Draft must not already be scheduled (check published-log + queue blotato_id)
   - Draft must not have scheduled: true in frontmatter
+
+Clone media:
+  --clone-media <submission_id> pulls media URLs from an existing Blotato
+  post and attaches them to the new post. Useful for cloning a LinkedIn post
+  to Instagram when the original had auto-generated visuals.
 """
 
 import json
@@ -50,6 +56,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 VISUAL_VARIETY_CYCLE = ["carousel", "quote_card", "image", "tutorial", "video"]
 VISUAL_STATE_FILE = ROOT / "state" / "visual_variety.json"
+MEDIA_CACHE_FILE = ROOT / "state" / "media_cache.json"
 BRAND_STYLE_PREFIX = (
     "Black and emerald terminal aesthetic. Dark background, emerald green accents, "
     "bold white sans-serif text, no corporate stock photos, no emojis. "
@@ -142,6 +149,34 @@ def save_visual_type(visual_type):
     """Record the visual type just used for variety tracking."""
     VISUAL_STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     VISUAL_STATE_FILE.write_text(json.dumps({"last_type": visual_type}, indent=2))
+
+
+def save_media_cache(submission_id, media_urls):
+    """Store media URLs keyed by Blotato submission ID for later cloning."""
+    MEDIA_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    cache = {}
+    if MEDIA_CACHE_FILE.exists():
+        try:
+            cache = json.loads(MEDIA_CACHE_FILE.read_text())
+        except (json.JSONDecodeError, KeyError):
+            pass
+    cache[submission_id] = {
+        "media_urls": media_urls,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+    MEDIA_CACHE_FILE.write_text(json.dumps(cache, indent=2))
+
+
+def load_media_cache(submission_id):
+    """Load media URLs from cache by submission ID."""
+    if not MEDIA_CACHE_FILE.exists():
+        return []
+    try:
+        cache = json.loads(MEDIA_CACHE_FILE.read_text())
+        entry = cache.get(submission_id, {})
+        return entry.get("media_urls", [])
+    except (json.JSONDecodeError, KeyError):
+        return []
 
 
 def auto_visual_prompt(post_text):
@@ -373,6 +408,54 @@ def resolve_platforms(flag_value, filename_hints, use_all):
     return []
 
 
+def fetch_post_media(api_key, submission_id):
+    """Fetch media URLs for a Blotato submission.
+
+    Strategy:
+    1. Check local media cache (stored at generation time)
+    2. Fall back to blotato_list_posts and match by recent LinkedIn posts
+
+    Returns list of media URL strings, or empty list on failure.
+    """
+    print(f"  Fetching media for submission {submission_id}...", end=" ", flush=True)
+
+    # 1. Check local cache first
+    cached = load_media_cache(submission_id)
+    if cached:
+        print(f"found {len(cached)} URL(s) (cached)")
+        return cached
+
+    # 2. Fall back to list_posts — match by finding the LinkedIn post
+    #    scheduled closest to now with the same submission time window
+    try:
+        result = mcp_call(api_key, "tools/call", {
+            "name": "blotato_list_posts",
+            "arguments": {"limit": 20},
+        })
+        if "error" in result:
+            print("FAILED: list_posts error")
+            return []
+        inner = result.get("result", result)
+        content = inner.get("content", [])
+        if not content:
+            print("FAILED: no response")
+            return []
+        data = json.loads(content[0].get("text", "{}"))
+        posts = data.get("items", [])
+
+        # Find LinkedIn posts with media — the most recent one is likely ours
+        for post in posts:
+            if post.get("platform") == "linkedin" and post.get("mediaUrls"):
+                print(f"found {len(post['mediaUrls'])} URL(s) (from list_posts)")
+                return post["mediaUrls"]
+
+        print("no media found")
+        return []
+    except Exception as e:
+        print(f"FAILED: {e}")
+        return []
+
+
 def mcp_call(api_key, method, params):
     payload = {
         "jsonrpc": "2.0",
@@ -462,7 +545,7 @@ def generate_visual(api_key, prompt, title="Road4AI Visual", visual_type="image"
     return []
 
 
-def schedule_post(api_key, account_id, platform, text, scheduled_time=None, next_slot=False, image_urls=None, additional_posts=None):
+def schedule_post(api_key, account_id, platform, text, scheduled_time=None, next_slot=False, image_urls=None, additional_posts=None, media_type=None):
     arguments = {
         "accountId": account_id,
         "platform": platform,
@@ -476,6 +559,9 @@ def schedule_post(api_key, account_id, platform, text, scheduled_time=None, next
         arguments["mediaUrls"] = image_urls
     if additional_posts:
         arguments["additionalPosts"] = additional_posts
+    # Instagram/Facebook need mediaType for video posts
+    if media_type:
+        arguments["mediaType"] = media_type
 
     params = {
         "name": "blotato_create_post",
@@ -571,12 +657,16 @@ def main():
     force = "--force" in args
     platform_flag = None
     schedule_flag = None
+    clone_media_id = None
 
     filtered = []
     i = 0
     while i < len(args):
         if args[i] in ("--yes", "-y", "--list", "--all", "--next-slot", "--check", "--force"):
             i += 1
+        elif args[i] == "--clone-media" and i + 1 < len(args):
+            clone_media_id = args[i + 1]
+            i += 2
         elif args[i] == "--platform" and i + 1 < len(args):
             platform_flag = args[i + 1]
             i += 2
@@ -599,6 +689,7 @@ def main():
         print("Options:")
         print("  --platform li,x,ig          Comma-separated platform suffixes")
         print("  --all                       Post to all platforms")
+        print("  --clone-media <sub_id>      Pull media from existing Blotato submission")
         print("  --schedule <time>           Schedule for specific time")
         print("  --next-slot                 Use Blotato's next available slot")
         print("  --check                     Check guardrails only (no scheduling)")
@@ -713,24 +804,56 @@ def main():
             sys.exit(0)
 
     image_urls = []
-    # Auto-generate visual for LinkedIn posts that lack one
-    if "li" in platforms and not image_prompt and not all_image_prompts:
-        visual_type = get_next_visual_type()
-        image_prompt = auto_visual_prompt(text)
-        print(f"\n[Auto-visual: {visual_type}]")
-        print(f"  Prompt: {image_prompt[:100]}...")
-    if image_prompt or all_image_prompts:
-        print(f"\n[Visual Generation: {visual_type}]")
-        if visual_type == "carousel" and len(all_image_prompts) > 1:
-            # Combine all slide prompts into one prompt for the carousel template
-            combined = "Create a carousel with these slides:\n"
-            for i, p in enumerate(all_image_prompts, 1):
-                combined += f"\nSlide {i}/{len(all_image_prompts)}: {p}\n"
-            image_urls = generate_visual(api_key, combined, title="Road4AI Carousel", visual_type=visual_type)
-        else:
-            image_urls = generate_visual(api_key, image_prompt, title="Road4AI Post Image", visual_type=visual_type)
-        if image_urls:
-            save_visual_type(visual_type)
+
+    # --clone-media: pull media from an existing Blotato submission
+    if clone_media_id:
+        image_urls = fetch_post_media(api_key, clone_media_id)
+        if not image_urls:
+            print("\nWARNING: Could not fetch media from submission", clone_media_id)
+            print("Post will go out without media attached.")
+            if not auto_yes:
+                try:
+                    confirm = input("Continue anyway? [y/N] ").strip().lower()
+                except (EOFError, KeyboardInterrupt):
+                    confirm = "n"
+                if confirm != "y":
+                    print("Cancelled.")
+                    sys.exit(0)
+    else:
+        # Auto-generate visual for LinkedIn posts that lack one
+        if "li" in platforms and not image_prompt and not all_image_prompts:
+            visual_type = get_next_visual_type()
+            image_prompt = auto_visual_prompt(text)
+            print(f"\n[Auto-visual: {visual_type}]")
+            print(f"  Prompt: {image_prompt[:100]}...")
+        if image_prompt or all_image_prompts:
+            print(f"\n[Visual Generation: {visual_type}]")
+            if visual_type == "carousel" and len(all_image_prompts) > 1:
+                combined = "Create a carousel with these slides:\n"
+                for i, p in enumerate(all_image_prompts, 1):
+                    combined += f"\nSlide {i}/{len(all_image_prompts)}: {p}\n"
+                image_urls = generate_visual(api_key, combined, title="Road4AI Carousel", visual_type=visual_type)
+            else:
+                image_urls = generate_visual(api_key, image_prompt, title="Road4AI Post Image", visual_type=visual_type)
+            if image_urls:
+                save_visual_type(visual_type)
+
+    # Warn if image generation failed and posts include Instagram
+    ig_needs_media = "ig" in platforms and not clone_media_id
+    if not image_urls and ig_needs_media:
+        print("\n" + "=" * 50)
+        print("WARNING: No media URLs generated. Instagram posts require")
+        print("media (image or video) to display correctly.")
+        print("Posts will go out as text-only.")
+        print("=" * 50)
+        if not auto_yes:
+            try:
+                confirm = input("Continue without media? [y/N] ").strip().lower()
+            except (EOFError, KeyboardInterrupt):
+                confirm = "n"
+            if confirm != "y":
+                print("Cancelled.")
+                sys.exit(0)
 
     results = []
     for suffix in platforms:
@@ -753,11 +876,21 @@ def main():
         else:
             print(f"\nPosting to {platform}...", end=" ", flush=True)
             try:
-                result = schedule_post(api_key, account_id, platform, text, scheduled_time, next_slot, image_urls=image_urls)
+                # Detect video URLs for Instagram/Facebook mediaType
+                media_type = None
+                if platform in ("instagram", "facebook") and image_urls:
+                    has_video = any(url.endswith((".mp4", ".mov", ".webm")) for url in image_urls)
+                    if has_video:
+                        media_type = "reel"
+                result = schedule_post(api_key, account_id, platform, text, scheduled_time, next_slot, image_urls=image_urls, media_type=media_type)
                 info = extract_result(result)
                 results.append({"platform": platform, **info})
                 status = info.get("status", "unknown")
                 url = info.get("url", "")
+                sid = info.get("submission_id")
+                # Cache media URLs for later cloning
+                if sid and image_urls:
+                    save_media_cache(sid, image_urls)
                 print(f"{status}")
                 if url:
                     print(f"  URL: {url}")
