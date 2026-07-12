@@ -45,7 +45,7 @@ This is the constitution for all agents working in this repo. Every session read
 - Execution, tool integration (Blotato), publishing.
 - Session start: parse `CHECKPOINT` git log for handoff state.
 - Read `drafts/approved/`, schedule via Blotato, archive immediately after scheduling confirmation.
-- Update `state/published-log.json` with live URLs.
+- Update `state/published-log.json` with Blotato scheduling confirmation (blotato_id, scheduled_time). Do not verify whether posts appeared on platforms; Blotato confirmation is the terminal state.
 
 ### Content Scout
 - Knowledge extraction from transcripts, articles, videos.
@@ -74,7 +74,7 @@ This is the constitution for all agents working in this repo. Every session read
 3. **Approval**: Only the user moves files from `ready/` to `approved/`.
 4. **Karen Gate**: Every draft must pass adversarial review (`karen_verdict: APPROVED` in frontmatter) before it can be scheduled. No exceptions.
 5. **Approved Folder Hygiene**: Once approved content is scheduled in Blotato, move to `drafts/archived/` immediately. Never leave scheduled content in `approved/`.
-5. **Traceability**: Every scheduled post needs a queue entry; every published post needs a published-log entry.
+5. **Traceability**: Every scheduled post needs a queue entry; every Blotato-confirmed post needs a published-log entry.
 6. **Governance Lock**: Any mutation to `AGENTS.md` MUST be reviewed and approved by the human conductor. No agent-to-agent negotiation of operating contracts.
 7. **Write Gate**: Agents may read `AGENTS.md` but must not write to it as part of normal task execution.
 8. **Public Sanitization**: Drafts discussing security, prompt injection, autonomy failures, or customer examples must pass public sanitization review before approval.

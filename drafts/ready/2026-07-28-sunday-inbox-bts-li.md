@@ -4,7 +4,8 @@ hook: "Every Sunday, I dump whatever's rattling around in my head into one file.
 type: Behind-the-scenes
 platform: LinkedIn
 goal: Build in public
-karen_verdict: PENDING
+karen_verdict: APPROVED
+scheduled: true
 ---
 
 Every Sunday, I dump whatever's rattling around in my head into one file. No structure, no editing, just get it out.

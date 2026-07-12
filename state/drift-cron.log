@@ -1,0 +1,12 @@
+[daily-drift] Starting daily check at 2026-07-07T11:12:25.570417+00:00
+[daily-drift] Social voice score: 0.806 (cases: 10, failed: ['case-002'])
+[daily-drift] Status: green | Action: auto-store | social_voice within tolerance
+[daily-drift] OK: within tolerance
+[daily-drift] Starting daily check at 2026-07-07T11:14:20.747392+00:00
+[daily-drift] Social voice score: 0.806 (cases: 10, failed: ['case-002'])
+[daily-drift] Status: green | Action: auto-store | social_voice within tolerance
+[daily-drift] OK: within tolerance
+[daily-drift] Starting daily check at 2026-07-07T11:14:35.137413+00:00
+[daily-drift] Social voice score: 0.796 (cases: 10, failed: [])
+[daily-drift] Status: green | Action: auto-store | social_voice within tolerance
+[daily-drift] OK: within tolerance
