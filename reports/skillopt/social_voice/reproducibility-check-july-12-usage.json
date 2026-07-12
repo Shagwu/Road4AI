@@ -1,0 +1,62 @@
+{
+  "run_id": "20260712T132455Z-social_voice",
+  "mode": "baseline-only",
+  "benchmark": "social_voice",
+  "cases": 10,
+  "pricing_config": {
+    "path": "/tmp/ollama_pricing.json",
+    "sha256": "146f2c84ebb3d13bd8c4f50769b197a16fc44e366e432f17837bce597fcc7916",
+    "source": "local Ollama inference"
+  },
+  "models": {
+    "target_model": "qwen2.5-coder:14b",
+    "evaluator_model": "qwen2.5-coder:14b",
+    "optimizer_model": "qwen2.5-coder:14b"
+  },
+  "calls": {
+    "target_model": 10,
+    "evaluator_model": 10,
+    "optimizer_model": 0
+  },
+  "tokens": {
+    "target_model": {
+      "prompt": 17662,
+      "completion": 1822,
+      "total": 19484
+    },
+    "evaluator_model": {
+      "prompt": 3787,
+      "completion": 1420,
+      "total": 5207
+    },
+    "optimizer_model": {
+      "prompt": 0,
+      "completion": 0,
+      "total": 0
+    }
+  },
+  "estimated_cost_usd": {
+    "target_model": 0.0,
+    "evaluator_model": 0.0,
+    "optimizer_model": 0.0,
+    "total": 0.0
+  },
+  "reasons": {
+    "optimizer_model": "Baseline-only mode"
+  },
+  "baseline_score": 0.6463333333333334,
+  "optimized_score": 0.6463333333333334,
+  "baseline_score_stddev": 0.35150296347731314,
+  "optimized_score_stddev": 0.35150296347731314,
+  "baseline_failed_case_ids": [
+    "case-001",
+    "case-002",
+    "case-009"
+  ],
+  "optimized_failed_case_ids": [
+    "case-001",
+    "case-002",
+    "case-009"
+  ],
+  "improvement_pct": 0.0
+}
