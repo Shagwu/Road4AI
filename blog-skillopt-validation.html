@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>We Tested SkillOpt Locally Before Letting Hermes Learn | Road4AI</title>
+    <meta
+      name="description"
+      content="I didn't want Hermes to learn until I knew it could stay inside the guardrails. How Road4AI validated SkillOpt locally before integrating it into Hermes v2.1."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #000000;
+        --surface: #0a0a0a;
+        --surface-2: #050505;
+        --text: #ffffff;
+        --muted: #9ca3af;
+        --border: #1f2937;
+        --accent: #10b981;
+        --accent-2: #34d399;
+        --glow: rgba(16, 185, 129, 0.16);
+        --max: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "JetBrains Mono", "Geist Mono", "SFMono-Regular", Consolas,
+          "Liberation Mono", Menlo, monospace;
+        line-height: 1.55;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px
+        );
+        background-size: 100% 6px;
+        opacity: 0.08;
+      }
+
+      a {
+        color: var(--accent-2);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--text);
+      }
+
+      .shell {
+        width: min(calc(100% - 32px), var(--max));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        border-bottom: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.92);
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(10px);
+        z-index: 10;
+      }
+
+      .topbar-inner {
+        width: min(calc(100% - 32px), var(--max));
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        gap: 16px;
+      }
+
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .brand::before {
+        content: "> ";
+        color: var(--accent);
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .article {
+        max-width: 74ch;
+        margin: 0 auto;
+        padding: 56px 0 40px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: var(--accent);
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        padding: 6px 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.72rem;
+        margin-bottom: 18px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.12;
+        margin: 0 0 16px;
+      }
+
+      h1 {
+        font-size: clamp(1.9rem, 5vw, 2.9rem);
+        letter-spacing: -0.04em;
+      }
+
+      h2 {
+        font-size: clamp(1.3rem, 3vw, 1.7rem);
+        letter-spacing: -0.03em;
+        margin-top: 44px;
+      }
+
+      h3 {
+        font-size: 1.02rem;
+        margin-top: 28px;
+        color: var(--text);
+      }
+
+      p {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 0.98rem;
+      }
+
+      .lede {
+        max-width: 62ch;
+        font-size: 1.1rem;
+        color: var(--text);
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-bottom: 28px;
+      }
+
+      code {
+        color: var(--accent-2);
+        background: var(--surface-2);
+        padding: 1px 5px;
+        border-radius: 2px;
+      }
+
+      ul.clean {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 16px;
+        display: grid;
+        gap: 10px;
+      }
+
+      ul.clean li {
+        border-left: 2px solid var(--accent);
+        padding-left: 12px;
+        color: var(--muted);
+      }
+
+      ol.steps-list {
+        margin: 0 0 16px;
+        padding-left: 22px;
+        color: var(--muted);
+      }
+
+      ol.steps-list li {
+        margin-bottom: 8px;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        background: linear-gradient(
+          180deg,
+          rgba(10, 10, 10, 0.94),
+          rgba(0, 0, 0, 1)
+        );
+        padding: 22px;
+        margin: 20px 0;
+        box-shadow: 0 0 24px rgba(16, 185, 129, 0.06);
+      }
+
+      .score-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin: 20px 0 28px;
+      }
+
+      .score-card {
+        border: 1px solid var(--border);
+        background: var(--surface);
+        padding: 18px;
+      }
+
+      .score-card .domain {
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+
+      .score-card .score {
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 1.6rem;
+      }
+
+      .score-card .cost {
+        margin-top: 8px;
+        font-size: 0.82rem;
+        color: var(--muted);
+      }
+
+      blockquote {
+        border-left: 2px solid var(--accent);
+        margin: 0 0 16px;
+        padding: 2px 0 2px 16px;
+        color: var(--text);
+        font-style: normal;
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 36px 0;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 36px;
+      }
+
+      .tag {
+        border: 1px solid var(--border);
+        padding: 6px 10px;
+        background: var(--surface);
+        color: var(--muted);
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-bottom: 24px;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 24px 0 40px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 640px) {
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">Road4AI</div>
+        <nav class="nav">
+          <a href="index.html#why">Why</a>
+          <a href="index.html#system">System</a>
+          <a href="index.html#proof">Proof</a>
+          <a href="index.html#fit">Fit</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell">
+      <article class="article">
+        <a class="back-link" href="index.html">&larr; Back to Road4AI</a>
+        <div class="eyebrow">v2.1 &middot; Skill Optimization</div>
+        <h1>We Tested SkillOpt Locally Before Letting Hermes Learn</h1>
+        <p class="meta">Road4AI &middot; July 15, 2026</p>
+
+        <p class="lede">
+          I didn't want Hermes to learn until I knew it could stay inside the
+          guardrails.
+        </p>
+
+        <p>
+          That's the problem with AI self-modification. The optimizer can
+          generate better instructions, but it can also rewrite the rules
+          it's supposed to obey. If you let it loose without boundaries, you
+          don't get improvement &mdash; you get drift.
+        </p>
+
+        <p>
+          So we tested SkillOpt locally before integrating it into the Hermes
+          architecture. Here's what we found.
+        </p>
+
+        <h2>What is SkillOpt?</h2>
+        <p>
+          SkillOpt is Microsoft's framework for optimizing LLM prompts
+          through automated testing and iteration. It works by:
+        </p>
+        <ol class="steps-list">
+          <li>Running your skill against test cases</li>
+          <li>Measuring where it fails</li>
+          <li>Generating edits to fix those failures</li>
+          <li>Re-evaluating to confirm improvement</li>
+        </ol>
+        <p>
+          The key insight: SkillOpt doesn't just generate better prompts. It
+          generates better prompts <em>measurably</em>. You can see the delta
+          before and after.
+        </p>
+        <p>
+          For Hermes v2.1, we wanted to use SkillOpt to optimize selected
+          Road4AI skills &mdash; the ones that handle social voice, memory
+          operations, and question answering.
+        </p>
+        <p>But first, we needed to validate the framework locally.</p>
+
+        <h2>The Validation Setup</h2>
+        <p>We built a three-model benchmark runner:</p>
+        <ul class="clean">
+          <li><strong>Target model</strong> &mdash; runs the skill and generates outputs</li>
+          <li><strong>Evaluator model</strong> &mdash; scores outputs against expected traits</li>
+          <li><strong>Optimizer model</strong> &mdash; proposes edits when failures are detected</li>
+        </ul>
+        <p>
+          Each model is explicitly specified (no aliases), and every API call
+          is tracked with token counts and cost estimates.
+        </p>
+        <p>We created 10 benchmark cases per domain:</p>
+        <ul class="clean">
+          <li><strong>social_voice</strong> &mdash; tests for technical honesty, directness, no hype</li>
+          <li><strong>memory_ops</strong> &mdash; tests for clarity, actionability, safety</li>
+          <li><strong>qa</strong> &mdash; tests for accuracy, conciseness, citations</li>
+        </ul>
+
+        <p>The governance boundary was clear from the start:</p>
+
+        <div class="panel">
+          <p style="color: var(--text); margin-bottom: 10px;"><strong>Protected files</strong> (SkillOpt cannot touch):</p>
+          <ul class="clean" style="margin-bottom: 18px;">
+            <li><code>AGENTS.md</code></li>
+            <li><code>docs/brand-voice.md</code></li>
+            <li><code>state/current-queue.json</code></li>
+            <li>Operating contracts</li>
+          </ul>
+          <p style="color: var(--text); margin-bottom: 10px;"><strong>Allowed files</strong> (SkillOpt can optimize):</p>
+          <ul class="clean">
+            <li><code>skills/**/SKILL.md</code></li>
+            <li><code>rules/content/*.md</code></li>
+          </ul>
+        </div>
+
+        <p>
+          Every proposed edit goes through human review before application.
+          No auto-merge. No hidden self-modification.
+        </p>
+
+        <h2>The Orchestration Suite</h2>
+        <p>Before optimizing individual skills, we tested whether they could work together.</p>
+        <p>We built a 12-case orchestration suite that exercises cross-domain patterns:</p>
+        <ul class="clean">
+          <li><strong>Signal routing</strong> &mdash; detect a trend, checkpoint it to Hermes, retrieve it on the next call</li>
+          <li><strong>Confidence tiering</strong> &mdash; high confidence auto-stores, low confidence queues for review</li>
+          <li><strong>Cross-domain generation</strong> &mdash; write social content about memory concepts (TTL, relevance scoring)</li>
+          <li><strong>Timeout handling</strong> &mdash; verify graceful degradation when one domain times out</li>
+          <li><strong>Drift detection</strong> &mdash; compare scores across weeks, flag breaches, halt on &plusmn;10%</li>
+          <li><strong>Pipeline integrity</strong> &mdash; end-to-end: detect &rarr; checkpoint &rarr; retrieve &rarr; generate &rarr; verify</li>
+        </ul>
+
+        <blockquote>Result: 12/12 passing, zero drift breaches, zero governance violations.</blockquote>
+
+        <p>
+          The orchestration layer is where things get interesting. Individual
+          skills can be good in isolation, but the real test is whether they
+          cooperate without breaking each other's rules. The suite confirms
+          they do.
+        </p>
+
+        <h2>What We Found</h2>
+        <p>
+          Heads up, these three numbers aren't the 0.788 from the social
+          posts. That's voice-match. These are per-domain scores from the
+          full suite. Different measurement, same launch.
+        </p>
+
+        <div class="score-grid">
+          <div class="score-card">
+            <div class="domain">social_voice</div>
+            <div class="score">0.950</div>
+            <div class="cost">$0.086 &middot; no failures, optimizer skipped</div>
+          </div>
+          <div class="score-card">
+            <div class="domain">memory_ops</div>
+            <div class="score">0.915</div>
+            <div class="cost">$0.121 &middot; no failures</div>
+          </div>
+          <div class="score-card">
+            <div class="domain">qa</div>
+            <div class="score">0.803</div>
+            <div class="cost">$0.231 &middot; optimizer ran</div>
+          </div>
+        </div>
+
+        <h3>social_voice: 0.950 baseline</h3>
+        <p>
+          The social voice skill scored 0.950 out of 1.0 across all 10 cases.
+          No failures detected. The optimizer was skipped &mdash; nothing to
+          improve.
+        </p>
+        <p>
+          This meant the skill was already well-tuned. The hook formulas,
+          tone guidelines, and platform-specific advice were producing
+          high-quality output.
+        </p>
+
+        <h3>memory_ops: 0.915 baseline</h3>
+        <p>
+          The memory operations skill scored 0.915. Again, no failures. The
+          skill's instructions about TTL, ChromaDB integration, and relevance
+          scoring were clear and actionable.
+        </p>
+
+        <h3>qa: 0.803 baseline &mdash; optimizer ran</h3>
+        <p>The question-answering skill scored 0.803. Two cases failed:</p>
+        <ul class="clean">
+          <li><strong>qa-002 (SkillOpt)</strong> &mdash; the model didn't know SkillOpt was Microsoft's framework. It guessed.</li>
+          <li><strong>qa-003 (Road4AI agents)</strong> &mdash; the model didn't know Road4AI's agent stack. It hallucinated.</li>
+        </ul>
+        <p>The optimizer proposed two edits:</p>
+        <ol class="steps-list">
+          <li>Add a "Citing Authoritative Sources" section</li>
+          <li>Add a task-specific question about checking definitions before speculating</li>
+        </ol>
+        <p>We reviewed the proposals, approved them, and applied the edits.</p>
+
+        <p style="color: var(--text); font-weight: 700;">Total validation cost: $0.438</p>
+
+        <h2>The Governance Boundary Held</h2>
+        <p>The most important finding wasn't the scores &mdash; it was that the governance boundary held.</p>
+        <p>When the optimizer ran on the QA domain, it proposed relevant, useful edits. It didn't try to:</p>
+        <ul class="clean">
+          <li>Rewrite <code>AGENTS.md</code></li>
+          <li>Change agent roles</li>
+          <li>Modify operating contracts</li>
+          <li>Remove approval gates</li>
+        </ul>
+        <p>
+          It stayed inside the sandbox. It suggested improvements to the
+          skill file, and a human reviewed every change.
+        </p>
+        <p>That's the v2.1 pattern:</p>
+        <blockquote>Suggest. Measure. Review. Then accept or reject.</blockquote>
+        <p>No auto-merge. No hidden self-modification. No "the agent improved itself overnight" theater.</p>
+
+        <h2>What We Learned</h2>
+        <p><strong style="color: var(--text);">The optimizer works.</strong> It produces coherent, domain-aware edits. Not magic, but functional.</p>
+        <p><strong style="color: var(--text);">The cost is real but small.</strong> A small-domain run costs roughly $0.30&ndash;$0.60. That's cheap enough to validate repeatedly.</p>
+        <p><strong style="color: var(--text);">Governance holds.</strong> The protected files list blocked every attempt to edit AGENTS.md, brand voice, or operating contracts. The optimizer stayed inside the sandbox.</p>
+        <p><strong style="color: var(--text);">The hard part is not generation.</strong> The hard part is preventing the optimizer from rewriting the rules it is supposed to obey.</p>
+
+        <h2>What's Next</h2>
+        <p>
+          <strong style="color: var(--text);">v2.1</strong> &mdash; Hermes learns under supervision. The SkillOpt
+          integration is validated and ready for production runs on selected
+          skills. Drift monitoring runs daily through July 10, with automatic
+          alerts on threshold breaches.
+        </p>
+        <p>
+          <strong style="color: var(--text);">v2.2</strong> &mdash; Hermes scales. Community contribution paths
+          expand once the memory and learning loops have proven safe
+          operating boundaries.
+        </p>
+        <p>The roadmap is clear:</p>
+        <ul class="clean">
+          <li>v2.0 gave Hermes memory</li>
+          <li>v2.1 gives Hermes a learning loop</li>
+          <li>v2.2 gives Hermes a community</li>
+        </ul>
+
+        <h2>The Principle</h2>
+        <p>Skill evolution should be boring enough to trust.</p>
+        <p>
+          We didn't let the optimizer rewrite the constitution. We gave it a
+          narrow sandbox, measured its output, and reviewed every change.
+        </p>
+        <p>
+          That's not exciting. It's not "AI improves itself while you
+          sleep." It's deliberate, measured, and auditable.
+        </p>
+        <p>And that's exactly the point.</p>
+
+        <hr />
+
+        <p style="font-size: 0.9rem;">
+          <em>Road4AI is a zero-cost, local-first AI operator blueprint.
+          Follow along as we build in public.</em>
+        </p>
+
+        <div class="tags">
+          <span class="tag">#Road4AI</span>
+          <span class="tag">#AIAgents</span>
+          <span class="tag">#BuildInPublic</span>
+          <span class="tag">#SkillOpt</span>
+          <span class="tag">#PromptEngineering</span>
+        </div>
+      </article>
+    </main>
+
+    <footer class="shell footer">
+      <p>
+        Road4AI v2.1: Zero-cost AI operator blueprint with governed skill optimization.
+      </p>
+    </footer>
+  </body>
+</html>
