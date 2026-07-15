@@ -141,6 +141,30 @@
       "location": ".agents/skills/skill-creator",
       "origin": "vendor-skill-tooling",
       "status": "keep"
+    },
+    "subagent-driven-development": {
+      "tier": 3,
+      "location": ".agents/skills/subagent-driven-development",
+      "origin": "vendor-skill-pack",
+      "status": "keep"
+    },
+    "tdd": {
+      "tier": 3,
+      "location": ".agents/skills/tdd",
+      "origin": "vendor-skill-pack",
+      "status": "keep"
+    },
+    "writing-plans": {
+      "tier": 3,
+      "location": ".agents/skills/writing-plans",
+      "origin": "vendor-skill-pack",
+      "status": "keep"
+    },
+    "using-git-worktrees": {
+      "tier": 3,
+      "location": ".agents/skills/using-git-worktrees",
+      "origin": "vendor-skill-pack",
+      "status": "keep"
     }
   },
   "marketing_generic_pack": {

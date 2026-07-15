@@ -3,11 +3,28 @@ name: ideation-orchestrator
 description: >
   Enables the Chief of Staff to process raw signals from inbox.md into a structured ideation brief,
   dispatch specialists, and aggregate outputs into ideas.md.
+origin: Road4AI
+tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  - Glob
 ---
 
 # Ideation Orchestrator Mode
 
-Activate this mode when `inbox.md` contains new signals or when a weekly content ideation sprint begins.
+## When to Activate
+
+- `inbox.md` contains new signals or raw capture material.
+- A weekly content ideation sprint begins.
+- The Chief of Staff needs to dispatch specialist sub-agents in parallel.
+
+Do not use this skill for drafting, editing, scheduling, or publishing content. Those gates belong to the content-pipeline skill.
+
+## The Mechanism
+
+The ideation orchestrator scans `inbox.md` for raw signals, builds a structured brief with 5-10 angles, dispatches specialist sub-agents (content-scout, format-selector, voice-match-ideator) in parallel, then aggregates their outputs into a ranked `ideas.md` file.
 
 ## Workflow
 
@@ -19,7 +36,7 @@ Activate this mode when `inbox.md` contains new signals or when a weekly content
    - `@voice-match-ideator`: To generate hooks in Shagwu's voice.
 4. **Aggregate to `ideas.md`**: Merge outputs into ranked blocks.
 
-## Output Schema (ideas.md)
+## Output Contract (ideas.md)
 
 ```markdown
 ## [Idea title — punchy, no em dashes]
