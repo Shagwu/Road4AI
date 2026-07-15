@@ -38,7 +38,8 @@ The checkpoint records:
 2. Identify the completed logical unit.
 3. Stage only intentional files.
 4. Run relevant validation.
-5. Commit with:
+5. Run `python3 tools/lock_agents_md.py --guard` to ensure AGENTS.md is read-only.
+6. Commit with:
 
 ```text
 CHECKPOINT: <one-line description>
@@ -53,7 +54,7 @@ Agent: <claude | codex | cos>
 [/hermes-context]
 ```
 
-6. At session start, restore context with:
+7. At session start, restore context with:
 
 ```bash
 git log --grep="CHECKPOINT:" --format="%B" -3

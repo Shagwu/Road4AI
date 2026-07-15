@@ -46,6 +46,7 @@ Hermes checkpoints are structured git commits that preserve machine-readable con
 - Do not stage unrelated draft, queue, tool metadata, or generated files.
 - Do not revert changes you did not make.
 - If `AGENTS.md` was changed, confirm the session included explicit human approval and the governance lock was restored.
+- After every checkpoint, run `python3 tools/lock_agents_md.py --guard` to ensure AGENTS.md is read-only.
 
 ## Commit Format
 
