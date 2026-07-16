@@ -142,6 +142,7 @@ Before deleting or merging any skill:
 3. Keep `skills/hermes-checkpoint-patterns` as teaching/audit unless later merged.
 4. Classify `.agents/skills/*` by tier in `skills/manifest.json`.
 5. Keep `.agents/marketing/` reference docs in `docs/marketing/`.
+6. ~~`ideation-orchestrator`~~ — consolidated into `content-pipeline` (July 2026). Canonical archived to `docs/archive/skills/ideation-orchestrator/`.
 
 ## Inventory Review Cadence
 

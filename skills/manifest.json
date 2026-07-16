@@ -30,11 +30,11 @@
       "notes": ".agents/skills/hermes-checkpoint remains operational runtime."
     },
     "ideation-orchestrator": {
-      "tier": 1,
-      "source": "skills/ideation-orchestrator",
+      "tier": 5,
+      "source": "docs/archive/skills/ideation-orchestrator",
       "runtime_targets": [],
-      "status": "canonical_runtime_source",
-      "notes": "Canonical Road4AI inbox-to-ideas orchestration pattern. Runtime copies remain protected harness surfaces until sync policy is expanded for active Tier 2 installs."
+      "status": "archived",
+      "notes": "Archived July 2026. All patterns consolidated into skills/content-pipeline. Kept for teaching and reference value."
     },
     "public-sanitization-review": {
       "tier": 1,
@@ -65,20 +65,6 @@
       "harnesses": ["codex"],
       "status": "keep_runtime_operational",
       "notes": "Road4AI-adapted voice and content guardian runtime skill."
-    },
-    "agents-ideation-orchestrator": {
-      "tier": 2,
-      "location": ".agents/skills/ideation-orchestrator",
-      "harnesses": ["codex"],
-      "status": "keep_runtime_operational",
-      "notes": "Road4AI-adapted runtime ideation skill; canonical lifecycle source is skills/content-pipeline."
-    },
-    "gemini-ideation-orchestrator": {
-      "tier": 2,
-      "location": ".gemini/skills/ideation-orchestrator",
-      "harnesses": ["gemini"],
-      "status": "keep_runtime_operational",
-      "notes": "Gemini-specific ideation runtime skill."
     }
   },
   "vendor_tool_skills": {
