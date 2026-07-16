@@ -85,7 +85,7 @@ def main():
     if not check_json_integrity(state_dir): ok = False
     if not check_x_draft_length(queue_file): ok = False
     if not check_queue_consistency(queue_file): ok = False
-    if not check_public_sanitization(["drafts/ideas", "drafts/ready", "drafts/approved"]): ok = False
+    if not check_public_sanitization(["drafts/ideas", "drafts/ready", "drafts/approved", "content"]): ok = False
     
     if not ok:
         sys.exit(1)

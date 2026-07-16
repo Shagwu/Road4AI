@@ -32,6 +32,10 @@ import requests
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+# Add tools/ to path for sanitizer import
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from public_sanitizer import scan_file
+
 PLATFORMS = {
     "li": ("2383", "linkedin"),
     "x": ("14446", "twitter"),
@@ -217,14 +221,29 @@ def check_guardrails(filepath, force=False):
 
     issues = []
 
+    # Karen gate is ALWAYS enforced. --force cannot bypass it.
+    # Per AGENTS.md: "Every draft must pass adversarial review
+    # (karen_verdict: APPROVED in frontmatter) before it can be
+    # scheduled. No exceptions."
+    karen = fm.get("karen_verdict", "")
+    if "APPROVED" not in karen.upper():
+        issues.append(f"Karen verdict missing or not APPROVED: {karen or '(none)'}")
+        issues.append("Karen gate is inviolable. Run karen.py and get APPROVED before scheduling.")
+
     if not force:
         if "drafts/approved/" not in rel and "drafts/archived/" not in rel:
             issues.append(f"NOT in drafts/approved/ or drafts/approved/: {rel}")
             issues.append("Content must be in drafts/approved/ before scheduling. User must approve first.")
 
-        karen = fm.get("karen_verdict", "")
-        if "APPROVED" not in karen.upper():
-            issues.append(f"Karen verdict missing or not APPROVED: {karen or '(none)'}")
+    # Public sanitization gate: scan for secrets, paths, exploit phrases
+    report = scan_file(Path(filepath))
+    if report["findings"]:
+        for f in report["findings"]:
+            issues.append(
+                f"Sanitization {f['severity']} on line {f['line']}: "
+                f"{f['kind']} -> {f['replacement']} ({f['message']})"
+            )
+        issues.append("Run: python3 tools/public_sanitizer.py <file> --write to fix, then re-commit.")
 
     return fm, issues
 
