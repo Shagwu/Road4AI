@@ -46,6 +46,7 @@ Independent research and ideation can run in parallel. Dedup, drafting, review, 
 6. Sanitizer: `public-sanitization-review` checks exploit strings, paths, secrets, private account names, and unsafe examples.
 7. Approval: only the user moves content into `drafts/approved/`.
 8. Scheduling: Claude Code schedules approved content through Blotato and updates shared state.
+9. Filing: after Blotato confirms scheduling, move scheduled drafts from `drafts/approved/` to `drafts/archived/` and update queue paths. The approved folder is a scheduling inbox, not storage; leaving scheduled files there creates duplicate-approval and repost risk.
 
 ## Parallel Ideation Workstreams
 
@@ -62,30 +63,15 @@ The Chief of Staff aggregates the outputs, applies Road4AI strategy, and routes 
 
 1. Read the required coordination files: `AGENTS.md`, `state/current-queue.json`, `docs/brand-voice.md`, and `docs/content-strategy.md`.
 2. Run the queue audit.
-3. **Run the Struggle ratio guardrail:** `python tools/check_struggle_ratio.py`. If it returns FAIL, generate at least one Struggle candidate before proceeding. The ratio must stay at or above 25% across the last 10 entries (published + scheduled + ready). This is a blocking gate, not a suggestion.
-4. Identify the source material and whether it is inbox-derived, roadmap-derived, or experimental.
-5. Generate 3-5 ranked candidate ideas. If the guardrail flagged a deficit, at least one candidate must be Struggle type.
-6. For each idea, include title, hook, type, platform, goal, source, priority, and why it fits now.
-7. Run the dedup gate before any queue write.
-8. Draft selected content into `drafts/ideas/` or `drafts/ready/` based on user instruction.
-9. Run Karen and public sanitizer gates before approval or scheduling.
-10. **STOP. Do not schedule.** Content stays in `drafts/ready/` until the user explicitly approves.
-11. **Only after user approval:** user moves content to `drafts/approved/`, then schedule via Blotato.
-12. After a successful queue write, create a Hermes checkpoint commit.
-
-**The approval gate is non-negotiable.** No agent may schedule content from `drafts/ready/`. Scheduling is only allowed from `drafts/approved/`. If you are uncertain whether approval was given, ask.
-
-## Platform Constraints
-
-**Blog posts are disabled.** No blog platform is configured. Content must be routed to:
-- X (Twitter)
-- LinkedIn
-- Instagram
-- TikTok
-- Threads
-- Facebook
-
-Never propose or create queue entries with `"platform": "Blog"`. This decision was made on 2026-07-01.
+3. Identify the source material and whether it is inbox-derived, roadmap-derived, or experimental.
+4. Generate 3-5 ranked candidate ideas.
+5. For each idea, include title, hook, type, platform, goal, source, priority, and why it fits now.
+6. Run the dedup gate before any queue write.
+7. Draft selected content into `drafts/ideas/` or `drafts/ready/` based on user instruction.
+8. Run Karen and public sanitizer gates before approval or scheduling.
+9. Preserve manual approval: only the user moves content into `drafts/approved/`.
+10. After scheduling in Blotato, archive the scheduled draft and update queue references away from `drafts/approved/`.
+11. After a successful queue write, create a Hermes checkpoint commit.
 
 ## Output Contract
 
@@ -105,8 +91,6 @@ Return:
 - Do not flatten Road4AI into generic AI marketing content.
 - Do not move content into `drafts/approved/`.
 - Do not publish or schedule content before approval.
-- **Do not schedule from `drafts/ready/`.** Only schedule from `drafts/approved/`. If the draft is in `ready/`, it is waiting for the user. Ask before acting.
-- **Do not write queue entries when the Struggle ratio guardrail fails.** Run `python tools/check_struggle_ratio.py` before any queue write. If it returns FAIL, generate Struggle content first. No exceptions.
 
 ## Related Skills
 

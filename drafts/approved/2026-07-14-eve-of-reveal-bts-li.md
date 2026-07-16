@@ -4,9 +4,8 @@ hook: "Tomorrow the numbers go public. Here's the one thing I keep coming back t
 type: Behind-the-scenes
 platform: LinkedIn
 goal: Build in public
-karen_verdict: APPROVED
-karen_date: 2026-07-13
-scheduled: true
+karen_verdict: PENDING
+scheduled: false
 ---
 
 Tomorrow the numbers go public. Here's the one thing I keep coming back to.

@@ -75,8 +75,8 @@ This is the constitution for all agents working in this repo. Every session read
 4. **Karen Gate**: Every draft must pass adversarial review (`karen_verdict: APPROVED` in frontmatter) before it can be scheduled. No exceptions.
 5. **Approved Folder Hygiene**: Once approved content is scheduled in Blotato, move to `drafts/archived/` immediately. Never leave scheduled content in `approved/`.
 5. **Traceability**: Every scheduled post needs a queue entry; every Blotato-confirmed post needs a published-log entry.
-6. **Governance Lock**: Any mutation to `AGENTS.md` MUST be reviewed and approved by the human conductor. No agent-to-agent negotiation of operating contracts.
-7. **Write Gate**: Agents may read `AGENTS.md` but must not write to it as part of normal task execution.
+6. **Governance Lock**: Any mutation to `AGENTS.md` MUST be reviewed and approved by the human conductor. No agent-to-agent negotiation of operating contracts. Filesystem protection is enforced via `tools/lock_agents_md.py`. AGENTS.md is read-only (chmod 444) by default. The human must explicitly unlock (chmod 644) before any edit, then re-lock immediately after.
+7. **Write Gate**: Agents may read `AGENTS.md` but must not write to it as part of normal task execution. The filesystem lock is the backstop.
 8. **Public Sanitization**: Drafts discussing security, prompt injection, autonomy failures, or customer examples must pass public sanitization review before approval.
 9. **Security Before Commit**: Check for hardcoded secrets, bearer tokens, OAuth files, private local paths, copy-pasteable exploit payloads, and accidental protected-file edits.
 10. **Queue Shape Preservation**: `state/current-queue.json` uses a top-level `queue` array. Preserve this shape unless the user explicitly approves a schema migration.
