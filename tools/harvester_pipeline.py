@@ -83,20 +83,31 @@ def should_log_signal(item: dict, seen_urls: set) -> bool:
     return True
 
 
-ROAD4AI_KEYWORDS = [
-    "skillopt", "hermes", "road4ai", "drift", "governance",
-    "local llm", "zero-cost", "multi-agent", "obsidian", "blotato",
-    "agent memory", "skill optimization", "guardrail",
+# Topical keywords for underrepresentation check (appear in external RSS content)
+TOPICAL_KEYWORDS = [
+    "local llm", "local model", "inference", "agent memory", "agent infra",
+    "evals", "evaluation", "multi-agent", "orchestration", "guardrail",
+    "governance", "drift", "fine-tune", "quantization", "gguf",
+    "self-hosted", "open weights", "on-premise",
+]
+
+# Brand keywords for "Road4AI mentioned externally" monitor
+BRAND_MENTIONS = [
+    "skillopt", "hermes", "road4ai", "obsidian", "blotato",
+    "skill optimization", "zero-cost",
 ]
 
 
-def get_keyword_counts(log_path: Path, lookback_days: int = None) -> dict:
+def get_keyword_counts(log_path: Path, lookback_days: int = None,
+                       keywords: list = None) -> dict:
     """Scan signal_log.jsonl and count unique signals per keyword in the lookback window."""
     if lookback_days is None:
         lookback_days = UNDERREPRESENTED_LOOKBACK_DAYS
+    if keywords is None:
+        keywords = TOPICAL_KEYWORDS
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=lookback_days)
-    counts = {kw: 0 for kw in ROAD4AI_KEYWORDS}
+    counts = {kw: 0 for kw in keywords}
 
     if not log_path.exists():
         return counts
@@ -128,7 +139,7 @@ def get_keyword_counts(log_path: Path, lookback_days: int = None) -> dict:
 
         # Count keyword matches
         text = (row.get("title", "") + " " + row.get("text", "")).lower()
-        for kw in ROAD4AI_KEYWORDS:
+        for kw in keywords:
             if kw in text:
                 counts[kw] += 1
 
@@ -136,14 +147,23 @@ def get_keyword_counts(log_path: Path, lookback_days: int = None) -> dict:
 
 
 def get_underrepresented_keywords(log_path: Path = None) -> list:
-    """Return keywords with fewer than K signals in the last M days."""
+    """Return topical keywords with fewer than K signals in the last M days."""
     if log_path is None:
         log_path = Path("state/signal_log.jsonl")
 
-    counts = get_keyword_counts(log_path)
+    counts = get_keyword_counts(log_path, keywords=TOPICAL_KEYWORDS)
     threshold = UNDERREPRESENTED_KEYWORD_MAX_SIGNALS
 
     return [kw for kw, n in counts.items() if n < threshold]
+
+
+def get_brand_mentions(log_path: Path = None) -> int:
+    """Count how many times Road4AI brand terms appear in recent signals."""
+    if log_path is None:
+        log_path = Path("state/signal_log.jsonl")
+
+    counts = get_keyword_counts(log_path, keywords=BRAND_MENTIONS)
+    return sum(counts.values())
 
 
 def strip_html(html_text: str) -> str:

@@ -40,3 +40,13 @@ Changes to public-facing surfaces (`index.html`, `SYSTEM.md`, `manifesto.md`, `C
 
 **Enforcement:** Manual. The committing agent must include source citations for quantitative claims. The reviewing agent (or human) must verify the cited file exists and contains the claimed value before merge.
 
+## Harvester Pipeline Gate
+
+Changes to `tools/harvester_pipeline.py` or `tools/scheduled_harvester.py` that add or modify decision logic (dedup, keyword lists, staleness overrides, confidence gate overrides, underrep routing) MUST go through Karen adversarial review before the next unattended launchd run.
+
+**Why this exists:** PR #2 precedent — governance gaps found retroactively after decision logic shipped. The harvester runs unattended at 08:00 + 18:00 UTC. Decision logic changes (discard→queue overrides, keyword-based routing, dedup filtering) affect what gets surfaced for content ideation without human review. Adversarial pass catches edge cases, logic inversion, and silent failure modes that unit tests miss.
+
+**Scope:** Any commit that touches the `if underrep_boost` override path, `TOPICAL_KEYWORDS`, `BRAND_MENTIONS`, `should_log_signal`, `get_keyword_counts`, `get_underrepresented_keywords`, or the confidence tier routing in `process_signal`.
+
+**Enforcement:** Manual. The committing agent must flag the change. Karen review must complete before the affected launchd cycle.
+

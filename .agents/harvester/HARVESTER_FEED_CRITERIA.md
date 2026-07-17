@@ -32,13 +32,23 @@ are treated as low-priority signal and may be skipped in harvesting.
 MiMo Auto MAY override this soft staleness preference and keep a stale
 item ONLY when ALL of the following are true:
 
-- The item matches at least one high-priority keyword defined in this
-  file (HARVESTER_FEED_CRITERIA.md), e.g. local LLM, memory, agent infra,
-  evals.
+- The item matches at least one topical keyword from `TOPICAL_KEYWORDS`
+  (defined in `harvester_pipeline.py`): local llm, local model, inference,
+  agent memory, agent infra, evals, evaluation, multi-agent, orchestration,
+  guardrail, governance, drift, fine-tune, quantization, gguf, self-hosted,
+  open weights, on-premise.
 - There are fewer than K signals for that keyword in the last M days
   of signal_log.jsonl, so the topic is currently underrepresented.
-- MiMo Auto logs the decision in FEED_LOG.md with reason
-  "stale + keyword-override" and includes the keyword(s) that triggered it.
+- "Keep" means the item is routed to `queue-for-review` regardless of
+  its confidence score, bypassing the normal ≥0.5 confidence gate.
+  This is implemented as an action override in `scheduled_harvester.py`:
+  `if underrep_boost and action == "discard": action = "queue-for-review"`.
+- MiMo Auto logs the underrep_keywords list in the signal row for audit
+  trail (field: `underrep_keywords`).
+
+Brand keywords (`BRAND_MENTIONS`: skillopt, hermes, road4ai, obsidian,
+blotato, skill optimization, zero-cost) are tracked separately for the
+"Road4AI mentioned externally" monitor and do NOT feed the underrep check.
 
 MiMo Auto MUST NOT invent new override categories. Any new type of
 override (beyond "stale + keyword-override") must be added to this

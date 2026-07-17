@@ -18,8 +18,9 @@ from datetime import datetime, timezone
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from harvester_pipeline import (
     run_rss_search, extract_signals, should_log_signal, DEDUP_SAME_URL,
-    get_underrepresented_keywords, UNDERREPRESENTED_KEYWORD_MAX_SIGNALS,
-    UNDERREPRESENTED_LOOKBACK_DAYS, ROAD4AI_KEYWORDS
+    get_underrepresented_keywords, get_brand_mentions,
+    UNDERREPRESENTED_KEYWORD_MAX_SIGNALS, UNDERREPRESENTED_LOOKBACK_DAYS,
+    TOPICAL_KEYWORDS
 )
 from harvester_drift_hook import gate_check, process_signal
 
@@ -84,6 +85,11 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
 
             result = process_signal(signal)
             action = result.get("action", "unknown")
+
+            # Override: underrep items are kept, not just labeled
+            if underrep_boost and action == "discard":
+                action = "queue-for-review"
+
             boost_tag = f" [underrep: {','.join(matched_underrep)}]" if underrep_boost else ""
             print(f"  [{action:15s}] conf={signal['confidence']:.3f} — {signal['title'][:60]}...{boost_tag}")
             all_signals.append({
@@ -118,11 +124,15 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
         "dry_run": dry_run
     }
 
+    # Brand mention count (separate from underrep)
+    brand_count = get_brand_mentions()
+
     print(f"\n=== Summary ===")
     print(f"Queries: {summary['queries_run']}")
     print(f"Signals: {summary['signals_total']}")
     print(f"Deduped: {summary['deduped']}")
     print(f"Underrep boosted: {summary['underrep_boosted']}")
+    print(f"Brand mentions: {brand_count}")
     print(f"Actions: {json.dumps(actions)}")
 
     # Log results
