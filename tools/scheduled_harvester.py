@@ -66,6 +66,7 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
                 "title": signal.get("title", "")[:100],
                 "text": signal.get("text", "")[:200],
                 "link": signal.get("link", ""),
+                "last_entry_date": signal.get("last_entry_date", ""),
                 "confidence": signal.get("confidence", 0),
                 "action": action,
                 "harvested_at": timestamp

@@ -163,6 +163,7 @@ def extract_signals(entries: list, query: str) -> list:
             "title": entry.get("title", "")[:100],
             "text": entry.get("text", "")[:200],
             "link": entry.get("link", ""),
+            "last_entry_date": entry.get("published", ""),
             "confidence": round(confidence, 3),
             "domain": "social_voice",
             "extracted_at": datetime.now(timezone.utc).isoformat()
