@@ -16,7 +16,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from harvester_pipeline import run_rss_search, extract_signals
+from harvester_pipeline import run_rss_search, extract_signals, should_log_signal, DEDUP_SAME_URL
 from harvester_drift_hook import gate_check, process_signal
 
 SIGNAL_LOG = Path("state/signal_log.jsonl")
@@ -47,6 +47,8 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
         return {"status": "blocked", "timestamp": timestamp}
 
     all_signals = []
+    seen_urls_this_run = set()
+    dedup_count = 0
     for query in queries:
         print(f"Query: '{query}'")
         entries = run_rss_search(query, limit=5)
@@ -56,6 +58,11 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
 
         signals = extract_signals(entries, query)
         for signal in signals:
+            # Dedup gate: skip if URL already seen this run
+            if not should_log_signal(signal, seen_urls_this_run):
+                dedup_count += 1
+                continue
+
             result = process_signal(signal)
             action = result.get("action", "unknown")
             print(f"  [{action:15s}] conf={signal['confidence']:.3f} — {signal['title'][:60]}...")
@@ -83,6 +90,7 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
         "timestamp": timestamp,
         "queries_run": len(queries),
         "signals_total": len(all_signals),
+        "deduped": dedup_count,
         "actions": actions,
         "dry_run": dry_run
     }
@@ -90,6 +98,7 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
     print(f"\n=== Summary ===")
     print(f"Queries: {summary['queries_run']}")
     print(f"Signals: {summary['signals_total']}")
+    print(f"Deduped: {summary['deduped']}")
     print(f"Actions: {json.dumps(actions)}")
 
     # Log results

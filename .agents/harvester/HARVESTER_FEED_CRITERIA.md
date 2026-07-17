@@ -44,6 +44,20 @@ MiMo Auto MUST NOT invent new override categories. Any new type of
 override (beyond "stale + keyword-override") must be added to this
 document by Sharon before it can be used.
 
+### Deduplication gate (at ingest, before signal_log.jsonl)
+
+Every signal is deduped by canonical URL before it reaches signal_log.jsonl.
+`canonicalize_url()` strips UTM params, ref params, and trailing slashes,
+then lowercases. Two URLs that differ only in tracking garbage are the same
+article.
+
+`should_log_signal(item, seen_urls_this_run)` returns False if the
+canonical URL was already seen in the current run. Deduped items are logged
+with reason `dedup_same_url` but never written to signal_log.jsonl.
+
+This runs before the underrepresentation check (K/M logic), so keyword
+counts in signal_log.jsonl reflect unique articles, not duplicate rows.
+
 These don't auto-reject, but also don't auto-approve:
 
 - **Relevance fit.** Is this actually AI/local-LLM/agent-infra content, or

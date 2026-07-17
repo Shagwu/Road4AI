@@ -60,6 +60,28 @@ STALE_OVERRIDE_MAX_AGE_DAYS = 21        # N — keyword match overrides stalenes
 UNDERREPRESENTED_KEYWORD_MAX_SIGNALS = 3  # K — keywords with < K signals in lookback window get boost
 UNDERREPRESENTED_LOOKBACK_DAYS = 14     # M — lookback window for underrepresentation check
 
+# Dedup log reason strings (must match HARVESTER_FEED_CRITERIA.md)
+DEDUP_SAME_URL = "dedup_same_url"
+
+
+def canonicalize_url(url: str) -> str:
+    """Strip tracking params and trailing slashes for dedup comparison."""
+    url = url.split("?utm_")[0].split("&utm_")[0]
+    url = url.split("?ref=")[0].split("&ref=")[0]
+    url = url.rstrip("/")
+    return url.lower()
+
+
+def should_log_signal(item: dict, seen_urls: set) -> bool:
+    """Check if signal should be logged (dedup gate). Returns True if unique."""
+    url = canonicalize_url(item.get("link", "") or item.get("entry_id", ""))
+    if not url:
+        return True
+    if url in seen_urls:
+        return False
+    seen_urls.add(url)
+    return True
+
 
 def strip_html(html_text: str) -> str:
     """Remove HTML tags and decode entities."""
