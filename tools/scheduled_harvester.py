@@ -16,7 +16,11 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from harvester_pipeline import run_rss_search, extract_signals, should_log_signal, DEDUP_SAME_URL
+from harvester_pipeline import (
+    run_rss_search, extract_signals, should_log_signal, DEDUP_SAME_URL,
+    get_underrepresented_keywords, UNDERREPRESENTED_KEYWORD_MAX_SIGNALS,
+    UNDERREPRESENTED_LOOKBACK_DAYS, ROAD4AI_KEYWORDS
+)
 from harvester_drift_hook import gate_check, process_signal
 
 SIGNAL_LOG = Path("state/signal_log.jsonl")
@@ -46,9 +50,17 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
         print(f"BLOCKED: {gate.get('reason', 'Gate closed')}")
         return {"status": "blocked", "timestamp": timestamp}
 
+    # Scan signal_log.jsonl for underrepresented keywords
+    underrep = get_underrepresented_keywords()
+    if underrep:
+        print(f"Underrepresented keywords (< {UNDERREPRESENTED_KEYWORD_MAX_SIGNALS} signals in {UNDERREPRESENTED_LOOKBACK_DAYS}d): {underrep}\n")
+    else:
+        print(f"All keywords have >= {UNDERREPRESENTED_KEYWORD_MAX_SIGNALS} signals in {UNDERREPRESENTED_LOOKBACK_DAYS}d window.\n")
+
     all_signals = []
     seen_urls_this_run = set()
     dedup_count = 0
+    underrep_boost_count = 0
     for query in queries:
         print(f"Query: '{query}'")
         entries = run_rss_search(query, limit=5)
@@ -63,9 +75,17 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
                 dedup_count += 1
                 continue
 
+            # Underrepresentation check: flag signals matching scarce keywords
+            text = (signal.get("title", "") + " " + signal.get("text", "")).lower()
+            matched_underrep = [kw for kw in underrep if kw in text]
+            underrep_boost = len(matched_underrep) > 0
+            if underrep_boost:
+                underrep_boost_count += 1
+
             result = process_signal(signal)
             action = result.get("action", "unknown")
-            print(f"  [{action:15s}] conf={signal['confidence']:.3f} — {signal['title'][:60]}...")
+            boost_tag = f" [underrep: {','.join(matched_underrep)}]" if underrep_boost else ""
+            print(f"  [{action:15s}] conf={signal['confidence']:.3f} — {signal['title'][:60]}...{boost_tag}")
             all_signals.append({
                 "query": query,
                 "entry_id": signal.get("entry_id", ""),
@@ -76,6 +96,8 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
                 "last_entry_date": signal.get("last_entry_date", ""),
                 "confidence": signal.get("confidence", 0),
                 "action": action,
+                "underrep_boost": underrep_boost,
+                "underrep_keywords": matched_underrep,
                 "harvested_at": timestamp
             })
 
@@ -91,6 +113,7 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
         "queries_run": len(queries),
         "signals_total": len(all_signals),
         "deduped": dedup_count,
+        "underrep_boosted": underrep_boost_count,
         "actions": actions,
         "dry_run": dry_run
     }
@@ -99,6 +122,7 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
     print(f"Queries: {summary['queries_run']}")
     print(f"Signals: {summary['signals_total']}")
     print(f"Deduped: {summary['deduped']}")
+    print(f"Underrep boosted: {summary['underrep_boosted']}")
     print(f"Actions: {json.dumps(actions)}")
 
     # Log results

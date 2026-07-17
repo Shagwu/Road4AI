@@ -83,6 +83,69 @@ def should_log_signal(item: dict, seen_urls: set) -> bool:
     return True
 
 
+ROAD4AI_KEYWORDS = [
+    "skillopt", "hermes", "road4ai", "drift", "governance",
+    "local llm", "zero-cost", "multi-agent", "obsidian", "blotato",
+    "agent memory", "skill optimization", "guardrail",
+]
+
+
+def get_keyword_counts(log_path: Path, lookback_days: int = None) -> dict:
+    """Scan signal_log.jsonl and count unique signals per keyword in the lookback window."""
+    if lookback_days is None:
+        lookback_days = UNDERREPRESENTED_LOOKBACK_DAYS
+
+    cutoff = datetime.now(timezone.utc) - timedelta(days=lookback_days)
+    counts = {kw: 0 for kw in ROAD4AI_KEYWORDS}
+
+    if not log_path.exists():
+        return counts
+
+    seen_urls = set()
+    for line in log_path.read_text().splitlines():
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+
+        # Only count deduped rows (skip if URL already seen)
+        url = canonicalize_url(row.get("link", "") or row.get("entry_id", ""))
+        if url in seen_urls:
+            continue
+        seen_urls.add(url)
+
+        # Check recency
+        harvested = row.get("harvested_at", "")
+        if harvested:
+            try:
+                ts = datetime.fromisoformat(harvested.replace("Z", "+00:00"))
+                if ts < cutoff:
+                    continue
+            except (ValueError, TypeError):
+                continue
+
+        # Count keyword matches
+        text = (row.get("title", "") + " " + row.get("text", "")).lower()
+        for kw in ROAD4AI_KEYWORDS:
+            if kw in text:
+                counts[kw] += 1
+
+    return counts
+
+
+def get_underrepresented_keywords(log_path: Path = None) -> list:
+    """Return keywords with fewer than K signals in the last M days."""
+    if log_path is None:
+        log_path = Path("state/signal_log.jsonl")
+
+    counts = get_keyword_counts(log_path)
+    threshold = UNDERREPRESENTED_KEYWORD_MAX_SIGNALS
+
+    return [kw for kw, n in counts.items() if n < threshold]
+
+
 def strip_html(html_text: str) -> str:
     """Remove HTML tags and decode entities."""
     text = re.sub(r'<[^>]+>', ' ', html_text)
