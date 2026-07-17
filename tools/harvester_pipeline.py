@@ -55,6 +55,11 @@ QUERY_TO_FEEDS = {
     "local LLM inference": ["ollama_blog", "huggingface_blog", "lesswrong_ai"],
 }
 
+# Harvester thresholds (must match .agents/harvester/HARVESTER_FEED_CRITERIA.md)
+STALE_OVERRIDE_MAX_AGE_DAYS = 21        # N — keyword match overrides staleness if entry < N days old
+UNDERREPRESENTED_KEYWORD_MAX_SIGNALS = 3  # K — keywords with < K signals in lookback window get boost
+UNDERREPRESENTED_LOOKBACK_DAYS = 14     # M — lookback window for underrepresentation check
+
 
 def strip_html(html_text: str) -> str:
     """Remove HTML tags and decode entities."""

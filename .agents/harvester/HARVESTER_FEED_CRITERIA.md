@@ -19,7 +19,30 @@ A candidate feed is rejected outright if ANY of these are true:
 5. **ToS explicitly prohibits scraping/automated access.** Same posture as
    the 9Router rejection — don't build on a ToS-circumvention foundation.
 
-## Soft criteria (pass hard gates, still needs a judgment call → route to CoS)
+### Soft staleness overrides (per-entry, not per-feed)
+
+Default thresholds (mirrored in `harvester_pipeline.py`):
+- N = 21 days (items older than this are considered stale)
+- K = 3 recent signals per keyword
+- M = 14 days recent-lookback window
+
+By default, items from an approved feed that are older than N days
+are treated as low-priority signal and may be skipped in harvesting.
+
+MiMo Auto MAY override this soft staleness preference and keep a stale
+item ONLY when ALL of the following are true:
+
+- The item matches at least one high-priority keyword defined in this
+  file (HARVESTER_FEED_CRITERIA.md), e.g. local LLM, memory, agent infra,
+  evals.
+- There are fewer than K signals for that keyword in the last M days
+  of signal_log.jsonl, so the topic is currently underrepresented.
+- MiMo Auto logs the decision in FEED_LOG.md with reason
+  "stale + keyword-override" and includes the keyword(s) that triggered it.
+
+MiMo Auto MUST NOT invent new override categories. Any new type of
+override (beyond "stale + keyword-override") must be added to this
+document by Sharon before it can be used.
 
 These don't auto-reject, but also don't auto-approve:
 
