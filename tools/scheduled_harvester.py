@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Scheduled harvester — runs Twitter searches for predefined queries,
+Scheduled harvester — runs RSS feed searches for predefined queries,
 extracts signals, routes through drift gate, saves to signal log.
 
 Usage:
@@ -16,19 +16,20 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from harvester_pipeline import run_twitter_search, extract_signals
+from harvester_pipeline import run_rss_search, extract_signals
 from harvester_drift_hook import gate_check, process_signal
 
 SIGNAL_LOG = Path("state/signal_log.jsonl")
 HARVESTER_CRON_LOG = Path("state/harvester-cron.log")
 
-# Default queries — Road4AI-relevant topics
+# Default queries — Road4AI-relevant topics (RSS-based)
 DEFAULT_QUERIES = [
     "AI agent memory local",
     "zero cost AI tools open source",
     "multi-agent orchestration",
     "Hermes AI memory",
     "build AI agent from scratch",
+    "local LLM inference",
 ]
 
 
@@ -48,24 +49,25 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
     all_signals = []
     for query in queries:
         print(f"Query: '{query}'")
-        tweets = run_twitter_search(query, limit=5)
-        if not tweets:
+        entries = run_rss_search(query, limit=5)
+        if not entries:
             print(f"  No results")
             continue
 
-        signals = extract_signals(tweets, query)
+        signals = extract_signals(entries, query)
         for signal in signals:
             result = process_signal(signal)
             action = result.get("action", "unknown")
-            print(f"  [{action:15s}] conf={signal['confidence']:.3f} — {signal['text'][:60]}...")
+            print(f"  [{action:15s}] conf={signal['confidence']:.3f} — {signal['title'][:60]}...")
             all_signals.append({
                 "query": query,
-                "tweet_id": signal.get("tweet_id", ""),
+                "entry_id": signal.get("entry_id", ""),
                 "author": signal.get("author", ""),
+                "title": signal.get("title", "")[:100],
                 "text": signal.get("text", "")[:200],
+                "link": signal.get("link", ""),
                 "confidence": signal.get("confidence", 0),
                 "action": action,
-                "engagement": signal.get("engagement", {}),
                 "harvested_at": timestamp
             })
 
@@ -110,7 +112,7 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Scheduled harvester")
+    parser = argparse.ArgumentParser(description="Scheduled harvester (RSS-based)")
     parser.add_argument("--dry-run", action="store_true", help="Don't log results")
     parser.add_argument("--queries", help="Comma-separated custom queries")
     args = parser.parse_args()

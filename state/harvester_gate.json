@@ -1,10 +1,9 @@
 {
-  "paused": false,
-  "reason": null,
+  "status": "open",
   "paused_at": null,
+  "pause_reason": null,
   "resumed_at": null,
-  "total_signals": 53,
-  "auto_stored": 0,
-  "queued": 7,
-  "discarded": 46
+  "resume_reason": null,
+  "signals_processed": 108,
+  "signals_blocked": 0
 }

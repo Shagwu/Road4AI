@@ -1,0 +1,73 @@
+# Signal Harvester — Feed Source Criteria
+
+Governs which RSS feeds MiMo Auto (or any agent) can add to the Signal Harvester
+without a human review gate, and which require Karen/Chief-of-Staff sign-off first.
+
+## Hard gates (auto-reject, no judgment call)
+
+A candidate feed is rejected outright if ANY of these are true:
+
+1. **Zero entries on test pull.** `feedparser` returns 0 entries on a clean fetch.
+   A feed that 200s with nothing in it is not a feed, it's a placeholder.
+2. **Requires auth/OAuth/API key to read.** Matches the zero-cost/local-first
+   principle already applied to OmniRoute/9Router/Memanto. Reddit's 403 on
+   plain RSS falls here — PRAW/OAuth is a dependency decision, not a feed add.
+3. **DNS/connection failure.** Domain doesn't resolve or refuses connection.
+   Don't retry-loop a dead domain, log it dead and move on.
+4. **Fewer than 1 update in the last 30 days**, based on the newest entry's
+   published date. Stale feed = dead weight in the pipeline, not signal.
+5. **ToS explicitly prohibits scraping/automated access.** Same posture as
+   the 9Router rejection — don't build on a ToS-circumvention foundation.
+
+## Soft criteria (pass hard gates, still needs a judgment call → route to CoS)
+
+These don't auto-reject, but also don't auto-approve:
+
+- **Relevance fit.** Is this actually AI/local-LLM/agent-infra content, or
+  general tech noise that'll dilute ideation signal? (e.g. Synced AI News
+  passed the hard gates but is broad industry news, not niche/local-LLM —
+  worth asking if that's the lane you want.)
+- **Volume sanity.** Extremely high entry counts (Hugging Face's 829) may
+  need a "only look at last N days" filter downstream, not a rejection —
+  flag for the harvester's ingestion logic, not the feed list itself.
+- **Duplicate coverage.** If two feeds cover the same announcements (e.g. a
+  vendor blog + a news aggregator both covering the same model release),
+  keep the primary source, drop the aggregator.
+- **Source credibility for a build-in-public brand.** Random blogspot-tier
+  aggregators vs. vendor blogs (HF, Ollama, Anthropic) — the second builds
+  more trust if content ever cites "saw this on X."
+
+## What MiMo Auto can do autonomously
+
+- Run the test pull, apply hard gates, drop anything that fails them.
+- Add feeds that pass hard gates AND are unambiguous vendor/project blogs
+  (Ollama, Hugging Face, Anthropic, llama.cpp, etc.) — L8-autonomy tier,
+  same spirit as Signal Harvester's existing AGENTS.md grant.
+- Log every feed tested (pass/fail/reason) in a single running file, e.g.
+  `harvester/FEED_LOG.md`, so nothing is silently dropped.
+
+## What routes back to you (or Karen) before going live
+
+- Anything in the soft-criteria bucket above.
+- Any feed requiring a new dependency (OAuth libs, API clients) to fix a
+  hard-gate failure — this is a scope decision, not a feed swap. Log as a
+  Phase 5 RFC candidate if it comes up (matches the OmniRoute/cc-mirror
+  pattern: don't add attack surface for a problem RSS already covers).
+- Removing a feed that was previously approved (content pipeline shouldn't
+  silently lose a source without you knowing why).
+
+## Today's test results, sorted against these criteria
+
+| Feed | Result | Verdict |
+|---|---|---|
+| Hugging Face Blog | 200, 829 entries | Pass hard gates → volume filter needed, otherwise auto-add candidate |
+| Ollama Blog | 200, 54 entries | Pass hard gates → auto-add candidate |
+| Synced AI News | 200, 10 entries | Pass hard gates → soft-criteria call (broad vs. niche) |
+| Meta AI Blog | 404 | Hard reject (dead endpoint) |
+| LangChain Blog | 200, 0 entries | Hard reject (empty) |
+| LlamaIndex Blog | 404 | Hard reject (dead endpoint) |
+| r/LocalLLaMA | 403 | Hard reject (auth required) → log as RFC candidate if OAuth ever pursued |
+| r/MachineLearning | 403 | Hard reject (auth required) |
+| Papers With Code | 200, 0 entries | Hard reject (empty, likely feed format changed) |
+| Open Source AI | Connection error | Hard reject (dead domain) |
+| AI Alignment Forum, LessWrong AI, The Batch, Anthropic Research | untested | Run through same test script before deciding |
