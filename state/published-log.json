@@ -706,5 +706,53 @@
     "platform": "x",
     "published_at": "2026-07-26T11:00:00Z",
     "type": "Behind-the-scenes"
+  },
+  {
+    "id": "2026-07-15-phase4-teaser-linkedin",
+    "title": "Phase 4 Begins Tomorrow: Governance Under Fire",
+    "type": "Behind-the-scenes",
+    "platform": "LinkedIn",
+    "scheduled_time": "2026-07-15T12:00:00Z",
+    "blotato_id": "67a9535e-028d-4193-b5c6-539104673902",
+    "published_at": "2026-07-15T12:00:00Z",
+    "status": "published",
+    "source": "blotato",
+    "note": "Reconciled to published (Blotato confirmed)"
+  },
+  {
+    "id": "2026-07-06-context-contract-struggle-li",
+    "title": "The Context Contract",
+    "type": "Struggle",
+    "platform": "LinkedIn",
+    "scheduled_time": "2026-07-16T12:00:00Z",
+    "blotato_id": "c8514fc7-cad1-40f2-957f-60e4403bc280",
+    "published_at": "2026-07-16T12:00:00Z",
+    "status": "published",
+    "source": "blotato",
+    "note": "Reconciled to published (Blotato confirmed)"
+  },
+  {
+    "id": "2026-07-13-pre-reveal-checklist-tutorial-li",
+    "title": "The Night Before the Reveal",
+    "type": "Tutorial",
+    "platform": "LinkedIn",
+    "scheduled_time": "2026-07-13T08:00:00Z",
+    "blotato_id": "92f1b8d9-3e6f-4f1f-82c1-9bdb2ba7e398",
+    "published_at": "2026-07-13T08:00:00Z",
+    "status": "published",
+    "source": "blotato",
+    "note": "Reconciled to published (Blotato confirmed)"
+  },
+  {
+    "id": "2026-07-14-calm-before-reveal-bts-li",
+    "title": "The Calm Before the Reveal",
+    "type": "Behind-the-scenes",
+    "platform": "LinkedIn",
+    "scheduled_time": "2026-07-14T08:00:00Z",
+    "blotato_id": "daab371b-fba6-4a0a-9587-6c00dd105b2d",
+    "published_at": "2026-07-14T08:00:00Z",
+    "status": "published",
+    "source": "blotato",
+    "note": "Reconciled to published (Blotato confirmed)"
   }
 ]

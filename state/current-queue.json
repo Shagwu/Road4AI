@@ -1097,8 +1097,8 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "phase4_teaser_linkedin.md",
-      "status": "scheduled",
-      "status_updated_at": "2026-07-01T00:00:00Z",
+      "status": "published",
+      "status_updated_at": "2026-07-18T09:18:57.300236+00:00",
       "priority": 1,
       "week": "2026-W28",
       "created_at": "2026-06-30T00:00:00Z",
@@ -1106,7 +1106,8 @@
       "scheduled_time": "2026-07-15T12:00:00Z",
       "blotato_id": "67a9535e-028d-4193-b5c6-539104673902",
       "draft_path": "drafts/archived/phase4_teaser_linkedin.md",
-      "notes": "Single post scheduled via Blotato. Links in first comment. Pin for 48h."
+      "notes": "Single post scheduled via Blotato. Links in first comment. Pin for 48h.",
+      "published_at": "2026-07-15T12:00:00Z"
     },
     {
       "id": "2026-06-30-hermes-ecosystem-li",
@@ -1193,8 +1194,8 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "SKILLOPT_VALIDATION_REPORT.md",
-      "status": "scheduled",
-      "status_updated_at": "2026-07-07T13:13:50.038464+00:00",
+      "status": "published",
+      "status_updated_at": "2026-07-18T09:18:57.300236+00:00",
       "priority": 1,
       "week": "2026-W28",
       "created_at": "2026-07-03T00:00:00Z",
@@ -1203,7 +1204,7 @@
       "blotato_id": "65346eb7-cd51-4914-a942-8e8a959b6c0d",
       "draft_path": "drafts/archived/v2.1-benchmark-reveal-li-v2.md",
       "notes": "Single post with comment links. Pin for 48h.",
-      "published_at": "2026-07-07T11:41:49.752565+00:00"
+      "published_at": "2026-07-15T10:00:00Z"
     },
     {
       "id": "2026-07-06-daily-score-struggle-li",
@@ -1289,8 +1290,8 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "phase4_agent_reach_context_failure",
-      "status": "scheduled",
-      "status_updated_at": "2026-07-06T00:00:00+00:00",
+      "status": "published",
+      "status_updated_at": "2026-07-18T09:18:57.300236+00:00",
       "priority": 1,
       "week": "2026-W29",
       "created_at": "2026-07-06T00:00:00+00:00",
@@ -1298,7 +1299,8 @@
       "draft_path": "drafts/archived/2026-07-06-context-contract-struggle-li.md",
       "notes": "Carousel (6 slides). Phase 4 context engineering failure. Pairs with SkillOpt v2.1 narrative. Schedule post-reveal, July 16-17.",
       "scheduled_time": "2026-07-16T12:00:00Z",
-      "blotato_id": "c8514fc7-cad1-40f2-957f-60e4403bc280"
+      "blotato_id": "c8514fc7-cad1-40f2-957f-60e4403bc280",
+      "published_at": "2026-07-16T12:00:00Z"
     },
     {
       "id": "2026-07-06-context-contract-struggle-x",
@@ -1550,8 +1552,8 @@
       "type": "Tutorial",
       "platform": "LinkedIn",
       "goal": "Build in public",
-      "status": "scheduled",
-      "status_updated_at": "2026-07-12T11:55:00Z",
+      "status": "published",
+      "status_updated_at": "2026-07-18T09:18:57.300236+00:00",
       "priority": 1,
       "week": "2026-W29",
       "created_at": "2026-07-12T11:55:00Z",
@@ -1559,7 +1561,8 @@
       "scheduled_time": "2026-07-13T08:00:00Z",
       "draft_path": "drafts/approved/2026-07-13-pre-reveal-checklist-tutorial-li.md",
       "notes": "Pre-reveal tutorial: checklist for verifying claims before publishing. Builds anticipation for Jul 15.",
-      "blotato_id": "92f1b8d9-3e6f-4f1f-82c1-9bdb2ba7e398"
+      "blotato_id": "92f1b8d9-3e6f-4f1f-82c1-9bdb2ba7e398",
+      "published_at": "2026-07-13T08:00:00Z"
     },
     {
       "id": "2026-07-14-calm-before-reveal-bts-li",
@@ -1568,8 +1571,8 @@
       "type": "Behind-the-scenes",
       "platform": "LinkedIn",
       "goal": "Build in public",
-      "status": "scheduled",
-      "status_updated_at": "2026-07-12T11:55:00Z",
+      "status": "published",
+      "status_updated_at": "2026-07-18T09:18:57.300236+00:00",
       "priority": 1,
       "week": "2026-W29",
       "created_at": "2026-07-12T11:55:00Z",
@@ -1577,7 +1580,8 @@
       "scheduled_time": "2026-07-14T08:00:00Z",
       "draft_path": "drafts/approved/2026-07-14-calm-before-reveal-bts-li.md",
       "notes": "Pre-reveal BTS: editing discipline before a milestone. Builds tension for Jul 15.",
-      "blotato_id": "daab371b-fba6-4a0a-9587-6c00dd105b2d"
+      "blotato_id": "daab371b-fba6-4a0a-9587-6c00dd105b2d",
+      "published_at": "2026-07-14T08:00:00Z"
     }
   ],
   "updated": "2026-07-13"
