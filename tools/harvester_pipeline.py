@@ -84,11 +84,18 @@ def should_log_signal(item: dict, seen_urls: set) -> bool:
 
 
 # Topical keywords for underrepresentation check (appear in external RSS content)
+# Broad terms catch general AI articles; specific terms catch niche content.
 TOPICAL_KEYWORDS = [
-    "local llm", "local model", "inference", "agent memory", "agent infra",
+    # General AI topics (broad catch)
+    "memory", "agent", "local", "inference", "reasoning", "context",
+    "retrieval", "safety", "alignment", "benchmark", "deployment",
+    "autonomous", "privacy", "open source",
+    # Niche Road4AI-relevant terms
+    "local llm", "local model", "agent memory", "agent infra",
     "evals", "evaluation", "multi-agent", "orchestration", "guardrail",
     "governance", "drift", "fine-tune", "quantization", "gguf",
-    "self-hosted", "open weights", "on-premise",
+    "self-hosted", "open weights", "on-premise", "on-device",
+    "small language model", "fine-tuning", "retrieval augmented",
 ]
 
 # Brand keywords for "Road4AI mentioned externally" monitor
