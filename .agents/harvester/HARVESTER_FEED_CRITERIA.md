@@ -93,6 +93,10 @@ These don't auto-reject, but also don't auto-approve:
   aggregators vs. vendor blogs (HF, Ollama, Anthropic) — the second builds
   more trust if content ever cites "saw this on X."
 
+## Known accepted risks
+
+- **Race condition on signal_log.jsonl (concurrent writes).** `scheduled_harvester.py` writes without file locking. Safe at current 10-hour gap between launchd runs (08:00 + 18:00 UTC). Revisit if schedule tightens to < 1-hour intervals. [accepted 2026-07-17]
+
 ## What MiMo Auto can do autonomously
 
 - Run the test pull, apply hard gates, drop anything that fails them.
