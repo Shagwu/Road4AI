@@ -32,14 +32,20 @@ are treated as low-priority signal and may be skipped in harvesting.
 MiMo Auto MAY override this soft staleness preference and keep a stale
 item ONLY when ALL of the following are true:
 
-- The item matches at least one topical keyword from `TOPICAL_KEYWORDS`
-  (defined in `harvester_pipeline.py`): memory, agent, local, inference,
-  reasoning, context, retrieval, safety, alignment, benchmark, deployment,
-  autonomous, privacy, open source, local llm, local model, agent memory,
-  agent infra, evals, evaluation, multi-agent, orchestration, guardrail,
-  governance, drift, fine-tune, quantization, gguf, self-hosted, open
-  weights, on-premise, on-device, small language model, fine-tuning,
-  retrieval augmented.
+- The item matches terms from at least two different concept clusters
+  in `TOPICAL_CLUSTERS` (defined in `harvester_pipeline.py`):
+  - **subject**: agent, AI, LLM, model, bot, assistant, chatbot
+  - **memory**: memory, context window, recall, state, context overflow, long-term memory
+  - **local**: local, self-hosted, on-device, on-premise, edge, local llm
+  - **evals**: evals, evaluation, benchmark, testing, metrics
+  - **governance**: guardrail, governance, safety, alignment, drift, oversight
+  - **training**: fine-tune, quantization, optimization, training, gguf
+  - **open**: open source, open weights, open-source, free, zero-cost
+  - **orchestration**: multi-agent, orchestration, coordination, swarm, pipeline
+
+  This filters out false positives (hardware "memory", insurance "agent")
+  by requiring topical convergence — "memory crunch" alone won't fire,
+  but an article about AI agent memory will match subject+memory.
 - There are fewer than K signals for that keyword in the last M days
   of signal_log.jsonl, so the topic is currently underrepresented.
 - "Keep" means the item is routed to `queue-for-review` regardless of

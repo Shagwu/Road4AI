@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from harvester_pipeline import (
     run_rss_search, extract_signals, should_log_signal, DEDUP_SAME_URL,
-    get_underrepresented_keywords, get_brand_mentions,
+    get_underrepresented_keywords, get_brand_mentions, match_clusters,
     UNDERREPRESENTED_KEYWORD_MAX_SIGNALS, UNDERREPRESENTED_LOOKBACK_DAYS,
     TOPICAL_KEYWORDS
 )
@@ -76,10 +76,10 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
                 dedup_count += 1
                 continue
 
-            # Underrepresentation check: flag signals matching scarce keywords
-            text = (signal.get("title", "") + " " + signal.get("text", "")).lower()
-            matched_underrep = [kw for kw in underrep if kw in text]
-            underrep_boost = len(matched_underrep) > 0
+            # Cluster-based underrepresentation check
+            text = str(signal.get("title", "") or "") + " " + str(signal.get("text", "") or "")
+            matched_clusters = match_clusters(text, min_clusters=2)
+            underrep_boost = len(matched_clusters) >= 2
             if underrep_boost:
                 underrep_boost_count += 1
 
@@ -90,7 +90,7 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
             if underrep_boost and action == "discard":
                 action = "queue-for-review"
 
-            boost_tag = f" [underrep: {','.join(matched_underrep)}]" if underrep_boost else ""
+            boost_tag = f" [underrep: {','.join(matched_clusters)}]" if underrep_boost else ""
             print(f"  [{action:15s}] conf={signal['confidence']:.3f} — {signal['title'][:60]}...{boost_tag}")
             all_signals.append({
                 "query": query,
@@ -103,7 +103,7 @@ def run_scheduled_harvest(queries: list = None, dry_run: bool = False) -> dict:
                 "confidence": signal.get("confidence", 0),
                 "action": action,
                 "underrep_boost": underrep_boost,
-                "underrep_keywords": matched_underrep,
+                "underrep_clusters": matched_clusters,
                 "harvested_at": timestamp
             })
 

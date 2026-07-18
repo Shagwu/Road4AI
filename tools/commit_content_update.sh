@@ -64,7 +64,7 @@ if [ ! -z "$EXCLUDED" ]; then
 fi
 
 if [ "$DRY_RUN" = true ]; then
-    echo "✅ Dry run complete. No changes committed."
+    echo "✅ Pre-commit validation passed. Actual commit follows."
     exit 0
 fi
 

@@ -83,20 +83,29 @@ def should_log_signal(item: dict, seen_urls: set) -> bool:
     return True
 
 
-# Topical keywords for underrepresentation check (appear in external RSS content)
-# Broad terms catch general AI articles; specific terms catch niche content.
-TOPICAL_KEYWORDS = [
-    # General AI topics (broad catch)
-    "memory", "agent", "local", "inference", "reasoning", "context",
-    "retrieval", "safety", "alignment", "benchmark", "deployment",
-    "autonomous", "privacy", "open source",
-    # Niche Road4AI-relevant terms
-    "local llm", "local model", "agent memory", "agent infra",
-    "evals", "evaluation", "multi-agent", "orchestration", "guardrail",
-    "governance", "drift", "fine-tune", "quantization", "gguf",
-    "self-hosted", "open weights", "on-premise", "on-device",
-    "small language model", "fine-tuning", "retrieval augmented",
-]
+# Concept clusters for underrepresentation check (appear in external RSS content)
+# An article fires the underrep boost only when it matches terms from
+# AT LEAST TWO different clusters — catches phrasing variance while
+# filtering out unrelated "memory" (hardware), "agent" (insurance), etc.
+TOPICAL_CLUSTERS = {
+    "subject": ["agent", "AI", "LLM", "model", "bot", "assistant", "chatbot"],
+    "memory": ["memory", "context window", "recall", "state", "context overflow",
+               "context management", "long-term memory", "working memory"],
+    "local": ["local", "self-hosted", "on-device", "on-premise", "edge",
+              "local inference", "local llm", "local model"],
+    "evals": ["evals", "evaluation", "benchmark", "testing", "metrics", "scoring"],
+    "governance": ["guardrail", "governance", "safety", "alignment", "drift",
+                   "oversight", "audit", "compliance"],
+    "training": ["fine-tune", "fine-tuning", "quantization", "optimization",
+                 "training", "distillation", "gguf"],
+    "open": ["open source", "open weights", "open-source", "free", "zero-cost",
+             "open model", "open weights"],
+    "orchestration": ["multi-agent", "orchestration", "coordination", "swarm",
+                      "pipeline", "agent loop", "agent framework"],
+}
+
+# Flatten for backward-compatible get_keyword_counts
+TOPICAL_KEYWORDS = sorted({kw for terms in TOPICAL_CLUSTERS.values() for kw in terms})
 
 # Brand keywords for "Road4AI mentioned externally" monitor
 BRAND_MENTIONS = [
@@ -118,6 +127,56 @@ def get_keyword_counts(log_path: Path, lookback_days: int = None,
 
     if not log_path.exists():
         return counts
+
+    seen_urls = set()
+    for line in log_path.read_text().splitlines():
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+
+        # Only count deduped rows (skip if URL already seen)
+        url = canonicalize_url(row.get("link", "") or row.get("entry_id", ""))
+        if url in seen_urls:
+            continue
+        seen_urls.add(url)
+
+        # Check recency
+        harvested = row.get("harvested_at", "")
+        if harvested:
+            try:
+                ts = datetime.fromisoformat(harvested.replace("Z", "+00:00"))
+                if ts < cutoff:
+                    continue
+            except (ValueError, TypeError):
+                continue
+
+        # Count keyword matches
+        text = (row.get("title", "") + " " + row.get("text", "")).lower()
+        for kw in keywords:
+            if kw in text:
+                counts[kw] += 1
+
+    return counts
+
+
+def match_clusters(text: str, min_clusters: int = 2) -> list:
+    """Check which concept clusters match the text. Returns matched cluster names.
+
+    An article fires the underrep boost when it matches >= min_clusters clusters.
+    This filters out false positives (hardware "memory", insurance "agent") by
+    requiring topical convergence.
+    """
+    text_lower = text.lower()
+    matched = []
+    for cluster_name, terms in TOPICAL_CLUSTERS.items():
+        for term in terms:
+            if term.lower() in text_lower:
+                matched.append(cluster_name)
+                break
+    return matched
 
     seen_urls = set()
     for line in log_path.read_text().splitlines():
