@@ -95,7 +95,11 @@ These don't auto-reject, but also don't auto-approve:
 
 ## Known accepted risks
 
-- **Race condition on signal_log.jsonl (concurrent writes).** `scheduled_harvester.py` writes without file locking. Safe at current 10-hour gap between launchd runs (08:00 + 18:00 UTC). Revisit if schedule tightens to < 1-hour intervals. [accepted 2026-07-17]
+- **Race condition on signal_log.jsonl (concurrent writes).** `scheduled_harvester.py` appends without file locking. Safe at current 10-hour gap between launchd runs (08:00 + 18:00 UTC). **Revisit trigger:** any change to the launchd schedule that tightens the gap to < 1 hour, or any manual run of `harvester_pipeline.py` alongside the automated schedule. [accepted 2026-07-17, expanded 2026-07-18]
+
+- **Race condition on harvester_gate.json (read/write without locking).** `harvester_drift_hook.py` reads and writes `harvester_gate.json` without file locking. Same 10-hour gap mitigates this today. **Revisit trigger:** same as above — schedule tightening or concurrent manual+automated runs. [accepted 2026-07-18]
+
+- **Duplicated confidence scorers.** `harvester_pipeline.py` (line ~320) and `harvester_reader.py` (line ~32) score signal confidence using different formulas. Same signal routed through different paths gets different scores. Not a bug today since they're used in different contexts, but will produce confusing discrepancies if the paths ever converge. **Revisit trigger:** any change that routes the same signal through both pipelines, or any investigation into confidence score drift. [flagged 2026-07-18]
 
 ## What MiMo Auto can do autonomously
 

@@ -32,10 +32,28 @@ def load_queue():
 
 
 def recent_entries(queue, window):
-    """Return the last N entries by recency (published + scheduled + ready)."""
-    active_statuses = {"published", "scheduled", "ready_for_drafting", "ready_for_edit"}
+    """Return the last N entries by post date (published_time or scheduled_time).
+
+    Uses trailing-10 POSTS, not trailing-10 calendar days. If a day is skipped
+    or doubled up, posts-based and date-based windows will diverge. The AGENTS.md
+    ratio mandate ("top 10 queue items") is interpreted as posts-based.
+    """
+    from datetime import datetime
+    active_statuses = {"published", "scheduled", "ready_for_drafting", "ready_for_edit", "ready_for_publishing"}
     active = [e for e in queue if e.get("status") in active_statuses]
-    return active[-window:]
+
+    def post_date(e):
+        for field in ("published_at", "published_time", "scheduled_time", "status_updated_at"):
+            val = e.get(field, "")
+            if val:
+                try:
+                    return datetime.fromisoformat(val.replace("Z", "+00:00"))
+                except (ValueError, TypeError):
+                    continue
+        return datetime.min.replace(tzinfo=None)
+
+    active.sort(key=post_date, reverse=True)
+    return active[:window]
 
 
 def struggle_ratio(entries):

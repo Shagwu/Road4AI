@@ -96,7 +96,7 @@ def check_duplication(filepath, fm):
         except (json.JSONDecodeError, KeyError):
             pass
 
-    # 3. Check queue for existing blotato_id
+    # 3. Check queue for existing blotato_id OR scheduled status
     queue_path = ROOT / "state" / "current-queue.json"
     if queue_path.exists():
         try:
@@ -113,6 +113,11 @@ def check_duplication(filepath, fm):
                     if entry.get("status") == "published":
                         issues.append(
                             f"Queue entry '{entry_id}' is already status: published"
+                        )
+                    if entry.get("status") == "scheduled":
+                        issues.append(
+                            f"Queue entry '{entry_id}' is already status: scheduled "
+                            f"(blotato_id: {entry.get('blotato_id', 'none')})"
                         )
                     break
         except (json.JSONDecodeError, KeyError):
@@ -666,6 +671,53 @@ def mark_as_scheduled(filepath):
     path.write_text(new_content)
 
 
+def sync_queue_status(filepath, blotato_id):
+    """Update queue entry status to 'scheduled' and store blotato_id.
+
+    Called after Blotato confirms a post, alongside mark_as_scheduled.
+    Prevents the drift where frontmatter says scheduled:true but the
+    queue entry status stays stale.
+
+    Raises RuntimeError if no matching entry is found — silent no-op
+    is the exact bug this function exists to fix.
+
+    Known risk: no file locking on queue write. Safe for manual scheduling
+    (one invocation at a time). Unsafe if two schedule_post.py processes
+    overlap. Revisit if automation ever runs concurrent schedules.
+    [Karen-reviewed 2026-07-18, logged as known accepted risk]
+    """
+    queue_path = ROOT / "state" / "current-queue.json"
+    if not queue_path.exists():
+        raise RuntimeError(f"Queue file not found: {queue_path}")
+
+    data = json.loads(queue_path.read_text())
+    queue = data.get("queue", [])
+    draft_rel = str(filepath)
+
+    for entry in queue:
+        entry_draft = entry.get("draft_path", "")
+        if not entry_draft:
+            continue
+        # Match by draft path (exact or filename match)
+        if entry_draft == draft_rel or Path(entry_draft).name == Path(draft_rel).name:
+            entry["status"] = "scheduled"
+            entry["status_updated_at"] = datetime.now(timezone.utc).isoformat()
+            if blotato_id:
+                entry["blotato_id"] = blotato_id
+            # Write queue first — if this fails, frontmatter stays unscheduled
+            # (safe: can re-run schedule_post.py). If queue write succeeds but
+            # frontmatter write fails later, queue is ahead of draft (visible,
+            # fixable). Either way, no silent drift.
+            queue_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+            print(f"  Queue entry '{entry['id']}' synced: status=scheduled, blotato={blotato_id}")
+            return True
+
+    raise RuntimeError(
+        f"No queue entry found matching draft: {draft_rel}. "
+        f"Queue must have a draft_path entry for this file before scheduling."
+    )
+
+
 def main():
     args = sys.argv[1:]
     auto_yes = "--yes" in args or "-y" in args
@@ -950,6 +1002,14 @@ def main():
         except Exception as e:
             print(f"\n  WARNING: Could not mark draft as scheduled: {e}")
             print(f"  Manual action required: add 'scheduled: true' to frontmatter")
+
+        # Sync queue entry status and blotato_id
+        first_sid = next((r.get("submission_id") for r in results if r.get("submission_id")), None)
+        try:
+            sync_queue_status(filepath, first_sid)
+        except Exception as e:
+            print(f"  WARNING: Could not sync queue status: {e}")
+            print(f"  Manual action required: set status=scheduled and blotato_id in state/current-queue.json")
 
 
 if __name__ == "__main__":

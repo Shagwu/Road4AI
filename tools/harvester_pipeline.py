@@ -60,10 +60,6 @@ STALE_OVERRIDE_MAX_AGE_DAYS = 21        # N — keyword match overrides stalenes
 UNDERREPRESENTED_KEYWORD_MAX_SIGNALS = 3  # K — keywords with < K signals in lookback window get boost
 UNDERREPRESENTED_LOOKBACK_DAYS = 14     # M — lookback window for underrepresentation check
 
-# Dedup log reason strings (must match HARVESTER_FEED_CRITERIA.md)
-DEDUP_SAME_URL = "dedup_same_url"
-
-
 def canonicalize_url(url: str) -> str:
     """Strip tracking params and trailing slashes for dedup comparison."""
     url = url.split("?utm_")[0].split("&utm_")[0]
@@ -177,39 +173,6 @@ def match_clusters(text: str, min_clusters: int = 2) -> list:
                 matched.append(cluster_name)
                 break
     return matched
-
-    seen_urls = set()
-    for line in log_path.read_text().splitlines():
-        if not line.strip():
-            continue
-        try:
-            row = json.loads(line)
-        except json.JSONDecodeError:
-            continue
-
-        # Only count deduped rows (skip if URL already seen)
-        url = canonicalize_url(row.get("link", "") or row.get("entry_id", ""))
-        if url in seen_urls:
-            continue
-        seen_urls.add(url)
-
-        # Check recency
-        harvested = row.get("harvested_at", "")
-        if harvested:
-            try:
-                ts = datetime.fromisoformat(harvested.replace("Z", "+00:00"))
-                if ts < cutoff:
-                    continue
-            except (ValueError, TypeError):
-                continue
-
-        # Count keyword matches
-        text = (row.get("title", "") + " " + row.get("text", "")).lower()
-        for kw in keywords:
-            if kw in text:
-                counts[kw] += 1
-
-    return counts
 
 
 def get_underrepresented_keywords(log_path: Path = None) -> list:
