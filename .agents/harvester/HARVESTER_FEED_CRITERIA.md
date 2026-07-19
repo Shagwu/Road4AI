@@ -101,6 +101,12 @@ These don't auto-reject, but also don't auto-approve:
 
 - **Duplicated confidence scorers.** `harvester_pipeline.py` (line ~320) and `harvester_reader.py` (line ~32) score signal confidence using different formulas. Same signal routed through different paths gets different scores. Not a bug today since they're used in different contexts, but will produce confusing discrepancies if the paths ever converge. **Revisit trigger:** any change that routes the same signal through both pipelines, or any investigation into confidence score drift. [flagged 2026-07-18]
 
+## Karen review log
+
+| Date | Script(s) | Method | Verdict | Notes |
+|---|---|---|---|---|
+| 2026-07-18 | harvester_pipeline.py, scheduled_harvester.py | Manual review (no staged diff; files already committed in 780f35b) | APPROVED | Dead code removal (33 lines after match_clusters return), unused constant DEDUP_SAME_URL removed (4 lines), unused import removed. Pure deletions, no behavioral change. Verified via AST analysis, import testing, compile checks, functional test of match_clusters(). Duplicated confidence scorer flagged as known risk above. |
+
 ## What MiMo Auto can do autonomously
 
 - Run the test pull, apply hard gates, drop anything that fails them.
