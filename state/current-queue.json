@@ -1725,15 +1725,35 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "operator_capture_ratio_script_bug",
-      "status": "ready_for_publishing",
-      "status_updated_at": "2026-07-18T00:00:00Z",
+      "status": "scheduled",
+      "status_updated_at": "2026-07-20T11:27:57.903783+00:00",
       "priority": 1,
       "week": "2026-W32",
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-08T10:00:00Z",
       "draft_path": "drafts/ready/2026-08-08-guardrail-wrong-answers-struggle-li.md",
-      "notes": "Backfills Jul 29 slot when it ages out of trailing-10. Ratio holds at 30% across Jul 30-Aug 8 boundary (post-based window, no transient spike or dip). Today's ratio script bug — sorted by array order instead of date, silently gave wrong answer. Draft written."
+      "notes": "Backfills Jul 29 slot when it ages out of trailing-10. Ratio holds at 30% across Jul 30-Aug 8 boundary (post-based window, no transient spike or dip). Today's ratio script bug — sorted by array order instead of date, silently gave wrong answer. Draft written.",
+      "blotato_id": "a21e6e97-76c3-4feb-ac4a-5c915ae4c8f3"
+    },
+    {
+      "id": "2026-08-09-bloto-sync-drift-struggle-li",
+      "title": "The Post That Was Scheduled But the System Didn't Know",
+      "hook": "Blotato confirmed the post. The draft said scheduled. The queue said nothing.",
+      "type": "Struggle",
+      "platform": "LinkedIn",
+      "goal": "Build in public",
+      "source": "operator_capture_sync_drift",
+      "status": "scheduled",
+      "status_updated_at": "2026-07-20T11:46:44.465078+00:00",
+      "priority": 1,
+      "week": "2026-W32",
+      "created_at": "2026-07-18T00:00:00Z",
+      "updated_at": "2026-07-18T00:00:00Z",
+      "scheduled_time": "2026-08-09T10:00:00Z",
+      "draft_path": "drafts/ready/2026-08-09-bloto-sync-drift-struggle-li.md",
+      "notes": "Blotato sync drift story. 50% ratio for one day (Aug 9), drops to 40% on Aug 10 when Jul 29 ages out.",
+      "blotato_id": "1c5ad9b5-8928-47b5-bc89-cee9dd75de89"
     }
   ],
   "updated": "2026-07-18"
