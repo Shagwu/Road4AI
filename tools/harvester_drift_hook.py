@@ -24,7 +24,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from drift_monitor import DriftMonitor, DRIFT_LOG, DRIFT_HALT
+from drift_monitor import DriftMonitor, DRIFT_HALT
 
 HARVESTER_STATE = Path("state/harvester_gate.json")
 

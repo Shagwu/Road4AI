@@ -18,7 +18,7 @@ from datetime import datetime, timezone, timedelta
 from html import unescape
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from harvester_drift_hook import gate_check, process_signal, load_gate
+from harvester_drift_hook import gate_check, process_signal
 
 try:
     import feedparser

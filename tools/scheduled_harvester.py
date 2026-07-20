@@ -19,8 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from harvester_pipeline import (
     run_rss_search, extract_signals, should_log_signal,
     get_underrepresented_keywords, get_brand_mentions, match_clusters,
-    UNDERREPRESENTED_KEYWORD_MAX_SIGNALS, UNDERREPRESENTED_LOOKBACK_DAYS,
-    TOPICAL_KEYWORDS
+    UNDERREPRESENTED_KEYWORD_MAX_SIGNALS, UNDERREPRESENTED_LOOKBACK_DAYS
 )
 from harvester_drift_hook import gate_check, process_signal
 

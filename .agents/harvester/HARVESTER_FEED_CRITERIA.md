@@ -101,11 +101,16 @@ These don't auto-reject, but also don't auto-approve:
 
 - **Duplicated confidence scorers.** `harvester_pipeline.py` (line ~320) and `harvester_reader.py` (line ~32) score signal confidence using different formulas. Same signal routed through different paths gets different scores. Not a bug today since they're used in different contexts, but will produce confusing discrepancies if the paths ever converge. **Revisit trigger:** any change that routes the same signal through both pipelines, or any investigation into confidence score drift. [flagged 2026-07-18]
 
+- **`authority_boost` never fires.** `harvester_pipeline.py:293` checks `if "hackernews" in entry.get("source_feed", "")` but no RSS feed key or URL contains "hackernews". The 0.15 boost for curated feeds is dead code — confidence scores are slightly lower than intended for all feeds. **Revisit trigger:** when adding new feeds or if curated-feed scoring is investigated. [flagged 2026-07-20]
+
+- **Race condition on `signals_processed` counter.** `harvester_drift_hook.py:120-122` does read → increment → write on `signals_processed` in `harvester_gate.json` without file locking. Two concurrent runs would lose an increment. Accepted risk: launchd runs are sequential (08:00/18:00 UTC, 10h gap), and counter is informational, not a gate. **Revisit trigger:** if automation introduces concurrent schedule runs. [accepted 2026-07-20]
+
 ## Karen review log
 
 | Date | Script(s) | Method | Verdict | Notes |
 |---|---|---|---|---|
 | 2026-07-18 | harvester_pipeline.py, scheduled_harvester.py | Manual review (no staged diff; files already committed in 780f35b) | APPROVED | Dead code removal (33 lines after match_clusters return), unused constant DEDUP_SAME_URL removed (4 lines), unused import removed. Pure deletions, no behavioral change. Verified via AST analysis, import testing, compile checks, functional test of match_clusters(). Duplicated confidence scorer flagged as known risk above. |
+| 2026-07-20 | harvester_pipeline.py, scheduled_harvester.py, harvester_drift_hook.py | Manual review (post-commit; files already committed, Karen staged-diff requirement not met) | APPROVED | 3 dead imports removed (load_gate, TOPICAL_KEYWORDS, DRIFT_LOG). authority_boost dead code and signals_processed race condition documented as known risks above. Timing: review completed before next unattended launchd run (08:00 UTC Jul 21). Plist cleanup: TWITTER_AUTH_TOKEN/CT0 removed from ~/Library/LaunchAgents/com.road4ai.scheduled-harvester.plist (outside git). 19/19 tests passing. |
 
 ## What MiMo Auto can do autonomously
 
