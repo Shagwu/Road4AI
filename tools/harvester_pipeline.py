@@ -134,7 +134,8 @@ def get_keyword_counts(log_path: Path, lookback_days: int = None,
             continue
 
         # Only count deduped rows (skip if URL already seen)
-        url = canonicalize_url(row.get("link", "") or row.get("entry_id", ""))
+        # Handles both RSS (link/entry_id) and legacy Twitter (tweet_id) schemas
+        url = canonicalize_url(row.get("link", "") or row.get("entry_id", "") or row.get("tweet_id", ""))
         if url in seen_urls:
             continue
         seen_urls.add(url)

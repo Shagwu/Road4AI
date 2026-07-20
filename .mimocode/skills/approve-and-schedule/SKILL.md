@@ -67,7 +67,7 @@ import json
 data = json.load(open('state/current-queue.json'))
 for e in data['queue']:
     if '<filename-stem>' in e.get('id',''):
-        print('status=%s  blotato=%s' % (e.get('status'), e.get('blotato','none')))
+        print('status=%s  blotato_id=%s' % (e.get('status'), e.get('blotato_id','none')))
 "
 ```
 

@@ -42,8 +42,8 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from harvester_pipeline import run_twitter_search, extract_signals
-from harvester_drift_hook import gate_check, process_signal, load_gate
+from harvester_pipeline import run_rss_search, extract_signals
+from harvester_drift_hook import gate_check, process_signal
 
 REQUESTS_DIR = Path("state/signal_requests")
 RESPONSES_DIR = Path("state/signal_responses")
@@ -93,9 +93,9 @@ def process_request(request: dict) -> dict:
             "processed_at": datetime.now(timezone.utc).isoformat()
         }
 
-    # Twitter search
-    tweets = run_twitter_search(request["query"], request["limit"])
-    if not tweets:
+    # RSS search
+    entries = run_rss_search(request["query"], request["limit"])
+    if not entries:
         return {
             "request_id": request["id"],
             "status": "no_data",
@@ -106,7 +106,7 @@ def process_request(request: dict) -> dict:
         }
 
     # Extract signals
-    signals = extract_signals(tweets, request["query"])
+    signals = extract_signals(entries, request["query"])
 
     # Route through drift gate
     routed = []
@@ -114,13 +114,12 @@ def process_request(request: dict) -> dict:
     for signal in signals:
         result = process_signal(signal)
         routed.append({
-            "tweet_id": signal.get("tweet_id", ""),
+            "entry_id": signal.get("entry_id", ""),
             "author": signal.get("author", ""),
             "text": signal.get("text", "")[:200],
             "confidence": signal.get("confidence", 0),
             "action": result.get("action", "unknown"),
             "domain": signal.get("domain", "social_voice"),
-            "engagement": signal.get("engagement", {})
         })
         action = result.get("action", "unknown")
         if action in actions:
@@ -224,8 +223,8 @@ def main() -> int:
 
     # request
     req = sub.add_parser("request", help="Request signals from harvester")
-    req.add_argument("--query", required=True, help="Twitter search query")
-    req.add_argument("--limit", type=int, default=5, help="Number of tweets")
+    req.add_argument("--query", required=True, help="RSS search query")
+    req.add_argument("--limit", type=int, default=5, help="Number of entries")
     req.add_argument("--requester", required=True, help="Requesting agent name")
     req.add_argument("--domain", default="social_voice", help="Signal domain")
 

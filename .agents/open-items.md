@@ -45,12 +45,25 @@ Context: Compiled during review of .mimocode distill work (commit 588cf99). Capt
 
 ---
 
-## 5. Recurring sync-drift bug class
+## 5. Recurring sync-drift bug class — PARTIALLY RESOLVED (2026-07-20)
 
-**Status:** Pattern identified across 3 incidents, not structurally fixed
-**Owner:** TBD
-**Issue:** Same root cause has now surfaced three times: harvester's `last_entry_date` dropping between stages, the `queue-inspect` / `check_struggle_ratio.py` field-compatibility question (verified OK this time, but only by manual check), and the sync-drift bug documented in the `approve-and-schedule` skill's troubleshooting section. All stem from independently-evolving scripts assuming a shared schema/state without a shared source of truth.
-**Action:** Evaluate whether a shared state module (single source of truth for queue/status schema) is worth building, rather than continuing to catch drift case-by-case.
+**Status:** 4 high-severity mismatches fixed, remaining debt documented
+**Owner:** Shagwu (for remaining decisions)
+**Resolution (commit TBD):**
+- **M1 FIXED**: `approve-and-schedule/SKILL.md` read `blotato` but field is `blotato_id` — queue sync verification always returned "none"
+- **M11 FIXED**: `get_keyword_counts()` couldn't dedup Twitter signals (`tweet_id` not checked) — inflated keyword counts
+- **M13 FIXED**: `signal_server.py` imported dead `run_twitter_search` (removed when pipeline switched to RSS) — would crash on import. Updated to `run_rss_search`.
+- **Dead import cleaned**: `load_gate` removed from `signal_server.py` (unused)
+
+**Remaining tech debt (not fixed, documented):**
+- M2: Queue data has type enum violations (`"Technical"`, lowercase `"behind-the-scenes"`) not in AGENTS.md enum — no script validates the enum
+- M3: `rituals/CONTENT_AGENT.md` uses status values (`"drafting"`, `"outlined"`) not in AGENTS.md enum
+- M5: `codex_daily_check.py` treats `ready` as valid status (groups with `ready_for_publishing`)
+- M7: `published-log.json` has no automated writer — structural drift risk
+- M10: `signal_log.jsonl` has 3 schemas (request summaries, Twitter signals, RSS signals) with no discriminator
+- M6 (reclassified): `sync_queue_status()` raises RuntimeError for entries without `draft_path` — this is correct behavior (surfacing real errors), not a bug
+
+**Structural fix deferred:** A shared state module (single source of truth for queue/status schema) was evaluated but deferred. The 4 fixes address the concrete bugs; the remaining debt is enum consistency and published-log automation, which are lower urgency. Revisit if drift incidents recur.
 
 ---
 
