@@ -190,7 +190,7 @@
     {
       "id": "2026-06-w3-tireless-worker-trap-x",
       "title": "The Tireless Worker Trap",
-      "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That\u2019s when I realized the tireless worker is also the most dangerous one.",
+      "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That’s when I realized the tireless worker is also the most dangerous one.",
       "type": "Struggle",
       "platform": "X",
       "goal": "Teach / Nurture",
@@ -641,7 +641,7 @@
     {
       "id": "2026-05-11-journal-guardrail-li",
       "title": "Why I Still Use a Physical Notebook",
-      "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here\u2019s why optimization is a trap.",
+      "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here’s why optimization is a trap.",
       "type": "Struggle",
       "platform": "LinkedIn",
       "goal": "build_in_public",
@@ -654,7 +654,7 @@
     {
       "id": "2026-05-11-stateless-swarms-li",
       "title": "Escaping the 12-Month Agent Lag",
-      "hook": "If you\u2019re still 'prompt engineering' a single agent, you\u2019re building a legacy system. The 2026 stack is about stateless swarm coordination.",
+      "hook": "If you’re still 'prompt engineering' a single agent, you’re building a legacy system. The 2026 stack is about stateless swarm coordination.",
       "type": "Tutorial",
       "platform": "LinkedIn",
       "goal": "Teach",
@@ -1592,14 +1592,15 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "harvester_signal_openjarvis",
-      "status": "idea",
+      "status": "ready_for_drafting",
       "status_updated_at": "2026-07-18T00:00:00Z",
       "priority": 2,
       "week": "2026-W31",
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-01T10:00:00Z",
-      "notes": "Harvester signal (0.60 conf). OpenJarvis on Ollama validates local-first direction. Positions Road4AI stack as part of a growing wave."
+      "notes": "Harvester signal (0.60 conf). OpenJarvis on Ollama validates local-first direction. Positions Road4AI stack as part of a growing wave.",
+      "draft_path": "drafts/ready/2026-08-01-openjarvis-win-li.md"
     },
     {
       "id": "2026-08-02-twitter-cli-broke-struggle-li",
@@ -1609,14 +1610,15 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "operator_capture_harvester_pivot",
-      "status": "idea",
+      "status": "ready_for_drafting",
       "status_updated_at": "2026-07-18T00:00:00Z",
       "priority": 2,
       "week": "2026-W31",
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-02T10:00:00Z",
-      "notes": "Operator capture. Twitter CLI returned 404, OpenCLI install failed (missing pkg_resources), Reddit 403. Pivoted to 8 RSS feeds in a day."
+      "notes": "Operator capture. Twitter CLI returned 404, OpenCLI install failed (missing pkg_resources), Reddit 403. Pivoted to 8 RSS feeds in a day.",
+      "draft_path": "drafts/ready/2026-08-02-twitter-cli-broke-struggle-li.md"
     },
     {
       "id": "2026-08-03-harvester-math-tutorial-li",
@@ -1626,14 +1628,15 @@
       "platform": "LinkedIn",
       "goal": "Teach",
       "source": "operator_capture_cluster_matching",
-      "status": "idea",
+      "status": "ready_for_drafting",
       "status_updated_at": "2026-07-18T00:00:00Z",
       "priority": 2,
       "week": "2026-W31",
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-03T10:00:00Z",
-      "notes": "Walk through confidence scoring, cluster matching (>=2 clusters), dedup gate, underrep boost. Timely after Jul 18 run showed 9 underrep boosts."
+      "notes": "Walk through confidence scoring, cluster matching (>=2 clusters), dedup gate, underrep boost. Timely after Jul 18 run showed 9 underrep boosts.",
+      "draft_path": "drafts/ready/2026-08-03-harvester-math-tutorial-li.md"
     },
     {
       "id": "2026-08-04-karen-gate-bts-li",
@@ -1643,14 +1646,15 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "operator_capture_karen_harvester",
-      "status": "idea",
+      "status": "ready_for_drafting",
       "status_updated_at": "2026-07-18T00:00:00Z",
       "priority": 2,
       "week": "2026-W32",
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-04T10:00:00Z",
-      "notes": "Karen gate on harvester scripts. Dead code found, race condition flagged, duplicated scorer noted. Governance closing the gap before August trust."
+      "notes": "Karen gate on harvester scripts. Dead code found, race condition flagged, duplicated scorer noted. Governance closing the gap before August trust.",
+      "draft_path": "drafts/ready/2026-08-04-karen-gate-bts-li.md"
     },
     {
       "id": "2026-08-05-underrep-boost-win-x",
@@ -1660,14 +1664,15 @@
       "platform": "X",
       "goal": "Build in public",
       "source": "operator_capture_underrep_boost",
-      "status": "idea",
+      "status": "ready_for_drafting",
       "status_updated_at": "2026-07-18T00:00:00Z",
       "priority": 2,
       "week": "2026-W32",
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-05T10:00:00Z",
-      "notes": "Underrep boost went from 0 to 9 signals in one day after cluster matching was added. X thread candidate."
+      "notes": "Underrep boost went from 0 to 9 signals in one day after cluster matching was added. X thread candidate.",
+      "draft_path": "drafts/ready/2026-08-05-underrep-boost-win-x.md"
     },
     {
       "id": "2026-08-06-confidence-score-struggle-li",
@@ -1677,14 +1682,15 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "operator_capture_confidence_scorer",
-      "status": "idea",
+      "status": "ready_for_drafting",
       "status_updated_at": "2026-07-18T00:00:00Z",
       "priority": 2,
       "week": "2026-W32",
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-06T10:00:00Z",
-      "notes": "Flipped back to Struggle. Backfills the slot that opens when Jul 27 ages out of trailing-10 on Aug 6. Hook leads with learning, not failure — avoids fourth 'numbers were wrong' beat."
+      "notes": "Flipped back to Struggle. Backfills the slot that opens when Jul 27 ages out of trailing-10 on Aug 6. Hook leads with learning, not failure — avoids fourth 'numbers were wrong' beat.",
+      "draft_path": "drafts/ready/2026-08-06-confidence-score-struggle-li.md"
     },
     {
       "id": "2026-08-07-harvester-first-month-bts-li",
@@ -1694,14 +1700,15 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "operator_capture_harvester_month",
-      "status": "idea",
+      "status": "ready_for_drafting",
       "status_updated_at": "2026-07-18T00:00:00Z",
       "priority": 3,
       "week": "2026-W32",
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-07T10:00:00Z",
-      "notes": "Jun 29 to Jul 18 arc: Twitter pivot, 8 RSS feeds, dedup gate, cluster matching, Karen review. Retrospective on building the signal pipeline."
+      "notes": "Jun 29 to Jul 18 arc: Twitter pivot, 8 RSS feeds, dedup gate, cluster matching, Karen review. Retrospective on building the signal pipeline.",
+      "draft_path": "drafts/ready/2026-08-07-harvester-first-month-bts-li.md"
     },
     {
       "id": "2026-08-08-guardrail-wrong-answers-struggle-li",
@@ -1711,7 +1718,7 @@
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "operator_capture_ratio_script_bug",
-      "status": "ready_for_drafting",
+      "status": "ready_for_publishing",
       "status_updated_at": "2026-07-18T00:00:00Z",
       "priority": 1,
       "week": "2026-W32",
