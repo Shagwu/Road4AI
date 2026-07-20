@@ -43,11 +43,13 @@ def recent_entries(queue, window):
     active = [e for e in queue if e.get("status") in active_statuses]
 
     def post_date(e):
+        if not isinstance(e, dict):
+            return datetime.min.replace(tzinfo=None)
         for field in ("published_at", "published_time", "scheduled_time", "status_updated_at"):
             val = e.get(field, "")
             if val:
                 try:
-                    return datetime.fromisoformat(val.replace("Z", "+00:00"))
+                    return datetime.fromisoformat(str(val).replace("Z", "+00:00"))
                 except (ValueError, TypeError):
                     continue
         return datetime.min.replace(tzinfo=None)
