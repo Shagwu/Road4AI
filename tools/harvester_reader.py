@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
-from harvester_drift_hook import load_gate, route_signal, save_gate
+from harvester_drift_hook import process_signal
 
 CONFIG_FILE = ROOT / "config" / "harvester_feeds.json"
 
@@ -57,48 +57,31 @@ def read_twitter(query: str, limit: int = 5) -> list:
     try:
         result = subprocess.run(
             ["twitter", "search", query, "-n", str(limit), "--json"],
-            capture_output=True, text=True, timeout=30
+            capture_output=True, text=True, timeout=60
         )
-        if result.returncode != 0:
-            # Try without --json
-            result = subprocess.run(
-                ["twitter", "search", query, "-n", str(limit)],
-                capture_output=True, text=True, timeout=30
-            )
         if result.returncode != 0:
             print(f"[harvester] twitter error: {result.stderr[:200]}", file=sys.stderr)
             return []
 
-        lines = [l for l in result.stdout.strip().split("\n") if l.strip()]
+        data = json.loads(result.stdout)
+        tweets = data.get("data", [])
         signals = []
-        for line in lines[:limit]:
-            try:
-                tweet = json.loads(line)
-                text = tweet.get("text", tweet.get("full_text", ""))
-                signals.append({
-                    "id": f"tw-{tweet.get('id', 'unknown')}",
-                    "source": "twitter",
-                    "content": text,
-                    "author": tweet.get("user", {}).get("screen_name", "unknown"),
-                    "url": f"https://twitter.com/i/status/{tweet.get('id', '')}",
-                    "timestamp": tweet.get("created_at", datetime.now(timezone.utc).isoformat()),
-                })
-            except json.JSONDecodeError:
-                # Plain text output
-                signals.append({
-                    "id": f"tw-{datetime.now(timezone.utc).timestamp()}",
-                    "source": "twitter",
-                    "content": line,
-                    "author": "unknown",
-                    "url": None,
-                    "timestamp": datetime.now(timezone.utc).isoformat(),
-                })
+        for tweet in tweets[:limit]:
+            author = tweet.get("author", {})
+            signals.append({
+                "id": f"tw-{tweet.get('id', 'unknown')}",
+                "source": "twitter",
+                "content": tweet.get("text", ""),
+                "author": author.get("screenName", "unknown"),
+                "url": f"https://twitter.com/i/status/{tweet.get('id', '')}",
+                "timestamp": tweet.get("createdAtISO", datetime.now(timezone.utc).isoformat()),
+            })
         return signals
     except FileNotFoundError:
         print("[harvester] twitter CLI not found", file=sys.stderr)
         return []
-    except subprocess.TimeoutExpired:
-        print("[harvester] twitter search timed out", file=sys.stderr)
+    except (subprocess.TimeoutExpired, json.JSONDecodeError) as e:
+        print(f"[harvester] twitter search failed: {e}", file=sys.stderr)
         return []
 
 
@@ -228,7 +211,6 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Score but don't route to drift hook")
     args = parser.parse_args()
 
-    gate = load_gate()
     all_signals = []
 
     if args.config or args.all_feeds:
@@ -242,7 +224,7 @@ def main():
                 if args.dry_run:
                     print(json.dumps(sig, indent=2))
                 else:
-                    result = route_signal(gate, sig)
+                    result = process_signal(sig)
                     print(json.dumps(result))
                 all_signals.append(sig)
         # Run all GitHub queries from config
@@ -254,7 +236,7 @@ def main():
                 if args.dry_run:
                     print(json.dumps(sig, indent=2))
                 else:
-                    result = route_signal(gate, sig)
+                    result = process_signal(sig)
                     print(json.dumps(result))
                 all_signals.append(sig)
     else:
@@ -279,12 +261,9 @@ def main():
                 if args.dry_run:
                     print(json.dumps(sig, indent=2))
                 else:
-                    result = route_signal(gate, sig)
+                    result = process_signal(sig)
                     print(json.dumps(result))
                 all_signals.append(sig)
-
-    if not args.dry_run:
-        save_gate(gate)
 
     print(f"\n[harvester] Processed {len(all_signals)} signals", file=sys.stderr)
 
