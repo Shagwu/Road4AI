@@ -75,15 +75,15 @@ Context: Compiled during review of .mimocode distill work (commit 588cf99). Capt
 
 ---
 
-## 6. `.mimocode` tracking decision
+## 6. `.mimocode` tracking decision — RESOLVED (2026-07-21)
 
-**Status:** Open, low urgency
-**Owner:** Shagwu (explicitly your call)
-**Issue:** `.mimocode` is gitignored; `queue-inspect.md` and `approve-and-schedule/SKILL.md` are committed via `git add -f`, so `git status` will keep showing them as untracked.
-**Options:**
-- **A — Un-ignore `.mimocode`:** keeps assets in MiMo's native discovery path; add a scoped `.mimocode/.gitignore` to avoid pulling in local-only cache/log files.
-- **B — Move to `.agents/skills/`:** consistent with existing tracked-skill locations (`.agents/harvester/`), but requires confirming MiMo Auto can still discover/invoke skills from a non-`.mimocode/` path — check this before moving anything, to avoid a silent discovery failure.
-**Action:** Decide, verify MiMo's discovery mechanism if choosing B, note the decision in a Hermes checkpoint.
+**Status:** Closed, commit `55cb976`
+**Resolution:** Option B — moved to `.agents/skills/`.
+- `queue-inspect.md` → `.agents/skills/queue-inspect.md`
+- `.mimocode/skills/approve-and-schedule/SKILL.md` → `.agents/skills/approve-and-schedule/SKILL.md`
+- Dropped gitignore exceptions for `.mimocode/command/` and `.mimocode/skills/`
+- `.mimocode/` now fully ignored (local cache, logs, node_modules stay out of git)
+- Single source of truth for skill discovery: `.agents/skills/`
 
 ---
 
