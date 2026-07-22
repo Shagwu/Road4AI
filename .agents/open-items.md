@@ -44,12 +44,15 @@ Context: Compiled during review of .mimocode distill work (commit 588cf99). Capt
 
 ---
 
-## 4. Phase 5 eval backlog — enforce a moratorium
+## 4. Phase 5 eval backlog — RESOLVED (2026-07-21)
 
-**Status:** Pattern identified, not yet enforced
-**Owner:** TBD
-**Issue:** Five tool evaluations (OmniRoute, cc-mirror, Memanto, gpt-oss-120b, Project Graveyard) completed with correct evaluate-document-defer outcomes but zero adoption — backlog growing without usage data to justify further evaluation.
-**Action:** Add an explicit rule (AGENTS.md line item or Karen gate) blocking new Phase 5 tool evaluations until Phase 4 has real usage data. Turn the intention into an enforced constraint.
+**Status:** Closed, commit `873ceb5`
+**Resolution:** Added Phase 5 Eval Moratorium to `rules/common/approval-gates.md`.
+- Blocks new tool evaluations outside core stack until Phase 4 has real usage data.
+- Lists blocked evaluations: OmniRoute, cc-mirror, Memanto, gpt-oss-120b, Project Graveyard.
+- Allows maintenance/iteration on tools already in use.
+- Lift condition: Phase 4 POC demonstrates measurable value, operator decision to lift.
+- Avoided AGENTS.md change (Governance Lock) — rule lives in approval-gates.md.
 
 ---
 
