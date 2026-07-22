@@ -50,3 +50,19 @@ Changes to `tools/harvester_pipeline.py` or `tools/scheduled_harvester.py` that 
 
 **Enforcement:** Manual. The committing agent must flag the change. Karen review must complete before the affected launchd cycle.
 
+## Phase 5 Eval Moratorium
+
+New Phase 5 tool evaluations are blocked until Phase 4 has real usage data.
+
+**Blocked evaluations:** OmniRoute, cc-mirror, Memanto, gpt-oss-120b, Project Graveyard (all evaluated, none adopted).
+
+**What this blocks:** Any new evaluation, benchmark, or integration attempt for tools outside the core stack (Claude Code, Codex, Ollama, Blotato, GitNexus, Magika, Hermes).
+
+**What this allows:** Bug fixes, maintenance, and iteration on tools already in use. Phase 4 harvester and drift monitoring work continues.
+
+**Why this exists:** Five evaluations completed with correct evaluate-document-defer outcomes but zero adoption. The backlog grew without usage data to justify further evaluation. The moratorium turns "we should wait" into an enforced constraint.
+
+**Enforcement:** Manual. Any agent proposing a new tool evaluation must check this rule first. If Phase 4 usage data is insufficient, the evaluation is deferred — not skipped, deferred.
+
+**Lift condition:** Phase 4 POC has demonstrated measurable value (signals surfaced → content published, or drift detection → corrective action). Operator decision to lift.
+
