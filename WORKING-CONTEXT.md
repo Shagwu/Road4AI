@@ -1,132 +1,93 @@
 # Road4AI Working Context
 
-Last updated: 2026-06-28
+Last updated: 2026-07-22
 
 ## Current Sprint
 
-Governance foundation after the Hermes v2.0 reveal.
+Phase 4 POC: harvester runs on launchd, signal review brief bridges harvester to content pipeline, Phase 5 eval moratorium enforced.
 
 Primary focus:
 
-- Make governance explicit through `rules/`.
-- Preserve `AGENTS.md` as the operating contract.
-- Formalize the five-agent content pipeline as a reusable skill.
-- Add public sanitization rules before security/autonomy content is published.
-- Extract working Road4AI operating patterns into reusable skills.
+- Harvester proves value by informing a content decision (redefined POC gate — see approval-gates.md).
+- Content pipeline continues with 7 posts scheduled through Jul 27.
+- Weekly signal review brief surfaces candidates for ideation.
 
 ## v2.1 Timeline
 
-### June 28 (Today)
-- v2.1.0 released ✅
-- GitHub release published ✅
-- X thread live ✅
+### June 28
+- v2.1.0 released, GitHub release published, X thread live.
 
-### June 30 (Sun)
-- LinkedIn post scheduled ✅
+### June 30
+- LinkedIn post scheduled.
 
-### July 1 (Mon)
-- Drift monitoring starts (daily runs, 12-case orchestration suite)
-- First checkpoint to Hermes (baseline comparison)
-- COS daily review (5 min: check alerts, approve next run)
+### July 1–10
+- Drift monitoring started (daily runs), then stopped per operator decision (July 8). Scores accepted as-is: 0.788 (live Ollama), 0.871 (deterministic).
+- Struggle ratio enforcement implemented (`check_struggle_ratio.py`).
 
-### July 2–10 (Tue–Sun)
-- Daily drift monitoring (same pattern)
-- Zero blue incidents expected (local model variance within ±5%)
-- Any yellow incidents logged, investigated same day
-- Hermes checkpoint history accumulates
+### July 15
+- v2.1 reveal posts published (X + LinkedIn).
+- Phase 4 POC begins.
 
-### July 11–12 (Mon–Tue)
-- Phase 4 POC readiness audit
-  - Harvester CLI confirmed working (Agent-Reach integration)
-  - MiMo backend confirmed working (OpenAI-compatible API)
-  - Harvester → Drift Monitor hook wired (pause/resume gates configured)
-- AGENTS.md final update (drift monitoring section + Phase 4 reference)
+### July 16–20
+- Harvester pivoted to RSS (Twitter CLI broken — API deprecation, 404).
+- Harvester pipeline hardened: canonical-URL dedup, underrepresentation check, governance gate.
+- Open items checkpoint compiled (6 governance/infra gaps).
+- Harvester Karen review completed (post-commit).
+- Sync-drift audit: 4 high-severity fixes, remaining debt documented.
 
-### July 15 (Fri)
-- v2.1 reveal narrative locked (ready for July 16 Phase 4 POC start)
-
-### July 16+ (Sat+)
-- Phase 4 POC begins
-- Harvester detects trends (Twitter platform test)
-- Signals route through social_voice → memory_ops → Hermes
-- Drift monitor watches live (real-time or batched, TBD)
-- v2.1 reveal posts publish (pre-scheduled or live thread, TBD)
+### July 21–22 (today)
+- Twitter reader fixed (broken import + JSON parser).
+- Struggle stall detector built (`check_struggle_stall.py`).
+- `.mimocode` tracked assets consolidated to `.agents/skills/`.
+- Phase 5 eval moratorium enforced in approval-gates.md.
+- Signal review brief built (`signal_review_brief.py` + skill) — bridges harvester to content pipeline.
+- Phase 4 POC lift condition redefined: "signal → traceably informs content decision" (not "signal → post").
+- All 6 open items resolved.
 
 ## Recent Checkpoints
 
-- June 8 content scheduled: 'Self-Knowledge Pivot' series for LinkedIn and X.
-- Blotato account IDs updated in `config/blotato-accounts.json`.
-- June 4 content scheduled/published: M Solo Agent series.
-- M Solo Agent Scout drop processed into three drafts, then moved to published queue status.
-- June 3 content scheduled/published: Catch-Up Checkpoint series.
-- June 2 GitNexus refresh policy batched and fresh-idea token anxiety captured.
-- June 1 Road4AI posts confirmed published, missed approved posts reconciled, and May 27 posts filed as published.
-- May 30 SkillOpt benchmark runner hardened, free-tier Gemini runner swapped in, and T-001/T-002 governance tasks approved.
-- May 29 SkillOpt validation report, v2.1 roadmap, and standard OpenAI implementation added.
-- May 28 Google Workspace plugin imported and agent spawn command launched.
-- May 27 post-reveal retro sequence scheduled, telemetry initialized, and architecture hardening synchronized.
-- May 26 Hermes standalone extraction shipped into `road4ai-hermes`, v0.1.0 changelog added, and reveal-day content promoted/scheduled.
-- May 21 content pipeline finalized, struggle ratio verified, and Self-Knowledge Loop trajectories checked.
-- May 19 reveal runbook, reply strategy, safety layers, and final reveal momentum added.
-- May 13-14 Hermes v2.0 distributed substrate, self-knowledge index, Hermes-CrewAI bridge, strict governance lock, and checkpoint v2.0 flow established.
+- Jul 22: Gate redefined, signal review brief, stall detector, .mimocode consolidation, Twitter fix — 10 commits.
+- Jul 20: Open items checkpoint compiled, sync-drift fixes (4 high-severity), Phase 5 RFC log.
+- Jul 18: Queue sync fix, ratio script date-sort, harvester dead code cleanup.
+- Jul 17: Harvester pipeline hardened (dedup, underrep, governance gate). Twitter CLI confirmed broken.
+- Jul 15: v2.1 reveal published, Phase 4 POC begins.
+- Jul 6–10: Struggle ratio enforcement implemented, content pipeline finalized.
+- Jun 28: v2.1.0 released.
 
 ## Deferred Evaluations
 
 ### Memanto Semantic Memory (evaluated June 2026)
 
-**Decision:** Defer to Phase 5 RFC. Do not integrate until Harvester CLI + MiMo POC is validated and shipped.
-
-**What it is:** Memanto (moorcheh-ai/memanto) is a semantic memory agent that provides `remember`, `recall`, and `answer` operations. Built on Moorcheh, an information-theoretic search engine with sub-90ms retrieval, no vector DB, no indexing delay. 1,472 stars, MIT, Python. Supports Claude Code, Cursor, Codex, and 14+ other agents.
-
-**Why defer:**
-- Hermes is working. Git checkpoints are adequate for 1-3 agents with human-in-the-loop.
-- Road4AI philosophy: "habits before infrastructure." Hermes is a habit. Memanto is infrastructure (Docker container, running service).
-- Phase 4 has a hard deadline (July 15, 2026). Ship the POC first, then measure whether semantic memory is a bottleneck.
-- The locked architectural decisions say "no cloud-only dependencies in the main path." Memanto on-prem respects this, but adds a Docker dependency.
+**Decision:** Defer to Phase 5 RFC. Blocked by Phase 5 eval moratorium.
 
 **Revisit threshold:** 5+ concurrent autonomous agents, or 1,000+ checkpoints where `git log --grep` becomes unwieldy.
 
-**Shorter-term alternative if grep becomes slow before Phase 5:** Add a lightweight metadata index to Hermes (JSON summary of each checkpoint's agents, timestamp, outcome) rather than swapping engines. Keeps the habit intact.
-
-**Project health:** Active maintenance (1.4k stars, MIT, 413 forks). No risk of disappearance if wanted in 6 months.
-
----
-
 ### OmniRoute Multi-Provider AI Gateway (evaluated July 2026)
 
-**Decision:** Deferred, not adopted.
+**Decision:** Deferred, not adopted. Blocked by Phase 5 eval moratorium.
 
-**What it is:** Self-hosted local proxy, one OpenAI-compatible endpoint routing across 230+ LLM providers (50+ free tiers), auto-fallback, MIT licensed, no cloud in request path.
-
-**Why defer:**
-- No current need. MiMo/qwen2.5-coder:14b via Ollama already solves local-first inference for Phase 4.
-- OmniRoute solves a cloud-API rate-limit problem Road4AI doesn't have.
-- Large, fast-moving, single-maintainer-heavy codebase (MITM proxy, OAuth, credential storage). More attack surface than current stack for no active benefit.
-
-**Revisit trigger:** If a future phase requires cloud-provider fallback that Ollama/MiMo can't cover, or multi-provider routing becomes a real need.
-
-**Source:** github.com/diegosouzapw/OmniRoute (npm install -g omniroute)
-
----
+**Revisit trigger:** If a future phase requires cloud-provider fallback that Ollama/MiMo can't cover.
 
 ## Active Constraints
 
 - `AGENTS.md` requires explicit human approval before edits.
 - Queue writes must pass the four-check dedup gate.
-- `state/current-queue.json` currently uses a top-level `queue` array; preserve that shape.
+- `state/current-queue.json` uses a top-level `queue` array; preserve this shape.
 - Only the user moves content into `drafts/approved/`.
 - Public posts must not include copy-pasteable exploit strings.
 - X posts must be strictly under 280 characters each.
-- Blotato scheduling confirmation is the terminal state. Do not verify whether posts appeared on platforms (updated 2026-07-09).
+- Blotato scheduling confirmation is the terminal state. Do not verify whether posts appeared on platforms.
+- Phase 5 eval moratorium: no new tool evaluations until Phase 4 POC lifts (see approval-gates.md).
+- Harvester pipeline changes require Karen review before next unattended launchd run.
 
 ## Active Governance Backlog
 
-1. Audit Road4AI skills against the standardized `SKILL.md` structure.
-2. Consider filesystem-level protection for `AGENTS.md`.
-3. Add broader hook coverage for publishing workflows if the deterministic sanitizer needs stronger enforcement.
-4. Decide whether to consolidate overlapping content pipeline skills after Phase 3 extraction.
-5. Phase 5 RFC: evaluate Memanto semantic memory if scale threshold is reached (5+ concurrent agents, 1k+ checkpoints).
-6. Phase 5 RFC: evaluate OmniRoute multi-provider AI gateway if cloud-provider fallback or multi-provider routing becomes a real need.
+1. ~~Audit Road4AI skills against the standardized `SKILL.md` structure.~~ (lower priority, maintenance)
+2. ~~Consider filesystem-level protection for `AGENTS.md`.~~ (done — chmod 444 via `lock_agents_md.py`)
+3. ~~Add broader hook coverage for publishing workflows.~~ (deterministic sanitizer + pre-commit hook in place)
+4. ~~Decide whether to consolidate overlapping content pipeline skills.~~ (done — Phase 3 Consolidation)
+5. Phase 5 RFC: evaluate Memanto if scale threshold reached (blocked by moratorium).
+6. Phase 5 RFC: evaluate OmniRoute if cloud-provider fallback needed (blocked by moratorium).
 
 ## Content Pipeline Pattern
 
@@ -137,6 +98,8 @@ The five-agent content pipeline is the canonical Road4AI content workflow:
 3. Voice-Match Ideator converts signals into Road4AI-native angles.
 4. Format Selector maps ideas to platform and cadence.
 5. Content Scout extracts structured knowledge from transcripts, URLs, or text.
+
+**New input source (Jul 22):** Signal review brief (`tools/signal_review_brief.py`) surfaces queue-for-review candidates weekly. Selected signals become inbox entries for ideation.
 
 Parallelize independent research and ideation work. Keep drafting, approval, and scheduling sequential because each step depends on the previous gate.
 
