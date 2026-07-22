@@ -18,12 +18,16 @@ Context: Compiled during review of .mimocode distill work (commit 588cf99). Capt
 
 ---
 
-## 2. Twitter/X RSS 404
+## 2. Twitter/X reader broken — RESOLVED (2026-07-21)
 
-**Status:** Broken, blocking Phase 4 POC
-**Owner:** TBD
-**Issue:** Agent-Reach CLI → Twitter test → Harvester integration (targeted July 16+) can't proceed until this is resolved.
-**Action:** Determine whether this is an API/auth change on Twitter's side or a bug in the fetch logic. If not fixable soon, log it explicitly as a blocker with a re-check date rather than letting Harvester run silently degraded on that source.
+**Status:** Closed, commit `3da2179`
+**Resolution:**
+- Root cause: `harvester_reader.py` imported nonexistent `route_signal` from `harvester_drift_hook` (actual function is `process_signal`). Would crash on any Twitter/GitHub reader call.
+- Secondary: Twitter `--json` parser assumed line-delimited JSON, but CLI returns `{data: [...]}`. Rewrote to parse full response.
+- Timeout bumped 30s → 60s (CLI takes ~19s per query).
+- Stale gate load/save removed — `process_signal` handles its own persistence.
+- Twitter CLI 404 was transient, already resolved upstream. CLI search works.
+- All 33 tests passing, RSS pipeline unaffected.
 
 ---
 
