@@ -64,5 +64,17 @@ New Phase 5 tool evaluations are blocked until Phase 4 has real usage data.
 
 **Enforcement:** Manual. Any agent proposing a new tool evaluation must check this rule first. If Phase 4 usage data is insufficient, the evaluation is deferred — not skipped, deferred.
 
-**Lift condition:** Phase 4 POC has demonstrated measurable value (signals surfaced → content published, or drift detection → corrective action). Operator decision to lift.
+**Lift condition (redefined 2026-07-22):**
+
+Original criterion: "Phase 4 POC has demonstrated measurable value (signals surfaced → content published, or drift detection → corrective action)."
+
+Redefined: "Signal surfaced by harvester/signal_review_brief → traceably informs a content decision (post angle, topic choice, or timing) → decision is documented in inbox.md or the post's commit message with a reference to the source signal."
+
+**Traceability requirement:** The citation must include the signal title, the brief date, and the confidence score. Without a citation, the link doesn't count — no matter how plausible it feels in hindsight.
+
+**Positive decisions only:** "I looked at the brief and decided not to write about any of it" does not satisfy this gate. The link must be a positive, citable influence on a content decision, not an absence of one.
+
+**Rationale:** Diagnosis on 2026-07-22 (16-candidate review of signal_review_brief output) found the harvester surfaces topically-relevant but narratively-generic signals — real value as "staying current" radar, not as direct draft material. The original criterion assumed signal → post causality that RSS content structurally can't deliver. This redefinition sets a bar the harvester can actually meet without requiring it to generate Struggle/BTS narrative content it isn't suited for.
+
+**Explicitly NOT satisfied by:** Prior posts (e.g. Aug 8 stall detector post — traced to the July 6-10 struggle-ratio audit and July 20 open-items doc, not the harvester). No retroactive credit. Gate remains active until a future brief candidate is traceably linked, going forward, to a real content decision.
 
