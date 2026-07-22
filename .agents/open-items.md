@@ -31,12 +31,16 @@ Context: Compiled during review of .mimocode distill work (commit 588cf99). Capt
 
 ---
 
-## 3. 72-hour stall detector (missing guardrail)
+## 3. 72-hour stall detector — RESOLVED (2026-07-21)
 
-**Status:** Not implemented
-**Owner:** TBD
-**Issue:** The June 2 Struggle-content cliff-break (16 consecutive non-Struggle posts) was traced to a missing automated ratio enforcement guardrail. Ratio has been managed manually since (e.g. July 20-31 skeleton hand-balanced).
-**Action:** Build the stall detector so ratio drift is caught automatically instead of retrospectively during content audits.
+**Status:** Closed, commit `b2be0e6`
+**Resolution:**
+- Built `tools/check_struggle_stall.py` — detects consecutive non-Struggle post streaks (cliff breaks).
+- Complements `check_struggle_ratio.py` (trailing-window ratio) — ratio catches gradual drift, stall detector catches sudden droughts.
+- Default threshold: 3 consecutive non-Struggle posts. Configurable via `--max-streak`.
+- Supports `--json` for pipeline integration, exit code 1 on violation.
+- Correctly identifies the known 15-post June drought as validation.
+- All 33 tests passing.
 
 ---
 
