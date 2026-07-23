@@ -60,6 +60,17 @@ This is the constitution for all agents working in this repo. Every session read
 |------|---------|
 | `state/current-queue.json` | Active content pipeline queue (top-level `queue` array) |
 | `state/published-log.json` | Record of everything already posted |
+| `state/harvester_gate.json` | Harvester pause/resume gate (single-writer) |
+| `state/signal_log.jsonl` | Raw signal log from harvester pipeline |
+| `state/harvester-decisions.jsonl` | Harvester decision log (keep/discard/conditional) |
+| `state/harvester_signals.jsonl` | Harvester signal cache |
+| `state/post-metrics.json` | LinkedIn post metrics snapshots |
+| `state/drift_baseline_v2p1.json` | SkillOpt drift monitoring baseline |
+| `state/signal-review-brief.md` | Weekly signal review brief (generated) |
+| `state/daily-brief.log` | Daily brief execution log |
+| `state/harvester-cron.log` | Harvester launchd execution log |
+| `state/media_cache.json` | Blotato media cache |
+| `state/visual_variety.json` | Blotato visual variety tracking |
 | `drafts/` | Lifecycle folders: `ideas/` → `ready/` → `approved/` → `archived/` |
 | `WORKING-CONTEXT.md` | Current sprint, constraints, backlog |
 | `rules/` | Governance and enforcement rules |
@@ -90,7 +101,7 @@ The queue lives in `state/current-queue.json` as an array of objects. Required f
 - `hook` (string): one-line hook in Sharon's voice (conspiratorial, punchy, personal).
 - `type` (enum): `"Struggle"` | `"Win"` | `"Tutorial"` | `"Behind-the-scenes"`.
 - `platform` (string): primary platform (e.g. `"Instagram"`, `"X"`, `"LinkedIn"`, `"YouTube Short"`).
-- `goal` (enum-ish): `"Build in public"` | `"Teach"` | `"Nurture"` | `"Sell"`.
+- `goal` (enum-ish): `"Build in public"` | `"Teach"` | `"Nurture"` | `"Sell"` | `"Build Anticipation"` | `"Build Trust"` | `"Brand Nurture"`. Compound values like `"Teach / Nurture"` are allowed. Casing must match the enum exactly (`"Build in public"`, not `"build_in_public"` or `"Build in Public"`).
 - `status` (enum): `"idea"` | `"ready_for_drafting"` | `"draft_in_progress"` | `"ready_for_edit"` | `"ready_for_publishing"` | `"published"`.
 - `status_updated_at` (ISO date): when status last changed.
 - `priority` (integer): 1 is highest; 1–3 usually "this week".
