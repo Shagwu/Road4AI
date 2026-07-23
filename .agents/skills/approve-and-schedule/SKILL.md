@@ -90,13 +90,22 @@ git commit -m 'content: schedule <title>'
 
 ### Step 8: Archive scheduled draft
 
-After Blotato confirms scheduling, move the draft from `drafts/approved/` to `drafts/archived/`:
+After Blotato confirms scheduling, move the draft from `drafts/approved/` to `drafts/archived/` and update the queue entry's `draft_path` to match:
 
 ```bash
 mv drafts/approved/<filename>.md drafts/archived/<filename>.md
+
+python3 -c "
+import json
+data = json.load(open('state/current-queue.json'))
+for e in data['queue']:
+    if '<filename-stem>' in e.get('id',''):
+        e['draft_path'] = 'drafts/archived/<filename>.md'
+json.dump(data, open('state/current-queue.json','w'), indent=2, ensure_ascii=False)
+"
 ```
 
-This prevents duplicate-approval and duplicate-posting risk. The approved folder is a scheduling inbox, not storage.
+This prevents duplicate-approval risk AND keeps queue references accurate. Without the queue patch, `draft_path` points to a file that no longer exists at the old location — the exact pattern that caused the 7 phantom references in S-4.
 
 ## Replaces
 
@@ -119,7 +128,7 @@ When approving multiple drafts:
 4. Verify all queue entries synced
 5. Run ratio check once at the end
 6. Single commit for the batch
-7. Archive all scheduled drafts in one `mv` command
+7. Archive all scheduled drafts in one `mv` command and patch all queue draft_paths
 
 ## Troubleshooting
 
