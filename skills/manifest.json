@@ -70,6 +70,13 @@
       "runtime_targets": [".agents/skills"],
       "status": "canonical",
       "notes": "Approval-to-scheduling-to-archive pipeline. Karen-reviewed 2026-07-23. Surviving issues dismissed as false positives for skill-level docs."
+    },
+    "signal-review": {
+      "tier": 1,
+      "source": "skills/signal-review",
+      "runtime_targets": [".agents/skills"],
+      "status": "canonical",
+      "notes": "Weekly harvester signal surfacing. Added to manifest 2026-07-23."
     }
   },
   "runtime_road4ai": {
