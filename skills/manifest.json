@@ -49,6 +49,20 @@
       "runtime_targets": [],
       "status": "canonical_runtime_source",
       "notes": "Canonical Road4AI human voice and content quality filter. Runtime copy remains protected as an active Codex surface until sync policy is expanded for active Tier 2 installs."
+    },
+    "queue-ratio-check": {
+      "tier": 1,
+      "source": "skills/queue-ratio-check",
+      "runtime_targets": [".agents/skills"],
+      "status": "canonical",
+      "notes": "Queue ratio check and fix workflow. Complements approve-and-schedule with standalone ratio diagnostics."
+    },
+    "open-items-compiler": {
+      "tier": 1,
+      "source": "skills/open-items-compiler",
+      "runtime_targets": [".agents/skills"],
+      "status": "canonical",
+      "notes": "Governance and infrastructure gap compilation. Produces tracked open-items document."
     }
   },
   "runtime_road4ai": {

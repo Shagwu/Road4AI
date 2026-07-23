@@ -1,6 +1,6 @@
 ---
 name: approve-and-schedule
-description: Move a draft from ready/ to approved/, update frontmatter, schedule via Blotato, and verify queue sync. Single workflow for the full approval-to-scheduling pipeline.
+description: Move a draft from ready/ to approved/, update frontmatter, schedule via Blotato, verify queue sync, and archive. Single workflow for the full approval-to-scheduling-to-archive pipeline.
 origin: Road4AI
 tools:
   - Read
@@ -88,6 +88,16 @@ git add drafts/approved/<filename>.md state/current-queue.json
 git commit -m 'content: schedule <title>'
 ```
 
+### Step 8: Archive scheduled draft
+
+After Blotato confirms scheduling, move the draft from `drafts/approved/` to `drafts/archived/`:
+
+```bash
+mv drafts/approved/<filename>.md drafts/archived/<filename>.md
+```
+
+This prevents duplicate-approval and duplicate-posting risk. The approved folder is a scheduling inbox, not storage.
+
 ## Replaces
 
 The ad hoc approve-and-schedule pattern that was repeated across sessions:
@@ -97,8 +107,9 @@ The ad hoc approve-and-schedule pattern that was repeated across sessions:
 4. Inline python to check queue status — repeated queue-peek calls
 5. `python3 tools/check_struggle_ratio.py` — ratio verification
 6. `git add ... && git commit` — manual staging
+7. `mv drafts/approved/ drafts/archived/` — manual archival
 
-This skill consolidates those six steps into a documented workflow with known guardrails.
+This skill consolidates those seven steps into a documented workflow with known guardrails.
 
 When approving multiple drafts:
 
@@ -108,6 +119,7 @@ When approving multiple drafts:
 4. Verify all queue entries synced
 5. Run ratio check once at the end
 6. Single commit for the batch
+7. Archive all scheduled drafts in one `mv` command
 
 ## Troubleshooting
 
