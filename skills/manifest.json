@@ -63,6 +63,13 @@
       "runtime_targets": [".agents/skills"],
       "status": "canonical",
       "notes": "Governance and infrastructure gap compilation. Produces tracked open-items document."
+    },
+    "approve-and-schedule": {
+      "tier": 1,
+      "source": "skills/approve-and-schedule",
+      "runtime_targets": [".agents/skills"],
+      "status": "canonical",
+      "notes": "Approval-to-scheduling-to-archive pipeline. Karen-reviewed 2026-07-23. Surviving issues dismissed as false positives for skill-level docs."
     }
   },
   "runtime_road4ai": {
