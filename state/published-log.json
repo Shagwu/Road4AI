@@ -4,7 +4,7 @@
     "title": "Why I Still Use a Physical Notebook",
     "type": "Struggle",
     "platform": "LinkedIn",
-    "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here\u2019s why optimization is a trap.",
+    "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here’s why optimization is a trap.",
     "scheduled_time": "",
     "published_at": "2026-05-11T10:45:00Z",
     "blotato_id": ""
@@ -14,7 +14,7 @@
     "title": "Escaping the 12-Month Agent Lag",
     "type": "Tutorial",
     "platform": "LinkedIn",
-    "hook": "If you\u2019re still 'prompt engineering' a single agent, you\u2019re building a legacy system. The 2026 stack is about stateless swarm coordination.",
+    "hook": "If you’re still 'prompt engineering' a single agent, you’re building a legacy system. The 2026 stack is about stateless swarm coordination.",
     "scheduled_time": "",
     "published_at": "2026-05-11T10:45:00Z",
     "blotato_id": ""
@@ -465,7 +465,7 @@
     "title": "The Tireless Worker Trap",
     "type": "Struggle",
     "platform": "X",
-    "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That\u2019s when I realized the tireless worker is also the most dangerous one.",
+    "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That’s when I realized the tireless worker is also the most dangerous one.",
     "scheduled_time": "2026-06-16T15:00:00Z",
     "published_at": "2026-07-06T00:00:00+00:00",
     "blotato_id": "6c4d8717-6eb4-44f3-be6f-aceb11be37d3"
@@ -678,7 +678,7 @@
     "platform": "X",
     "published_at": "2026-07-07T11:41:49.752565+00:00",
     "source": "blotato",
-    "note": "Scheduled and posted via Blotato. Duplicates deleted."
+    "notes": "Scheduled and posted via Blotato. Duplicates deleted."
   },
   {
     "id": "2026-07-15-v2-1-reveal-x",
@@ -687,7 +687,7 @@
     "platform": "X",
     "published_at": "2026-07-07T11:41:49.752565+00:00",
     "source": "blotato",
-    "note": "Scheduled and posted via Blotato. Duplicates deleted."
+    "notes": "Scheduled and posted via Blotato. Duplicates deleted."
   },
   {
     "id": "2026-07-15-v2-1-reveal-li",
@@ -696,14 +696,14 @@
     "platform": "LinkedIn",
     "scheduled_time": "2026-07-15T10:00:00Z",
     "blotato_id": "65346eb7-cd51-4914-a942-8e8a959b6c0d",
-    "status": "scheduled",
+    "status": "published",
     "updated_at": "2026-07-07T13:13:50.039870+00:00",
-    "note": "v2 rewritten, scheduled 10:00 UTC (09:00 WAT)"
+    "notes": "v2 rewritten, scheduled 10:00 UTC (09:00 WAT)"
   },
   {
     "id": "2026-07-26-audit-caught-bts-x",
     "title": "What the Audit Caught",
-    "platform": "x",
+    "platform": "X",
     "published_at": "2026-07-26T11:00:00Z",
     "type": "Behind-the-scenes"
   },
@@ -717,7 +717,7 @@
     "published_at": "2026-07-15T12:00:00Z",
     "status": "published",
     "source": "blotato",
-    "note": "Reconciled to published (Blotato confirmed)"
+    "notes": "Reconciled to published (Blotato confirmed)"
   },
   {
     "id": "2026-07-06-context-contract-struggle-li",
@@ -729,7 +729,7 @@
     "published_at": "2026-07-16T12:00:00Z",
     "status": "published",
     "source": "blotato",
-    "note": "Reconciled to published (Blotato confirmed)"
+    "notes": "Reconciled to published (Blotato confirmed)"
   },
   {
     "id": "2026-07-13-pre-reveal-checklist-tutorial-li",
@@ -741,7 +741,7 @@
     "published_at": "2026-07-13T08:00:00Z",
     "status": "published",
     "source": "blotato",
-    "note": "Reconciled to published (Blotato confirmed)"
+    "notes": "Reconciled to published (Blotato confirmed)"
   },
   {
     "id": "2026-07-14-calm-before-reveal-bts-li",
@@ -753,6 +753,6 @@
     "published_at": "2026-07-14T08:00:00Z",
     "status": "published",
     "source": "blotato",
-    "note": "Reconciled to published (Blotato confirmed)"
+    "notes": "Reconciled to published (Blotato confirmed)"
   }
 ]
