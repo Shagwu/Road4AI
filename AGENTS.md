@@ -83,7 +83,7 @@ This is the constitution for all agents working in this repo. Every session read
 1. **Deduplication**: Before drafting, check `state/published-log.json` and `state/current-queue.json`.
 2. **Monday Ritual**: Every Monday, CoS parses `inbox.md` for top 5 content moments, maps to types (Struggle/Win/Tutorial/BTS), updates queue.
 3. **Approval**: Only the user moves files from `ready/` to `approved/`.
-4. **Karen Gate**: Every draft must pass adversarial review (`karen_verdict: APPROVED` in frontmatter) before it can be scheduled. No exceptions.
+4. **Karen Gate**: Every draft must pass adversarial review (`karen_verdict: APPROVED` in frontmatter) before it can be scheduled. The `grilling` skill also hard-blocks on Karen for architecture and public-claims decisions — grilling sessions on those topics do not close until Karen clears them. No exceptions.
 5. **Approved Folder Hygiene**: Once approved content is scheduled in Blotato, move to `drafts/archived/` immediately. Never leave scheduled content in `approved/`.
 5. **Traceability**: Every scheduled post needs a queue entry; every Blotato-confirmed post needs a published-log entry.
 6. **Governance Lock**: Any mutation to `AGENTS.md` MUST be reviewed and approved by the human conductor. No agent-to-agent negotiation of operating contracts. Filesystem protection is enforced via `tools/lock_agents_md.py`. AGENTS.md is read-only (chmod 444) by default. The human must explicitly unlock (chmod 644) before any edit, then re-lock immediately after.
