@@ -77,6 +77,27 @@
       "runtime_targets": [".agents/skills"],
       "status": "canonical",
       "notes": "Weekly harvester signal surfacing. Added to manifest 2026-07-23."
+    },
+    "grilling": {
+      "tier": 1,
+      "source": "skills/grilling",
+      "runtime_targets": [".agents/skills"],
+      "status": "canonical",
+      "notes": "Interview primitive. Hard-blocks on Karen for architecture/public-claims decisions. Shared by /grill-me and /wayfinder."
+    },
+    "grill-me": {
+      "tier": 1,
+      "source": "skills/grill-me",
+      "runtime_targets": [".agents/skills"],
+      "status": "canonical",
+      "notes": "Thin user-invoked wrapper for grilling primitive. No logic beyond invocation."
+    },
+    "wayfinder": {
+      "tier": 1,
+      "source": "skills/wayfinder",
+      "runtime_targets": [".agents/skills"],
+      "status": "canonical",
+      "notes": "Local-markdown decision map. Backfilled Phase 5 tool evals as resolved tickets. Invoke grilling for real decisions."
     }
   },
   "runtime_road4ai": {
