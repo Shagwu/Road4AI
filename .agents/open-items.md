@@ -1,7 +1,7 @@
 # Open Items
 
 _Compiled 2026-07-23 by open-items-compiler skill. 32 findings across 6 categories._
-_Updated 2026-07-23: 19 resolved, 13 remaining._
+_Updated 2026-07-24: 21 resolved, 14 remaining._
 
 ## Summary
 
@@ -13,8 +13,8 @@ _Updated 2026-07-23: 19 resolved, 13 remaining._
 | Skills Drift | 2 | 3 |
 | Launchd Agents | 2 | 2 |
 | Cross-Cutting | 0 | 2 |
-| Pending (distill) | 2 | 1 |
-| **Totals** | **20** | **15** |
+| Pending (distill) | 3 | 0 |
+| **Totals** | **21** | **14** |
 
 ---
 
@@ -112,13 +112,11 @@ _Updated 2026-07-23: 19 resolved, 13 remaining._
 
 ---
 
-## Pending from Previous Pass (2/3 resolved)
+## Pending from Previous Pass (3/3 resolved)
 
 ~~P-1 | HIGH | approve-and-schedule no canonical source~~ — Created, Karen-reviewed, committed.
 ~~P-2 | MEDIUM | approve-and-schedule not in manifest~~ — Added as tier-1 canonical.
-
-### P-3 | MEDIUM | Karen-only gate vs Sharon sign-off
-**Status**: Open design question. Skill checks karen_verdict but has no explicit operator sign-off step. Needs decision, not a code fix.
+~~P-3 | MEDIUM | Karen-only gate vs Sharon sign-off~~ — Resolved 2026-07-24. Filesystem move to approved/ is the operator sign-off. No explicit confirmation step needed.
 
 ---
 
