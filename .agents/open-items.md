@@ -107,6 +107,9 @@ _Updated 2026-07-23: 19 resolved, 13 remaining._
 ### X-2 | LOW | No requirements.txt for tool dependencies
 **Status**: Deferred. Stdlib-only tools work fine. Third-party tools (requests, openai) need docs.
 
+### X-3 | MEDIUM | Phase 4 POC completion should reopen Phase 5 frontier
+**Status**: Open. When Phase 4 POC lifts (harvester, signal review, Twitter integration generate real usage data), reopen the Phase 5 tool-evaluation frontier on `.agents/wayfinder/phase-5-tools-map.md`. Currently empty by design — moratorium active. Trigger: a brief candidate traceably shapes a real content decision (Phase 4 POC lift condition from July 22 checkpoint).
+
 ---
 
 ## Pending from Previous Pass (2/3 resolved)
