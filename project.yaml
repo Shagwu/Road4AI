@@ -24,6 +24,13 @@ providers:
   fallback: ollama
   routing_policy: task-type    # route by: task-type | cost | privacy
 
+  mimo_local:
+    type: openai-compatible
+    base_url: http://localhost:8000/v1
+    api_key: local-no-key
+    model: /Users/shagwu/.local/share/models/mimo-7b-rl/MiMo-7B-RL-Q4_K_M.gguf
+    source: local_mimo_llama_server
+
 tools_allowed:
   - claude-code
   - codex
