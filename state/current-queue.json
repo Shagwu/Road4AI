@@ -190,7 +190,7 @@
     {
       "id": "2026-06-w3-tireless-worker-trap-x",
       "title": "The Tireless Worker Trap",
-      "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That’s when I realized the tireless worker is also the most dangerous one.",
+      "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That\u2019s when I realized the tireless worker is also the most dangerous one.",
       "type": "Struggle",
       "platform": "X",
       "goal": "Teach / Nurture",
@@ -641,7 +641,7 @@
     {
       "id": "2026-05-11-journal-guardrail-li",
       "title": "Why I Still Use a Physical Notebook",
-      "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here’s why optimization is a trap.",
+      "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here\u2019s why optimization is a trap.",
       "type": "Struggle",
       "platform": "LinkedIn",
       "goal": "build_in_public",
@@ -654,7 +654,7 @@
     {
       "id": "2026-05-11-stateless-swarms-li",
       "title": "Escaping the 12-Month Agent Lag",
-      "hook": "If you’re still 'prompt engineering' a single agent, you’re building a legacy system. The 2026 stack is about stateless swarm coordination.",
+      "hook": "If you\u2019re still 'prompt engineering' a single agent, you\u2019re building a legacy system. The 2026 stack is about stateless swarm coordination.",
       "type": "Tutorial",
       "platform": "LinkedIn",
       "goal": "Teach",
@@ -1694,7 +1694,7 @@
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-06T10:00:00Z",
-      "notes": "Flipped back to Struggle. Backfills the slot that opens when Jul 27 ages out of trailing-10 on Aug 6. Hook leads with learning, not failure — avoids fourth 'numbers were wrong' beat.",
+      "notes": "Flipped back to Struggle. Backfills the slot that opens when Jul 27 ages out of trailing-10 on Aug 6. Hook leads with learning, not failure \u2014 avoids fourth 'numbers were wrong' beat.",
       "draft_path": "drafts/ready/2026-08-06-confidence-score-struggle-li.md",
       "blotato_id": "5871db10-6bce-43ab-b61e-ee15aa1587d2"
     },
@@ -1733,7 +1733,7 @@
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-08T10:00:00Z",
       "draft_path": "drafts/ready/2026-08-08-guardrail-wrong-answers-struggle-li.md",
-      "notes": "Backfills Jul 29 slot when it ages out of trailing-10. Ratio holds at 30% across Jul 30-Aug 8 boundary (post-based window, no transient spike or dip). Today's ratio script bug — sorted by array order instead of date, silently gave wrong answer. Draft written.",
+      "notes": "Backfills Jul 29 slot when it ages out of trailing-10. Ratio holds at 30% across Jul 30-Aug 8 boundary (post-based window, no transient spike or dip). Today's ratio script bug \u2014 sorted by array order instead of date, silently gave wrong answer. Draft written.",
       "blotato_id": "a21e6e97-76c3-4feb-ac4a-5c915ae4c8f3"
     },
     {
@@ -1759,7 +1759,7 @@
       "id": "2026-07-30-harvester-governance-gap-bts-li",
       "title": "The Harvester Governance Gap",
       "hook": "Karen never reviewed the harvester scripts before they went live.",
-      "type": "Behind-the-scenes",
+      "type": "Struggle",
       "platform": "LinkedIn",
       "goal": "Build in public",
       "source": "operator_capture",

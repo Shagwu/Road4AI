@@ -29,6 +29,7 @@ Examples of what belongs here:
 ### Struggles (things that blocked me or frustrated me)
 - Rejected the 10k external chunk approach for RAG. Realized narrative didn't hold; signal drowned in noise. Pivoted to [[Self-Knowledge Pivot]] — indexing my own build history.
 - **The Plate Realization:** Asked the AI what was on its plate. It said: "I don't have a plate." No gym, no food, no human limits. Realized [[Tireless Worker Trap|tirelessness looks like alignment but isn't]]. It will go fast in the wrong direction with the same energy it uses for the right one. Vigilance is the only guardrail.
+- **Phase 4 Scope Note (2026-07-30):** The post "The Harvester Governance Gap" (2026-07-30-harvester-governance-gap-bts-li) is an infrastructure/governance Struggle post and does NOT count toward the Phase 4 signal-to-decision POC lift condition. The designated proof candidate remains 2026-08-01-openjarvis-win-li.
 Status: idea
 
 ### Wins (things that worked, even small ones)

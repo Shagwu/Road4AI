@@ -1,7 +1,7 @@
 ---
 title: "The Harvester Governance Gap"
 hook: "Karen never reviewed the harvester scripts before they went live."
-type: Behind-the-scenes
+type: Struggle
 platform: LinkedIn
 goal: Build in public
 status: ready_for_publishing
