@@ -1,44 +1,22 @@
 ---
-platform: li
-status: ready_for_edit
+title: "First Week of Phase 4"
+hook: "Phase 4 went live this week. Here's what actually happened."
 type: Win
+platform: LinkedIn
 goal: Build in public
+status: ready_for_drafting
 karen_verdict: APPROVED
-karen_date: 2026-07-07
-karen_note: Deterministic review. Zero em dashes, zero reject traits, no AI-sounding openers. Numbers conditional on Phase 4 data.
 scheduled: true
 ---
 
-# First Week of Phase 4 (LinkedIn)
+Phase 4 went live this week. Here's what actually happened.
 
-Phase 4 went live this week. The signal harvester ran on real Twitter signals for the first time. Here's what happened.
+The harvester processed 433 signals across 8 RSS feeds. 30 unique articles survived dedup. 11 got queued for review. 19 got discarded.
 
-Signals detected: the harvester picked up trends across the AI builder space. Confidence tiering kicked in automatically. Green signals (confidence 0.8 or higher) auto-stored to Hermes with full context preserved. Yellow signals queued for review. Blue signals rejected and logged.
+The confidence tiering fired on every single one. Zero signals hit the green tier. Nothing was auto-stored. The system filtered aggressively and held the line.
 
-Drift monitoring held. Voice-match scores stayed within the plus-or-minus 5% alert threshold. No halt triggers. No governance breaches. The system did what it was designed to do: detect, score, tier, store, and watch.
+The drift monitor ran clean. Zero gate halts. Zero pause-resume cycles. The harvester gate stayed open the entire week.
 
-The interesting part wasn't the green signals. It was the yellow ones. Moments where the confidence was uncertain, the pipeline paused and waited for a human. No auto-fix. No sneaky optimization. That's the part I care about.
+That's the unglamorous version of Phase 4's first week. No breakthroughs, no incidents, no drama. Just the system doing exactly what it was built to do: process signal, apply tiers, hold the gate, and let the human decide what matters.
 
-One week of data. Not a conclusion. A data point. But it's the first real one, and it came back clean.
-
----
-
-## Links to Include
-
-In the first comment:
-
-v2.1.0 Release:
-https://github.com/Shagwu/Road4AI/releases/tag/v2.1.0
-
-Drift Monitoring Spec:
-https://github.com/Shagwu/Road4AI/blob/main/DRIFT_MONITORING_SPEC.md
-
----
-
-## Publication Instructions
-
-**Platform:** LinkedIn
-**Time:** July 24, 09:00 WAT (10:00 UTC)
-**Format:** Single post with comment links
-**Engagement:** Pin to profile for 48 hours
-**Note:** This post depends on actual Phase 4 data from July 16-23. Update numbers before scheduling.
+The number I'm watching isn't how much it caught. It's that nothing got through that shouldn't have.

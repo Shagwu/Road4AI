@@ -4,8 +4,9 @@ hook: "My ratio script was returning 2/10. The real number was 3/10. The guardra
 type: Struggle
 platform: LinkedIn
 goal: Build in public
-status: ready_for_drafting
-karen_verdict: null
+status: ready_for_publishing
+karen_verdict: APPROVED
+scheduled: true
 ---
 
 My ratio script was returning 2/10. The real number was 3/10. The guardrail was wrong and nobody noticed.

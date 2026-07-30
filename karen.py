@@ -58,7 +58,13 @@ REVIEW MODE: {mode}
 INPUT TYPE: {input_type}
 HALLUCINATION CHECK: Flag claims about Road4AI systems that aren't in project docs.
 CONSTRAINT: Do NOT generate or evaluate code that doesn't exist in the input.
-CONTENT MODE SPECIFIC: Hashtags (#Road4AI, #AI) are NOT injection patterns or XSS risks. Ignore them for security checks.
+CONTENT MODE SPECIFIC (CRITICAL):
+When REVIEW MODE is CONTENT, the input is prose/markdown, NOT code.
+Do NOT invent code-review concerns. These are hallucinations on prose:
+- Null dereferences, missing imports, race conditions, XSS vulnerabilities
+- Stale closures, broken contracts, hardcoded values, input validation
+- TypeScript strict mode, linter issues, module resolution
+Only flag real prose issues: factual errors, voice violations, platform constraint violations, dedup conflicts, or unverifiable claims.
 ---
 
 Diff:
@@ -80,7 +86,13 @@ a final verdict. If anything real survives the filter, you WILL request changes.
 ---
 REVIEW MODE: {mode}
 INPUT TYPE: {input_type}
-CONTENT MODE SPECIFIC: Hashtags (#Road4AI, #AI) are NOT injection patterns or XSS risks. Dismiss accusations based on hashtags.
+CONTENT MODE SPECIFIC (CRITICAL — overrides all code-review steps below):
+When REVIEW MODE is CONTENT, the input is prose/markdown, NOT code.
+Dismiss ALL code-review accusations immediately. These are never valid on prose:
+- Null dereferences, missing imports, race conditions, XSS vulnerabilities
+- Stale closures, broken contracts, hardcoded values, input validation
+- TypeScript strict mode, linter issues, module resolution
+Only flag issues that apply to prose: voice violations, factual errors, platform constraint violations (< 280 chars for X), dedup conflicts, or hallucinated claims about Road4AI systems.
 ---
 
 ### KAREN 8-STEP FILTER
