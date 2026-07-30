@@ -9,6 +9,7 @@ Drop this into your Road4AI provider layer and call `mimo_chat()` wherever
 you currently call MiMo directly (harvester_pipeline.py, Karen, MiMo Auto, etc).
 """
 
+import json
 import re
 import requests
 from dataclasses import dataclass
@@ -35,6 +36,10 @@ STOP_SEQUENCES = [
 THINK_BLOCK_RE = re.compile(r"<think>.*?</think>", re.DOTALL | re.IGNORECASE)
 # In case a think block is opened but never closed (runaway generation cut off by max_tokens)
 UNCLOSED_THINK_RE = re.compile(r"<think>.*$", re.DOTALL | re.IGNORECASE)
+
+# Matches ```json ... ``` or plain ``` ... ``` fences (MiMo wraps structured
+# output in markdown fences even when asked for raw JSON)
+JSON_FENCE_RE = re.compile(r"^```(?:json)?\s*\n(.*?)\n?```$", re.DOTALL | re.IGNORECASE)
 
 
 @dataclass
@@ -71,6 +76,17 @@ def strip_think(raw_text: str) -> tuple[str, bool]:
     cleaned = cleaned.strip()
 
     return cleaned, had_think
+
+
+def strip_json_fence(text: str) -> str:
+    """Strip a leading/trailing markdown code fence (```json ... ``` or ``` ... ```)
+    if present. MiMo tends to wrap structured output in fences even when the
+    prompt asks for raw JSON with no formatting. Safe no-op if no fence found."""
+    text = text.strip()
+    match = JSON_FENCE_RE.match(text)
+    if match:
+        return match.group(1).strip()
+    return text
 
 
 def looks_truncated(raw_text: str, tokens_used: Optional[int], max_tokens: int) -> bool:
@@ -127,6 +143,34 @@ def mimo_chat(
     )
 
 
+def mimo_json_chat(
+    user_prompt: str,
+    system: Optional[str] = None,
+    max_tokens: int = MAX_TOKENS_DEFAULT,
+    temperature: float = TEMPERATURE_DEFAULT,
+    endpoint: str = MIMO_ENDPOINT,
+    timeout_s: int = 120,
+) -> dict:
+    """
+    Same as mimo_chat(), but strips markdown JSON fences and parses the result.
+
+    Raises json.JSONDecodeError if MiMo didn't return valid JSON -- callers
+    (e.g. Karen, harvester_pipeline.py) should catch this explicitly and
+    treat it as a hard failure / retry, not swallow it. Don't silently fall
+    back to an empty dict here; that would hide real formatting regressions.
+    """
+    result = mimo_chat(
+        user_prompt,
+        system=system,
+        max_tokens=max_tokens,
+        temperature=temperature,
+        endpoint=endpoint,
+        timeout_s=timeout_s,
+    )
+    fenced_stripped = strip_json_fence(result.text)
+    return json.loads(fenced_stripped)  # raises JSONDecodeError on malformed output
+
+
 # --- Quick manual test ----------------------------------------------------------
 
 if __name__ == "__main__":
@@ -138,3 +182,23 @@ if __name__ == "__main__":
     if result.truncated or len(result.text) > 200:
         print("\n=== RAW (for debugging) ===")
         print(result.raw)
+
+    print("\n\n=== JSON TEST ===")
+    json_result = mimo_chat("Return valid JSON with keys title and summary.")
+
+    print("raw output:")
+    print(json_result.raw)
+
+    fenced_stripped = strip_json_fence(json_result.text)
+
+    print("cleaned after fence strip:")
+    print(fenced_stripped)
+
+try:
+    parsed = json.loads(fenced_stripped)
+    print("parsed json:")
+    print(parsed)
+    print("type:", type(parsed))
+except json.JSONDecodeError as e:
+    print("JSON PARSE FAILED")
+    print("error:", e)  
