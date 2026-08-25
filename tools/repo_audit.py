@@ -106,7 +106,7 @@ class AuditReport:
 
 PLACEHOLDERS_VERIFIED = False  # <-- set True only after confirming below match reality
 
-QUEUE_FILE_REL = "state/queue.json"
+QUEUE_FILE_REL = "state/current-queue.json"
 REQUIRED_FIELDS = {"id", "status"}
 ALLOWED_STATUSES = {"draft", "in_review", "approved", "published"}
 
@@ -172,7 +172,24 @@ def check_queue_record_shape(repo_root: Path, queue_file: Path,
                         f"Queue file is not valid JSON: {e}")
             return
 
-    for i, rec in enumerate(records if isinstance(records, list) else []):
+    if isinstance(records, dict):
+        queue_records = records.get("queue")
+        if not isinstance(queue_records, list):
+            report.add(
+                "queue_record_shape", "error", str(queue_file),
+                "Queue file is a dict but its 'queue' key is missing or not a list.",
+            )
+            return
+        records = queue_records
+    elif not isinstance(records, list):
+        report.add(
+            "queue_record_shape", "error", str(queue_file),
+            f"Queue file top-level shape is {type(records).__name__}; expected a "
+            "dict with a 'queue' list (real shape) or a bare list.",
+        )
+        return
+
+    for i, rec in enumerate(records):
         missing = required_fields - rec.keys()
         if missing:
             report.add(
