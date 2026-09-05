@@ -1,0 +1,14 @@
+provider_receipt:
+  provider: blotato
+  provider_status: null
+  public_url: null
+  response_timestamp: '2026-09-05T12:41:16.339852+00:00'
+  http_status: null
+  raw_response:
+    content:
+    - type: text
+      text: '{"postSubmissionId":"24b3adb2-34c4-4155-84d1-da8a82885012","scheduledTime":"2026-09-07T08:00:00.000Z","message":"Post
+        scheduled for 2026-09-07T08:00:00.000Z."}'
+  durable: false
+  gate_evaluated_at: '2026-09-05T12:41:16.339869+00:00'
+  gate_version: provider-receipt-v1

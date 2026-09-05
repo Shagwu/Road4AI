@@ -29,6 +29,7 @@ import re
 import sys
 import os
 import requests
+import yaml
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -57,6 +58,8 @@ VISUAL_TEMPLATES = {
 
 
 ROOT = Path(__file__).resolve().parent.parent
+EVIDENCE_DIR = ROOT / "docs" / "retroactive-audits" / "evidence"
+SCHEMA_VERSION = "provider-receipt-v1"
 
 VISUAL_VARIETY_CYCLE = ["carousel", "quote_card", "image", "tutorial", "video"]
 VISUAL_STATE_FILE = ROOT / "state" / "visual_variety.json"
@@ -530,9 +533,9 @@ def generate_visual(api_key, prompt, title="Road4AI Visual", visual_type="image"
         print("FAILED: no visual ID")
         return []
 
-    # Poll until done (300s timeout for videos)
+    # Poll until done (300s timeout)
     import time
-    max_attempts = 60 if visual_type == "video" else 30
+    max_attempts = 60
     poll_interval = 5
     for attempt in range(max_attempts):
         time.sleep(poll_interval)
@@ -568,6 +571,121 @@ def generate_visual(api_key, prompt, title="Road4AI Visual", visual_type="image"
     print("TIMEOUT")
     return []
 
+def default_provider_receipt():
+    return {
+        "provider": "blotato",
+        "provider_status": None,
+        "public_url": None,
+        "response_timestamp": None,
+        "http_status": None,
+        "raw_response": None,
+        "durable": False,
+        "gate_evaluated_at": None,
+        "gate_version": None,
+    }
+
+
+def ensure_provider_receipt_schema(manifest):
+    manifest = dict(manifest or {})
+
+    if "provider_receipt" not in manifest or not isinstance(manifest["provider_receipt"], dict):
+        manifest["provider_receipt"] = default_provider_receipt()
+    else:
+        defaults = default_provider_receipt()
+        for key, value in defaults.items():
+            manifest["provider_receipt"].setdefault(key, value)
+
+    return manifest
+
+
+def is_durable_provider_receipt(receipt):
+    if not isinstance(receipt, dict):
+        return False
+
+    provider_status = receipt.get("provider_status")
+    public_url = receipt.get("public_url")
+    response_timestamp = receipt.get("response_timestamp")
+    http_status = receipt.get("http_status")
+    raw_response = receipt.get("raw_response")
+
+    terminal_statuses = {"published", "failed"}
+
+    return (
+        provider_status in terminal_statuses
+        and bool(response_timestamp)
+        and http_status is not None
+        and raw_response is not None
+        and (
+            provider_status == "failed"
+            or bool(public_url)
+        )
+    )
+
+
+def evidence_manifest_path(candidate_id):
+    return EVIDENCE_DIR / f"{candidate_id}.yml"
+
+
+def load_evidence_manifest(candidate_id):
+    path = evidence_manifest_path(candidate_id)
+    if path.exists():
+        with open(path, "r", encoding="utf-8") as f:
+            manifest = yaml.safe_load(f) or {}
+    else:
+        manifest = {}
+
+    return ensure_provider_receipt_schema(manifest)
+
+
+def save_evidence_manifest(candidate_id, manifest):
+    EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
+    manifest = ensure_provider_receipt_schema(manifest)
+    path = evidence_manifest_path(candidate_id)
+
+    with open(path, "w", encoding="utf-8") as f:
+        yaml.safe_dump(manifest, f, sort_keys=False, allow_unicode=True)
+
+def get_queue_entry_for_draft(filepath):
+    queue_path = ROOT / "state" / "current-queue.json"
+    if not queue_path.exists():
+        return None
+
+    try:
+        rel_path = str(Path(filepath).resolve().relative_to(ROOT.resolve()))
+    except Exception:
+        rel_path = str(filepath)
+
+    with open(queue_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    queue = data.get("queue", data) if isinstance(data, dict) else data
+
+    for entry in queue:
+        entry_draft = entry.get("draft_path", "")
+        if entry_draft == rel_path or Path(entry_draft).name == Path(rel_path).name:
+            return entry
+
+    return None
+
+def update_provider_receipt(candidate_id, *, provider_status=None, public_url=None, http_status=None, raw_response=None):
+    manifest = load_evidence_manifest(candidate_id)
+    receipt = manifest["provider_receipt"]
+
+    receipt["provider"] = "blotato"
+    receipt["provider_status"] = provider_status
+    receipt["public_url"] = public_url
+    receipt["response_timestamp"] = datetime.now(timezone.utc).isoformat()
+    receipt["http_status"] = http_status
+    receipt["raw_response"] = raw_response
+    receipt["gate_evaluated_at"] = datetime.now(timezone.utc).isoformat()
+    receipt["gate_version"] = SCHEMA_VERSION
+    receipt["durable"] = is_durable_provider_receipt(receipt)
+
+    if provider_status:
+        manifest["provider_status"] = provider_status
+    if public_url:
+        manifest["public_url"] = public_url
+
+    save_evidence_manifest(candidate_id, manifest)
 
 def schedule_post(api_key, account_id, platform, text, scheduled_time=None, next_slot=False, image_urls=None, additional_posts=None, media_type=None):
     arguments = {
@@ -630,6 +748,7 @@ def schedule_thread(api_key, account_id, tweets, scheduled_time=None, next_slot=
     )
 
     info = extract_result(result)
+
     status = info.get("status", "unknown")
     url = info.get("url", "")
     print(f"{status}")
@@ -726,6 +845,7 @@ def main():
     next_slot = "--next-slot" in args
     check_only = "--check" in args
     force = "--force" in args
+    no_media = "--no-media" in args
     platform_flag = None
     schedule_flag = None
     clone_media_id = None
@@ -733,7 +853,7 @@ def main():
     filtered = []
     i = 0
     while i < len(args):
-        if args[i] in ("--yes", "-y", "--list", "--all", "--next-slot", "--check", "--force"):
+        if args[i] in ("--yes", "-y", "--list", "--all", "--next-slot", "--check", "--force", "--no-media"):
             i += 1
         elif args[i] == "--clone-media" and i + 1 < len(args):
             clone_media_id = args[i + 1]
@@ -827,6 +947,9 @@ def main():
     scheduled_time = parse_schedule(schedule_flag) if schedule_flag else None
 
     text, image_prompt, all_image_prompts = parse_draft(filepath)
+    if no_media:
+        image_prompt = ""
+        all_image_prompts = []
     visual_type = fm.get("visual_type", "image")
 
     # Check if this is a thread (X platform with ## Tweet N headers)
@@ -890,7 +1013,7 @@ def main():
                 if confirm != "y":
                     print("Cancelled.")
                     sys.exit(0)
-    else:
+    elif not no_media:
         # Auto-generate visual for LinkedIn posts that lack one
         if "li" in platforms and not image_prompt and not all_image_prompts:
             visual_type = get_next_visual_type()
@@ -953,18 +1076,45 @@ def main():
                     has_video = any(url.endswith((".mp4", ".mov", ".webm")) for url in image_urls)
                     if has_video:
                         media_type = "reel"
-                result = schedule_post(api_key, account_id, platform, text, scheduled_time, next_slot, image_urls=image_urls, media_type=media_type)
+                result = schedule_post(
+                    api_key,
+                    account_id,
+                    platform,
+                    text,
+                    scheduled_time,
+                    next_slot,
+                    image_urls=image_urls,
+                    media_type=media_type,
+                )
                 info = extract_result(result)
+
+                queue_entry = get_queue_entry_for_draft(filepath)
+                candidate_id = queue_entry.get("id") if queue_entry else None
+
+                if candidate_id:
+                    provider_status = info.get("status")
+                    public_url = info.get("url")
+                    update_provider_receipt(
+                        candidate_id,
+                        provider_status=provider_status,
+                        public_url=public_url,
+			# Placeholder until real provider HTTP status is surfaced by schedule_post()
+                        http_status=result.get("http_status"),
+                        raw_response=result,
+                    )
+
                 results.append({"platform": platform, **info})
                 status = info.get("status", "unknown")
                 url = info.get("url", "")
                 sid = info.get("submission_id")
-                # Cache media URLs for later cloning
+
                 if sid and image_urls:
                     save_media_cache(sid, image_urls)
+
                 print(f"{status}")
                 if url:
                     print(f"  URL: {url}")
+            
             except Exception as e:
                 results.append({"platform": platform, "error": str(e)})
                 print(f"FAILED: {e}")

@@ -190,7 +190,7 @@
     {
       "id": "2026-06-w3-tireless-worker-trap-x",
       "title": "The Tireless Worker Trap",
-      "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That\u2019s when I realized the tireless worker is also the most dangerous one.",
+      "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That’s when I realized the tireless worker is also the most dangerous one.",
       "type": "Struggle",
       "platform": "X",
       "goal": "Teach / Nurture",
@@ -641,7 +641,7 @@
     {
       "id": "2026-05-11-journal-guardrail-li",
       "title": "Why I Still Use a Physical Notebook",
-      "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here\u2019s why optimization is a trap.",
+      "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here’s why optimization is a trap.",
       "type": "Struggle",
       "platform": "LinkedIn",
       "goal": "build_in_public",
@@ -654,7 +654,7 @@
     {
       "id": "2026-05-11-stateless-swarms-li",
       "title": "Escaping the 12-Month Agent Lag",
-      "hook": "If you\u2019re still 'prompt engineering' a single agent, you\u2019re building a legacy system. The 2026 stack is about stateless swarm coordination.",
+      "hook": "If you’re still 'prompt engineering' a single agent, you’re building a legacy system. The 2026 stack is about stateless swarm coordination.",
       "type": "Tutorial",
       "platform": "LinkedIn",
       "goal": "Teach",
@@ -1352,7 +1352,7 @@
       "blotato_id": "60549dca-fdff-43ec-a37d-1fb011406fa3",
       "draft_path": "drafts/archived/2026-07-17-tool-vs-script-x.md",
       "created_at": "2026-07-07T15:21:57.905075+00:00",
-      "notes": "[reconciled via Blotato lookup, Aug 28 \u2014 see docs/retroactive-audits/2026-08-28-queue-status-drift.md]"
+      "notes": "[reconciled via Blotato lookup, Aug 28 — see docs/retroactive-audits/2026-08-28-queue-status-drift.md]"
     },
     {
       "id": "2026-07-19-audit-your-standards-x",
@@ -1368,7 +1368,7 @@
       "blotato_id": "d3740962-9e40-4fd0-9bc2-437361b04505",
       "draft_path": "drafts/archived/2026-07-19-audit-your-standards-x.md",
       "created_at": "2026-07-07T15:21:57.905075+00:00",
-      "notes": "[reconciled via Blotato lookup, Aug 28 \u2014 see docs/retroactive-audits/2026-08-28-queue-status-drift.md]"
+      "notes": "[reconciled via Blotato lookup, Aug 28 — see docs/retroactive-audits/2026-08-28-queue-status-drift.md]"
     },
     {
       "id": "2026-07-20-number-didnt-add-up-bts-li",
@@ -1414,7 +1414,7 @@
       "priority": 2,
       "source": "session-2026-07-07",
       "created_at": "2026-07-07T17:31:29Z",
-      "notes": "Draft written. Data: 30 signals, 0 green tier, 0 gate halts, 433 processed. Go/no-go passed Jul 18. [reconciled via Blotato lookup, Aug 28 \u2014 see docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
+      "notes": "Draft written. Data: 30 signals, 0 green tier, 0 gate halts, 433 processed. Go/no-go passed Jul 18. [reconciled via Blotato lookup, Aug 28 — see docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
       "scheduled_time": "2026-07-24T10:00:00Z",
       "blotato_id": "1bdeda42-080f-41cb-9b51-7de27141d488",
       "draft_path": "drafts/archived/2026-07-24-phase4-first-week-win-li.md"
@@ -1677,7 +1677,7 @@
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-05T10:00:00Z",
-      "notes": "Underrep boost went from 0 to 9 signals in one day after cluster matching was added. X thread candidate. [reconciled via Blotato lookup, Aug 28 \u2014 see docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
+      "notes": "Underrep boost went from 0 to 9 signals in one day after cluster matching was added. X thread candidate. [reconciled via Blotato lookup, Aug 28 — see docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
       "draft_path": "drafts/ready/2026-08-05-underrep-boost-win-x.md",
       "blotato_id": "c14fc488-b567-4741-8869-5bd12b0f1413"
     },
@@ -1696,7 +1696,7 @@
       "created_at": "2026-07-18T00:00:00Z",
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-06T10:00:00Z",
-      "notes": "Flipped back to Struggle. Backfills the slot that opens when Jul 27 ages out of trailing-10 on Aug 6. Hook leads with learning, not failure \u2014 avoids fourth 'numbers were wrong' beat. [KNOWN ISSUE, tracked in docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
+      "notes": "Flipped back to Struggle. Backfills the slot that opens when Jul 27 ages out of trailing-10 on Aug 6. Hook leads with learning, not failure — avoids fourth 'numbers were wrong' beat. [KNOWN ISSUE, tracked in docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
       "draft_path": "drafts/ready/2026-08-06-confidence-score-struggle-li.md",
       "blotato_id": "5871db10-6bce-43ab-b61e-ee15aa1587d2"
     },
@@ -1735,7 +1735,7 @@
       "updated_at": "2026-07-18T00:00:00Z",
       "scheduled_time": "2026-08-08T10:00:00Z",
       "draft_path": "drafts/ready/2026-08-08-guardrail-wrong-answers-struggle-li.md",
-      "notes": "Backfills Jul 29 slot when it ages out of trailing-10. Ratio holds at 30% across Jul 30-Aug 8 boundary (post-based window, no transient spike or dip). Today's ratio script bug \u2014 sorted by array order instead of date, silently gave wrong answer. Draft written. [KNOWN ISSUE, tracked in docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
+      "notes": "Backfills Jul 29 slot when it ages out of trailing-10. Ratio holds at 30% across Jul 30-Aug 8 boundary (post-based window, no transient spike or dip). Today's ratio script bug — sorted by array order instead of date, silently gave wrong answer. Draft written. [KNOWN ISSUE, tracked in docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
       "blotato_id": "a21e6e97-76c3-4feb-ac4a-5c915ae4c8f3"
     },
     {
@@ -1773,7 +1773,7 @@
       "updated_at": "2026-07-24T00:00:00Z",
       "scheduled_time": "2026-07-30T12:00:00Z",
       "draft_path": "drafts/ready/2026-07-30-harvester-governance-gap-bts-li.md",
-      "notes": "Hold until Karen review completes on harvester_pipeline.py and scheduled_harvester.py. Post references review as in-progress. [reconciled via Blotato lookup, Aug 28 \u2014 see docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
+      "notes": "Hold until Karen review completes on harvester_pipeline.py and scheduled_harvester.py. Post references review as in-progress. [reconciled via Blotato lookup, Aug 28 — see docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
       "blotato_id": "115f6150-1d2c-4377-aca3-ef4f056d6193"
     },
     {
@@ -1792,8 +1792,46 @@
       "updated_at": "2026-07-24T00:00:00Z",
       "scheduled_time": "2026-07-31T12:00:00Z",
       "draft_path": "drafts/ready/2026-07-31-what-im-watching-bts-li.md",
-      "notes": "Light teaser post. Sets up Aug 1 OpenJarvis win. [reconciled via Blotato lookup, Aug 28 \u2014 see docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
+      "notes": "Light teaser post. Sets up Aug 1 OpenJarvis win. [reconciled via Blotato lookup, Aug 28 — see docs/retroactive-audits/2026-08-28-queue-status-drift.md]",
       "blotato_id": "83cc0df7-3f0f-405f-b4ab-e50b30ee03ca"
+    },
+    {
+      "id": "2026-09-07-grok-pivot-hermes-li",
+      "title": "The System Outlasts the Tool",
+      "hook": "We set out to build a dedicated Grok Bot for our workflow, wrote the spec, and immediately hit a wall.",
+      "type": "Struggle",
+      "platform": "LinkedIn",
+      "goal": "Build in public",
+      "source": "operator-pivot-grok",
+      "status": "scheduled",
+      "status_updated_at": "2026-09-05T12:41:16.342857+00:00",
+      "priority": 1,
+      "week": "2026-W37",
+      "created_at": "2026-09-05T13:34:00Z",
+      "updated_at": "2026-09-05T13:34:00Z",
+      "scheduled_time": "2026-09-07T08:00:00Z",
+      "draft_path": "drafts/archived/2026-09-07-grok-pivot-hermes-li.md",
+      "notes": "Pivoted from Grok Bot paid tier wall to Hermes system architecture.",
+      "blotato_id": "24b3adb2-34c4-4155-84d1-da8a82885012"
+    },
+    {
+      "id": "2026-09-08-operator-nim-evidence-audit-li",
+      "title": "Building the Read-Only Road4AI Operator",
+      "hook": "Model deprecation is a routine engineering reality for agent systems.",
+      "type": "Behind-the-scenes",
+      "platform": "LinkedIn",
+      "goal": "Build in public",
+      "source": "operator-nim-evidence",
+      "status": "scheduled",
+      "status_updated_at": "2026-09-05T12:41:22.283598+00:00",
+      "priority": 1,
+      "week": "2026-W37",
+      "created_at": "2026-09-05T13:34:00Z",
+      "updated_at": "2026-09-05T13:34:00Z",
+      "scheduled_time": "2026-09-08T08:00:00Z",
+      "draft_path": "drafts/archived/2026-09-08-operator-nim-evidence-audit-li.md",
+      "notes": "Rewired Hermes through NVIDIA NIM and built read-only Operator bot with role separation and temporal evidence rules.",
+      "blotato_id": "4c2a5c79-c251-4dac-bfa6-880cedbee845"
     }
   ],
   "updated": "2026-07-24"
