@@ -4,7 +4,7 @@
     "title": "Why I Still Use a Physical Notebook",
     "type": "Struggle",
     "platform": "LinkedIn",
-    "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here’s why optimization is a trap.",
+    "hook": "I built a 5-agent pipeline to automate my content, then I picked up a pen and started writing in a physical journal. Here\u2019s why optimization is a trap.",
     "scheduled_time": "",
     "published_at": "2026-05-11T10:45:00Z",
     "blotato_id": ""
@@ -14,7 +14,7 @@
     "title": "Escaping the 12-Month Agent Lag",
     "type": "Tutorial",
     "platform": "LinkedIn",
-    "hook": "If you’re still 'prompt engineering' a single agent, you’re building a legacy system. The 2026 stack is about stateless swarm coordination.",
+    "hook": "If you\u2019re still 'prompt engineering' a single agent, you\u2019re building a legacy system. The 2026 stack is about stateless swarm coordination.",
     "scheduled_time": "",
     "published_at": "2026-05-11T10:45:00Z",
     "blotato_id": ""
@@ -465,7 +465,7 @@
     "title": "The Tireless Worker Trap",
     "type": "Struggle",
     "platform": "X",
-    "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That’s when I realized the tireless worker is also the most dangerous one.",
+    "hook": "I asked my agent what was on its plate. It said: \"I don\"t have a plate.\" That\u2019s when I realized the tireless worker is also the most dangerous one.",
     "scheduled_time": "2026-06-16T15:00:00Z",
     "published_at": "2026-07-06T00:00:00+00:00",
     "blotato_id": "6c4d8717-6eb4-44f3-be6f-aceb11be37d3"
@@ -754,5 +754,15 @@
     "status": "published",
     "source": "blotato",
     "notes": "Reconciled to published (Blotato confirmed)"
+  },
+  {
+    "id": "2026-09-05-operator-reviewer-researcher-li",
+    "title": "Operator, Reviewer, Researcher Bot Triad for Better AI Content",
+    "type": "Tutorial",
+    "platform": "LinkedIn",
+    "hook": "Most AI builders try to do everything with one bot. Here\u2019s how splitting work between Operator, Reviewer, and Researcher bots creates better content with less burnout.",
+    "scheduled_time": "",
+    "published_at": "2026-09-05T17:44:26.115202Z",
+    "blotato_id": "7fb83752-36fa-49b7-ae47-fd616c1f4ff2"
   }
 ]
