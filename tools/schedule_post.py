@@ -5,8 +5,8 @@ Usage:
   python tools/schedule_post.py drafts/approved/post-li.md
   python tools/schedule_post.py drafts/approved/post.md --platform li,x,ig
   python tools/schedule_post.py drafts/approved/post.md --all --yes
-  python tools/schedule_post.py drafts/approved/post.md --schedule "2026-06-28T09:00:00Z"
-  python tools/schedule_post.py drafts/approved/post.md --schedule "+2h"
+  python tools/schedule_post.py drafts/approved/post.md --immediate --yes
+  python tools/schedule_post.py drafts/approved/post.md --schedule "2026-06-28T09:00" --tz "America/New_York"
   python tools/schedule_post.py drafts/approved/post.md --next-slot
   python tools/schedule_post.py drafts/approved/post.md --clone-media <submission_id> --platform ig
   python tools/schedule_post.py --check drafts/ready/post.md
@@ -17,6 +17,19 @@ Guardrails:
   - Karen verdict must be APPROVED in frontmatter (use --force to override)
   - Draft must not already be scheduled (check published-log + queue blotato_id)
   - Draft must not have scheduled: true in frontmatter
+
+Action confirmation:
+  - You must explicitly choose Immediate or Scheduled (or pass --next-slot,
+    which is unchanged and requires no further confirmation of a specific
+    date/time).
+  - Scheduled requires an exact local date/time (--schedule
+    "YYYY-MM-DDTHH:MM") and an exact IANA timezone (--tz "Area/City").
+    Both local time and its UTC equivalent are shown before you confirm.
+  - --yes skips only ancillary prompts (clone-media fallback, missing-media
+    warning). It never skips the action choice or the one final
+    confirmation immediately before the Blotato call.
+  - --force never bypasses the Karen check or this confirmation gate; its
+    scope remains limited to the approved-location and duplication checks.
 
 Clone media:
   --clone-media <submission_id> pulls media URLs from an existing Blotato
@@ -31,6 +44,7 @@ import os
 import requests
 import yaml
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 # Add tools/ to path for sanitizer import
@@ -304,6 +318,106 @@ def parse_schedule(value):
     print(f"Cannot parse schedule time: {value}")
     print("Examples: 2026-06-28T09:00:00Z, +2h, +30m, tomorrow, tomorrow-14h, 2-9h")
     sys.exit(1)
+
+# NOTE: parse_schedule() is no longer called from main() after this change.
+# The new --schedule flag requires an exact local date/time paired with an
+# explicit --tz, which this function does not produce. Left in place
+# unmodified rather than removed, since removing it is a separate decision.
+
+
+def resolve_publish_timing(immediate_flag, schedule_flag, tz_flag):
+    """Resolve the explicit Immediate/Scheduled action choice.
+
+    Only called when --next-slot was NOT passed (that path is preserved
+    unchanged and bypasses this function entirely).
+
+    Returns {"mode": "immediate"} or
+    {"mode": "scheduled", "date": ..., "time": ..., "tz": ...,
+     "local_iso": ..., "utc_iso": ...}.
+
+    Halts (sys.exit(1)) on any missing, ambiguous, or invalid input.
+    Never guesses a default. Not affected by --yes or --force.
+    """
+    if immediate_flag and schedule_flag:
+        print("ERROR: --immediate and --schedule cannot be used together.")
+        print("Choose exactly one action: immediate or scheduled.")
+        sys.exit(1)
+
+    mode = None
+    if immediate_flag:
+        mode = "immediate"
+    elif schedule_flag:
+        mode = "scheduled"
+    else:
+        try:
+            choice = input("Choose action - [i]mmediate or [s]cheduled: ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            print("\nCancelled: no action choice provided.")
+            sys.exit(1)
+        if choice in ("i", "immediate"):
+            mode = "immediate"
+        elif choice in ("s", "scheduled"):
+            mode = "scheduled"
+        else:
+            print(f"ERROR: unrecognized action choice: {choice!r}")
+            print("No default is assumed. Halting.")
+            sys.exit(1)
+
+    if mode == "immediate":
+        return {"mode": "immediate"}
+
+    date_str, time_str = None, None
+    if schedule_flag:
+        try:
+            date_str, time_str = schedule_flag.split("T")
+        except ValueError:
+            print(f"ERROR: --schedule must be exact local date/time as YYYY-MM-DDTHH:MM, got: {schedule_flag}")
+            sys.exit(1)
+
+    if not date_str:
+        try:
+            date_str = input("Exact date (YYYY-MM-DD): ").strip()
+            time_str = input("Exact time, 24h (HH:MM): ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print("\nCancelled: incomplete schedule information.")
+            sys.exit(1)
+
+    tz_str = tz_flag
+    if not tz_str:
+        try:
+            tz_str = input("IANA timezone (e.g. America/New_York): ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print("\nCancelled: no timezone provided.")
+            sys.exit(1)
+
+    if not (date_str and time_str and tz_str):
+        print("ERROR: date, time, and timezone are all required for scheduled publication.")
+        sys.exit(1)
+
+    try:
+        naive_dt = datetime.fromisoformat(f"{date_str}T{time_str}")
+    except ValueError:
+        print(f"ERROR: could not parse date/time: {date_str}T{time_str}")
+        print("Expected format: YYYY-MM-DD and HH:MM (24h).")
+        sys.exit(1)
+
+    try:
+        tz = ZoneInfo(tz_str)
+    except Exception:
+        print(f"ERROR: unrecognized IANA timezone: {tz_str}")
+        sys.exit(1)
+
+    local_dt = naive_dt.replace(tzinfo=tz)
+    utc_dt = local_dt.astimezone(timezone.utc)
+
+    return {
+        "mode": "scheduled",
+        "date": date_str,
+        "time": time_str,
+        "tz": tz_str,
+        "local_iso": local_dt.isoformat(),
+        "utc_iso": utc_dt.isoformat(),
+    }
 
 
 def parse_draft(filepath):
@@ -845,15 +959,17 @@ def main():
     next_slot = "--next-slot" in args
     check_only = "--check" in args
     force = "--force" in args
+    immediate_flag = "--immediate" in args
     no_media = "--no-media" in args
     platform_flag = None
     schedule_flag = None
+    tz_flag = None
     clone_media_id = None
 
     filtered = []
     i = 0
     while i < len(args):
-        if args[i] in ("--yes", "-y", "--list", "--all", "--next-slot", "--check", "--force", "--no-media"):
+        if args[i] in ("--yes", "-y", "--list", "--all", "--next-slot", "--check", "--force", "--no-media", "--immediate"):
             i += 1
         elif args[i] == "--clone-media" and i + 1 < len(args):
             clone_media_id = args[i + 1]
@@ -863,6 +979,9 @@ def main():
             i += 2
         elif args[i] == "--schedule" and i + 1 < len(args):
             schedule_flag = args[i + 1]
+            i += 2
+        elif args[i] == "--tz" and i + 1 < len(args):
+            tz_flag = args[i + 1]
             i += 2
         else:
             filtered.append(args[i])
@@ -881,11 +1000,14 @@ def main():
         print("  --platform li,x,ig          Comma-separated platform suffixes")
         print("  --all                       Post to all platforms")
         print("  --clone-media <sub_id>      Pull media from existing Blotato submission")
-        print("  --schedule <time>           Schedule for specific time")
+        print("  --immediate                 Publish immediately (no schedule)")
+        print("  --schedule <YYYY-MM-DDTHH:MM>  Exact local date/time (requires --tz)")
+        print("  --tz <IANA timezone>        Required with --schedule, e.g. America/New_York")
         print("  --next-slot                 Use Blotato's next available slot")
         print("  --check                     Check guardrails only (no scheduling)")
-        print("  --force                     Skip guardrail checks")
-        print("  --yes, -y                   Skip confirmation prompt")
+        print("  --force                     Skip approved-location/duplication checks")
+        print("  --yes, -y                   Skip ancillary confirmations only")
+        print("                              (does NOT skip the action choice or final confirmation)")
         print("  --list                      Show available platforms")
         sys.exit(1)
 
@@ -944,7 +1066,14 @@ def main():
         print(f"Available: {', '.join(PLATFORMS.keys())}")
         sys.exit(1)
 
-    scheduled_time = parse_schedule(schedule_flag) if schedule_flag else None
+    if next_slot:
+        # --next-slot is preserved unchanged: it is itself the explicit
+        # action choice, and needs no date/time/timezone confirmation.
+        timing = {"mode": "next_slot"}
+        scheduled_time = None
+    else:
+        timing = resolve_publish_timing(immediate_flag, schedule_flag, tz_flag)
+        scheduled_time = timing["utc_iso"] if timing["mode"] == "scheduled" else None
 
     text, image_prompt, all_image_prompts = parse_draft(filepath)
     if no_media:
@@ -956,16 +1085,25 @@ def main():
     is_thread = "x" in platforms and parse_thread(filepath) is not None
     tweets = parse_thread(filepath) if is_thread else None
 
+    print("=" * 50)
+    print("FINAL CONFIRMATION")
+    print("=" * 50)
+    if timing["mode"] == "scheduled":
+        print("Action: SCHEDULED PUBLICATION")
+        print(f"  Date:            {timing['date']}")
+        print(f"  Time:            {timing['time']}")
+        print(f"  Timezone (IANA): {timing['tz']}")
+        print(f"  Local time:      {timing['local_iso']}")
+        print(f"  UTC equivalent:  {timing['utc_iso']}")
+    elif timing["mode"] == "next_slot":
+        print("Action: SCHEDULED PUBLICATION (Blotato next available slot)")
+    else:
+        print("Action: IMMEDIATE PUBLICATION")
+    print(f"Karen verdict: {fm.get('karen_verdict', '(none)')}")
+
     if is_thread:
         print(f"Thread detected: {len(tweets)} tweets")
         print(f"Platform: x (twitter)")
-        print(f"Karen: {fm.get('karen_verdict', '(none)')}")
-        if scheduled_time:
-            print(f"Scheduled: {scheduled_time}")
-        elif next_slot:
-            print("Scheduled: next available slot")
-        else:
-            print("Scheduled: now")
         print("---")
         for i, tweet in enumerate(tweets):
             print(f"Tweet {i+1}: {tweet[:80]}...")
@@ -974,28 +1112,24 @@ def main():
         print(f"Platforms: {', '.join(platforms)}")
         print(f"Text length: {len(text)} chars")
         print(f"Image prompt: {'yes' if image_prompt else 'no'}")
-        print(f"Karen: {fm.get('karen_verdict', '(none)')}")
-        if scheduled_time:
-            print(f"Scheduled: {scheduled_time}")
-        elif next_slot:
-            print("Scheduled: next available slot")
-        else:
-            print("Scheduled: now")
         print("---")
         print(text[:300] + "..." if len(text) > 300 else text)
         print("---")
 
-    if not auto_yes:
-        try:
-            count = len(tweets) if is_thread else len(platforms)
-            label = "tweets in thread" if is_thread else f"platform(s)"
-            confirm = input(f"Post to {count} {label}? [y/N] ").strip().lower()
-        except (EOFError, KeyboardInterrupt):
-            print("\nCancelled.")
-            sys.exit(0)
-        if confirm != "y":
-            print("Cancelled.")
-            sys.exit(0)
+    # Mandatory on every run, including --yes. --yes only ever skips the
+    # ancillary prompts below (clone-media fallback, missing-media
+    # warning) -- never this one.
+    count = len(tweets) if is_thread else len(platforms)
+    label = "tweets in thread" if is_thread else "platform(s)"
+    action_word = "Publish now" if timing["mode"] == "immediate" else "Schedule"
+    try:
+        confirm = input(f"{action_word} to {count} {label}? [y/N] ").strip().lower()
+    except (EOFError, KeyboardInterrupt):
+        print("\nCancelled.")
+        sys.exit(0)
+    if confirm != "y":
+        print("Cancelled.")
+        sys.exit(0)
 
     image_urls = []
 
