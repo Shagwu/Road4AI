@@ -1,0 +1,34 @@
+name: Daily GitHub Update to X
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Runs every day at 8 AM UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Generate Update
+        id: generate
+        run: |
+          echo "📊 **Road4AI Daily Update**" > update.txt
+          echo "" >> update.txt
+          echo "Recent Activity:" >> update.txt
+          echo "- Latest commits and changes" >> update.txt
+          echo "- Current project status" >> update.txt
+          echo "" >> update.txt
+          echo "Suggested Posts:" >> update.txt
+          echo "1. Progress update" >> update.txt
+          echo "2. New feature highlight" >> update.txt
+          
+      - name: Post to X
+        uses: snow-actions/x@v1.0.0
+        with:
+          consumer-key: ${{ secrets.X_CONSUMER_KEY }}
+          consumer-secret: ${{ secrets.X_CONSUMER_SECRET }}
+          access-token: ${{ secrets.X_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.X_ACCESS_SECRET }}
+          text: ${{ steps.generate.outputs.text }}

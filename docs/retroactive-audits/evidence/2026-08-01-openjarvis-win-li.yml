@@ -1,0 +1,22 @@
+candidate_id: 2026-08-01-openjarvis-win-li
+phase_4_scope: designated signal-to-decision proof candidate
+content_artifact: drafts/archived/2026-08-01-openjarvis-win-li.md
+draft_evidence: present
+approval_evidence: self-attested in draft metadata
+blotato_correlation_id: 117ed88e-37ec-4ab5-a2d6-dfd9bae8b827
+provider_status: in-progress / unresolved
+publication_status: unverified
+public_url: absent
+outcome_evidence: absent
+lift_claim: unsupported
+audit_disposition: do_not_count_as_published_or_phase_4_lift
+provider_receipt:
+  provider: blotato
+  provider_status: null
+  public_url: null
+  response_timestamp: null
+  http_status: null
+  raw_response: null
+  durable: false
+  gate_evaluated_at: null
+  gate_version: null
