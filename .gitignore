@@ -44,3 +44,4 @@ reports/skillopt/social_voice/daily-*
 
 # Media
 videos/
+state/*.bak-*
